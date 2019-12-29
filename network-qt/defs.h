@@ -2,7 +2,7 @@
 #ifndef __SYMBOID_SDK_NETWORK_QT_DEFS_H__
 #define __SYMBOID_SDK_NETWORK_QT_DEFS_H__
 
-#include "sdk/basics/defs.h"
+#include "sdk/defs.h"
 
 #ifdef BUILD_SDK_NETWORK_QT
     #define SDK_NETWORK_QT_API SY_API_EXPORT

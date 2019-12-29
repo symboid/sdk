@@ -4,7 +4,7 @@ COMMON_HOME="$(cd "$( dirname "$0" )/.." && pwd)"
 source $COMMON_HOME/generate_common.sh
 
 COMPONENT_NAME=$1
-COMPONENT_HOME="$(cd "$( dirname "$0" )/../../$COMPONENT_NAME" && pwd)"
+COMPONENT_HOME="$(cd "$( dirname "$0" )/../../../$COMPONENT_NAME" && pwd)"
 COMPONENT_REV_ID="$($HG id --id $COMPONENT_HOME)"
 REVISION_STAMP="$COMPONENT_HOME/.revision.stamp"
 if [ -f $REVISION_STAMP ]; then

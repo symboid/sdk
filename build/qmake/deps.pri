@@ -1,7 +1,7 @@
 
 TEMPLATE = subdirs
 
-SYS_HOME = $$shell_path($$absolute_path(../.., $$PWD))
+SYS_HOME = $$shell_path($$absolute_path(../../.., $$PWD))
 
 defineReplace(module_dep) {
     component_name = $$1

@@ -1,5 +1,5 @@
 
-SYS_HOME = $$shell_path($$absolute_path(../.., $$PWD))
+SYS_HOME = $$shell_path($$absolute_path(../../.., $$PWD))
 BUILD_HOME = $$shell_path($$absolute_path($$BUILD_ROOT, $$OUT_PWD))
 
 SDK_HOME = $$SYS_HOME/sdk
@@ -104,13 +104,3 @@ else{
 CONTEXT=$$CTX_OS-$$CTX_RUN
 
 INCLUDEPATH += $$SYS_HOME
-
-INCLUDEPATH += "$$SYS_HOME/sdk/basics/configs/$$CONTEXT"
-CONFIG(UseComponentApi): {
-    INCLUDEPATH += "$$INSTALL_PATH/include/sdk/basics/configs/$$CONTEXT"
-    LIBS += -L$$INSTALL_PATH/lib
-    INCLUDEPATH += "$$INSTALL_PATH/include"
-}
-LIBS += -L$$libPath($$BUILD_HOME/sdk/basics) -lsdkbasics
-DEPENDPATH += $$SYS_HOME/sdk/basics
-PRE_TARGETDEPS += $$componentLibDep(sdkbasics)
