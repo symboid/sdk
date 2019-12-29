@@ -16,15 +16,15 @@ fi
 # calculating component code revision:
 COMPONENT_NAME=$1
 COMPONENT_HOME="$(cd "$( dirname "$0" )/../../../$COMPONENT_NAME" && pwd)"
-COMPONENT_REV_NUM="$($HG id --num $COMPONENT_HOME)"
-COMPONENT_REV_ID="$($HG id --id $COMPONENT_HOME)"
+COMPONENT_REV_NUM="$(cd $COMPONENT_HOME && git rev-list --count HEAD)"
+COMPONENT_REV_ID="$(cd $COMPONENT_HOME && git rev-list --max-count=1 HEAD)"
 echo "Component Name    : $COMPONENT_NAME"
 echo "Component Home    : $COMPONENT_HOME"
 echo "Component Rev Num : $COMPONENT_REV_NUM"
 echo "Component Rev ID  : $COMPONENT_REV_ID"
 
 SDK_HOME="$(cd "$( dirname "$0" )/../../../sdk" && pwd)"
-SDK_REV_ID="$($HG id --id $SDK_HOME)"
+SDK_REV_ID="$(cd $SDK_HOME && git rev-list --max-count=1 HEAD)"
 echo "SDK Rev ID        : $SDK_REV_ID"
 
 # replacing trailing + with . if any

@@ -6,7 +6,7 @@ source $COMMON_HOME/generate_common.sh
 # module basic parameters:
 MODULE_ID=$1
 MODULE_HOME="$(cd $2 && pwd)"
-COMPONENT_HOME=$(cd $2 && $HG root)
+COMPONENT_HOME=$(cd $2 && git rev-parse --show-toplevel)
 COMPONENT_ID="$(basename $COMPONENT_HOME)"
 echo "Module Name       : $MODULE_ID"
 echo "Module Home       : $MODULE_HOME"
