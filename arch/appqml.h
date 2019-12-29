@@ -35,6 +35,11 @@ struct app_qml : app_qt<_AppMod, gui_application>
         _M_qml_engine->addImportPath("qrc:///");
     }
     main_object_init<qml_engine> _M_qml_engine;
+    int run(const char* _main_qml_path)
+    {
+        _M_qml_engine->load(QUrl(_main_qml_path));
+        return app_qt<_AppMod, gui_application>::exec();
+    }
 };
 
 arh_ns_end

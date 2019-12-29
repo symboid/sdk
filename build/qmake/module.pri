@@ -64,7 +64,7 @@ defineReplace(res_dep_on) {
 win32 {
     QMAKE_EXTRA_TARGETS += $$res_dep_on(details, $$MODULE_H $$COMPONENT_PROPS)
 
-    DETAILS_RC = $$SYS_HOME/build/module/details.rc
+    DETAILS_RC = $$SYS_HOME/sdk/build/module/details.rc
     RC_INCLUDEPATH = $$_PRO_FILE_PWD_ $$_PRO_FILE_PWD_/..
     RC_FILE = $$DETAILS_RC
 
@@ -80,10 +80,10 @@ win32 {
 # rules for module.h generation
 module_header_rule.target = $$MODULE_H
 win32 {
-    module_header_rule.commands = cscript $$SYS_HOME/build/module/generate.vbs $$TARGET $$_PRO_FILE_PWD_
+    module_header_rule.commands = cscript $$SYS_HOME/sdk/build/module/generate.vbs $$TARGET $$_PRO_FILE_PWD_
 }
 else:unix {
-    module_header_rule.commands = chmod +x $$SYS_HOME/build/module/generate.sh; $$SYS_HOME/build/module/generate.sh $$TARGET $$_PRO_FILE_PWD_
+    module_header_rule.commands = chmod +x $$SYS_HOME/sdk/build/module/generate.sh; $$SYS_HOME/sdk/build/module/generate.sh $$TARGET $$_PRO_FILE_PWD_
 }
 QMAKE_EXTRA_TARGETS += module_header_rule
 
@@ -123,5 +123,5 @@ osx {
 }
 
 OTHER_FILES += \
-    $$SYS_HOME/build/module/generate.vbs \
-    $$SYS_HOME/build/module/generate.sh
+    $$SYS_HOME/sdk/build/module/generate.vbs \
+    $$SYS_HOME/sdk/build/module/generate.sh
