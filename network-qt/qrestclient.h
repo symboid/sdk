@@ -6,7 +6,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 
-class QRestCaller : public QObject
+class SDK_NETWORK_QT_API QRestCaller : public QObject
 {
     Q_OBJECT
 
@@ -34,7 +34,7 @@ public:
     QNetworkReply::NetworkError status() const { return mStatus; }
 };
 
-class QRestClient : public QNetworkAccessManager
+class SDK_NETWORK_QT_API QRestClient : public QNetworkAccessManager
 {
     Q_OBJECT
 
@@ -69,7 +69,7 @@ public:
     void callGet(QRestCaller* caller, const QString& path);
 };
 
-class QRestClientJSON : public QRestClient
+class SDK_NETWORK_QT_API QRestClientJSON : public QRestClient
 {
     Q_OBJECT
 

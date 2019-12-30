@@ -6,7 +6,7 @@
 #include "sdk/arch/modqt.h"
 #include "sdk/network-qt/qresttablemodel.h"
 
-struct mod_sdk_network_qt : arh::mod_qt<mod_sdk_network_qt>
+struct SDK_NETWORK_QT_API mod_sdk_network_qt : arh::mod_qt<mod_sdk_network_qt>
 {
     MOD_OBJECT(sdk_network_qt)
 

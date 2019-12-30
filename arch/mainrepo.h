@@ -18,10 +18,10 @@ _Class* main_object_create(_CtorArgs... _ctorArgs)
 typedef std::recursive_mutex main_object_mutex;
 typedef std::lock_guard<main_object_mutex> main_object_guard;
 
-class main_repo
+class SDK_ARCH_API main_repo
 {
 public:
-    class basic_item
+    class SDK_ARCH_API basic_item
     {
     public:
         basic_item(const char* _item_type_str, bool _owned_by_repo);

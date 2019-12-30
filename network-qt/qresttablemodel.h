@@ -8,7 +8,7 @@
 #include <QJsonArray>
 #include <QAbstractListModel>
 
-class QRestObjectJSON : public QRestCaller
+class SDK_NETWORK_QT_API QRestObjectJSON : public QRestCaller
 {
     Q_OBJECT
 
@@ -29,7 +29,7 @@ public:
     QVariant value(const QString& fieldName) const;
 };
 
-class QRestTableJSON : public QRestCaller
+class SDK_NETWORK_QT_API QRestTableJSON : public QRestCaller
 {
     Q_OBJECT
 
@@ -48,7 +48,7 @@ public:
     QVariant value(int rowIndex, const QString& columnName) const;
 };
 
-class QRestModel : public QAbstractListModel
+class SDK_NETWORK_QT_API QRestModel : public QAbstractListModel
 {
     Q_OBJECT
 
@@ -77,7 +77,7 @@ private slots:
     void runOperation();
 };
 
-class QRestObjectModel : public QRestModel
+class SDK_NETWORK_QT_API QRestObjectModel : public QRestModel
 {
     Q_OBJECT
 
@@ -97,7 +97,7 @@ private:
     QRestObjectJSON mRestObject;
 };
 
-class QRestTableModel : public QRestModel
+class SDK_NETWORK_QT_API QRestTableModel : public QRestModel
 {
     Q_OBJECT
 

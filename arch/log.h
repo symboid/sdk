@@ -10,7 +10,7 @@
 
 arh_ns_begin
 
-class log
+class SDK_ARCH_API log
 {
 public:
     enum level

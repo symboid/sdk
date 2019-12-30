@@ -8,7 +8,7 @@
 
 arh_ns_begin
 
-struct basic_mod
+struct SDK_ARCH_API basic_mod
 {
     basic_mod(const char* _mod_name);
     ~basic_mod();
