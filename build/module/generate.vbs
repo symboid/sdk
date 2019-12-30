@@ -15,7 +15,7 @@ ModuleName = WScript.Arguments(0)
 ModuleHome = Fs.GetAbsolutePathName(WScript.Arguments(1))
 ReturnCwd = Fs.GetAbsolutePathName(".")
 Shell.CurrentDirectory = ModuleHome
-ComponentHome = Shell.Exec("hg root").StdOut.ReadLine()
+ComponentHome = Shell.Exec("git rev-parse --show-toplevel").StdOut.ReadLine()
 ComponentName = Fs.GetBaseName(ComponentHome)
 Shell.CurrentDirectory = ReturnCwd
 

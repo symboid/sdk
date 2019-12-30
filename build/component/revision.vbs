@@ -4,6 +4,11 @@ set Shell = WScript.CreateObject("WScript.Shell")
 set Fs = WScript.CreateObject("Scripting.FileSystemObject")
 const ForReading = 1
 
+function RepoRevId(RepoHome)
+        set GitShell = WScript.CreateObject("WScript.Shell")
+        GitShell.CurrentDirectory = RepoHome
+        RepoRevId = GitShell.Exec("git rev-list --max-count=1 HEAD").StdOut.ReadLine()
+end function
 
 ScriptDir = Fs.GetParentFolderName(WScript.ScriptFullName)
 
@@ -13,8 +18,8 @@ if WScript.Arguments.Count < 1 then
 end if
 
 ComponentName = WScript.Arguments(0)
-ComponentHome = Fs.GetAbsolutePathName(ScriptDir & "\..\..\" & ComponentName)
-ComponentRevId  = Shell.Exec("hg id --id " & ComponentHome).StdOut.ReadLine()
+ComponentHome = Fs.GetAbsolutePathName(ScriptDir & "\..\..\..\" & ComponentName)
+ComponentRevId = RepoRevId(ComponentHome)
 
 RevisionStamp = ComponentHome & "\.revision.stamp"
 if Fs.FileExists(RevisionStamp) then

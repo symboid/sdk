@@ -4,6 +4,19 @@ set Shell = WScript.CreateObject("WScript.Shell")
 set Fs = WScript.CreateObject("Scripting.FileSystemObject")
 const ForReading = 1
 
+function RepoRevList(RepoHome,RevListParams)
+	set GitShell = WScript.CreateObject("WScript.Shell")
+        GitShell.CurrentDirectory = RepoHome
+        RepoRevList = GitShell.Exec("git rev-list " & RevListParams).StdOut.ReadLine()
+end function
+
+function RepoRevId(RepoHome)
+        RepoRevId = RepoRevList(RepoHome, "--max-count=1 HEAD")
+end function
+
+function RepoRevNum(RepoHome)
+        RepoRevNum = RepoRevList(RepoHome, "--count HEAD")
+end function
 
 ScriptDir = Fs.GetParentFolderName(WScript.ScriptFullName)
 
@@ -18,22 +31,22 @@ if WScript.Arguments.Count >= 2 then
 end if
 
 ComponentName = WScript.Arguments(0)
-ComponentHome = Fs.GetAbsolutePathName(ScriptDir & "\..\..\" & ComponentName)
-ComponentRevNum = Shell.Exec("hg id --num " & ComponentHome).StdOut.ReadLine()
-ComponentRevId  = Shell.Exec("hg id --id " & ComponentHome).StdOut.ReadLine()
+ComponentHome = Fs.GetAbsolutePathName(ScriptDir & "\..\..\..\" & ComponentName)
+ComponentRevNum = RepoRevNum(ComponentHome)
+ComponentRevId  = RepoRevId(ComponentHome)
 
 WScript.Echo "Component Name    : " & ComponentName
 WScript.Echo "Component Home    : " & ComponentHome
 WScript.Echo "Component Rev Num : " & ComponentRevNum
 WScript.Echo "Component Rev Id  : " & ComponentRevId
 
-SdkHome = Fs.GetAbsolutePathName(ScriptDir & "\..\..\sdk")
-SdkRevId  = Shell.Exec("hg id --id " & SdkHome).StdOut.ReadLine()
+SdkHome = Fs.GetAbsolutePathName(ScriptDir & "\..\..\..\sdk")
+SdkRevId  = RepoRevId(SdkHome)
 WScript.Echo "SDK Rev Id        : " & SdkRevId
 
-QdkHome = Fs.GetAbsolutePathName(ScriptDir & "\..\..\qdk")
-QdkRevId  = Shell.Exec("hg id --id " & QdkHome).StdOut.ReadLine()
-WScript.Echo "QDK Rev Id        : " & QdkRevId
+'''QdkHome = Fs.GetAbsolutePathName(ScriptDir & "\..\..\..\qdk")
+'''QdkRevId  = RepoRevId(QdkHome)
+'''WScript.Echo "QDK Rev Id        : " & QdkRevId
 
 ComponentRevNum = Replace(ComponentRevNum, "+", ".")
 
