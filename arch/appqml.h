@@ -16,7 +16,7 @@ QGuiApplication* main_object_create(int* _argc, char*** _argv)
     return new QGuiApplication(*_argc, *_argv);
 }
 
-struct gui_application
+struct qml_application
 {
     MAIN_OBJECT(QGuiApplication, Application)
 };
@@ -27,18 +27,20 @@ struct qml_engine
 };
 
 template <class _AppMod>
-struct app_qml : app_qt<_AppMod, gui_application>
+struct app_qml : app_qt<_AppMod, qml_application>
 {
     app_qml(int* _argc, char*** _argv)
-        : app_qt<_AppMod, gui_application>(_argc, _argv)
+        : app_qt<_AppMod, qml_application>(_argc, _argv)
+        , _M_main_qml("qrc:///main.qml")
     {
         _M_qml_engine->addImportPath("qrc:///");
     }
     main_object_init<qml_engine> _M_qml_engine;
-    int run(const char* _main_qml_path)
+    QUrl _M_main_qml;
+    int run()
     {
-        _M_qml_engine->load(QUrl(_main_qml_path));
-        return app_qt<_AppMod, gui_application>::exec();
+        _M_qml_engine->load(_M_main_qml);
+        return app_qt<_AppMod, qml_application>::exec();
     }
 };
 

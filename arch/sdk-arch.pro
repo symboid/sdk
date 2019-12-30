@@ -13,8 +13,8 @@ SOURCES += \
 HEADERS += \
     app.h \
     appqt.h \
-    appqtwidgets.h \
     appqml.h \
+    appqtw.h \
     defs.h \
     log.h \
     mod.h \
