@@ -63,9 +63,15 @@ clang|gcc {
 
 clang {
     QMAKE_CXXFLAGS += -stdlib=libc++
-    QMAKE_LFLAGS += -stdlib=libc++
-    QMAKE_MACOSX_DEPLOYMENT_TARGET=10.11
-    QMAKE_OBJECTIVE_CFLAGS += -fobjc-arc
+    android {
+        # fix of NDKr20
+        QMAKE_LFLAGS += -nostdlib++
+    }
+    else {
+        QMAKE_LFLAGS += -stdlib=libc++
+        QMAKE_MACOSX_DEPLOYMENT_TARGET=10.11
+        QMAKE_OBJECTIVE_CFLAGS += -fobjc-arc
+    }
 }
 
 # first SDK home need to be added in order to avoid using _install/include inside module/component
