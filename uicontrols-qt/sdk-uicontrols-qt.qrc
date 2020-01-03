@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/Symboid/Sdk/Controls">
+        <file>qmldir</file>
+        <file>NumberBox.qml</file>
+        <file>NumericBox.qml</file>
+        <file>EnumBox.qml</file>
+        <file>DateCoordBox.qml</file>
+        <file>TimeCoordBox.qml</file>
+        <file>CircularSpinBox.qml</file>
+        <file>MultiNumberBox.qml</file>
+    </qresource>
+</RCC>

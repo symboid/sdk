@@ -1,0 +1,36 @@
+
+import QtQuick 2.12
+
+NumericBox {
+
+    property var valueTexts: null
+    value: from
+
+    textFromValue: function(value, locale)
+    {
+        return valueTexts[value - from]
+    }
+    valueFromText: function(text, locale)
+    {
+        for (var v = from; v <= to; ++v)
+        {
+            if (valueTexts[v - from] === text)
+            {
+                return Number(v)
+            }
+        }
+        return "???"
+    }
+    validator: RegExpValidator {
+        regExp: {
+            var regExpStr = "("
+            for (var v = from; v <= to; ++v)
+            {
+                regExpStr += valueTexts[v - from]
+                regExpStr += "|"
+            }
+            regExpStr += ")"
+            return new RegExp(regExpStr)
+        }
+    }
+}

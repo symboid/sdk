@@ -1,0 +1,8 @@
+module Symboid.Sdk.Controls
+CircularSpinBox 1.0 CircularSpinBox.qml
+NumericBox 1.0 NumericBox.qml
+NumberBox 1.0 NumberBox.qml
+MultiNumberBox 1.0 MultiNumberBox.qml
+EnumBox 1.0 EnumBox.qml
+DateCoordBox 1.0 DateCoordBox.qml
+TimeCoordBox 1.0 TimeCoordBox.qml
