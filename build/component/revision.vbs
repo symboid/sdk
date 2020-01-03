@@ -26,7 +26,7 @@ if Fs.FileExists(RevisionStamp) then
 	set TsFile = Fs.GetFile(RevisionStamp)
 	TsRevId = Fs.OpenTextFile(RevisionStamp,ForReading).ReadLine()
 	if TsRevId = ComponentRevId then
-                WScript.Echo "No changed in component revision."
+                WScript.Echo "No changes in component revision."
 		WScript.Quit 0
 	end if
 end if
