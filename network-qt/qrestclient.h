@@ -23,8 +23,10 @@ private slots:
 private:
     virtual void fetchResult(QNetworkReply*) {}
 signals:
+    void beginUpdate();
     void beginUpdateResult();
     void endUpdateResult();
+    void endUpdate();
 
 private slots:
     void onError(QNetworkReply::NetworkError error);

@@ -40,11 +40,13 @@ void QRestCaller::onFinished()
     {
         mStatus = QNetworkReply::UnknownNetworkError;
     }
+    emit endUpdate();
 }
 
 void QRestCaller::onError(QNetworkReply::NetworkError error)
 {
     mStatus = error;
+    emit endUpdate();
 }
 
 QRestClient::QRestClient(const QUrl& apiAddress, QObject* parent)
@@ -95,6 +97,7 @@ QNetworkRequest QRestClient::buildRequest(const QString& path) const
 
 void QRestClient::callGet(QRestCaller* caller, const QString& path)
 {
+    emit caller->beginUpdate();
     QNetworkRequest request = buildRequest(path);
     caller->setReply(get(request));
 }

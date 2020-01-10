@@ -106,8 +106,8 @@ void QRestModel::runOperation()
 QRestObjectModel::QRestObjectModel(QObject* parent)
     : QRestModel(parent)
 {
-    connect(&mRestObject, SIGNAL(beginUpdateResult()), this, SIGNAL(modelAboutToBeReset()));
-    connect(&mRestObject, SIGNAL(endUpdateResult()), this, SIGNAL(modelReset()));
+    connect(&mRestObject, SIGNAL(beginUpdate()), this, SIGNAL(modelAboutToBeReset()));
+    connect(&mRestObject, SIGNAL(endUpdate()), this, SIGNAL(modelReset()));
 }
 
 int QRestObjectModel::rowCount(const QModelIndex& parent) const
@@ -131,8 +131,8 @@ QHash<int, QByteArray> QRestObjectModel::roleNames() const
 QRestTableModel::QRestTableModel(QObject* parent)
     : QRestModel(parent)
 {
-    connect(&mRestTable, SIGNAL(beginUpdateResult()), this, SIGNAL(modelAboutToBeReset()));
-    connect(&mRestTable, SIGNAL(endUpdateResult()), this, SIGNAL(modelReset()));
+    connect(&mRestTable, SIGNAL(beginUpdate()), this, SIGNAL(modelAboutToBeReset()));
+    connect(&mRestTable, SIGNAL(endUpdate()), this, SIGNAL(modelReset()));
 }
 
 int QRestTableModel::rowCount(const QModelIndex& parent) const
