@@ -42,11 +42,13 @@ Row {
     }
     readonly property int numbersHeight: numberBox(0).height
 
-    Item { width:10; height:1 }
+    Item { width:10; height:1; visible: editable }
+
     RoundButton {
         id: popupButton
         height: numbersHeight
         width: height
+        visible: editable
         text: "..."
         onClicked: !popupItem.visible ? popupItem.open() : popupItem.close()
     }
