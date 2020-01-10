@@ -27,7 +27,7 @@ CircularSpinBox {
         text: numericBox.textFromValue(numericBox.value, Qt.locale())
         font: numericBox.font
     }
-    width: numericBoxMetrics.width + height*0.75
+    width: numericBoxMetrics.width + height/3
 
     MouseArea {
         anchors.fill: parent
