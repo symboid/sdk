@@ -73,8 +73,8 @@ protected:
 signals:
     void operationChanged();
 
-private slots:
-    void runOperation();
+public slots:
+    Q_INVOKABLE void runOperation();
 };
 
 class SDK_NETWORK_QT_API QRestObjectModel : public QRestModel

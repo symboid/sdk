@@ -73,8 +73,6 @@ QRestModel::QRestModel(QObject* parent)
     : QAbstractListModel(parent)
     , mRestClient(Q_NULLPTR)
 {
-    connect(this, SIGNAL(restClientChanged()), this, SLOT(runOperation()));
-    connect(this, SIGNAL(operationChanged()), this, SLOT(runOperation()));
 }
 
 void QRestModel::setRestClient(QRestClient* restClient)
