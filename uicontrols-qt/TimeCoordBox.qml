@@ -10,16 +10,19 @@ MultiNumberBox {
 
     boxes: ListModel {
         ListElement {
+            is_enum: false
             number_from: 0
             number_to: 23
             number_suffix: qsTr("h")
         }
         ListElement {
+            is_enum: false
             number_from: 0
             number_to: 59
             number_suffix: qsTr("m")
         }
         ListElement {
+            is_enum: false
             number_from: 0
             number_to: 59
             number_suffix: qsTr("s")

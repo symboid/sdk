@@ -10,16 +10,19 @@ MultiNumberBox {
 
     boxes: ListModel {
         ListElement {
+            is_enum: false
             number_from: -3000
             number_to: 3000
             number_suffix: "."
         }
         ListElement {
+            is_enum: false
             number_from: 1
             number_to: 12
             number_suffix: "."
         }
         ListElement {
+            is_enum: false
             number_from: 1
             number_to: 31
             number_suffix: "."

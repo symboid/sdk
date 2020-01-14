@@ -12,16 +12,35 @@ Row {
     Repeater {
         id: numbers
         model: boxes
-        delegate: NumberBox {
-            editable: multiNumberBox.editable
-            circular: multiNumberBox.circular
-            circularLink: !circular ? null :
-                          index > 0 ? numbers.itemAt(index-1) :
-                                      multiNumberBox.circularLink
+        delegate: Loader {
+            Component {
+                id: numberBoxComponent
+                NumberBox {
+                    editable: multiNumberBox.editable
+                    circular: multiNumberBox.circular
+                    circularLink: !circular ? null :
+                                  index > 0 ? numbers.itemAt(index-1).item :
+                                              multiNumberBox.circularLink
 
-            from: number_from
-            to: number_to
-            displaySuffix: number_suffix !== undefined ? number_suffix : ""
+                    from: number_from
+                    to: number_to
+                    displaySuffix: number_suffix            }
+            }
+            Component {
+                id: enumBoxComponent
+                EnumBox {
+                    editable: multiNumberBox.editable
+                    circular: multiNumberBox.circular
+                    circularLink: !circular ? null :
+                                  index > 0 ? numbers.itemAt(index-1).item :
+                                              multiNumberBox.circularLink
+                    from: number_from
+                    to: number_to
+                }
+            }
+
+            sourceComponent: is_enum ? enumBoxComponent : numberBoxComponent
+            active: true
         }
     }
     NumberBox {
@@ -30,13 +49,13 @@ Row {
     }
     function numberBox(index)
     {
-        return numberBoxes.count > index ? numberBoxes.itemAt(index) : nullNumberBox
+        return numberBoxes.count > index ? numberBoxes.itemAt(index).item : nullNumberBox
     }
     readonly property int numbersWidth: {
         var width = 0
         for (var b = 0; b < numberBoxes.count; ++b)
         {
-            width += numberBoxes.itemAt(b).width
+            width += numberBoxes.itemAt(b).item.width
         }
         return width
     }
@@ -69,7 +88,7 @@ Row {
             Repeater {
                 model: boxes
                 delegate: Tumbler {
-                    readonly property NumberBox inputNumber: numberBox(index)
+                    readonly property NumericBox inputNumber: numberBox(index)
                     height: parent.height
                     width: inputNumber.width
 

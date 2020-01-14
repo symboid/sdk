@@ -8,7 +8,7 @@ NumericBox {
 
     textFromValue: function(value, locale)
     {
-        return valueTexts[value - from]
+        return from <= value && value <= to ? valueTexts[value - from] : "?"
     }
     valueFromText: function(text, locale)
     {
@@ -19,7 +19,7 @@ NumericBox {
                 return Number(v)
             }
         }
-        return "???"
+        return Number(from)
     }
     validator: RegExpValidator {
         regExp: {
