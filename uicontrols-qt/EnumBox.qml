@@ -8,7 +8,7 @@ NumericBox {
 
     textFromValue: function(value, locale)
     {
-        return from <= value && value <= to ? valueTexts[value - from] : "?"
+        return valueTexts !== null && from <= value && value <= to ? valueTexts[value - from] : "?"
     }
     valueFromText: function(text, locale)
     {

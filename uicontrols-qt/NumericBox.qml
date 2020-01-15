@@ -5,6 +5,7 @@ CircularSpinBox {
     id: numericBox
 
     property CircularSpinBox circularLink: null
+    circular: circularLink !== null
 
     onIncrementedCircular: {
         if (circularLink)

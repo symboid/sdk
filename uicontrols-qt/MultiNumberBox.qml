@@ -3,69 +3,38 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 
 Row {
-    id: multiNumberBox
     property bool editable: false
     property bool circular: false
     property CircularSpinBox circularLink: null
-    property ListModel boxes: null
-    property alias numberBoxes: numbers
-    Repeater {
-        id: numbers
-        model: boxes
-        delegate: Loader {
-            Component {
-                id: numberBoxComponent
-                NumberBox {
-                    editable: multiNumberBox.editable
-                    circular: multiNumberBox.circular
-                    circularLink: !circular ? null :
-                                  index > 0 ? numbers.itemAt(index-1).item :
-                                              multiNumberBox.circularLink
+    property Component boxes: null
 
-                    from: number_from
-                    to: number_to
-                    displaySuffix: number_suffix            }
-            }
-            Component {
-                id: enumBoxComponent
-                EnumBox {
-                    editable: multiNumberBox.editable
-                    circular: multiNumberBox.circular
-                    circularLink: !circular ? null :
-                                  index > 0 ? numbers.itemAt(index-1).item :
-                                              multiNumberBox.circularLink
-                    from: number_from
-                    to: number_to
+    Loader {
+        id: boxesLoader
+        sourceComponent: boxes
+        active: boxes !== null
+        onSourceComponentChanged: {
+            for (var b = 0; b < item.children.length; ++b)
+            {
+                var box = item.children[b]
+                if (box instanceof NumericBox)
+                {
+                    box.editable = editable
                 }
             }
-
-            sourceComponent: is_enum ? enumBoxComponent : numberBoxComponent
-            active: true
         }
     }
-    NumberBox {
-        id: nullNumberBox
-        visible: false
-    }
-    function numberBox(index)
+    property Item numBoxes: boxesLoader.item
+    readonly property int boxCount: numBoxes !== null ? numBoxes.children.length : 0
+    function box(boxIndex)
     {
-        return numberBoxes.count > index ? numberBoxes.itemAt(index).item : nullNumberBox
+        return numBoxes !== null && 0 <= boxIndex && boxIndex < boxCount ? numBoxes.children[boxIndex] : null
     }
-    readonly property int numbersWidth: {
-        var width = 0
-        for (var b = 0; b < numberBoxes.count; ++b)
-        {
-            width += numberBoxes.itemAt(b).item.width
-        }
-        return width
-    }
-    readonly property int numbersHeight: numberBox(0).height
 
     Item { width:10; height:1; visible: editable }
 
     RoundButton {
         id: popupButton
-        height: numbersHeight
+        height: numBoxes.height
         width: height
         visible: editable
         text: "..."
@@ -78,17 +47,17 @@ Row {
         property int visibleCount: 3
 
         padding: 1
-        width: numbersWidth+2*padding
-        height: visibleCount * numbersHeight
+        width: numBoxes.width+2*padding
+        height: visibleCount * numBoxes.height
         x: -1
-        y: -(visibleCount / 2 - 0.5) * numbersHeight
+        y: -(visibleCount / 2 - 0.5) * numBoxes.height
 
         Row {
             anchors.fill: parent
             Repeater {
-                model: boxes
+                model: boxCount
                 delegate: Tumbler {
-                    readonly property NumericBox inputNumber: numberBox(index)
+                    readonly property NumericBox inputNumber: box(index)
                     height: parent.height
                     width: inputNumber.width
 

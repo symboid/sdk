@@ -3,35 +3,39 @@ import QtQuick 2.12
 
 MultiNumberBox {
 
-    property int hour: numberBox(0).value
-    property int minute: numberBox(1).value
-    property int second: numberBox(2).value
-    circular: true
+    property int hour: box(0).value
+    property int minute: box(1).value
+    property int second: box(2).value
 
-    boxes: ListModel {
-        ListElement {
-            is_enum: false
-            number_from: 0
-            number_to: 23
-            number_suffix: qsTr("h")
+    boxes: Row {
+        NumberBox {
+            id: hourBox
+            from: 0
+            to: 23
+            displaySuffix: qsTr("h")
+            value: (new Date).getHours()
         }
-        ListElement {
-            is_enum: false
-            number_from: 0
-            number_to: 59
-            number_suffix: qsTr("m")
+        NumberBox {
+            id: minuteBox
+            from: 0
+            to: 59
+            displaySuffix: qsTr("m")
+            value: (new Date).getMinutes()
+            circularLink: hourBox
         }
-        ListElement {
-            is_enum: false
-            number_from: 0
-            number_to: 59
-            number_suffix: qsTr("s")
+        NumberBox {
+            id: secondBox
+            from: 0
+            to: 59
+            displaySuffix: qsTr("s")
+            value: (new Date).getSeconds()
+            circularLink: minuteBox
         }
     }
     Component.onCompleted: {
-        var current = new Date
-        numberBox(0).value = current.getHours()
-        numberBox(1).value = current.getMinutes()
-        numberBox(2).value = current.getSeconds()
+         var current = new Date
+         box(0).value = current.getHours()
+         box(1).value = current.getMinutes()
+         box(2).value = current.getSeconds()
     }
 }
