@@ -11,7 +11,7 @@ SpinBox {
     {
         if (value === to && circular)
         {
-            value = from
+            while (value > from) decrease()
             incrementedCircular()
         }
         else
@@ -24,7 +24,7 @@ SpinBox {
     {
         if (value === from && circular)
         {
-            value = to
+            while (value < to) increase()
             decrementedCircular()
         }
         else

@@ -12,11 +12,14 @@ NumericBox {
     }
     valueFromText: function(text, locale)
     {
-        for (var v = from; v <= to; ++v)
+        if (valueTexts !== null)
         {
-            if (valueTexts[v - from] === text)
+            for (var v = from; v <= to; ++v)
             {
-                return Number(v)
+                if (valueTexts[v - from] === text)
+                {
+                    return Number(v)
+                }
             }
         }
         return Number(from)
@@ -24,10 +27,13 @@ NumericBox {
     validator: RegExpValidator {
         regExp: {
             var regExpStr = "("
-            for (var v = from; v <= to; ++v)
+            if (valueTexts !== null)
             {
-                regExpStr += valueTexts[v - from]
-                regExpStr += "|"
+                for (var v = from; v <= to; ++v)
+                {
+                    regExpStr += valueTexts[v - from]
+                    regExpStr += "|"
+                }
             }
             regExpStr += ")"
             return new RegExp(regExpStr)
