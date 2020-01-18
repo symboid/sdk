@@ -101,11 +101,11 @@ public: \
     typedef _MainObjectClass Class; \
     static constexpr const char* id = #_main_object_name; \
     static constexpr const char* type_str = #_main_object_type; \
-    static constexpr bool owner_is_repo = _owner_is_repo;
+    static constexpr bool owner_is_repo = _owner_is_repo; \
+    typedef arh::main_object<_MainObjectClass> mo;
 
 #define MAIN_OBJECT(_MainObjectClass, _main_object_name) \
-    __MAIN_OBJECT(_MainObjectClass, _main_object_name, main object, true) \
-    typedef arh::main_object<_MainObjectClass> mo;
+    __MAIN_OBJECT(_MainObjectClass, _main_object_name, main object, true)
 
 #define Q_MAIN_OBJECT(_main_object_name, _main_object_type) \
     __MAIN_OBJECT(Q##_main_object_name, _main_object_name, _main_object_type, false)
