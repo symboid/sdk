@@ -19,6 +19,7 @@ MultiNumberBox {
             id: minuteBox
             from: 0
             to: 59
+            digitCount: 2
             displaySuffix: qsTr("m")
             value: (new Date).getMinutes()
             circularLink: hourBox
@@ -27,6 +28,7 @@ MultiNumberBox {
             id: secondBox
             from: 0
             to: 59
+            digitCount: 2
             displaySuffix: qsTr("s")
             value: (new Date).getSeconds()
             circularLink: minuteBox

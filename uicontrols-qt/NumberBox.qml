@@ -6,10 +6,16 @@ NumericBox {
     value: 0
 
     property string displaySuffix: ""
+    property int digitCount: 1
 
     textFromValue: function(value, locale)
     {
-        return String(value) + displaySuffix
+        var text = String(value)
+        while (text.length < digitCount)
+        {
+            text = "0" + text
+        }
+        return text + displaySuffix
     }
     valueFromText: function(text, locale)
     {
