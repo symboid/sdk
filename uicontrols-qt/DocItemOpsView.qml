@@ -1,6 +1,7 @@
 
 import QtQuick 2.12
 import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.3
 
 Flickable {
 
@@ -72,8 +73,9 @@ Flickable {
                                                     : "/icons/arrow_left_icon&24.png"
                                 width: 24
                                 height: 24
-                                color: "darkblue"
                             }
+                            enabled: operationLoader.item !== null && operationLoader.item.enabled
+                            onClicked: operation.execute()
                         }
                     }
                 }
@@ -95,7 +97,7 @@ Flickable {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     height: 1
-                    color: "black"
+                    color: Material.primary
                     visible: index < operationCount - 1
                 }
             }

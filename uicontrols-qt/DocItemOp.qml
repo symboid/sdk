@@ -5,4 +5,5 @@ Item {
 
     property string title: ""
     property Component control: null
+    signal execute()
 }
