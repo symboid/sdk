@@ -74,7 +74,7 @@ Flickable {
                                 width: 24
                                 height: 24
                             }
-                            enabled: operationLoader.item !== null && operationLoader.item.enabled
+                            enabled: operation.canExecute
                             onClicked: operation.execute()
                         }
                     }
