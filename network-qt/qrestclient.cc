@@ -17,11 +17,13 @@ void QRestCaller::setReply(QNetworkReply* reply)
         mReply = reply;
         connect(mReply, SIGNAL(finished()), this, SLOT(onFinished()));
         connect(mReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(onError(QNetworkReply::NetworkError)));
+        connect(mReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SIGNAL(networkError(QNetworkReply::NetworkError)));
     }
     else
     {
         disconnect(mReply, SIGNAL(finished()), this, SLOT(onFinished()));
         disconnect(mReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(onError(QNetworkReply::NetworkError)));
+        disconnect(mReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SIGNAL(networkError(QNetworkReply::NetworkError)));
         emit mReply->deleteLater();
         mReply = Q_NULLPTR;
     }
@@ -29,7 +31,7 @@ void QRestCaller::setReply(QNetworkReply* reply)
 
 void QRestCaller::onFinished()
 {
-    if (mReply != Q_NULLPTR)
+    if (mReply != Q_NULLPTR && mReply->error() == QNetworkReply::NoError)
     {
         mStatus = QNetworkReply::NoError;
         emit beginUpdateResult();

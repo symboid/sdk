@@ -27,6 +27,7 @@ signals:
     void beginUpdateResult();
     void endUpdateResult();
     void endUpdate();
+    void networkError(QNetworkReply::NetworkError);
 
 private slots:
     void onError(QNetworkReply::NetworkError error);

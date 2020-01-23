@@ -106,6 +106,7 @@ QRestObjectModel::QRestObjectModel(QObject* parent)
 {
     connect(&mRestObject, SIGNAL(beginUpdate()), this, SIGNAL(modelAboutToBeReset()));
     connect(&mRestObject, SIGNAL(endUpdate()), this, SIGNAL(modelReset()));
+    connect(&mRestObject, SIGNAL(networkError(QNetworkReply::NetworkError)), this, SIGNAL(networkError(QNetworkReply::NetworkError)));
 }
 
 int QRestObjectModel::rowCount(const QModelIndex& parent) const
@@ -131,6 +132,7 @@ QRestTableModel::QRestTableModel(QObject* parent)
 {
     connect(&mRestTable, SIGNAL(beginUpdate()), this, SIGNAL(modelAboutToBeReset()));
     connect(&mRestTable, SIGNAL(endUpdate()), this, SIGNAL(modelReset()));
+    connect(&mRestTable, SIGNAL(networkError(QNetworkReply::NetworkError)), this, SIGNAL(networkError(QNetworkReply::NetworkError)));
 }
 
 int QRestTableModel::rowCount(const QModelIndex& parent) const

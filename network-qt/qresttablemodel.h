@@ -75,6 +75,9 @@ signals:
 
 public slots:
     Q_INVOKABLE void runOperation();
+
+signals:
+    void networkError(QNetworkReply::NetworkError networkError);
 };
 
 class SDK_NETWORK_QT_API QRestObjectModel : public QRestModel
