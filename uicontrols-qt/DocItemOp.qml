@@ -5,6 +5,6 @@ Item {
 
     property string title: ""
     property Component control: null
-    property bool canExecute: false
-    signal execute()
+    property bool canExec: false
+    signal exec()
 }
