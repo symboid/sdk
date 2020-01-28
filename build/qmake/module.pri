@@ -3,8 +3,6 @@ include(component.pri)
 
 # binary type is shared object
 TEMPLATE = lib
-# TODO: android build fix
-android: CONFIG += staticlib
 
 # module build macro switch
 DEFINES += BUILD_$$upper($$replace(TARGET,-,_))
