@@ -14,11 +14,46 @@ MultiNumberBox {
             to: 3000
             displaySuffix: "."
         }
-        NumberBox {
+        NumericBox {
             id: monthBox
             from: 1
             to: 12
-            displaySuffix: "."
+
+            textFromValue: function(value, locale)
+            {
+                return (new Date(2000, value - 1, 1)).toLocaleDateString(locale, "MMMM")
+            }
+            valueFromText: function(text, locale)
+            {
+                var monthDate = Date.fromLocaleDateString(locale, "???", "")
+                var formatStr = ""
+                for (var f = 0; monthDate.toString()==="Invalid Date" && f<4; ++f)
+                {
+                    formatStr += "M"
+                    monthDate = Date.fromLocaleDateString(locale, text, formatStr)
+                }
+                return monthDate.getMonth() + 1
+            }
+            validator: RegExpValidator {
+                regExp: new  RegExp(monthRegExp())
+                function monthRegExp()
+                {
+                    var regExpStr = "("
+                    for (var m = 0; m < 12; ++m)
+                    {
+                        var monthDate = new Date(2000, m, 1)
+                        var formatStr = ""
+                        for (var l = 0; l < 4; ++l)
+                        {
+                            formatStr += "M"
+                            regExpStr += monthDate.toLocaleDateString(Qt.locale(), formatStr)
+                            regExpStr += "|"
+                        }
+                    }
+                    regExpStr += ")"
+                    return regExpStr
+                }
+            }
             circularLink: yearBox
         }
         NumberBox {
@@ -33,6 +68,7 @@ MultiNumberBox {
                 }
             }
             displaySuffix: "."
+            circularLink: monthBox
         }
     }
     function isLeapYear()

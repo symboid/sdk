@@ -7,6 +7,8 @@ MultiNumberBox {
     property int minute: box(1).value
     property int second: box(2).value
 
+    property CircularSpinBox dayLink: circularLink
+
     boxes: Row {
         NumberBox {
             id: hourBox
@@ -14,6 +16,7 @@ MultiNumberBox {
             to: 23
             displaySuffix: qsTr("h")
             value: (new Date).getHours()
+            circularLink: dayLink
         }
         NumberBox {
             id: minuteBox
