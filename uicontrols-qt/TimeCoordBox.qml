@@ -37,10 +37,14 @@ MultiNumberBox {
             circularLink: minuteBox
         }
     }
+    function setCurrent()
+    {
+        var current = new Date
+        box(0).value = current.getHours()
+        box(1).value = current.getMinutes()
+        box(2).value = current.getSeconds()
+    }
     Component.onCompleted: {
-         var current = new Date
-         box(0).value = current.getHours()
-         box(1).value = current.getMinutes()
-         box(2).value = current.getSeconds()
+        setCurrent()
     }
 }

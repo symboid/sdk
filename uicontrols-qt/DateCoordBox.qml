@@ -77,10 +77,15 @@ MultiNumberBox {
     }
     property NumberBox dayLink: box(2)
 
-    Component.onCompleted: {
+    function setCurrent()
+    {
         var current = new Date
         box(0).value = current.getFullYear()
         box(1).value = current.getMonth() + 1
         box(2).value = current.getDate()
+    }
+
+    Component.onCompleted: {
+        setCurrent()
     }
 }
