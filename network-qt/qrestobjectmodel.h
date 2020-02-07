@@ -25,6 +25,9 @@ public:
     QVariant value(int fieldIndex) const;
     QString field(int fieldIndex) const;
     QVariant value(const QString& fieldName) const;
+
+public:
+    QJsonObject resultObject() const;
 };
 
 class SDK_NETWORK_QT_API QRestObjectModel : public QRestModel
@@ -45,6 +48,13 @@ public:
 private:
     QRestCaller* restCaller() override { return &mRestObject; }
     QRestObjectJSON mRestObject;
+
+public:
+    Q_PROPERTY(QJsonObject restObject READ restObject NOTIFY restObjectChanged)
+private:
+    QJsonObject restObject() const;
+signals:
+    void restObjectChanged();
 };
 
 #endif // __SYMBOID_SDK_NETWORK_QT_QRESTOBJECTMODEL_H__

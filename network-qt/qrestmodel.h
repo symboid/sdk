@@ -24,6 +24,15 @@ signals:
     void restClientChanged();
 
 public:
+    Q_PROPERTY(bool interactive MEMBER mInteractive WRITE setInteractive NOTIFY interactiveChanged)
+protected:
+    void setInteractive(bool interactive);
+private:
+    bool mInteractive;
+signals:
+    void interactiveChanged();
+
+public:
     Q_PROPERTY(QString operation MEMBER mOperation WRITE setOperation NOTIFY operationChanged)
 protected:
     void setOperation(const QString& operation);

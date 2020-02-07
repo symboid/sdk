@@ -5,6 +5,7 @@
 QRestModel::QRestModel(QObject* parent)
     : QAbstractListModel(parent)
     , mRestClient(Q_NULLPTR)
+    , mInteractive(false)
 {
 }
 
@@ -14,6 +15,24 @@ void QRestModel::setRestClient(QRestClient* restClient)
     {
         mRestClient = restClient;
         emit restClientChanged();
+    }
+}
+
+void QRestModel::setInteractive(bool interactive)
+{
+    if (mInteractive != interactive)
+    {
+        mInteractive = interactive;
+        if (mInteractive)
+        {
+            connect(this, SIGNAL(operationChanged()), this, SLOT(runOperation()));
+            runOperation();
+        }
+        else
+        {
+            disconnect(this, SIGNAL(operationChanged()), this, SLOT(runOperation()));
+        }
+        emit interactiveChanged();
     }
 }
 

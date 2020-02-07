@@ -42,11 +42,17 @@ QVariant QRestObjectJSON::value(const QString& fieldName) const
     return mResultObject[fieldName].toVariant();
 }
 
+QJsonObject QRestObjectJSON::resultObject() const
+{
+    return mResultObject;
+}
+
 QRestObjectModel::QRestObjectModel(QObject* parent)
     : QRestModel(parent)
 {
     connect(&mRestObject, SIGNAL(beginUpdate()), this, SIGNAL(modelAboutToBeReset()));
     connect(&mRestObject, SIGNAL(endUpdate()), this, SIGNAL(modelReset()));
+    connect(&mRestObject, SIGNAL(endUpdate()), this, SIGNAL(restObjectChanged()));
     connect(&mRestObject, SIGNAL(networkError(QNetworkReply::NetworkError)), this, SIGNAL(networkError(QNetworkReply::NetworkError)));
 }
 
@@ -66,4 +72,9 @@ QHash<int, QByteArray> QRestObjectModel::roleNames() const
     QHash<int, QByteArray> roles = QAbstractListModel::roleNames();
     roles[Qt::UserRole] = "field";
     return roles;
+}
+
+QJsonObject QRestObjectModel::restObject() const
+{
+    return mRestObject.resultObject();
 }
