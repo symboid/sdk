@@ -4,6 +4,7 @@
 
 #include "sdk/network-qt/defs.h"
 #include "sdk/arch/modqt.h"
+#include "sdk/network-qt/qrestobjectmodel.h"
 #include "sdk/network-qt/qresttablemodel.h"
 
 struct SDK_NETWORK_QT_API mod_sdk_network_qt : arh::mod_qt<mod_sdk_network_qt>
@@ -17,9 +18,8 @@ struct SDK_NETWORK_QT_API mod_sdk_network_qt : arh::mod_qt<mod_sdk_network_qt>
     mod_sdk_network_qt();
     ~mod_sdk_network_qt();
 
-    qml_type_register<QRestTableModel> _reg_rest_table_model;
     qml_type_register<QRestObjectModel> _reg_object_table_model;
+    qml_type_register<QRestTableModel> _reg_rest_table_model;
 };
-
 
 #endif // __SYMBOID_SDK_NETWORK_QT_INIT_H__

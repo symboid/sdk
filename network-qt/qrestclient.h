@@ -72,12 +72,6 @@ public:
     void callGet(QRestCaller* caller, const QString& path);
 };
 
-class SDK_NETWORK_QT_API QRestClientJSON : public QRestClient
-{
-    Q_OBJECT
-
-public:
-    QRestClientJSON(const QUrl& apiAddress, QObject* parent = Q_NULLPTR);
-};
+Q_DECLARE_METATYPE(QRestClient*)
 
 #endif // __SYMBOID_SDK_NETWORK_QT_QRESTCLIENT_H__

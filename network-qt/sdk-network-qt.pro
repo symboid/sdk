@@ -7,12 +7,16 @@ include($${BUILD_ROOT}/sdk/build/qmake/qt-module.pri)
 SOURCES += \
     init.cc \
     qrestclient.cc \
+    qrestmodel.cc \
+    qrestobjectmodel.cc \
     qresttablemodel.cc
 
 HEADERS += \
     defs.h \
     init.h \
     qrestclient.h \
+    qrestmodel.h \
+    qrestobjectmodel.h \
     qresttablemodel.h \
     setup.h
 

@@ -103,8 +103,3 @@ void QRestClient::callGet(QRestCaller* caller, const QString& path)
     QNetworkRequest request = buildRequest(path);
     caller->setReply(get(request));
 }
-
-QRestClientJSON::QRestClientJSON(const QUrl& apiAddress, QObject* parent)
-    : QRestClient(apiAddress, parent)
-{
-}
