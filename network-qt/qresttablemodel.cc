@@ -30,6 +30,11 @@ QVariant QRestTableJSON::value(int rowIndex, const QString& columnName) const
     return mResultArray[rowIndex].toObject().value(columnName).toVariant();
 }
 
+QJsonObject QRestTableJSON::rowObject(int rowIndex) const
+{
+    return mResultArray[rowIndex].toObject();
+}
+
 QRestTableModel::QRestTableModel(QObject* parent)
     : QRestModel(parent)
 {
@@ -68,4 +73,14 @@ void QRestTableModel::setColumnNames(const QStringList &columnNames)
         mColumnNames = columnNames;
         emit columnNamesChanged();
     }
+}
+
+int QRestTableModel::objectCount() const
+{
+    return mRestTable.rowCount();
+}
+
+QJsonObject QRestTableModel::object(int objectIndex) const
+{
+    return mRestTable.rowObject(objectIndex);
 }

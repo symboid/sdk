@@ -5,6 +5,7 @@
 #include "sdk/network-qt/defs.h"
 #include "sdk/network-qt/qrestmodel.h"
 #include <QJsonArray>
+#include <QJsonObject>
 
 class SDK_NETWORK_QT_API QRestTableJSON : public QRestCaller
 {
@@ -23,6 +24,7 @@ private:
 public:
     int rowCount() const;
     QVariant value(int rowIndex, const QString& columnName) const;
+    QJsonObject rowObject(int rowIndex) const;
 };
 
 class SDK_NETWORK_QT_API QRestTableModel : public QRestModel
@@ -51,6 +53,10 @@ private:
     QStringList mColumnNames;
 signals:
     void columnNamesChanged();
+
+public:
+    Q_INVOKABLE int objectCount() const;
+    Q_INVOKABLE QJsonObject object(int objectIndex) const;
 };
 
 #endif // __SYMBOID_SDK_NETWORK_QT_QRESTTABLEMODEL_H__
