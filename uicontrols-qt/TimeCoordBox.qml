@@ -37,6 +37,12 @@ MultiNumberBox {
             circularLink: minuteBox
         }
     }
+    function setTime(hour,minute,second)
+    {
+        box(0).value = hour
+        box(1).value = minute
+        box(2).value = second
+    }
     function setCurrent()
     {
         var current = new Date

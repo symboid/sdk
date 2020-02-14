@@ -77,6 +77,12 @@ MultiNumberBox {
     }
     property NumberBox dayLink: box(2)
 
+    function setDate(year,month,day)
+    {
+        box(0).value = year
+        box(1).value = month
+        box(2).value = day
+    }
     function setCurrent()
     {
         var current = new Date
