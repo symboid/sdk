@@ -6,5 +6,4 @@ MultiNumberBox 1.0 MultiNumberBox.qml
 EnumBox 1.0 EnumBox.qml
 DateCoordBox 1.0 DateCoordBox.qml
 TimeCoordBox 1.0 TimeCoordBox.qml
-DocItemOp 1.0 DocItemOp.qml
 DocItemOpsView 1.0 DocItemOpsView.qml

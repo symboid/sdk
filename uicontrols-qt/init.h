@@ -4,6 +4,7 @@
 
 #include "sdk/uicontrols-qt/defs.h"
 #include "sdk/arch/modqt.h"
+#include "sdk/uicontrols-qt/qinputoperation.h"
 
 struct SDK_UICONTROLS_QT_API mod_sdk_uicontrols_qt : arh::mod_qt<mod_sdk_uicontrols_qt>
 {
@@ -15,6 +16,9 @@ struct SDK_UICONTROLS_QT_API mod_sdk_uicontrols_qt : arh::mod_qt<mod_sdk_uicontr
 
     mod_sdk_uicontrols_qt();
     ~mod_sdk_uicontrols_qt();
+
+    qml_type_register<QInputOperation> _reg_input_item_object;
+    qml_type_register<QInputOperationsItem> _reg_input_operations;
 };
 
 

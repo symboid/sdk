@@ -10,7 +10,6 @@
         <file>MultiNumberBox.qml</file>
         <file>DocItemOpsView.qml</file>
         <file>DocItemOp.qml</file>
-        <file>DocItemOpList.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/arrow_left_icon&amp;24.png</file>

@@ -9,7 +9,7 @@ Drawer {
         anchors.fill: parent
         leftAligned: edge === Qt.LeftEdge
         operations: [
-            DocItemOp {
+            InputOperation {
                 title: qsTr("Recent horoscopes")
                 control: Rectangle {
                     width: 100
@@ -18,10 +18,10 @@ Drawer {
                     border.color: "red"
                 }
             },
-            DocItemOp {
+            InputOperation {
                 title: qsTr("Current transit")
             },
-            DocItemOp {
+            InputOperation {
                 title: qsTr("Saved horoscopes")
                 control: Rectangle {
                     width: 100
