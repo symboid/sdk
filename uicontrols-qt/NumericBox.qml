@@ -28,7 +28,7 @@ CircularSpinBox {
         text: numericBox.textFromValue(numericBox.value, Qt.locale())
         font: numericBox.font
     }
-    width: numericBoxMetrics.width + height/3
+    width: numericBoxMetrics.width + leftPadding + rightPadding
 
     MouseArea {
         anchors.fill: parent
@@ -53,5 +53,10 @@ CircularSpinBox {
         if (editable) {
             numericBox.decrement()
         }
+    }
+
+    Component.onCompleted: {
+        if (padding==0)
+            width = Qt.binding(function(){ return numericBoxMetrics.width + height/3 })
     }
 }
