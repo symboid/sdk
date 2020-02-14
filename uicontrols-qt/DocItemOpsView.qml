@@ -7,8 +7,8 @@ Flickable {
 
     property bool leftAligned: true
 
-    property Container operations: null
-    readonly property int operationCount: operations !== null ? operations.contentChildren.length : 0
+    property list<DocItemOp> operations: [ DocItemOp{} ]
+    readonly property int operationCount: operations.length - 1
 
     flickableDirection: Flickable.VerticalFlick
     contentHeight: itemOperations.height
@@ -20,7 +20,7 @@ Flickable {
             anchors.fill: parent
             model: operationCount
             delegate: Pane {
-                readonly property DocItemOp operation: operations.contentChildren[index]
+                readonly property DocItemOp operation: operations[index + 1]
                 property bool collapsed: true
                 anchors.left: parent.left
                 anchors.right: parent.right
