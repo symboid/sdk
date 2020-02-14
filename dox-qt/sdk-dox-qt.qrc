@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/Symboid/Sdk/Dox">
+        <file>qmldir</file>
+        <file>DocumentDialog.qml</file>
+    </qresource>
+</RCC>
