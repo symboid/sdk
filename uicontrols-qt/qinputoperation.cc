@@ -31,6 +31,11 @@ void QInputOperation::setCanExec(bool canExec)
     }
 }
 
+void QInputOperation::execute()
+{
+    emit exec();
+}
+
 void QInputOperationsItem::append(QQmlListProperty<QInputOperation>* list, QInputOperation* value)
 {
     if (QInputOperationsItem* itemList = qobject_cast<QInputOperationsItem*>(list->object))

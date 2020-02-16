@@ -8,8 +8,7 @@
         <file>TimeCoordBox.qml</file>
         <file>CircularSpinBox.qml</file>
         <file>MultiNumberBox.qml</file>
-        <file>DocItemOpsView.qml</file>
-        <file>DocItemOp.qml</file>
+        <file>InputOperationsView.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/arrow_left_icon&amp;24.png</file>

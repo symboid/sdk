@@ -20,6 +20,7 @@ Pane {
             id: boxesLoader
             sourceComponent: boxes
             active: boxes !== null
+            anchors.verticalCenter: parent.verticalCenter
             onSourceComponentChanged: {
                 for (var b = 0; b < item.children.length; ++b)
                 {
@@ -36,7 +37,7 @@ Pane {
 
         RoundButton {
             id: popupButton
-            height: numBoxes.height
+            anchors.verticalCenter: parent.verticalCenter
             width: height
             visible: editable
             text: "..."

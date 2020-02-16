@@ -5,7 +5,7 @@ import Symboid.Sdk.Controls 1.0
 
 Drawer {
 
-    DocItemOpsView {
+    InputOperationsView {
         anchors.fill: parent
         leftAligned: edge === Qt.LeftEdge
         operations: [

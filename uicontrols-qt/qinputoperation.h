@@ -44,6 +44,8 @@ signals:
 
 signals:
     void exec();
+public slots:
+    Q_INVOKABLE void execute();
 };
 
 class QInputOperationsItem : public QQuickItem
