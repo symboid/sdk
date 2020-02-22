@@ -55,8 +55,15 @@ signals:
     void columnNamesChanged();
 
 public:
-    Q_INVOKABLE int objectCount() const;
     Q_INVOKABLE QJsonObject object(int objectIndex) const;
+    Q_PROPERTY(int objectCount READ objectCount NOTIFY objectCountChanged)
+    Q_PROPERTY(QJsonObject firstObject READ firstObject NOTIFY firstObjectChanged)
+private:
+    int objectCount() const;
+    QJsonObject firstObject() const;
+signals:
+    void objectCountChanged();
+    void firstObjectChanged();
 };
 
 #endif // __SYMBOID_SDK_NETWORK_QT_QRESTTABLEMODEL_H__

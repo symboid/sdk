@@ -40,6 +40,8 @@ QRestTableModel::QRestTableModel(QObject* parent)
 {
     connect(&mRestTable, SIGNAL(beginUpdate()), this, SIGNAL(modelAboutToBeReset()));
     connect(&mRestTable, SIGNAL(endUpdate()), this, SIGNAL(modelReset()));
+    connect(&mRestTable, SIGNAL(endUpdate()), this, SIGNAL(firstObjectChanged()));
+    connect(&mRestTable, SIGNAL(endUpdate()), this, SIGNAL(objectCountChanged()));
     connect(&mRestTable, SIGNAL(networkError(QNetworkReply::NetworkError)), this, SIGNAL(networkError(QNetworkReply::NetworkError)));
 }
 
@@ -83,4 +85,9 @@ int QRestTableModel::objectCount() const
 QJsonObject QRestTableModel::object(int objectIndex) const
 {
     return mRestTable.rowObject(objectIndex);
+}
+
+QJsonObject QRestTableModel::firstObject() const
+{
+    return mRestTable.rowCount() > 0 ? mRestTable.rowObject(0) : QJsonObject();
 }
