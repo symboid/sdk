@@ -14,9 +14,17 @@ void QRestTableJSON::fetchResult(QNetworkReply* reply)
 {
     if (reply)
     {
-        QJsonObject rootObject = QJsonDocument::fromJson(reply->readAll()).object();
-        mResultArray = rootObject.begin()->toArray();
-        mRowCount = mResultArray.count();
+        QJsonDocument replyDocument = QJsonDocument::fromJson(reply->readAll());
+        if (replyDocument.isNull())
+        {
+            // empty json reply --> wrong parameters at request
+            emit apiError();
+        }
+        else {
+            QJsonObject rootObject = replyDocument.object();
+            mResultArray = rootObject.begin()->toArray();
+            mRowCount = mResultArray.count();
+        }
     }
 }
 

@@ -12,12 +12,21 @@ void QRestObjectJSON::fetchResult(QNetworkReply* reply)
 {
     if (reply)
     {
-        mResultObject = QJsonDocument::fromJson(reply->readAll()).object();
-        QJsonObject::const_iterator it = mResultObject.constBegin();
-        while (it != mResultObject.constEnd())
+        QJsonDocument replyDocument = QJsonDocument::fromJson(reply->readAll());
+        if (replyDocument.isNull())
         {
-            mFields.push_back(it);
-            ++it;
+            // empty json reply --> wrong parameters at request
+            emit apiError();
+        }
+        else
+        {
+            mResultObject = replyDocument.object();
+            QJsonObject::const_iterator it = mResultObject.constBegin();
+            while (it != mResultObject.constEnd())
+            {
+                mFields.push_back(it);
+                ++it;
+            }
         }
     }
 }

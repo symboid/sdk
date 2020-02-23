@@ -62,10 +62,7 @@ InputOperations {
                                                         : "/icons/arrow_left_icon&24.png"
                                 }
                                 enabled: operation.canExec
-                                onClicked: {
-                                    console.log("EXEC")
-                                    operation.execute()
-                                }
+                                onClicked: operation.execute()
                             }
                             Loader {
                                 id: operationPane
