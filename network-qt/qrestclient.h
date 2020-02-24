@@ -5,6 +5,7 @@
 #include "sdk/network-qt/defs.h"
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include "sdk/arch/mainobject.h"
 
 class SDK_NETWORK_QT_API QRestCaller : public QObject
 {
@@ -43,7 +44,10 @@ class SDK_NETWORK_QT_API QRestClient : public QNetworkAccessManager
     Q_OBJECT
 
 public:
-    QRestClient(const QUrl& apiAddress, QObject* parent = Q_NULLPTR);
+    static constexpr const char* qml_name = "RestClient";
+
+public:
+    QRestClient(QObject* parent = Q_NULLPTR);
     virtual ~QRestClient() = default;
 
 public:
