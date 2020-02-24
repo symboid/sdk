@@ -51,9 +51,8 @@ void QRestCaller::onError(QNetworkReply::NetworkError error)
     emit endUpdate();
 }
 
-QRestClient::QRestClient(const QUrl& apiAddress, QObject* parent)
+QRestClient::QRestClient(QObject* parent)
     : QNetworkAccessManager(parent)
-    , mApiAddress(apiAddress)
 {
 }
 
