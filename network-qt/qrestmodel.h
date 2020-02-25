@@ -44,6 +44,7 @@ public slots:
     Q_INVOKABLE void runOperation();
 
 signals:
+    void successfullyFinished();
     void networkError(QNetworkReply::NetworkError networkError);
 };
 

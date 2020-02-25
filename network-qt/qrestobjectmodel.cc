@@ -61,7 +61,8 @@ QRestObjectModel::QRestObjectModel(QObject* parent)
 {
     connect(&mRestObject, SIGNAL(beginUpdate()), this, SIGNAL(modelAboutToBeReset()));
     connect(&mRestObject, SIGNAL(endUpdate()), this, SIGNAL(modelReset()));
-    connect(&mRestObject, SIGNAL(endUpdate()), this, SIGNAL(restObjectChanged()));
+    connect(&mRestObject, SIGNAL(endUpdateResult()), this, SIGNAL(restObjectChanged()));
+    connect(&mRestObject, SIGNAL(endUpdateResult()), this, SIGNAL(successfullyFinished()));
     connect(&mRestObject, SIGNAL(networkError(QNetworkReply::NetworkError)), this, SIGNAL(networkError(QNetworkReply::NetworkError)));
 }
 

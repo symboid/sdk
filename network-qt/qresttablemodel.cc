@@ -49,7 +49,8 @@ QRestTableModel::QRestTableModel(QObject* parent)
     connect(&mRestTable, SIGNAL(beginUpdate()), this, SIGNAL(modelAboutToBeReset()));
     connect(&mRestTable, SIGNAL(endUpdate()), this, SIGNAL(modelReset()));
     connect(&mRestTable, SIGNAL(endUpdate()), this, SIGNAL(firstObjectChanged()));
-    connect(&mRestTable, SIGNAL(endUpdate()), this, SIGNAL(objectCountChanged()));
+    connect(&mRestTable, SIGNAL(endUpdateResult()), this, SIGNAL(objectCountChanged()));
+    connect(&mRestTable, SIGNAL(endUpdateResult()), this, SIGNAL(successfullyFinished()));
     connect(&mRestTable, SIGNAL(networkError(QNetworkReply::NetworkError)), this, SIGNAL(networkError(QNetworkReply::NetworkError)));
 }
 
