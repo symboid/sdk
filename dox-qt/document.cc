@@ -6,3 +6,12 @@ QDocument::QDocument(QObject* parent)
     : QObject(parent)
 {
 }
+
+void QDocument::setTitle(const QString& title)
+{
+    if (mTitle != title)
+    {
+        mTitle = title;
+        emit titleChanged();
+    }
+}
