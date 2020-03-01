@@ -106,13 +106,41 @@ defineReplace(object_dep_on_module_header) {
     return ($$rule)
 }
 
+defineReplace(moduleName) {
+    component_name = $$1
+    module_name = $$2
+
+    module_dir_name += $$component_name-$$module_name
+
+    return ($$module_dir_name)
+}
+
+defineReplace(moduleDirPath) {
+    component_name = $$1
+    module_name = $$2
+
+    module_dir_name = $$libPath($$BUILD_HOME/$$component_name/$$module_name)
+
+    return ($$module_dir_name)
+}
+
 defineReplace(moduleDep) {
     component_name = $$1
     module_name = $$2
 
-    module_dep = -L$$libPath($$BUILD_HOME/$$component_name/$$module_name)
-    module_dep += -l$$component_name-$$module_name
+    module_dep = -L$$moduleDirPath($$component_name,$$module_name)
+    module_dep += -l$$moduleName($$component_name,$$module_name)
+
     return ($$module_dep)
+}
+
+defineReplace(androidModuleBuildPath) {
+    component_name = $$1
+    module_name = $$2
+
+    module_build_path = $$moduleDirPath($$component_name,$$module_name)/lib$$moduleName($$component_name,$$module_name).so
+
+    return ($$module_build_path)
 }
 
 # so name must be explicitly specified under MacOS
