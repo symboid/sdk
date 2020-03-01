@@ -20,8 +20,8 @@ struct SDK_DOX_QT_API mod_sdk_dox_qt : arh::mod_qt<mod_sdk_dox_qt>
 
     mod_sdk_uicontrols_qt _mod_sdk_uicontrols_qt;
 
-    qml_type_register<QDocumentNode> _init_document_node;
-    qml_type_register<QDocument> _init_document;
+    qml_alias_register<QJsonSyncNode> _reg_json_sync_node;
+    qml_type_register<QDocument> _reg_document;
 };
 
 #endif // __SYMBOID_SDK_NETWORK_QT_INIT_H__

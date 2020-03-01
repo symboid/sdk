@@ -20,6 +20,14 @@ struct mod_qt : mod<_Mod>
             qmlRegisterType<_Type>(_Mod::qml_pkg_name, _Mod::qml_pkg_ver_major, _Mod::qml_pkg_ver_minor, _Type::qml_name);
         }
     };
+    template <class _Type>
+    struct qml_alias_register
+    {
+        void register_as(const char* _qml_name)
+        {
+            qmlRegisterType<_Type>(_Mod::qml_pkg_name, _Mod::qml_pkg_ver_major, _Mod::qml_pkg_ver_minor, _qml_name);
+        }
+    };
     template <class _MainObjectTraits, class..._CtorArgs>
     class q_object_init : public main_object_instance<_MainObjectTraits>
     {
@@ -49,7 +57,6 @@ struct mod_qt : mod<_Mod>
             return singleton_object.get();
         }
     };
-
 };
 
 arh_ns_end
