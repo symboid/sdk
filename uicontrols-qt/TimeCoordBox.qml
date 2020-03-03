@@ -4,8 +4,20 @@ import QtQuick 2.12
 MultiNumberBox {
 
     property int hour: box(0).value
+    onHourChanged: {
+        box(0).value = hour
+        hour = Qt.binding(function(){return box(0).value})
+    }
     property int minute: box(1).value
+    onMinuteChanged: {
+        box(1).value = minute
+        minute = Qt.binding(function(){return box(1).value})
+    }
     property int second: box(2).value
+    onSecondChanged: {
+        box(2).value = second
+        second = Qt.binding(function(){return box(2).value})
+    }
 
     property CircularSpinBox dayLink: circularLink
 
@@ -46,9 +58,7 @@ MultiNumberBox {
     function setCurrent()
     {
         var current = new Date
-        box(0).value = current.getHours()
-        box(1).value = current.getMinutes()
-        box(2).value = current.getSeconds()
+        setTime(current.getHours(), current.getMinutes(), current.getSeconds())
     }
     Component.onCompleted: {
         setCurrent()

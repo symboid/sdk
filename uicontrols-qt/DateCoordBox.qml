@@ -4,8 +4,20 @@ import QtQuick 2.12
 MultiNumberBox {
 
     property int year: box(0).value
+    onYearChanged: {
+        box(0).value = year
+        year = Qt.binding(function(){return box(0).value})
+    }
     property int month: box(1).value
+    onMonthChanged: {
+        box(1).value = month
+        month = Qt.binding(function(){return box(1).value})
+    }
     property int day: box(2).value
+    onDayChanged: {
+        box(2).value = day
+        day = Qt.binding(function(){return box(2).value})
+    }
 
     boxes: Row {
         NumberBox {
@@ -86,9 +98,7 @@ MultiNumberBox {
     function setCurrent()
     {
         var current = new Date
-        box(0).value = current.getFullYear()
-        box(1).value = current.getMonth() + 1
-        box(2).value = current.getDate()
+        setDate(current.getFullYear(), current.getMonth()+1, current.getDate())
     }
 
     Component.onCompleted: {
