@@ -20,12 +20,15 @@ Drawer {
                 title: qsTr("Saved horoscopes")
                 canExec: true
                 onExec: currentDocument.load()
-                control: Rectangle {
+                control: DocumentFolderBox {
+                    height: 300
+                }
+                /*control: Rectangle {
                     width: 100
                     height: 300
                     border.width: 1
                     border.color: "blue"
-                }
+                }*/
             },
             InputOperation {
                 title: qsTr("Current transit")

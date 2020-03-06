@@ -5,25 +5,77 @@
 
 QDocumentFolderModel::QDocumentFolderModel(QObject* parent)
     : QAbstractListModel(parent)
-    , mCurrentFolder(documentsFolder())
-    , mFileInfoList(mCurrentFolder.entryInfoList())
+    , mFilterText("")
 {
+    QStringList documentNameFilters(QString("*.") + sDocumentExtension);
+    mCurrentFolder.setNameFilters(documentNameFilters);
+    mCurrentFolder.setFilter(QDir::Files | QDir::NoDot | QDir::NoDotDot);
+    connect(this, SIGNAL(currentFolderChanged()), this, SLOT(updateDocumentList()));
+
+    QString systemDocuments = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    setCurrentFolder(systemDocuments);
+
+    connect(this, SIGNAL(filterTextChanged()), this, SLOT(updateDocumentList()));
 }
 
-QDir QDocumentFolderModel::documentsFolder()
+QString QDocumentFolderModel::currentFolder() const
 {
-    QDir systemDocuments = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-    return systemDocuments;
+    return mCurrentFolder.path();
+}
+
+void QDocumentFolderModel::setCurrentFolder(const QString& currentFolder)
+{
+    if (mCurrentFolder.path() != currentFolder)
+    {
+        mCurrentFolder.setPath(currentFolder);
+        emit currentFolderChanged();
+    }
+}
+
+void QDocumentFolderModel::setFilterText(const QString& filterText)
+{
+    if (mFilterText != filterText)
+    {
+        mFilterText = filterText;
+        emit filterTextChanged();
+    }
+}
+
+void QDocumentFolderModel::updateDocumentList()
+{
+    beginResetModel();
+    QRegExp filterExpression(QString(".*") + mFilterText + ".*");
+    QFileInfoList docFileInfoList = mCurrentFolder.entryInfoList();
+    mDocumentList.clear();
+    for (QFileInfo docFileInfo : docFileInfoList)
+    {
+        const QString title = docFileInfo.fileName();
+        if (filterExpression.exactMatch(title))
+        {
+            DocumentInfo documentInfo;
+            documentInfo.mTitle = title;
+            documentInfo.mPath = docFileInfo.filePath();
+            mDocumentList << documentInfo;
+        }
+    }
+    endResetModel();
 }
 
 int QDocumentFolderModel::rowCount(const QModelIndex& index) const
 {
-    return mFileInfoList.size();
+    Q_UNUSED(index);
+    return mDocumentList.size();
 }
 
-QVariant QDocumentFolderModel::data(const QModelIndex& index, int) const
+QVariant QDocumentFolderModel::data(const QModelIndex& index, int role) const
 {
-    return mFileInfoList.at(index.row()).fileName();
+    QVariant documentData;
+    switch (role)
+    {
+    case DocumentTitle: documentData = mDocumentList.at(index.row()).mTitle; break;
+    case DocumentPath: documentData = mDocumentList.at(index.row()).mPath; break;
+    }
+    return documentData;
 }
 
 QHash<int, QByteArray> QDocumentFolderModel::roleNames() const

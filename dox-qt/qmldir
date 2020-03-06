@@ -1,3 +1,4 @@
 module Symboid.Sdk.Dox
 DocumentDialog 1.0 DocumentDialog.qml
+DocumentFolderBox 1.0 DocumentFolderBox.qml
 DocumentFolderView 1.0 DocumentFolderView.qml

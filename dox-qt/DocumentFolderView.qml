@@ -4,9 +4,15 @@ import QtQuick.Controls 2.5
 import Symboid.Sdk.Dox 1.0
 
 ListView {
-    model: DocumentFolderModel {
+    property alias filterText: documentFolderModel.filterText
+    clip: true
+    DocumentFolderModel {
+        id: documentFolderModel
     }
-    delegate: Label {
-        text: display
+    model: documentFolderModel
+    delegate: Pane {
+        Label {
+            text: documentTitle
+        }
     }
 }

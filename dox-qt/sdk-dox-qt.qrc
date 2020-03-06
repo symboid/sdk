@@ -3,5 +3,9 @@
         <file>qmldir</file>
         <file>DocumentDialog.qml</file>
         <file>DocumentFolderView.qml</file>
+        <file>DocumentFolderBox.qml</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>icons/zoom_icon&amp;24.png</file>
     </qresource>
 </RCC>

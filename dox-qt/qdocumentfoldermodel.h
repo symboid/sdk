@@ -27,10 +27,33 @@ public:
     Q_ENUM(Roles)
     QHash<int, QByteArray> roleNames() const override;
 
+public:
+    Q_PROPERTY(QString currentFolder READ currentFolder WRITE setCurrentFolder NOTIFY currentFolderChanged)
 private:
     QDir mCurrentFolder;
-    QFileInfoList mFileInfoList;
-    static QDir documentsFolder();
+    QString currentFolder() const;
+    void setCurrentFolder(const QString& currentFolder);
+signals:
+    void currentFolderChanged();
+
+public:
+    Q_PROPERTY(QString filterText MEMBER mFilterText WRITE setFilterText NOTIFY filterTextChanged)
+private:
+    QString mFilterText;
+    void setFilterText(const QString& filterText);
+signals:
+    void filterTextChanged();
+
+private:
+    static constexpr const char* sDocumentExtension = "pdf";
+    struct DocumentInfo
+    {
+        QString mTitle;
+        QString mPath;
+    };
+    QList<DocumentInfo> mDocumentList;
+private slots:
+    void updateDocumentList();
 };
 
 #endif // __SYMBOID_SDK_DOX_QDOCUMENTFOLDERMODEL_H__
