@@ -19,16 +19,21 @@ Drawer {
             InputOperation {
                 title: qsTr("Saved horoscopes")
                 canExec: true
-                onExec: currentDocument.save()
+                onExec: currentDocument.load()
                 control: Rectangle {
                     width: 100
-                    height: 100
+                    height: 300
                     border.width: 1
                     border.color: "blue"
                 }
             },
             InputOperation {
                 title: qsTr("Current transit")
+                canExec: true
+                onExec: {
+                    currentDocument.loadCurrent()
+                    close()
+                }
             },
             InputOperation {
                 title: qsTr("Recent horoscopes")

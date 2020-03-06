@@ -25,6 +25,7 @@ public:
 
 protected:
     QJsonObject toJsonObject() const;
+    bool parseJsonObject(const QJsonObject& jsonObject);
 };
 
 #endif // __SYMBOID_SDK_UICONTROLS_QT_QJSONSYNCNODE_H__

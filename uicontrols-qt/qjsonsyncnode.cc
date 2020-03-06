@@ -25,16 +25,45 @@ QJsonObject QJsonSyncNode::toJsonObject() const
     for (int p = 0; p < metaObject->propertyCount(); ++p)
     {
         QMetaProperty property = metaObject->property(p);
-        const char* propertyName = property.name();
-        QVariant propertyValue = this->property(property.name());
-        switch (property.type()) {
-        case QVariant::Double: jsonObject[propertyName] = propertyValue.toDouble(); break;
-        case QVariant::Int: jsonObject[propertyName] = propertyValue.toInt(); break;
-        case QVariant::Bool: jsonObject[propertyName] = propertyValue.toBool(); break;
-        case QVariant::String: jsonObject[propertyName] = propertyValue.toString(); break;
-        default: break;
+        const QString propertyName = property.name();
+        if (propertyName != "name" && propertyName != "objectName" && propertyName != "childNode")
+        {
+            QVariant propertyValue = this->property(property.name());
+            switch (property.type())
+            {
+            case QVariant::Double: jsonObject[propertyName] = propertyValue.toDouble(); break;
+            case QVariant::Int: jsonObject[propertyName] = propertyValue.toInt(); break;
+            case QVariant::Bool: jsonObject[propertyName] = propertyValue.toBool(); break;
+            case QVariant::String: jsonObject[propertyName] = propertyValue.toString(); break;
+            default: break;
+            }
         }
     }
     return jsonObject;
 }
 
+bool QJsonSyncNode::parseJsonObject(const QJsonObject& jsonObject)
+{
+    bool successfullyParsed = false;
+    if (!jsonObject.isEmpty())
+    {
+        for (QJsonSyncNode* node : mList)
+        {
+            QString nodeName = node->objectName();
+            node->parseJsonObject(jsonObject[nodeName].toObject());
+        }
+        const QMetaObject* metaObject = this->metaObject();
+        for (int p = 0; p < metaObject->propertyCount(); ++p)
+        {
+            QMetaProperty property = metaObject->property(p);
+            const QString propertyName = property.name();
+            if (propertyName != "name" && propertyName != "objectName" && propertyName != "childNode")
+            {
+                QVariant propertyValue = jsonObject[propertyName].toVariant();
+                setProperty(property.name(), propertyValue);
+            }
+        }
+        successfullyParsed = true;
+    }
+    return successfullyParsed;
+}

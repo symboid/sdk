@@ -26,7 +26,24 @@ signals:
     void titleChanged();
 
 public:
-    Q_INVOKABLE void save();
+    Q_PROPERTY(QString filePath MEMBER mFilePath WRITE setFilePath NOTIFY filePathChanged)
+private:
+    QString mFilePath;
+    void setFilePath(const QString& filePath);
+signals:
+    void filePathChanged();
+
+public:
+    Q_INVOKABLE bool load();
+    Q_INVOKABLE bool save();
+
+signals:
+    void loadStarted();
+    void loadFinished();
+    void loadFailed();
+
+signals:
+    void loadCurrent();
 };
 
 
