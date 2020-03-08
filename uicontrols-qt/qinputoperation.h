@@ -4,7 +4,6 @@
 
 #include "sdk/uicontrols-qt/defs.h"
 #include <QObject>
-#include <QQmlComponent>
 #include <QQmlListProperty>
 #include <QQuickItem>
 
@@ -27,12 +26,20 @@ signals:
     void titleChanged();
 
 public:
-    Q_PROPERTY(QQmlComponent* control MEMBER mControl WRITE setControl NOTIFY controlChanged)
+    Q_PROPERTY(QQuickItem* control MEMBER mControl WRITE setControl NOTIFY controlChanged)
 private:
-    QQmlComponent* mControl;
-    void setControl(QQmlComponent* control);
+    QQuickItem* mControl;
+    void setControl(QQuickItem* control);
 signals:
     void controlChanged();
+
+public:
+    Q_PROPERTY(QQuickItem* execPane MEMBER mExecPane WRITE setExecPane NOTIFY execPaneChanged)
+private:
+    QQuickItem* mExecPane;
+    void setExecPane(QQuickItem* execPane);
+signals:
+    void execPaneChanged();
 
 public:
     Q_PROPERTY(bool canExec MEMBER mCanExec WRITE setCanExec NOTIFY canExecChanged)

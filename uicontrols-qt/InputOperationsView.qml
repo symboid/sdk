@@ -55,25 +55,30 @@ InputOperations {
                                     font.italic: true
                                 }
                             }
-                            RoundButton {
-                                id: execButton
-                                icon {
-                                    source: leftAligned ? "/icons/arrow_right_icon&24.png"
-                                                        : "/icons/arrow_left_icon&24.png"
+                            Pane {
+                                padding: 0
+                                RoundButton {
+                                    id: execButton
+                                    icon {
+                                        source: leftAligned ? "/icons/arrow_right_icon&24.png"
+                                                            : "/icons/arrow_left_icon&24.png"
+                                    }
+                                    enabled: operation.canExec
+                                    onClicked: operation.execute()
+                                    visible: operation.execPane === null
                                 }
-                                enabled: operation.canExec
-                                onClicked: operation.execute()
                             }
-                            Loader {
+                            ItemSlot {
                                 id: operationPane
                                 width: header.width
-                                sourceComponent: operation.control
-                                active: operation.control !== null
+                                item: operation.control
                                 visible: !collapsed
                             }
-                            Column {
+                            ItemSlot {
+                                id: buttonPane
                                 width: execButton.width
                                 height: operationPane.height
+                                item: operation.execPane
                                 visible: !collapsed
                             }
                         }

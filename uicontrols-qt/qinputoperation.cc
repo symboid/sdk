@@ -4,6 +4,8 @@
 
 QInputOperation::QInputOperation(QObject *parent)
     : QObject(parent)
+    , mControl(nullptr)
+    , mExecPane(nullptr)
 {
 }
 
@@ -15,11 +17,19 @@ void QInputOperation::setTitle(const QString& title)
     }
 }
 
-void QInputOperation::setControl(QQmlComponent* control)
+void QInputOperation::setControl(QQuickItem* control)
 {
     if (mControl != control) {
         mControl = control;
         emit controlChanged();
+    }
+}
+
+void QInputOperation::setExecPane(QQuickItem *execPane)
+{
+    if (mExecPane != execPane) {
+        mExecPane = execPane;
+        emit execPaneChanged();
     }
 }
 
