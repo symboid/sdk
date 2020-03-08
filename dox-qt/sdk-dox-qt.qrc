@@ -6,6 +6,7 @@
         <file>DocumentFolderBox.qml</file>
     </qresource>
     <qresource prefix="/">
-        <file>icons/zoom_icon&amp;24.png</file>
+        <file>icons/zoom_icon&amp;16.png</file>
+        <file>icons/pencil_icon&amp;16.png</file>
     </qresource>
 </RCC>

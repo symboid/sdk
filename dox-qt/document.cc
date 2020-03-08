@@ -3,6 +3,8 @@
 #include "sdk/dox-qt/document.h"
 #include <QJsonDocument>
 #include <QFile>
+#include <QStandardPaths>
+#include <QDir>
 
 QDocument::QDocument(QObject* parent)
     : QDocumentNode(parent)
@@ -52,6 +54,32 @@ bool QDocument::load()
 bool QDocument::save()
 {
     bool successfullySaved = false;
+    if (mFilePath == "" && mTitle != "")
+    {
+        for (QChar t : mTitle)
+        {
+            QChar lower(t.toLower());
+            if ('a' <= lower && lower <= 'z')
+            {
+                mFilePath.push_back(t);
+            }
+            else if ('0' <= lower && lower <= '9')
+            {
+                mFilePath.push_back(lower);
+            }
+            else
+            {
+                mFilePath.push_back('_');
+            }
+        }
+        mFilePath = systemFolder() + QDir::separator() + mFilePath;
+        QDir systemDocumentDir(systemFolder());
+        while (systemDocumentDir.exists(mFilePath + sFileExtension))
+        {
+            mFilePath.push_back('_');
+        }
+        mFilePath = systemDocumentDir.absoluteFilePath(mFilePath + sFileExtension);
+    }
     if (mFilePath != "")
     {
         QJsonDocument documentToWrite(toJsonObject());
@@ -63,4 +91,10 @@ bool QDocument::save()
         }
     }
     return successfullySaved;
+}
+
+QString QDocument::systemFolder()
+{
+    QString systemDocuments = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    return systemDocuments;
 }

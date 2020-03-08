@@ -45,7 +45,6 @@ signals:
     void filterTextChanged();
 
 private:
-    static constexpr const char* sDocumentExtension = "pdf";
     struct DocumentInfo
     {
         QString mTitle;

@@ -11,24 +11,44 @@ Drawer {
         id: emptyDocument
     }
 
+    property DocumentFolderBox documentFolderBox: operationsView.operations[0].control
+
     InputOperationsView {
+        id: operationsView
         anchors.fill: parent
         leftAligned: edge === Qt.LeftEdge
 
         operations: [
             InputOperation {
                 title: qsTr("Saved horoscopes")
-                canExec: true
-                onExec: currentDocument.load()
                 control: DocumentFolderBox {
+                    id: docFolder
                     height: 300
                 }
-                /*control: Rectangle {
-                    width: 100
-                    height: 300
-                    border.width: 1
-                    border.color: "blue"
-                }*/
+                execPane: Item {
+                    Column {
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        spacing: 10
+                        RoundButton {
+                            icon.source: "/icons/arrow_right_icon&24.png"
+                            onClicked: {
+                                currentDocument.filePath = documentFolderBox.selectedDocumentPath
+                                currentDocument.load()
+                                close()
+                            }
+                        }
+                        RoundButton {
+                            icon.source: "/icons/arrow_left_icon&24.png"
+                            onClicked: {
+                                currentDocument.title = documentFolderBox.documentTitle
+                                currentDocument.save()
+                                close()
+                            }
+                            enabled: currentDocument.title !== ""
+                        }
+                    }
+                }
             },
             InputOperation {
                 title: qsTr("Current transit")
@@ -48,5 +68,11 @@ Drawer {
                 }
             }
         ]
+    }
+    onOpened: {
+        documentFolderBox.documentTitle = currentDocument.title
+    }
+    onClosed: {
+
     }
 }

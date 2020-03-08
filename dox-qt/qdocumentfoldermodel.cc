@@ -1,19 +1,18 @@
 
 #include "sdk/dox-qt/setup.h"
 #include "sdk/dox-qt/qdocumentfoldermodel.h"
-#include <QStandardPaths>
+#include "sdk/dox-qt/document.h"
 
 QDocumentFolderModel::QDocumentFolderModel(QObject* parent)
     : QAbstractListModel(parent)
     , mFilterText("")
 {
-    QStringList documentNameFilters(QString("*.") + sDocumentExtension);
+    QStringList documentNameFilters(QString("*") + QDocument::sFileExtension);
     mCurrentFolder.setNameFilters(documentNameFilters);
     mCurrentFolder.setFilter(QDir::Files | QDir::NoDot | QDir::NoDotDot);
     connect(this, SIGNAL(currentFolderChanged()), this, SLOT(updateDocumentList()));
 
-    QString systemDocuments = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-    setCurrentFolder(systemDocuments);
+    setCurrentFolder(QDocument::systemFolder());
 
     connect(this, SIGNAL(filterTextChanged()), this, SLOT(updateDocumentList()));
 }
@@ -44,18 +43,26 @@ void QDocumentFolderModel::setFilterText(const QString& filterText)
 void QDocumentFolderModel::updateDocumentList()
 {
     beginResetModel();
-    QRegExp filterExpression(QString(".*") + mFilterText + ".*");
+    QRegExp filterExpression(QString(".*") + mFilterText + ".*", Qt::CaseInsensitive);
     QFileInfoList docFileInfoList = mCurrentFolder.entryInfoList();
     mDocumentList.clear();
     for (QFileInfo docFileInfo : docFileInfoList)
     {
         const QString title = docFileInfo.fileName();
+
         if (filterExpression.exactMatch(title))
         {
             DocumentInfo documentInfo;
             documentInfo.mTitle = title;
             documentInfo.mPath = docFileInfo.filePath();
-            mDocumentList << documentInfo;
+
+            QList<DocumentInfo>::iterator before = mDocumentList.end();
+            while (before != mDocumentList.begin() &&
+                   title.localeAwareCompare((before-1)->mTitle) < 0)
+            {
+                --before;
+            }
+            mDocumentList.insert(before, documentInfo);
         }
     }
     endResetModel();

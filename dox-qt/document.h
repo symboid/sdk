@@ -44,6 +44,10 @@ signals:
 
 signals:
     void loadCurrent();
+
+public:
+    static constexpr const char* sFileExtension = ".sd";
+    static QString systemFolder();
 };
 
 

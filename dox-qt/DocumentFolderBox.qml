@@ -5,26 +5,36 @@ import Symboid.Sdk.Dox 1.0
 
 Pane {
     id: boxPane
+    readonly property alias selectedDocumentPath: documentFolderView.selectedPath
+    property alias documentTitle: titleField.text
+    property bool titleFiltering: false
+
     TextField {
-        id: searchText
+        id: titleField
         anchors {
             top: parent.top
             left: parent.left
             right: parent.right
         }
         Image {
-            id: searchIcon
-            source: "/icons/zoom_icon&24.png"
+            id: titleIcon
+            source: titleFiltering ? "/icons/zoom_icon&16.png" : "/icons/pencil_icon&16.png"
             anchors.left: parent.left
             anchors.leftMargin: parent.topPadding
             anchors.verticalCenter: parent.verticalCenter
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    titleFiltering = !titleFiltering
+                }
+            }
         }
-        leftPadding: searchIcon.width + 2 * topPadding
+        leftPadding: titleIcon.width + 2 * topPadding
     }
 
     Frame {
         anchors {
-            top: searchText.bottom
+            top: titleField.bottom
             topMargin: boxPane.padding
             left: parent.left
             right: parent.right
@@ -32,8 +42,9 @@ Pane {
         }
 
         DocumentFolderView {
+            id: documentFolderView
             anchors.fill: parent
-            filterText: searchText.text
+            filterText: titleFiltering ? titleField.text : ""
         }
     }
 }
