@@ -26,7 +26,7 @@ QJsonObject QJsonSyncNode::toJsonObject() const
     {
         QMetaProperty property = metaObject->property(p);
         const QString propertyName = property.name();
-        if (propertyName != "name" && propertyName != "objectName" && propertyName != "childNode")
+        if (isPropertySynchronized(propertyName))
         {
             QVariant propertyValue = this->property(property.name());
             switch (property.type())
@@ -57,7 +57,7 @@ bool QJsonSyncNode::parseJsonObject(const QJsonObject& jsonObject)
         {
             QMetaProperty property = metaObject->property(p);
             const QString propertyName = property.name();
-            if (propertyName != "name" && propertyName != "objectName" && propertyName != "childNode")
+            if (isPropertySynchronized(propertyName))
             {
                 QVariant propertyValue = jsonObject[propertyName].toVariant();
                 setProperty(property.name(), propertyValue);
@@ -66,4 +66,9 @@ bool QJsonSyncNode::parseJsonObject(const QJsonObject& jsonObject)
         successfullyParsed = true;
     }
     return successfullyParsed;
+}
+
+bool QJsonSyncNode::isPropertySynchronized(const QString& propertyName) const
+{
+    return propertyName != "name" && propertyName != "objectName" && propertyName != "childNode";
 }

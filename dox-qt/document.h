@@ -18,9 +18,11 @@ public:
     QDocument(QObject* parent = Q_NULLPTR);
 
 public:
-    Q_PROPERTY(QString title MEMBER mTitle WRITE setTitle NOTIFY titleChanged)
+    Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
 private:
     QString mTitle;
+public:
+    QString title() const;
     void setTitle(const QString& title);
 signals:
     void titleChanged();
@@ -29,6 +31,7 @@ public:
     Q_PROPERTY(QString filePath MEMBER mFilePath WRITE setFilePath NOTIFY filePathChanged)
 private:
     QString mFilePath;
+public:
     void setFilePath(const QString& filePath);
 signals:
     void filePathChanged();
@@ -48,6 +51,9 @@ signals:
 public:
     static constexpr const char* sFileExtension = ".sd";
     static QString systemFolder();
+
+protected:
+    bool isPropertySynchronized(const QString& propertyName) const override;
 };
 
 

@@ -26,6 +26,7 @@ public:
 protected:
     QJsonObject toJsonObject() const;
     bool parseJsonObject(const QJsonObject& jsonObject);
+    virtual bool isPropertySynchronized(const QString& propertyName) const;
 };
 
 #endif // __SYMBOID_SDK_UICONTROLS_QT_QJSONSYNCNODE_H__

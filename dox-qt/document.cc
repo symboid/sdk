@@ -11,6 +11,11 @@ QDocument::QDocument(QObject* parent)
 {
 }
 
+QString QDocument::title() const
+{
+    return mTitle;
+}
+
 void QDocument::setTitle(const QString& title)
 {
     if (mTitle != title)
@@ -97,4 +102,9 @@ QString QDocument::systemFolder()
 {
     QString systemDocuments = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
     return systemDocuments;
+}
+
+bool QDocument::isPropertySynchronized(const QString& propertyName) const
+{
+    return QJsonSyncNode::isPropertySynchronized(propertyName) && propertyName != "filePath";
 }
