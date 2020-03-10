@@ -5,8 +5,9 @@ import Symboid.Sdk.Dox 1.0
 
 Pane {
     id: boxPane
-    readonly property alias selectedDocumentPath: documentFolderView.selectedPath
+    property alias selectedDocumentPath: documentFolderView.selectedPath
     property alias documentTitle: titleField.text
+    property alias documentIndex: documentFolderView.currentIndex
     property bool titleFiltering: false
 
     TextField {
@@ -45,6 +46,16 @@ Pane {
             id: documentFolderView
             anchors.fill: parent
             filterText: titleFiltering ? titleField.text : ""
+            onDocumentSelected: {
+                if (!titleFiltering)
+                {
+                    titleField.text = selectedTitle
+                }
+            }
         }
+    }
+    function updateModel()
+    {
+        documentFolderView.updateModel()
     }
 }

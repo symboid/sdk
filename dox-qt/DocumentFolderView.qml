@@ -15,6 +15,11 @@ ListView {
             currentIndex = -1
         }
     }
+    function updateModel()
+    {
+        documentFolderModel.updateDocumentList()
+    }
+
     model: documentFolderModel
     currentIndex: -1
     delegate: Pane {
@@ -29,9 +34,10 @@ ListView {
                 onClicked: {
                     currentIndex = index
                     selectedPath = documentPath
+                    documentSelected(documentTitle)
                 }
             }
         }
-
     }
+    signal documentSelected(string selectedTitle)
 }

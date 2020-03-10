@@ -65,7 +65,6 @@ InputOperations {
                                     }
                                     enabled: operation.canExec
                                     onClicked: operation.execute()
-                                    visible: operation.execPane === null
                                 }
                             }
                             ItemSlot {

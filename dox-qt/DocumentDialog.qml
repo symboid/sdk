@@ -25,28 +25,23 @@ Drawer {
                     id: docFolder
                     height: 300
                 }
-                execPane: Item {
-                    Column {
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        spacing: 10
-                        RoundButton {
-                            icon.source: "/icons/arrow_right_icon&24.png"
-                            onClicked: {
-                                currentDocument.filePath = documentFolderBox.selectedDocumentPath
-                                currentDocument.load()
-                                close()
-                            }
+                canExec: documentFolderBox.selectedDocumentPath != ""
+                onExec: {
+                    currentDocument.filePath = documentFolderBox.selectedDocumentPath
+                    currentDocument.load()
+                    close()
+                }
+                execPane: Column {
+                    RoundButton {
+                        icon.source: "/icons/arrow_left_icon&24.png"
+                        onClicked: {
+                            currentDocument.title = documentFolderBox.documentTitle
+                            currentDocument.filePath = documentFolderBox.selectedDocumentPath
+                            currentDocument.save()
+                            documentFolderBox.updateModel()
+                            close()
                         }
-                        RoundButton {
-                            icon.source: "/icons/arrow_left_icon&24.png"
-                            onClicked: {
-                                currentDocument.title = documentFolderBox.documentTitle
-                                currentDocument.save()
-                                close()
-                            }
-                            enabled: currentDocument.title !== ""
-                        }
+                        enabled: documentFolderBox.documentTitle !== ""
                     }
                 }
             },
@@ -71,6 +66,8 @@ Drawer {
     }
     onOpened: {
         documentFolderBox.documentTitle = currentDocument.title
+        documentFolderBox.documentIndex = -1
+        documentFolderBox.selectedDocumentPath = ""
     }
     onClosed: {
 

@@ -10,6 +10,7 @@ QDocumentFolderModel::QDocumentFolderModel(QObject* parent)
     QStringList documentNameFilters(QString("*") + QDocument::sFileExtension);
     mCurrentFolder.setNameFilters(documentNameFilters);
     mCurrentFolder.setFilter(QDir::Files | QDir::NoDot | QDir::NoDotDot);
+    mCurrentFolder.setSorting(QDir::Name | QDir::LocaleAware | QDir::IgnoreCase | QDir::DirsFirst);
     connect(this, SIGNAL(currentFolderChanged()), this, SLOT(updateDocumentList()));
 
     setCurrentFolder(QDocument::systemFolder());
@@ -43,12 +44,16 @@ void QDocumentFolderModel::setFilterText(const QString& filterText)
 void QDocumentFolderModel::updateDocumentList()
 {
     beginResetModel();
+    mCurrentFolder.refresh();
     QRegExp filterExpression(QString(".*") + mFilterText + ".*", Qt::CaseInsensitive);
     QFileInfoList docFileInfoList = mCurrentFolder.entryInfoList();
     mDocumentList.clear();
     for (QFileInfo docFileInfo : docFileInfoList)
     {
-        const QString title = docFileInfo.fileName();
+        QDocument document;
+        document.setFilePath(docFileInfo.filePath());
+        document.load();
+        const QString title = document.title();
 
         if (filterExpression.exactMatch(title))
         {

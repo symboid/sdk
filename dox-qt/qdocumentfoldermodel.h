@@ -51,8 +51,8 @@ private:
         QString mPath;
     };
     QList<DocumentInfo> mDocumentList;
-private slots:
-    void updateDocumentList();
+public slots:
+    Q_INVOKABLE void updateDocumentList();
 };
 
 #endif // __SYMBOID_SDK_DOX_QDOCUMENTFOLDERMODEL_H__
