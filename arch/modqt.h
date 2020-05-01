@@ -6,11 +6,35 @@
 #include "sdk/arch/mod.h"
 #include "sdk/arch/mainobject.h"
 #include <QQmlEngine>
+#include <QTranslator>
+
+namespace std {
+
+template<class _CharT, class _Traits>
+basic_ostream<_CharT, _Traits>& operator<<(basic_ostream<_CharT, _Traits>& _os, const QString& _q_string)
+{
+    return _os << _q_string.toUtf8().data();
+}
+
+} // namespace std
 
 arh_ns_begin
 
+class basic_qt_translation
+{
+    QTranslator _M_qm_file;
+protected:
+    void load(const QString& _mod_name);
+};
+
 template <class _Mod>
-struct mod_qt : mod<_Mod>
+struct mod_qt_translation : basic_qt_translation
+{
+    void load_translator() { load(_Mod::id); }
+};
+
+template <class _Mod>
+struct mod_qt : mod<_Mod>, mod_qt_translation<_Mod>
 {
     template <class _Type>
     struct qml_type_register

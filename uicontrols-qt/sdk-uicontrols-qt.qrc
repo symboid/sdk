@@ -17,4 +17,7 @@
         <file>icons/br_down_icon&amp;24.png</file>
         <file>icons/br_next_icon&amp;24.png</file>
     </qresource>
+    <qresource prefix="/tr">
+        <file>sdk-uicontrols-qt_hu.qm</file>
+    </qresource>
 </RCC>

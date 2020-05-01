@@ -8,7 +8,8 @@ SOURCES += \
     log.cc \
     mainrepo.cc \
     mod.cc \
-    modmain.cc
+    modmain.cc \
+    modqt.cc
 
 HEADERS += \
     app.h \
