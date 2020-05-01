@@ -20,7 +20,7 @@ basic_ostream<_CharT, _Traits>& operator<<(basic_ostream<_CharT, _Traits>& _os, 
 
 arh_ns_begin
 
-class basic_qt_translation
+class SDK_ARCH_API basic_qt_translation
 {
     QTranslator _M_qm_file;
 protected:
