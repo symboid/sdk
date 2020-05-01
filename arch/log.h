@@ -33,7 +33,7 @@ public:
 
 extern std::list<log*> g_logs;
 
-class log_entry : public std::ostringstream
+class SDK_ARCH_API log_entry : public std::ostringstream
 {
 public:
     log_entry(log::level _log_level);
@@ -43,7 +43,7 @@ private:
     log::level _M_log_level;
 };
 
-class stream_log : public log
+class SDK_ARCH_API stream_log : public log
 {
 public:
     stream_log(std::ostream* _out_stream = nullptr);
@@ -56,13 +56,13 @@ protected:
     std::ostream* _M_out_stream;
 };
 
-class console_log : public stream_log
+class SDK_ARCH_API console_log : public stream_log
 {
 public:
     console_log();
 };
 
-class file_log : public stream_log
+class SDK_ARCH_API file_log : public stream_log
 {
 public:
 //    file_log();
