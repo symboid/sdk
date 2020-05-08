@@ -10,6 +10,10 @@
         <file>MultiNumberBox.qml</file>
         <file>InputOperationsView.qml</file>
         <file>ItemSlot.qml</file>
+        <file>ProcessView.qml</file>
+        <file>SettingsScreen.qml</file>
+        <file>SettingsPane.qml</file>
+        <file>SettingsGroup.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/arrow_left_icon&amp;24.png</file>

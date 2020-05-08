@@ -1,0 +1,40 @@
+
+import QtQuick 2.12
+import QtQuick.Controls 2.5
+
+Column {
+    property alias title: titleText.text
+    property bool collapsed: false
+
+    spacing: 10
+    width: parent !== null ? parent.columnWidth : 200
+
+    Row {
+        spacing: 10
+        Image {
+            id: titleIcon
+            source: collapsed ? "/icons/br_next_icon&24.png" : "/icons/br_down_icon&24.png"
+            MouseArea {
+                anchors.fill: parent
+                onClicked: collapsed = !collapsed
+            }
+        }
+        Label {
+            id: titleText
+            font.bold: true
+            font.italic: true
+            anchors.verticalCenter: parent.verticalCenter
+            MouseArea {
+                anchors.fill: parent
+                onClicked: collapsed = !collapsed
+            }
+        }
+    }
+    onChildrenChanged: {
+        if (children.length > 1)
+        {
+            var newChild = children[children.length - 1]
+            newChild.visible = Qt.binding(function(){return !collapsed})
+        }
+    }
+}
