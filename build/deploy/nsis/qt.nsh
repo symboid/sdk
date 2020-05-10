@@ -8,7 +8,7 @@
 !ifdef _Config_QtVer
 	!define QtVer "${_Config_QtVer}"
 !else
-	!define QtVer 5.9.4
+	!define QtVer 5.14.1
 !endif
 
 ; directory of currently installed and used Qt Toolchain:
@@ -28,8 +28,7 @@
 !endif
 
 ; installation directory of QT runtime
-!define QtREHome "$SYMBOID_HOME\QtRE"
-!define QtInstallDir "${QtREHome}\${QtVerMain}"
+!define QtInstallDir "$INSTDIR\Qt${QtVerMain}"
 
 ; 
 !define QtDepsDir "${BuildDir}\qt_${QtVer}_deps"
@@ -54,11 +53,10 @@
 !endif
 
 
-!macro GenQtDeps _BinaryBaseName
+!macro GenQtDeps _ModuleRelPath _ModuleBaseName
 
-	!searchparse ">${_BinaryBaseName}" ">" _BinaryFileName "."
-	!define qml_dir "${InstallDir}\qml\${_BinaryFileName}"
-	!define binary_path "${InstallDir}\bin\${_BinaryBaseName}"
+	!define qml_dir "${RootDir}\${_ModuleRelPath}"
+	!define binary_path "${BuildDir}\${_ModuleRelPath}\${BuildConfig}\${_ModuleBaseName}"
 	
 	!system '${QtDepGen} ${QtDepGenParams} --qmldir ${qml_dir} ${binary_path}'
 	
@@ -88,10 +86,7 @@
 	SectionEnd
 
 	Section "Un.Qt ${QtVerMain}"
-		!insertmacro ResolveSymboidVars
-		SetOutPath "$SYMBOID_HOME"
 		RMDir /r "${QtInstallDir}"
-		RMDir "${QtREHome}"
 	SectionEnd
 
 	!undef _BinaryList

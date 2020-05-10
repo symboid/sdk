@@ -42,13 +42,13 @@ SectionEnd
 
 !macro StartMenuBootLink _LinkName _AppComponentId _IconFile
 
-	!insertmacro StartMenuLink ${_LinkName} "$\"$SYMBOID_PLATFORM\launcher.exe$\"" "--tool:boot --app:${_AppComponentId}" "${_IconFile}"
+	!insertmacro StartMenuLink ${_LinkName} "$\"$INSTDIR\launcher.exe$\"" "--tool:boot --app:${_AppComponentId}" "${_IconFile}"
 	
 !macroend
 
 !macro DesktopBootLink _LinkName _AppComponentId _IconFile
 
-	!insertmacro DesktopLink ${_LinkName} "$\"$SYMBOID_PLATFORM\launcher.exe$\"" "--tool:boot --app:${_AppComponentId}" "${_IconFile}"
+	!insertmacro DesktopLink ${_LinkName} "$\"$INSTDIR\launcher.exe$\"" "--tool:boot --app:${_AppComponentId}" "${_IconFile}"
 	
 !macroend
 

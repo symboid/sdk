@@ -24,9 +24,9 @@
 !define ScriptDir "${__FILEDIR__}"
 
 ; root directory of complete source code (including local repos):
-!define RelScriptDir "build\deploy\nsis"
+!define RelScriptDir "sdk\build\deploy\nsis"
 !define RootDirScript "${RelScriptDir}\__rootdir.nsh"
-!cd "${ScriptDir}\..\..\.."
+!cd "${ScriptDir}\..\..\..\.."
 !system 'ECHO !define RootDir "%CD%" > ${RootDirScript}'
 !include ${RootDirScript}
 !delfile ${RootDirScript}
@@ -44,7 +44,7 @@
 !define InstallDir "${BuildDir}\_install"
 
 ; directory of packages:
-!define PackageDir "${RootDir}\packages"
+!define PackageDir "${RootDir}\_packages"
 !system "IF NOT EXIST ${PackageDir} MKDIR ${PackageDir}"
 
 ; root directory of Qt
