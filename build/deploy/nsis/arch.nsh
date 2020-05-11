@@ -21,10 +21,12 @@
 !ifdef _Config_Toolchain
 	!define Toolchain "${_Config_Toolchain}"
 !else
-	!define Toolchain "msvc2015"
+	!define Toolchain "msvc2017"
 !endif
 
-!if `${Toolchain}` == `msvc2015`
+!if `${Toolchain}` == `msvc2017`
+	!define ToolchainNum "15"
+!else if `${Toolchain}` == `msvc2015`
 	!define ToolchainNum "14"
 !else if  `${Toolchain}` == `msvc2013`
 	!define ToolchainNum "12"

@@ -31,8 +31,6 @@ Var PlatformTool
 !define CurrentQtDir "${QtInstallDir}"
 
 Section
-	; querying environment variable 'SYMBOID_HOME' and 'SYMBOID_PLATFORM':
-	!insertmacro ResolveSymboidVars
 	; querying environment variable 'PATH'
 	ReadRegStr $PATH ${EnvHKCU} "PATH"
 

@@ -1,6 +1,6 @@
 
-!ifndef __SYMBOID_PLATFORM_DEPLOY_ENVVAR_NSH__
-!define __SYMBOID_PLATFORM_DEPLOY_ENVVAR_NSH__
+!ifndef __SYMBOID_SDK_BUILD_DEPLOY_ENVVAR_NSH__
+!define __SYMBOID_SDK_BUILD_DEPLOY_ENVVAR_NSH__
 
 !include config.nsh
 !include winmessages.nsh
@@ -39,19 +39,4 @@
 	System::Call 'Kernel32::SetEnvironmentVariable(t, t)i ("${_VarName}", "${_VarValue}").r0'
 !macroend
 
-;-------------------------------------------------------------------------------
-; SYMBOID_HOME and
-; SYMBOID_PLATFORM symbolic reference onto platform installation directory:
-;
-Var SYMBOID_HOME
-Var SYMBOID_PLATFORM
-
-!macro ResolveSymboidVars
-
-	ReadRegStr $SYMBOID_HOME ${EnvHKCU} "SYMBOID_HOME"
-	ReadRegStr $SYMBOID_PLATFORM ${EnvHKCU} "SYMBOID_PLATFORM"
-
-!macroend
-
-
-!endif ; __SYMBOID_PLATFORM_DEPLOY_ENVVAR_NSH__
+!endif ; __SYMBOID_SDK_BUILD_DEPLOY_ENVVAR_NSH__

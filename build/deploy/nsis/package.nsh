@@ -10,12 +10,12 @@
 !include MUI2.nsh
 !include links.nsh
 !include echo.nsh
-!include binary.nsh
 !include qt.nsh
 !include crt.nsh
 !include envvar.nsh
 !include launcher.nsh
 !include FileFunc.nsh
+!include module.nsh
 
 BrandingText "www.symboid.com"
 
@@ -102,35 +102,6 @@ FunctionEnd
 	RequestExecutionLevel admin
 
 	Function .OnInit
-		; in order to be able to use the SYMBOID_HOME variable in $INSTDIR
-		!insertmacro ResolveSymboidVars
-!ifndef DontCheckHome
-		${If} $SYMBOID_HOME == ""
-			MessageBox MB_OK|MB_ICONSTOP "$(TextMissingSymboidHome)"
-			Quit
-			Abort
-		${EndIf}
-!endif
-!ifdef CheckPlatform
-		${If} $SYMBOID_PLATFORM == ""
-			MessageBox MB_OK|MB_ICONSTOP "$(TextMissingSymboidHome)"
-			Quit
-			Abort
-		${EndIf}
-!endif
-!ifndef DontCheckQt
-		ReadRegStr $0 HKLM "Software\Symboid\Components\qtre${QtVerMain}" "install_dir"
-		${If} $0 == ""
-			MessageBox MB_OK|MB_ICONSTOP "$(TextMissingQtRE)"
-			Quit
-			Abort
-		${EndIf}
-!endif
-		; resolving SYMBOID_HOME variable in install folder value if specified
-		!searchparse /ignorecase /noerrors "${_InstFolder}" "SYMBOID_HOME" _InstFolderSuffix
-		!ifdef _InstFolderSuffix
-			StrCpy $INSTDIR "$SYMBOID_HOME${_InstFolderSuffix}"
-		!endif
 		
 		; checking for architecture compatibility
 		!insertmacro Arch64Check
@@ -150,7 +121,6 @@ FunctionEnd
 !macro PackageRegComponent _ComponentId _ComponentInstDir
 
 	Section "Component Reg"
-		!insertmacro ResolveSymboidVars
 		WriteRegExpandStr HKLM "Software\Symboid\Components\${_ComponentId}" "install_dir" "${_ComponentInstDir}"
 	SectionEnd
 	
@@ -169,8 +139,7 @@ FunctionEnd
 
 	Section "Trial Stamp"
 	
-		!insertmacro ResolveSymboidVars
-		ExecWait '"$SYMBOID_PLATFORM\launcher.exe" --tool:boot --trial-stamp:${_ComponentId}'
+		ExecWait '"$INSTDIR\launcher.exe" --tool:boot --trial-stamp:${_ComponentId}'
 		
 	SectionEnd
 	
@@ -256,8 +225,8 @@ FunctionEnd
 
 	!define PurgingExistingInstance
 	
-	!insertmacro PackageBasics "${COMPONENT_NAME}" "SYMBOID_HOME\${_RelFolder}"
-	!insertmacro PackageRegComponent "${COMPONENT_NAME}" "$SYMBOID_HOME\${_RelFolder}"
+	!insertmacro PackageBasics "${COMPONENT_NAME}" "${ProgramFilesDir}\${_RelFolder}"
+	!insertmacro PackageRegComponent "${COMPONENT_NAME}" "${ProgramFilesDir}\${_RelFolder}"
 	!insertmacro PackageCommonPages
 
 	!insertmacro MUI_UNPAGE_CONFIRM
@@ -307,23 +276,6 @@ FunctionEnd
 	!insertmacro PackageCommonPages
 
 	!insertmacro PackageEnd
-
-!macroend
-
-!macro DeployFile _SourcePath _TargetFolder _TargetBaseName
-
-	${EchoItem} "File                 : ${_SourcePath}"
-	
-	Section "${_TargetBaseName}"
-		SetOutPath "${_TargetFolder}"
-		File "/oname=${_TargetBaseName}" "${_SourcePath}"
-	SectionEnd
-
-	Section "Un.${_TargetBaseName}"
-		Delete "${_TargetFolder}\${_TargetBaseName}"
-		RMDir "${_TargetFolder}"
-		RMDir "$INSTDIR"
-	SectionEnd
 
 !macroend
 
