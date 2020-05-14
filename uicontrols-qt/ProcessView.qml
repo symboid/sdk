@@ -4,4 +4,5 @@ import QtQuick.Controls 2.5
 
 SwipeView {
     interactive: false
+    clip: true
 }
