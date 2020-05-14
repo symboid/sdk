@@ -12,4 +12,5 @@ ProcessView 1.0 ProcessView.qml
 SettingsScreen 1.0 SettingsScreen.qml
 SettingsPane 1.0 SettingsPane.qml
 SettingsGroup 1.0 SettingsGroup.qml
+SettingsItem 1.0 SettingsItem.qml
 SoftwarePane 1.0 SoftwarePane.qml
