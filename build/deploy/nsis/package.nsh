@@ -99,7 +99,7 @@ FunctionEnd
 	Name "${COMPONENT_TITLE}"
 	OutFile "${PackageInstallerExe}"
 	InstallDir "${_InstFolder}"
-	RequestExecutionLevel admin
+	RequestExecutionLevel user
 
 	Function .OnInit
 		
@@ -118,19 +118,36 @@ FunctionEnd
 	
 !macroend
 
+!macro RegAppPath _ExeBaseName _Path
+
+	!define _AppPathsKey 'HKCU "Software\Microsoft\Windows\CurrentVersion\App Paths\${_ExeBaseName}"'
+	
+	Section "Reg AppPath ${_ExeBaseName}"
+		
+		WriteRegExpandStr ${_AppPathsKey} "Path" "${_Path}"
+	SectionEnd
+	
+	Section "Un.Reg AppPath ${_ExeBaseName}"
+		DeleteRegKey ${_AppPathsKey}
+	SectionEnd
+	
+	!undef _AppPathsKey
+	
+!macroend
+
 !macro PackageRegComponent _ComponentId _ComponentInstDir
 
 	Section "Component Reg"
-		WriteRegExpandStr HKLM "Software\Symboid\Components\${_ComponentId}" "install_dir" "${_ComponentInstDir}"
+;		WriteRegExpandStr HKLM "Software\Symboid\Components\${_ComponentId}" "install_dir" "${_ComponentInstDir}"
 	SectionEnd
 	
 	Section "Un.Component Reg"
-		${GetOptions} $CMDLINE "--keep-reg:" $0
-		StrCmp $0 "1" end_reg_delete
-		DeleteRegKey HKLM "Software\Symboid\Components\${_ComponentId}"
-		DeleteRegKey /ifempty HKLM "Software\Symboid\Components"
-		DeleteRegKey /ifempty HKLM "Software\Symboid"
-		end_reg_delete:
+;		${GetOptions} $CMDLINE "--keep-reg:" $0
+;		StrCmp $0 "1" end_reg_delete
+;		DeleteRegKey HKLM "Software\Symboid\Components\${_ComponentId}"
+;		DeleteRegKey /ifempty HKLM "Software\Symboid\Components"
+;		DeleteRegKey /ifempty HKLM "Software\Symboid"
+;		end_reg_delete:
 	SectionEnd
 	
 !macroend
@@ -225,8 +242,8 @@ FunctionEnd
 
 	!define PurgingExistingInstance
 	
-	!insertmacro PackageBasics "${COMPONENT_NAME}" "${ProgramFilesDir}\${_RelFolder}"
-	!insertmacro PackageRegComponent "${COMPONENT_NAME}" "${ProgramFilesDir}\${_RelFolder}"
+	!insertmacro PackageBasics "${COMPONENT_NAME}" "$LOCALAPPDATA\${_RelFolder}"
+	!insertmacro PackageRegComponent "${COMPONENT_NAME}" "$LOCALAPPDATA\${_RelFolder}"
 	!insertmacro PackageCommonPages
 
 	!insertmacro MUI_UNPAGE_CONFIRM
