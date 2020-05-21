@@ -8,6 +8,7 @@ DateCoordBox 1.0 DateCoordBox.qml
 TimeCoordBox 1.0 TimeCoordBox.qml
 InputOperationsView 1.0 InputOperationsView.qml
 ItemSlot 1.0 ItemSlot.qml
+IndirectContainer 1.0 IndirectContainer.qml
 ProcessView 1.0 ProcessView.qml
 SettingsScreen 1.0 SettingsScreen.qml
 SettingsPane 1.0 SettingsPane.qml
