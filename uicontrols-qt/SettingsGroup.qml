@@ -16,13 +16,13 @@ Column {
     }
     Row {
         spacing: 10
-        Image {
-            id: titleIcon
-            source: collapsed ? "/icons/br_next_icon&24.png" : "/icons/br_down_icon&24.png"
-            MouseArea {
-                anchors.fill: parent
-                onClicked: collapsed = !collapsed
-            }
+        RoundButton {
+            id: titleButton
+            checkable: true
+            checked: !collapsed
+            onToggled: collapsed = !collapsed
+            icon.source: collapsed ? "/icons/br_next_icon&24.png" : "/icons/br_down_icon&24.png"
+            width:36;height:36
         }
         Label {
             id: titleText
