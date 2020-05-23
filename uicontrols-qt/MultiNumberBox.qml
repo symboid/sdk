@@ -63,6 +63,7 @@ Pane {
                         readonly property NumericBox inputNumber: box(index)
                         height: parent.height
                         width: inputNumber.width
+                        enabled: inputNumber.enabled
 
                         model: inputNumber.to - inputNumber.from + 1
                         wrap: true

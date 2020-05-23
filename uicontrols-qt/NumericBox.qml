@@ -56,7 +56,8 @@ CircularSpinBox {
     }
 
     Component.onCompleted: {
-        if (padding==0)
+        if (padding==0) {
             width = Qt.binding(function(){ return numericBoxMetrics.width + height/3 })
+        }
     }
 }
