@@ -17,6 +17,7 @@
         <file>SoftwarePane.qml</file>
         <file>SettingsItem.qml</file>
         <file>IndirectContainer.qml</file>
+        <file>UiStyleSettingsGroup.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/arrow_left_icon&amp;24.png</file>

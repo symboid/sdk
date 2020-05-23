@@ -64,4 +64,12 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>UiStyleSettingsGroup</name>
+    <message>
+        <location filename="UiStyleSettingsGroup.qml" line="7"/>
+        <source>User interface look and feel</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>

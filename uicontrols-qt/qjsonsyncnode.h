@@ -21,7 +21,7 @@ signals:
     void childNodesChanged();
 
 public:
-    Q_PROPERTY(QString name WRITE setObjectName)
+    Q_PROPERTY(QString name READ objectName WRITE setObjectName)
 
 protected:
     QJsonObject toJsonObject() const;
