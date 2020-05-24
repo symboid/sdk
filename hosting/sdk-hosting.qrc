@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/Symboid/Sdk/Hosting">
+        <file>qmldir</file>
+        <file>SettingsScreen.qml</file>
+        <file>SettingsPane.qml</file>
+        <file>SettingsGroup.qml</file>
+        <file>SoftwarePane.qml</file>
+        <file>SettingsItem.qml</file>
+        <file>UiStyleSettingsGroup.qml</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>icons/br_down_icon&amp;24.png</file>
+        <file>icons/br_next_icon&amp;24.png</file>
+    </qresource>
+    <qresource prefix="/tr">
+        <file>sdk-hosting_hu.qm</file>
+    </qresource>
+</RCC>
