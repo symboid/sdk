@@ -5,19 +5,35 @@
 #include "sdk/arch/defs.h"
 #include "sdk/arch/app.h"
 #include "sdk/arch/mainobject.h"
+#include <QGuiApplication>
+#include <QString>
 
 arh_ns_begin
 
-template <class _AppMod, class _QtApplication>
+template<>
+QGuiApplication* main_object_create(int* _argc, char*** _argv)
+{
+    return new QGuiApplication(*_argc, *_argv);
+}
+
+struct qt_application
+{
+    MAIN_OBJECT(QGuiApplication, Application)
+};
+
+template <class _AppMod>
 struct app_qt : public app<_AppMod>
 {
     app_qt(int* _argc, char*** _argv)
         : _M_qt_application(_argc, _argv)
     {
     }
-    main_object_init<_QtApplication, int*, char***> _M_qt_application;
+    main_object_init<qt_application, int*, char***> _M_qt_application;
 
     int exec() { return _M_qt_application->exec(); }
+
+    QString name() const { _M_qt_application->applicationName(); }
+    void setName(const QString& _app_name) { _M_qt_application->setApplicationName(_app_name); }
 };
 
 arh_ns_end

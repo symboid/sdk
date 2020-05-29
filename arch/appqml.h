@@ -5,21 +5,9 @@
 #include "sdk/arch/defs.h"
 #include "sdk/arch/appqt.h"
 #include "sdk/arch/mainobject.h"
-#include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
 arh_ns_begin
-
-template<>
-QGuiApplication* main_object_create(int* _argc, char*** _argv)
-{
-    return new QGuiApplication(*_argc, *_argv);
-}
-
-struct qml_application
-{
-    MAIN_OBJECT(QGuiApplication, Application)
-};
 
 struct qml_engine
 {
@@ -27,10 +15,10 @@ struct qml_engine
 };
 
 template <class _AppMod>
-struct app_qml : app_qt<_AppMod, qml_application>
+struct app_qml : app_qt<_AppMod>
 {
     app_qml(int* _argc, char*** _argv)
-        : app_qt<_AppMod, qml_application>(_argc, _argv)
+        : app_qt<_AppMod>(_argc, _argv)
         , _M_main_qml("qrc:///main.qml")
     {
         _M_qml_engine->addImportPath("qrc:///");
@@ -40,7 +28,7 @@ struct app_qml : app_qt<_AppMod, qml_application>
     int run()
     {
         _M_qml_engine->load(_M_main_qml);
-        return app_qt<_AppMod, qml_application>::exec();
+        return app_qt<_AppMod>::exec();
     }
 };
 
