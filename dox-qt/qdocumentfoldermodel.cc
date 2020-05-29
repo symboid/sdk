@@ -13,7 +13,7 @@ QDocumentFolderModel::QDocumentFolderModel(QObject* parent)
     mCurrentFolder.setSorting(QDir::Name | QDir::LocaleAware | QDir::IgnoreCase | QDir::DirsFirst);
     connect(this, SIGNAL(currentFolderChanged()), this, SLOT(updateDocumentList()));
 
-    setCurrentFolder(QDocument::systemFolder());
+    setCurrentFolder(QDocument::documentFolder());
 
     connect(this, SIGNAL(filterTextChanged()), this, SLOT(updateDocumentList()));
 }
@@ -97,4 +97,3 @@ QHash<int, QByteArray> QDocumentFolderModel::roleNames() const
     roles[DocumentPath] = "documentPath";
     return roles;
 }
-

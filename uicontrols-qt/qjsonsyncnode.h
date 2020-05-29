@@ -29,4 +29,35 @@ protected:
     virtual bool isPropertySynchronized(const QString& propertyName) const;
 };
 
+class SDK_UICONTROLS_QT_API QJsonSyncFile : public QJsonSyncNode
+{
+    Q_OBJECT
+public:
+    QJsonSyncFile(QObject* parent = Q_NULLPTR);
+
+public:
+    Q_PROPERTY(QString filePath MEMBER mFilePath WRITE setFilePath NOTIFY filePathChanged)
+protected:
+    QString mFilePath;
+public:
+    void setFilePath(const QString& filePath);
+signals:
+    void filePathChanged();
+
+public:
+    Q_INVOKABLE bool load();
+    Q_INVOKABLE bool save();
+
+signals:
+    void loadStarted();
+    void loadFinished();
+    void loadFailed();
+
+signals:
+    void loadCurrent();
+
+protected:
+    bool isPropertySynchronized(const QString& propertyName) const override;
+};
+
 #endif // __SYMBOID_SDK_UICONTROLS_QT_QJSONSYNCNODE_H__

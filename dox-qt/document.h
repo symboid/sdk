@@ -6,10 +6,11 @@
 #include <QObject>
 #include "sdk/uicontrols-qt/qjsonsyncnode.h"
 #include "sdk/arch/modqt.h"
+#include <QDir>
 
 typedef QJsonSyncNode QDocumentNode;
 
-class QDocument : public QDocumentNode
+class QDocument : public QJsonSyncFile
 {
     Q_OBJECT
 public:
@@ -28,33 +29,15 @@ signals:
     void titleChanged();
 
 public:
-    Q_PROPERTY(QString filePath MEMBER mFilePath WRITE setFilePath NOTIFY filePathChanged)
-private:
-    QString mFilePath;
-public:
-    void setFilePath(const QString& filePath);
-signals:
-    void filePathChanged();
-
-public:
-    Q_INVOKABLE bool load();
     Q_INVOKABLE bool save();
-
-signals:
-    void loadStarted();
-    void loadFinished();
-    void loadFailed();
 
 signals:
     void loadCurrent();
 
 public:
+    static QString ensureAppDocDir(const QDir& sysDocDir);
+    static QString documentFolder();
     static constexpr const char* sFileExtension = ".sd";
-    static QString systemFolder();
-
-protected:
-    bool isPropertySynchronized(const QString& propertyName) const override;
 };
-
 
 #endif // __SYMBOID_SDK_DOX_QT_DOCUMENT_H__

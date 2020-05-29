@@ -2,6 +2,8 @@
 #include "sdk/uicontrols-qt/setup.h"
 #include "sdk/uicontrols-qt/qjsonsyncnode.h"
 #include <QMetaProperty>
+#include <QJsonDocument>
+#include <QFile>
 
 QJsonSyncNode::QJsonSyncNode(QObject* parent)
     : QObject(parent)
@@ -71,4 +73,61 @@ bool QJsonSyncNode::parseJsonObject(const QJsonObject& jsonObject)
 bool QJsonSyncNode::isPropertySynchronized(const QString& propertyName) const
 {
     return propertyName != "name" && propertyName != "objectName" && propertyName != "childNode";
+}
+
+QJsonSyncFile::QJsonSyncFile(QObject* parent)
+    : QJsonSyncNode(parent)
+{
+}
+
+void QJsonSyncFile::setFilePath(const QString& filePath)
+{
+    if (mFilePath != filePath)
+    {
+        mFilePath = filePath;
+        emit filePathChanged();
+    }
+}
+
+bool QJsonSyncFile::load()
+{
+    bool loadSuccessfull = false;
+    emit loadStarted();
+    if (mFilePath != "")
+    {
+        QFile documentFile(mFilePath);
+        if (documentFile.open(QIODevice::ReadOnly))
+        {
+            QByteArray documentBuffer = documentFile.readAll();
+            QJsonDocument jsonDocument(QJsonDocument::fromJson(documentBuffer));
+            if (!jsonDocument.isNull() && jsonDocument.isObject())
+            {
+                loadSuccessfull = parseJsonObject(jsonDocument.object());
+            }
+            documentFile.close();
+        }
+    }
+    emit loadSuccessfull ? loadFinished() : loadFailed();
+    return loadSuccessfull;
+}
+
+bool QJsonSyncFile::save()
+{
+    bool successfullySaved = false;
+    if (mFilePath != "")
+    {
+        QJsonDocument documentToWrite(toJsonObject());
+        QFile documentFile(mFilePath);
+        if (documentFile.open(QIODevice::WriteOnly))
+        {
+            successfullySaved = (documentFile.write(documentToWrite.toJson()) != -1);
+            documentFile.close();
+        }
+    }
+    return successfullySaved;
+}
+
+bool QJsonSyncFile::isPropertySynchronized(const QString& propertyName) const
+{
+    return QJsonSyncNode::isPropertySynchronized(propertyName) && propertyName != "filePath";
 }

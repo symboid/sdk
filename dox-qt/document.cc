@@ -1,13 +1,13 @@
 
 #include "sdk/dox-qt/setup.h"
 #include "sdk/dox-qt/document.h"
-#include <QJsonDocument>
-#include <QFile>
 #include <QStandardPaths>
 #include <QDir>
+#include "sdk/arch/appqt.h"
+#include "sdk/arch/log.h"
 
 QDocument::QDocument(QObject* parent)
-    : QDocumentNode(parent)
+    : QJsonSyncFile(parent)
 {
 }
 
@@ -25,40 +25,8 @@ void QDocument::setTitle(const QString& title)
     }
 }
 
-void QDocument::setFilePath(const QString& filePath)
-{
-    if (mFilePath != filePath)
-    {
-        mFilePath = filePath;
-        emit filePathChanged();
-    }
-}
-
-bool QDocument::load()
-{
-    bool loadSuccessfull = false;
-    emit loadStarted();
-    if (mFilePath != "")
-    {
-        QFile documentFile(mFilePath);
-        if (documentFile.open(QIODevice::ReadOnly))
-        {
-            QByteArray documentBuffer = documentFile.readAll();
-            QJsonDocument jsonDocument(QJsonDocument::fromJson(documentBuffer));
-            if (!jsonDocument.isNull() && jsonDocument.isObject())
-            {
-                loadSuccessfull = parseJsonObject(jsonDocument.object());
-            }
-            documentFile.close();
-        }
-    }
-    emit loadSuccessfull ? loadFinished() : loadFailed();
-    return loadSuccessfull;
-}
-
 bool QDocument::save()
 {
-    bool successfullySaved = false;
     if (mFilePath == "" && mTitle != "")
     {
         for (QChar t : mTitle)
@@ -77,34 +45,37 @@ bool QDocument::save()
                 mFilePath.push_back('_');
             }
         }
-        mFilePath = systemFolder() + QDir::separator() + mFilePath;
-        QDir systemDocumentDir(systemFolder());
+        mFilePath = documentFolder() + QDir::separator() + mFilePath;
+        QDir systemDocumentDir(documentFolder());
         while (systemDocumentDir.exists(mFilePath + sFileExtension))
         {
             mFilePath.push_back('_');
         }
         mFilePath = systemDocumentDir.absoluteFilePath(mFilePath + sFileExtension);
     }
-    if (mFilePath != "")
+    return QJsonSyncFile::save();
+}
+
+QString QDocument::ensureAppDocDir(const QDir& sysDocDir)
+{
+    arh::main_object<arh::qt_application> application;
+    static QString appDocFolder(application->applicationName());
+    QString appDocDir;
+    if (sysDocDir.exists())
     {
-        QJsonDocument documentToWrite(toJsonObject());
-        QFile documentFile(mFilePath);
-        if (documentFile.open(QIODevice::WriteOnly))
+        if (!sysDocDir.exists(appDocFolder))
         {
-            successfullySaved = (documentFile.write(documentToWrite.toJson()) != -1);
-            documentFile.close();
+            sysDocDir.mkdir(appDocFolder);
         }
+        appDocDir = sysDocDir.absoluteFilePath(appDocFolder);
     }
-    return successfullySaved;
+    log_info << "Documents folder = '"<< appDocDir << "'";
+    return appDocDir;
 }
 
-QString QDocument::systemFolder()
+QString QDocument::documentFolder()
 {
-    QString systemDocuments = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-    return systemDocuments;
-}
-
-bool QDocument::isPropertySynchronized(const QString& propertyName) const
-{
-    return QJsonSyncNode::isPropertySynchronized(propertyName) && propertyName != "filePath";
+    static QDir sysDocDir(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation));
+    static QString appDocDir = sysDocDir.exists() ? ensureAppDocDir(sysDocDir) : "";
+    return appDocDir;
 }
