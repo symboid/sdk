@@ -4,6 +4,7 @@
 
 #include "sdk/hosting/defs.h"
 #include "sdk/arch/modqt.h"
+#include "sdk/hosting/qsoftwareconfig.h"
 
 struct SDK_HOSTING_API mod_sdk_hosting : arh::mod_qt<mod_sdk_hosting>
 {
@@ -15,7 +16,8 @@ struct SDK_HOSTING_API mod_sdk_hosting : arh::mod_qt<mod_sdk_hosting>
 
     mod_sdk_hosting();
     ~mod_sdk_hosting();
-};
 
+    qml_singleton_init<QSoftwareConfig> _reg_software_config;
+};
 
 #endif // __SYMBOID_SDK_HOSTING_INIT_H__

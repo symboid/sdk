@@ -32,7 +32,7 @@ struct app_qt : public app<_AppMod>
 
     int exec() { return _M_qt_application->exec(); }
 
-    QString name() const { _M_qt_application->applicationName(); }
+    QString name() const { return _M_qt_application->applicationName(); }
     void setName(const QString& _app_name) { _M_qt_application->setApplicationName(_app_name); }
 };
 

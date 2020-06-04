@@ -5,11 +5,15 @@ COMPONENT_NAME=sdk
 include($${BUILD_ROOT}/sdk/build/qmake/qt-module.pri)
 
 SOURCES += \
-    init.cc
+    init.cc \
+    qconfig.cc \
+    qsoftwareconfig.cc
 
 HEADERS += \
     defs.h \
     init.h \
+    qconfig.h \
+    qsoftwareconfig.h \
     setup.h
 
 RESOURCES += \

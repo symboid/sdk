@@ -2,6 +2,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
 import Symboid.Sdk.Controls 1.0
+import Symboid.Sdk.Hosting 1.0
 
 SettingsPane {
     title: qsTr("Software")
@@ -19,6 +20,13 @@ SettingsPane {
     SettingsGroup {
         title: qsTr("Geographic database")
     }
+    function setUpdateMethod()
+    {
+        SoftwareConfig.updateMethod =
+                automatedSwUpdate.checked ? SoftwareConfig.UpdateAutomatic :
+                   manualSwUpdate.checked ? SoftwareConfig.UpdateManual :
+                                            SoftwareConfig.UpdateNone
+    }
     SettingsGroup {
         id: swUpdateGroup
         title: qsTr("Update method")
@@ -32,6 +40,8 @@ SettingsPane {
                 id: automatedSwUpdate
                 text: qsTr("Automated")
                 font.bold: true
+                checked: SoftwareConfig.updateMethod === SoftwareConfig.UpdateAutomatic
+                onCheckedChanged: setUpdateMethod()
             }
             Text {
                 width: parent.textWidth
@@ -42,6 +52,8 @@ SettingsPane {
                 id: manualSwUpdate
                 text: qsTr("Manual")
                 font.bold: true
+                checked: SoftwareConfig.updateMethod === SoftwareConfig.UpdateManual
+                onCheckedChanged: setUpdateMethod()
             }
             Text {
                 width: parent.textWidth
@@ -52,6 +64,8 @@ SettingsPane {
                 id: swUpdateOff
                 text: qsTr("Switched off")
                 font.bold: true
+                checked: SoftwareConfig.updateMethod === SoftwareConfig.UpdateNone
+                onCheckedChanged: setUpdateMethod()
             }
             Text {
                 width: parent.textWidth
