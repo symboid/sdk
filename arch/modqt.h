@@ -56,8 +56,9 @@ struct mod_qt : mod<_Mod>, mod_qt_translation<_Mod>
     class q_object_init : public main_object_instance<_MainObjectTraits>
     {
     public:
-        q_object_init(QObject* _parent, _CtorArgs... _ctorArgs)
-            : main_object_instance<_MainObjectTraits>(g_main_repo.load<_MainObjectTraits,QObject*,_CtorArgs...>(_parent, _ctorArgs...))
+        template <class _ParentObjectPtr>
+        q_object_init(_ParentObjectPtr _parentPtr, _CtorArgs... _ctorArgs)
+            : main_object_instance<_MainObjectTraits>(g_main_repo.load<_MainObjectTraits,_ParentObjectPtr,_CtorArgs...>(_parentPtr, _ctorArgs...))
         {
         }
         ~q_object_init()
@@ -84,6 +85,5 @@ struct mod_qt : mod<_Mod>, mod_qt_translation<_Mod>
 };
 
 arh_ns_end
-
 
 #endif // __SYMBOID_SDK_APP_MODQT_H__

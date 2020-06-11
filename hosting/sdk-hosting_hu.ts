@@ -2,6 +2,19 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="hu_HU">
 <context>
+    <name>QSoftwareConfig</name>
+    <message>
+        <location filename="qsoftwareconfig.cc" line="6"/>
+        <source>Software</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qsoftwareconfig.h" line="23"/>
+        <source>Update method</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SoftwarePane</name>
     <message>
         <location filename="SoftwarePane.qml" line="8"/>

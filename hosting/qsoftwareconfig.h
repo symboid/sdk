@@ -10,7 +10,7 @@ class QSoftwareConfig : public QConfigNode
     Q_OBJECT
     QML_SINGLETON(SoftwareConfig)
 public:
-    QSoftwareConfig(QObject* parent);
+    QSoftwareConfig(QConfigNode* parentNode);
 
     enum UpdateMethod
     {
@@ -20,7 +20,7 @@ public:
     };
     Q_ENUM(UpdateMethod)
 
-    Q_CONFIG_PROPERTY(UpdateMethod, updateMethod, UpdateManual)
+    Q_CONFIG_PROPERTY(UpdateMethod, updateMethod, UpdateManual, tr("Update method"))
 };
 
 //Q_DECLARE_METATYPE()

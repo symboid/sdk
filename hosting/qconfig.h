@@ -1,80 +1,100 @@
 
-#ifndef _SYMBOID_SDK_HOSTING_QCONFIGNODE_H_
-#define _SYMBOID_SDK_HOSTING_QCONFIGNODE_H_
+#ifndef __SYMBOID_SDK_HOSTING_QCONFIGNODE_H__
+#define __SYMBOID_SDK_HOSTING_QCONFIGNODE_H__
 
 #include "sdk/hosting/defs.h"
 #include "sdk/arch/mainobject.h"
 #include <QObject>
-#include "sdk/uicontrols-qt/listpropertyadapter.h"
+#include <QVector>
 #include <QMetaType>
+#include <QVariant>
+#include <QAbstractListModel>
 
-template <typename Type>
-inline bool config_property_equals(const Type& lhs, const Type& rhs);
-
-template <>
-inline bool config_property_equals<double>(const double& lhs, const double& rhs)
+class QConfigNode : public QAbstractListModel
 {
-    return lhs - rhs < 0.0001;
-}
-
-template <typename Type>
-inline bool config_property_equals(const Type& lhs, const Type& rhs)
-{
-    return lhs == rhs;
-}
-
-#define Q_CONFIG_PROPERTY(type,name,defaultValue) \
-Q_PROPERTY(type name MEMBER name WRITE set_##name NOTIFY name##Changed) \
-Q_SIGNALS: \
-    void name##Changed(); \
-private: \
-    const type name##Default = defaultValue; \
-    type name = defaultValue; \
-    void set_##name(type value) \
-    { \
-        if (!config_property_equals(name, value)) \
-        { \
-            name = value; \
-            emit name##Changed(); \
-            setPropertyModified(#name, !config_property_equals(name, name##Default)); \
-        } \
-    }
-
-#define Q_CONFIG_PROPERTY_NODE(name) Q_CONFIG_PROPERTY(QConfigNode*,name, nullptr)
-
-class QConfigNode : public QObject
-{
-    Q_OBJECT
 public:
     static constexpr const char* qml_name = "ConfigNode";
-public:
-    QConfigNode(QObject* parent = Q_NULLPTR);
 
-protected:
-    void setPropertyModified(const QString& propertyName, bool isModified);
-public:
-    bool isPropertyModified(const QString& propertyName) const;
-};
-
-class QConfig : public QConfigNode, public ListPropertyAdapter<QConfig, QConfigNode>
-{
     Q_OBJECT
-//    Q_CLASSINFO("DefaultProperty", "subConfigs")
-    QML_SINGLETON(Config)
 public:
-    QConfig(QObject* parent = Q_NULLPTR);
+    QConfigNode();
+    QConfigNode(const QString& name, QConfigNode* parentNode, const char* parentSignal = nullptr);
+public:
+    Q_PROPERTY(QString name MEMBER mName CONSTANT)
+    const QString mName;
 
+    Q_PROPERTY(QVariant value READ configValue NOTIFY changed)
 public:
-    Q_PROPERTY(QQmlListProperty<QConfigNode> subConfigs READ subConfigs NOTIFY subConfigsChanged)
-protected:
-    QQmlListProperty<QConfigNode> subConfigs();
+    virtual QVariant configValue() const { return QVariant::fromValue(const_cast<QConfigNode*>(this)); }
 signals:
-    void subConfigsChanged();
+    void changed();
+
+private:
+    QVector<QConfigNode*> mSubConfigs;
+public:
+    int subConfigCount() const;
+    const QConfigNode* subConfig(int index) const;
+    QConfigNode* subConfig(int index);
 
 public:
-    void addSubConfig(QConfigNode* subConfig);
+    enum Roles
+    {
+        NameRole = Qt::UserRole,
+        ValueRole,
+        ItemRole,
+    };
+    Q_ENUM(Roles)
+    QHash<int, QByteArray> roleNames() const override;
+    int rowCount(const QModelIndex& index = QModelIndex()) const override;
+    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 };
 
 Q_DECLARE_METATYPE(QConfigNode*)
+Q_DECLARE_METATYPE(const QConfigNode*)
 
-#endif // _SYMBOID_SDK_HOSTING_QCONFIGNODE_H_
+template <typename ConfigValue>
+class QConfigProperty : public QConfigNode
+{
+public:
+    QConfigProperty(QConfigNode* parentNode, const char* parentSignal,
+                    const QString& name, const ConfigValue& defaultValue)
+        : QConfigNode(name, parentNode, parentSignal)
+        , mValue(defaultValue)
+    {
+    }
+private:
+    ConfigValue mValue;
+public:
+    ConfigValue value() const
+    {
+        return mValue;
+    }
+    void setValue(ConfigValue value)
+    {
+        if (mValue != value)
+        {
+            mValue = value;
+            emit changed();
+        }
+    }
+    QVariant configValue() const override { return QVariant(mValue); }
+};
+
+#define Q_CONFIG_PROPERTY(type,name,defaultValue,title) \
+Q_PROPERTY(type name READ name##Get WRITE name##Set NOTIFY name##Changed) \
+Q_SIGNALS: \
+    void name##Changed(); \
+private: \
+    QConfigProperty<type>* name = new QConfigProperty<type>(this,SIGNAL(name##Changed()),title,defaultValue); \
+    type name##Get() const { return name->value(); } \
+    void name##Set(type value) { name->setValue(value); }
+
+#define Q_CONFIG_NODE(type,name) \
+    Q_PROPERTY(QConfigNode* name READ name##Get NOTIFY name##Changed) \
+    Q_SIGNALS: \
+        void name##Changed(); \
+    private: \
+        QConfigNode* name = new type(this,SIGNAL(name##Changed())); \
+        QConfigNode* name##Get() const { return name; }
+
+#endif // __SYMBOID_SDK_HOSTING_QCONFIGNODE_H__
