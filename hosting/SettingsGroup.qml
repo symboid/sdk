@@ -35,14 +35,9 @@ Column {
             }
         }
     }
-    Rectangle {
-        height: 1
-        width: parent.width
-        color: "grey"
-    }
 
     onChildrenChanged: {
-        if (children.length > 3)
+        if (children.length > 2)
         {
             var newChild = children[children.length - 1]
             newChild.visible = Qt.binding(function(){return !collapsed})

@@ -63,7 +63,7 @@ QVariant QConfigNode::data(const QModelIndex& index, int role) const
     }
     else if (role == ValueRole)
     {
-        orbisData = subConfigNode->configValue();
+        orbisData = subConfigNode->value();
     }
     else if (role == NameRole)
     {

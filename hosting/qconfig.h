@@ -19,13 +19,15 @@ public:
 public:
     QConfigNode();
     QConfigNode(const QString& name, QConfigNode* parentNode, const char* parentSignal = nullptr);
+
 public:
     Q_PROPERTY(QString name MEMBER mName CONSTANT)
     const QString mName;
 
-    Q_PROPERTY(QVariant value READ configValue NOTIFY changed)
+    Q_PROPERTY(QVariant value READ value WRITE setValue NOTIFY changed)
 public:
-    virtual QVariant configValue() const { return QVariant::fromValue(const_cast<QConfigNode*>(this)); }
+    virtual QVariant value() const { return QVariant(); }
+    virtual void setValue(const QVariant&) {}
 signals:
     void changed();
 
@@ -65,11 +67,11 @@ public:
 private:
     ConfigValue mValue;
 public:
-    ConfigValue value() const
+    ConfigValue configValue() const
     {
         return mValue;
     }
-    void setValue(ConfigValue value)
+    void setConfigValue(const ConfigValue& value)
     {
         if (mValue != value)
         {
@@ -77,7 +79,11 @@ public:
             emit changed();
         }
     }
-    QVariant configValue() const override { return QVariant(mValue); }
+    QVariant value() const override { return configValue(); }
+    void setValue(const QVariant& value) override
+    {
+        setConfigValue(value.value<ConfigValue>());
+    }
 };
 
 #define Q_CONFIG_PROPERTY(type,name,defaultValue,title) \
@@ -87,8 +93,8 @@ Q_SIGNALS: \
 private: \
     QConfigProperty<type>* _M_##name = new QConfigProperty<type>(this,SIGNAL(name##Changed()),title,defaultValue); \
 public: \
-    type name() const { return _M_##name->value(); } \
-    void name##Set(type value) { _M_##name->setValue(value); }
+    type name() const { return _M_##name->configValue(); } \
+    void name##Set(type value) { _M_##name->setConfigValue(value); }
 
 #define Q_CONFIG_NODE(type,name) \
     Q_PROPERTY(QConfigNode* name READ name NOTIFY name##Changed) \
