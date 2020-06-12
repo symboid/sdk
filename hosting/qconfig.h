@@ -81,20 +81,22 @@ public:
 };
 
 #define Q_CONFIG_PROPERTY(type,name,defaultValue,title) \
-Q_PROPERTY(type name READ name##Get WRITE name##Set NOTIFY name##Changed) \
+Q_PROPERTY(type name READ name WRITE name##Set NOTIFY name##Changed) \
 Q_SIGNALS: \
     void name##Changed(); \
 private: \
-    QConfigProperty<type>* name = new QConfigProperty<type>(this,SIGNAL(name##Changed()),title,defaultValue); \
-    type name##Get() const { return name->value(); } \
-    void name##Set(type value) { name->setValue(value); }
+    QConfigProperty<type>* _M_##name = new QConfigProperty<type>(this,SIGNAL(name##Changed()),title,defaultValue); \
+public: \
+    type name() const { return _M_##name->value(); } \
+    void name##Set(type value) { _M_##name->setValue(value); }
 
 #define Q_CONFIG_NODE(type,name) \
-    Q_PROPERTY(QConfigNode* name READ name##Get NOTIFY name##Changed) \
+    Q_PROPERTY(QConfigNode* name READ name NOTIFY name##Changed) \
     Q_SIGNALS: \
         void name##Changed(); \
     private: \
-        QConfigNode* name = new type(this,SIGNAL(name##Changed())); \
-        QConfigNode* name##Get() const { return name; }
+        type* _M_##name = new type(this,SIGNAL(name##Changed())); \
+    public: \
+        type* name() const { return _M_##name; }
 
 #endif // __SYMBOID_SDK_HOSTING_QCONFIGNODE_H__
