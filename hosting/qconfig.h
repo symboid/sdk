@@ -10,7 +10,7 @@
 #include <QVariant>
 #include <QAbstractListModel>
 
-class QConfigNode : public QAbstractListModel
+class SDK_HOSTING_API QConfigNode : public QAbstractListModel
 {
 public:
     static constexpr const char* qml_name = "ConfigNode";
