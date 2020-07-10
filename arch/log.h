@@ -71,6 +71,7 @@ public:
 arh_ns_end
 
 #define log_info arh::log_entry(arh::log::info)
+#define log_warning arh::log_entry(arh::log::warning)
 #define log_error arh::log_entry(arh::log::error)
 
 #endif // __SYMBOID_SDK_ARCH_LOG_H__
