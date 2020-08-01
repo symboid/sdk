@@ -5,6 +5,7 @@
 #include "sdk/arch/defs.h"
 #include "sdk/arch/mainrepo.h"
 #include <mutex>
+#include "sdk/arch/log.h"
 
 arh_ns_begin
 
@@ -68,11 +69,21 @@ public:
     main_object() :
         main_object_instance<_MainObjectTraits>(g_main_repo.find<_MainObjectTraits>())
     {
-        _M_repo_item->add_ref();
+        if (_M_repo_item)
+        {
+            _M_repo_item->add_ref();
+        }
+        else
+        {
+            log_error << "Main Object '" << _MainObjectTraits::id << "' not found !";
+        }
     }
     ~main_object()
     {
-        _M_repo_item->release();
+        if (_M_repo_item)
+        {
+            _M_repo_item->release();
+        }
     }
 
 public:

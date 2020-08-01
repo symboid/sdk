@@ -16,8 +16,8 @@ HEADERS += \
     qdocumentfoldermodel.h \
     setup.h
 
-LIBS += $$moduleDep(sdk,arch)
 LIBS += $$moduleDep(sdk,uicontrols-qt)
+LIBS += $$moduleDep(sdk,arch)
 
 RESOURCES += \
     sdk-dox-qt.qrc
