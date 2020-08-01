@@ -29,6 +29,7 @@ ListView {
         width: parent.width
         background: Rectangle {
             color: index == currentIndex ? "lightgray" : "transparent"
+            radius: 5
             MouseArea {
                 anchors.fill: parent
                 onClicked: {

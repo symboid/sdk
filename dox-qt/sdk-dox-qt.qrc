@@ -4,6 +4,8 @@
         <file>DocumentDialog.qml</file>
         <file>DocumentFolderView.qml</file>
         <file>DocumentFolderBox.qml</file>
+        <file>SavedDoxOperation.qml</file>
+        <file>RecentDoxOperation.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/zoom_icon&amp;16.png</file>

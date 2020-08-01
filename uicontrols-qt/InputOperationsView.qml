@@ -88,6 +88,7 @@ InputOperations {
                         height: 1
                         color: "black"
                     }
+                    Component.onCompleted: operation.leftAligned = leftAligned
                 }
             }
         }

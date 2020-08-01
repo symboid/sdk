@@ -7,6 +7,7 @@
 #include "sdk/uicontrols-qt/init.h"
 #include "sdk/dox-qt/document.h"
 #include "sdk/dox-qt/qdocumentfoldermodel.h"
+#include "sdk/dox-qt/qrecentdoxmodel.h"
 
 struct SDK_DOX_QT_API mod_sdk_dox_qt : arh::mod_qt<mod_sdk_dox_qt>
 {
@@ -24,6 +25,7 @@ struct SDK_DOX_QT_API mod_sdk_dox_qt : arh::mod_qt<mod_sdk_dox_qt>
     qml_alias_register<QJsonSyncNode> _reg_json_sync_node;
     qml_type_register<QDocument> _reg_document;
     qml_type_register<QDocumentFolderModel> _reg_document_folder_model;
+    qml_type_register<QRecentDoxModel> _reg_recent_dox_model;
 };
 
 #endif // __SYMBOID_SDK_NETWORK_QT_INIT_H__

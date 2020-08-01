@@ -49,8 +49,17 @@ private:
 signals:
     void canExecChanged();
 
+public:
+    Q_PROPERTY(bool leftAligned MEMBER mLeftAligned WRITE setLeftAligned NOTIFY leftAlignedChanged)
+private:
+    bool mLeftAligned;
+    void setLeftAligned(bool leftAligned);
+signals:
+    void leftAlignedChanged();
+
 signals:
     void exec();
+    void finishExec();
 public slots:
     Q_INVOKABLE void execute();
 };
