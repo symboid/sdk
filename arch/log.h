@@ -62,6 +62,15 @@ public:
     console_log();
 };
 
+class SDK_ARCH_API android_log : public log
+{
+public:
+    void write_entry(level _level, const std::string& _message) override;
+
+private:
+    std::mutex _M_log_mutex;
+};
+
 class SDK_ARCH_API file_log : public stream_log
 {
 public:

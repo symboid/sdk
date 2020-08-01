@@ -1,6 +1,9 @@
 
 #include "sdk/arch/log.h"
 #include <iostream>
+#if SY_PLATFORM_IS_ANDROID
+#include <android/log.h>
+#endif // __ANDROID__
 
 arh_ns_begin
 
@@ -50,6 +53,24 @@ void stream_log::write_entry(level _level, const std::string& _message)
 console_log::console_log()
     : stream_log(&std::cout)
 {
+}
+
+void android_log::write_entry(level _level, const std::string& _message)
+{
+#if SY_PLATFORM_IS_ANDROID
+    std::lock_guard<std::mutex> write_guard(_M_log_mutex);
+    int android_log_level = ANDROID_LOG_INFO;
+    switch (_level)
+    {
+    case debug:   android_log_level = ANDROID_LOG_DEBUG; break;
+    case warning: android_log_level = ANDROID_LOG_WARN; break;
+    case error:   android_log_level = ANDROID_LOG_ERROR; break;
+    case fatal:   android_log_level = ANDROID_LOG_FATAL; break;
+    case info:    android_log_level = ANDROID_LOG_INFO; break;
+    }
+
+    __android_log_print(android_log_level, "-----", "%s", _message.c_str());
+#endif
 }
 
 arh_ns_end

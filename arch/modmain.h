@@ -12,7 +12,11 @@ struct SDK_ARCH_API mod_main : basic_mod
 {
     mod_main();
     ~mod_main();
-    console_log _M_console_log;
+#if SY_PLATFORM_IS_ANDROID
+    android_log _M_default_log;
+#else
+    console_log _M_default_log;
+#endif
     file_log _M_file_log;
 };
 

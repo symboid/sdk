@@ -7,7 +7,7 @@ arh_ns_begin
 mod_main::mod_main()
     : basic_mod("main")
 {
-    g_logs.push_back(&_M_console_log);
+    g_logs.push_back(&_M_default_log);
 }
 
 mod_main::~mod_main()
