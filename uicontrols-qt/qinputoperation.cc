@@ -41,9 +41,18 @@ void QInputOperation::setCanExec(bool canExec)
     }
 }
 
+void QInputOperation::setLeftAligned(bool leftAligned)
+{
+    if (mLeftAligned != leftAligned) {
+        mLeftAligned = leftAligned;
+        emit leftAlignedChanged();
+    }
+}
+
 void QInputOperation::execute()
 {
     emit exec();
+    emit finishExec();
 }
 
 void QInputOperationsItem::append(QQmlListProperty<QInputOperation>* list, QInputOperation* value)
