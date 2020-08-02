@@ -6,12 +6,14 @@ QInputOperation::QInputOperation(QObject *parent)
     : QObject(parent)
     , mControl(nullptr)
     , mExecPane(nullptr)
+    , mWithButtons(true)
 {
 }
 
 void QInputOperation::setTitle(const QString& title)
 {
-    if (mTitle != title) {
+    if (mTitle != title)
+    {
         mTitle = title;
         emit titleChanged();
     }
@@ -19,7 +21,8 @@ void QInputOperation::setTitle(const QString& title)
 
 void QInputOperation::setControl(QQuickItem* control)
 {
-    if (mControl != control) {
+    if (mControl != control)
+    {
         mControl = control;
         emit controlChanged();
     }
@@ -27,7 +30,8 @@ void QInputOperation::setControl(QQuickItem* control)
 
 void QInputOperation::setExecPane(QQuickItem *execPane)
 {
-    if (mExecPane != execPane) {
+    if (mExecPane != execPane)
+    {
         mExecPane = execPane;
         emit execPaneChanged();
     }
@@ -35,7 +39,8 @@ void QInputOperation::setExecPane(QQuickItem *execPane)
 
 void QInputOperation::setCanExec(bool canExec)
 {
-    if (mCanExec != canExec) {
+    if (mCanExec != canExec)
+    {
         mCanExec = canExec;
         emit canExecChanged();
     }
@@ -43,9 +48,19 @@ void QInputOperation::setCanExec(bool canExec)
 
 void QInputOperation::setLeftAligned(bool leftAligned)
 {
-    if (mLeftAligned != leftAligned) {
+    if (mLeftAligned != leftAligned)
+    {
         mLeftAligned = leftAligned;
         emit leftAlignedChanged();
+    }
+}
+
+void QInputOperation::setWithButtons(bool withButtons)
+{
+    if (mWithButtons != withButtons)
+    {
+        mWithButtons = withButtons;
+        emit withButtonsChanged();
     }
 }
 

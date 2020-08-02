@@ -62,6 +62,15 @@ signals:
     void finishExec();
 public slots:
     Q_INVOKABLE void execute();
+
+public:
+    Q_PROPERTY(bool withButtons MEMBER mWithButtons WRITE setWithButtons NOTIFY withButtonsChanged)
+private:
+    bool mWithButtons;
+    void setWithButtons(bool withButtons);
+signals:
+    void withButtonsChanged();
+
 };
 
 class QInputOperationsItem : public QQuickItem

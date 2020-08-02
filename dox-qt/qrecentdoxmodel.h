@@ -12,6 +12,10 @@ public:
     static constexpr const char* qml_name = "RecentDoxModel";
 public:
     QRecentDoxModel(QObject* parent = Q_NULLPTR);
+    ~QRecentDoxModel();
+
+private:
+    int mMaxDoxCount;
 
 public:
     Q_INVOKABLE void add(const QString& title, const QString& filePath);

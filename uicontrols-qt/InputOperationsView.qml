@@ -30,12 +30,12 @@ InputOperations {
                         anchors.right: parent.right
 
                         Grid {
-                            columns: 2
+                            columns: operation.withButtons ? 2 : 1
                             LayoutMirroring.enabled: !leftAligned
                             verticalItemAlignment: Grid.AlignVCenter
                             Row {
                                 id: header
-                                width: parent.parent.width - execButton.width
+                                width: parent.parent.width - (operation.withButtons ? execButton.width : 0)
                                 RoundButton {
                                     id: foldButton
                                     anchors.verticalCenter: parent.verticalCenter
@@ -56,6 +56,7 @@ InputOperations {
                                 }
                             }
                             Pane {
+                                visible: operation.withButtons
                                 padding: 0
                                 RoundButton {
                                     id: execButton
@@ -78,7 +79,7 @@ InputOperations {
                                 width: execButton.width
                                 height: operationPane.height
                                 item: operation.execPane
-                                visible: !collapsed
+                                visible: operation.withButtons && !collapsed
                             }
                         }
                     }

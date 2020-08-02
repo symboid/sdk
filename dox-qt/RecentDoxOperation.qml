@@ -14,8 +14,9 @@ RecentInputOperation {
 
     property string selectedFilePath: ""
     onItemSelected: {
-        selectedFilePath = recentDoxModel.data(recentDoxModel.index(itemIndex,0), "documentPath")
-        console.log("PATH="+selectedFilePath)
+        var index = recentDoxModel.index(itemIndex, 0)
+        var role = RecentDoxModel.DocumentPath
+        selectedFilePath = itemModel.data(index, role)
     }
 
     onExec: {
