@@ -20,6 +20,7 @@ InputOperation {
         height: Math.min(contentHeight,500)
         delegate: Column {
             Row {
+                LayoutMirroring.enabled: !leftAligned
                 Loader {
                     readonly property string inputItemTitle: itemTitle
                     readonly property int itemSpace: parent.width
