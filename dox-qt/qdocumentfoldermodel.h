@@ -33,6 +33,9 @@ signals:
 
 public slots:
     Q_INVOKABLE void updateDocumentList();
+    Q_INVOKABLE bool removeDocument(int documentIndex);
+signals:
+    void documentRemoved(const QString& documentPath);
 };
 
 #endif // __SYMBOID_SDK_DOX_QDOCUMENTFOLDERMODEL_H__

@@ -74,3 +74,15 @@ void QRecentDoxModel::add(const QString& title, const QString& filePath)
     }
     endResetModel();
 }
+
+void QRecentDoxModel::remove(const QString& filePath)
+{
+    QList<DocumentInfo>::iterator documentRef = std::find_if(mDocumentList.begin(), mDocumentList.end(),
+            [filePath](const DocumentInfo& documentInfo)->bool{return documentInfo.mPath == filePath;});
+    if (documentRef != mDocumentList.end())
+    {
+        beginResetModel();
+        mDocumentList.erase(documentRef);
+        endResetModel();
+    }
+}

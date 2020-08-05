@@ -19,6 +19,7 @@ private:
 
 public:
     Q_INVOKABLE void add(const QString& title, const QString& filePath);
+    Q_INVOKABLE void remove(const QString& filePath);
 };
 
 #endif // __SYMBOID_SDK_DOX_QT_QRECENTDOXMODEL_H__

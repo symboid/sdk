@@ -10,6 +10,7 @@
     <qresource prefix="/">
         <file>icons/zoom_icon&amp;16.png</file>
         <file>icons/pencil_icon&amp;16.png</file>
+        <file>icons/delete_icon&amp;16.png</file>
     </qresource>
     <qresource prefix="/tr">
         <file>sdk-dox-qt_hu.qm</file>

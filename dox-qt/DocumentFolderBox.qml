@@ -10,6 +10,8 @@ Pane {
     property alias documentIndex: documentFolderView.currentIndex
     property bool titleFiltering: false
 
+    signal documentDeleted(string documentPath)
+
     TextField {
         id: titleField
         anchors {
@@ -52,6 +54,7 @@ Pane {
                     titleField.text = selectedTitle
                 }
             }
+            onDocumentDeleted: boxPane.documentDeleted(documentPath)
         }
     }
     function updateModel()

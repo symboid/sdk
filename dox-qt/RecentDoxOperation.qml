@@ -31,4 +31,8 @@ RecentInputOperation {
     {
         recentDoxModel.add(docTitle, docFilePath)
     }
+    function remove(docFilePath)
+    {
+        recentDoxModel.remove(docFilePath)
+    }
 }

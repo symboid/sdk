@@ -2,6 +2,7 @@
 #include "sdk/dox-qt/setup.h"
 #include "sdk/dox-qt/qdocumentfoldermodel.h"
 #include "sdk/dox-qt/document.h"
+#include <QFileInfo>
 
 QDocumentFolderModel::QDocumentFolderModel(QObject* parent)
     : QDocumentListModel(parent)
@@ -71,4 +72,22 @@ void QDocumentFolderModel::updateDocumentList()
         }
     }
     endResetModel();
+}
+
+bool QDocumentFolderModel::removeDocument(int documentIndex)
+{
+    bool successRemove = false;
+    if (0 <= documentIndex && documentIndex < mDocumentList.size())
+    {
+        QFileInfo documentFileInfo(mDocumentList.at(documentIndex).mPath);
+        if (documentFileInfo.dir().remove(documentFileInfo.fileName()))
+        {
+            beginResetModel();
+            mDocumentList.removeAt(documentIndex);
+            endResetModel();
+            successRemove = true;
+            emit documentRemoved(documentFileInfo.absoluteFilePath());
+        }
+    }
+    return successRemove;
 }
