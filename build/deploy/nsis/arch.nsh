@@ -4,15 +4,15 @@
 
 !include X64.nsh
 
+;-------------------------------------------------------------------------------
 ; Type of binary architecture excpected:
+;
 !ifdef _Config_AllArch
 	!define BuildArch All
 !else ifdef _Config_x86
 	!define BuildArch x86
-	!define BuildArchNum 32
 !else
 	!define BuildArch x64
-	!define BuildArchNum 64
 !endif
 
 ;-------------------------------------------------------------------------------
@@ -24,17 +24,6 @@
 	!define Toolchain "msvc2017"
 !endif
 
-!if `${Toolchain}` == `msvc2017`
-	!define ToolchainNum "15"
-!else if `${Toolchain}` == `msvc2015`
-	!define ToolchainNum "14"
-!else if  `${Toolchain}` == `msvc2013`
-	!define ToolchainNum "12"
-!else
-	!define ToolchainNum "??"
-!endif
-
-
 ;-------------------------------------------------------------------------------
 ; Directory of Program Files:
 ;
@@ -44,7 +33,9 @@
 	!define ProgramFilesDir $PROGRAMFILES64
 !endif
 
-; validation of running architecture
+;-------------------------------------------------------------------------------
+; Validation of running architecture
+;
 !macro Arch64Check
 	; when package is 64 bit and OS is 32 bit
 	; installation cannot be executed

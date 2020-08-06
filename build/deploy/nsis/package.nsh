@@ -1,6 +1,6 @@
 
-!ifndef __SYMBOID_PLATFORM_DEPLOY_PACKAGE_NSH__
-!define __SYMBOID_PLATFORM_DEPLOY_PACKAGE_NSH__
+!ifndef __SYMBOID_SDK_BUILD_DEPLOY_PACKAGE_NSH__
+!define __SYMBOID_SDK_BUILD_DEPLOY_PACKAGE_NSH__
 
 !addincludedir ${__FILEDIR__}
 
@@ -12,8 +12,6 @@
 !include echo.nsh
 !include qt.nsh
 !include crt.nsh
-!include envvar.nsh
-!include launcher.nsh
 !include FileFunc.nsh
 !include module.nsh
 
@@ -32,25 +30,6 @@ FunctionEnd
 	!insertmacro MUI_PAGE_COMPONENTS
 !endif
 Function PurgeIfExists
-!if `${COMPONENT_NAME}` == `kirkoszkop`
-	; if obsolete instance of KirkoSzkop found	
-	IfFileExists "${ProgramFilesDir}\KirkoSzkop\KirkoSzkop-uninst.exe" 0 skip_purge_old_kirkoszkop
-	
-	; moving list of open documents into new dir of app data
-	CreateDirectory "$LOCALAPPDATA\Symboid\kirkoszkop"
-	CopyFiles "$LOCALAPPDATA\KirkoSzkop\settings.user" "$LOCALAPPDATA\Symboid\kirkoszkop"
-	
-	; cleaning up old app data dir
-	RMDir /r "$LOCALAPPDATA\KirkoSzkop"
-	
-	; copying symboid documents into new document dir (with leaving in older one)
-	CreateDirectory "$DOCUMENTS\Symboid\KirkoSzkop"
-	CopyFiles "$DOCUMENTS\KirkoSzkop\*.syd" "$DOCUMENTS\Symboid\KirkoSzkop"
-	
-	; purging obsolete installation of KirkoSzkop
-	!insertmacro ExecUninstaller "${ProgramFilesDir}\KirkoSzkop\KirkoSzkop-uninst.exe"
-	skip_purge_old_kirkoszkop:
-!endif
 !ifdef PurgingExistingInstance
 	; purging existing instance of component if specified
 	IfFileExists "$INSTDIR\${PackageUninstallerExe}" 0 skip_purge_existing
@@ -152,16 +131,6 @@ FunctionEnd
 	
 !macroend
 
-!macro PackageTrialStamp _ComponentId
-
-	Section "Trial Stamp"
-	
-		ExecWait '"$INSTDIR\launcher.exe" --tool:boot --trial-stamp:${_ComponentId}'
-		
-	SectionEnd
-	
-!macroend
-
 !macro DeployUninstaller
 
 	Section "Write Uninst"
@@ -178,8 +147,8 @@ FunctionEnd
 
 !macro UninstallRemovesUserData _FolderId
 
-	!define _AppDataFolder "$LOCALAPPDATA\Symboid\${_FolderId}"
-	!define _DocumentsFolder "$DOCUMENTS\Symboid\${_FolderId}"
+	!define _AppDataFolder "$LOCALAPPDATA\${_FolderId}"
+	!define _DocumentsFolder "$DOCUMENTS\${_FolderId}"
 
 	UninstPage Custom Un.QuestionUserData Un.RemoveUserData
 	
@@ -296,73 +265,4 @@ FunctionEnd
 
 !macroend
 
-!macro DeployApi _BinaryName _IncludePath
-
-	${EchoItem} "Module API           : ${_BinaryName}"
-
-	!define _RuntimeBinary "${InstallDir}\bin\${_BinaryName}.dll"
-	!define _StaticBinary "${InstallDir}\lib\${_BinaryName}.lib"
-	
-!if /FileExists "${_RuntimeBinary}"
-	!define _IsRuntimeModule 1
-!else if /FileExists "${_StaticBinary}"
-	!define _IsRuntimeModule 0
-!else
-	!error "Module '${_BinaryName}' not found!"
-!endif
-	
-	Section "${_BinaryName}-API"
-		; module binary
-!if ${_IsRuntimeModule}
-		SetOutPath "$INSTDIR\bin"
-		File "${_RuntimeBinary}"
-		
-		; module library archive
-		SetOutPath "$INSTDIR\lib"
-		File "${InstallDir}\bin\${_BinaryName}.lib"
-!else
-		SetOutPath "$INSTDIR\lib"
-		File "${InstallDir}\lib\${_BinaryName}.lib"
-!endif		
-		; module interface
-		SetOutPath "$INSTDIR\include\${_IncludePath}"
-		File /r "${InstallDir}\include\${_IncludePath}\*.h"
-	SectionEnd
-	
-	Section "Un.${_BinaryName}-API"
-		; module binary
-!if ${_IsRuntimeModule}
-		Delete "$INSTDIR\bin\${_BinaryName}.dll"
-		RMDir "$INSTDIR\bin"
-!endif		
-		; module library archive
-		Delete "$INSTDIR\lib\${_BinaryName}.lib"
-		RMDir "$INSTDIR\lib"
-		
-		; module interface
-		RMDir /r "$INSTDIR\include\${_IncludePath}"
-		RMDir "$INSTDIR\include"
-		
-		RMDir "$INSTDIR"
-	SectionEnd
-	
-	!undef _RuntimeBinary
-	!undef _StaticBinary
-	!undef _IsRuntimeModule
-	
-!macroend
-
-!macro DeploySdkApi _SdkModuleName
-	!insertmacro DeployApi "${_SdkModuleName}" "${_SdkModuleName}"
-!macroend
-
-!macro DeployModuleApi _ModuleName
-	!insertmacro DeployApi "${COMPONENT_NAME}${_ModuleName}" "${COMPONENT_NAME}\${_ModuleName}"
-	Section "Un.SDK-interface"
-		RMDir "$INSTDIR\include\sdk"
-		RMDir "$INSTDIR\include"
-		RMDir "$INSTDIR"
-	SectionEnd
-!macroend
-
-!endif ; __SYMBOID_PLATFORM_DEPLOY_PACKAGE_NSH__
+!endif ; __SYMBOID_SDK_BUILD_DEPLOY_PACKAGE_NSH__

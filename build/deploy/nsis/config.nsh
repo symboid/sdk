@@ -40,9 +40,6 @@
 	!define BuildDir "${RootDir}\_build\${BuildConfig}-${Toolchain}-${BuildArch}"
 !endif
 
-; directory of installable files:
-!define InstallDir "${BuildDir}\_install"
-
 ; directory of packages:
 !define PackageDir "${RootDir}\_packages"
 !system "IF NOT EXIST ${PackageDir} MKDIR ${PackageDir}"

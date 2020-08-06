@@ -1,6 +1,6 @@
 
-!ifndef __SYMBOID_PLATFORM_DEPLOY_CRT_NSH__
-!define __SYMBOID_PLATFORM_DEPLOY_CRT_NSH__
+!ifndef __SYMBOID_SDK_BUILD_DEPLOY_CRT_NSH__
+!define __SYMBOID_SDK_BUILD_DEPLOY_CRT_NSH__
 
 !include config.nsh
 
@@ -25,4 +25,4 @@
 
 !macroend
 
-!endif ; __SYMBOID_PLATFORM_DEPLOY_CRT_NSH__
+!endif ; __SYMBOID_SDK_BUILD_DEPLOY_CRT_NSH__

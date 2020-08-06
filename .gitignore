@@ -5,3 +5,4 @@
 component.h
 component.json
 *.qm
+component.nsh

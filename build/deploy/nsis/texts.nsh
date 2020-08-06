@@ -1,6 +1,6 @@
 ﻿
-!ifndef __SYMBOID_PLATFORM_DEPLOY_TEXTS_NSH__
-!define __SYMBOID_PLATFORM_DEPLOY_TEXTS_NSH__
+!ifndef __SYMBOID_SDK_BUILD_DEPLOY_TEXTS_NSH__
+!define __SYMBOID_SDK_BUILD_DEPLOY_TEXTS_NSH__
 
 LangString TextUninstall ${LANG_Hungarian} "$(^NameDA) eltávolítása"
 LangString TextUninstall ${LANG_English} "Uninstall of $(^NameDA)"
@@ -44,4 +44,4 @@ LangString TextMissingSymboidHome ${LANG_English} "Symboid framework was not fou
 LangString TextMissingQtRE ${LANG_Hungarian} "A Symboid UI háttérrendszer nem található!$\n$\nA telepítés leáll..."
 LangString TextMissingQtRE ${LANG_English} "Symboid UI framework was not found.$\n$\nAborting..."
 
-!endif ; __SYMBOID_PLATFORM_DEPLOY_TEXTS_NSH__
+!endif ; __SYMBOID_SDK_BUILD_DEPLOY_TEXTS_NSH__

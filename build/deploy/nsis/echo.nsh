@@ -1,6 +1,6 @@
 
-!ifndef __SYMBOID_PLATFORM_DEPLOY_ECHO_NSH__
-!define __SYMBOID_PLATFORM_DEPLOY_ECHO_NSH__
+!ifndef __SYMBOID_SDK_BUILD_DEPLOY_ECHO_NSH__
+!define __SYMBOID_SDK_BUILD_DEPLOY_ECHO_NSH__
 
 !ifdef _Config_EchoIndent
 	!define EchoIndent ${_Config_EchoIndent}
@@ -35,5 +35,4 @@
 !define EchoHeader '!insertmacro CompileEcho "${EchoIndent}" ""'
 !define EchoLine '!insertmacro CompileEcho "${EchoIndent}" "" "............................................................................................."'
 
-!endif ; __SYMBOID_PLATFORM_DEPLOY_ECHO_NSH__
-
+!endif ; __SYMBOID_SDK_BUILD_DEPLOY_ECHO_NSH__

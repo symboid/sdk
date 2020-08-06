@@ -13,29 +13,6 @@
 	
 !macroend
 
-!macro DeployComponentJsonTo _ConfigDir
-	
-	!define ComponentJson "component.json"
-	!define ComponentJsonPath "${InstallDir}\conf\${COMPONENT_NAME}\${ComponentJson}"
-	
-	${EchoItem} "Component descriptor : ${ComponentJsonPath}"
-
-	Section "Compt.Desc"
-		SetOutPath "${_ConfigDir}"
-		File "${ComponentJsonPath}"
-	SectionEnd
-	
-	Section "Un.Compt.Desc"
-		Delete "${_ConfigDir}\${ComponentJson}"
-		RMDir "${_ConfigDir}"
-		RMDir "$INSTDIR"
-	SectionEnd
-	
-	!undef ComponentJsonPath
-	!undef ComponentJson
-	
-!macroend
-
 !macro DeployComponentJson
 	!insertmacro DeployComponentJsonTo "$INSTDIR"
 !macroend
