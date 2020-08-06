@@ -19,17 +19,21 @@ OTHER_FILES += $$REVISION_SCRIPT
 # target for component.h and component.json generation
 COMPONENT_PROPS=$$shell_path("$$SYS_HOME/$$COMPONENT_NAME/component.json")
 COMPONENT_H=$$shell_path("$$SYS_HOME/$$COMPONENT_NAME/component.h")
-component_props.target = $$COMPONENT_PROPS
-component_props.depends = $$shell_path($$SYS_HOME/$$COMPONENT_NAME/component.ini) $$REVISION_STAMP
+component_h.target = $$COMPONENT_H
+component_h.depends = $$shell_path($$SYS_HOME/$$COMPONENT_NAME/component.ini) $$REVISION_STAMP
 win32 {
-    component_props.commands = cscript $$SYS_HOME\sdk\build\component\generate.vbs $$COMPONENT_NAME $${QT_MAJOR_VERSION}.$${QT_MINOR_VERSION}
+    component_h.commands = cscript $$SYS_HOME\sdk\build\component\generate.vbs $$COMPONENT_NAME $${QT_MAJOR_VERSION}.$${QT_MINOR_VERSION}
 }
 else:unix {
-    component_props.commands = chmod +x $$SYS_HOME/sdk/build/component/generate.sh; $$SYS_HOME/sdk/build/component/generate.sh $$COMPONENT_NAME $${QT_MAJOR_VERSION}.$${QT_MINOR_VERSION}
+    component_h.commands = chmod +x $$SYS_HOME/sdk/build/component/generate.sh; $$SYS_HOME/sdk/build/component/generate.sh $$COMPONENT_NAME $${QT_MAJOR_VERSION}.$${QT_MINOR_VERSION}
 }
-QMAKE_EXTRA_TARGETS += component_props
+QMAKE_EXTRA_TARGETS += component_h
 
-defineReplace(object_dep_on_component_props) {
+component_h_alias.target = $$shell_path($$relative_path("$$SYS_HOME/$$COMPONENT_NAME/component.h", $$OUT_PWD))
+component_h_alias.depends = $$shell_path($$COMPONENT_H)
+QMAKE_EXTRA_TARGETS += component_h_alias
+
+defineReplace(object_dep_on_component_header) {
     object_name = $$1
     object_path
 
@@ -38,25 +42,12 @@ defineReplace(object_dep_on_component_props) {
     else:unix: object_path = $${object_name}.o
 
     eval($${object_name}_obj.target += $${object_path})
-    eval($${object_name}_obj.depends += $$COMPONENT_PROPS)
+    eval($${object_name}_obj.depends += $$COMPONENT_H)
     eval(export($${object_name}_obj.target))
     eval(export($${object_name}_obj.depends))
 
     return ($${object_name}_obj)
 }
-
-# copying component.json to installed runtime environment:
-component_conf.files += $$COMPONENT_PROPS
-component_conf.path = "$$INSTALL_PATH/conf/$$COMPONENT_NAME"
-INSTALLS += component_conf
-
-# copying component.json to development runtime environment:
-RUNTIME_COMPONENT_PROPS=$$shell_path($$BUILD_HOME/$$COMPONENT_NAME/component.json)
-component_props_copy.target = $$RUNTIME_COMPONENT_PROPS
-component_props_copy.commands = -$(COPY_FILE) $$COMPONENT_PROPS $$RUNTIME_COMPONENT_PROPS
-component_props_copy.depends = $$COMPONENT_PROPS
-QMAKE_EXTRA_TARGETS += component_props_copy
-PRE_TARGETDEPS += $$RUNTIME_COMPONENT_PROPS
 
 OTHER_FILES += \
     $$SYS_HOME/sdk/build/component/generate.vbs \
@@ -66,7 +57,7 @@ OTHER_FILES += \
     $$SYS_HOME/$$COMPONENT_NAME/component.ini
 
 # target for component files clean
-component_files_clean.commands = -$(DEL_FILE) $$REVISION_STAMP $$COMPONENT_PROPS $$RUNTIME_COMPONENT_PROPS $$COMPONENT_H
+component_files_clean.commands = -$(DEL_FILE) $$REVISION_STAMP $$COMPONENT_PROPS $$COMPONENT_H
 QMAKE_EXTRA_TARGETS += component_files_clean
 CLEAN_DEPS += component_files_clean
 
