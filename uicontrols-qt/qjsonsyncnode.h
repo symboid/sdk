@@ -7,7 +7,8 @@
 #include "sdk/uicontrols-qt/listpropertyadapter.h"
 #include <QJsonObject>
 
-class SDK_UICONTROLS_QT_API QJsonSyncNode : public QObject, public ListPropertyAdapter<QJsonSyncNode, QJsonSyncNode> {
+class SDK_UICONTROLS_QT_API QJsonSyncNode : public QObject, public ListPropertyAdapter<QJsonSyncNode, QJsonSyncNode>
+{
     Q_OBJECT
     Q_CLASSINFO("DefaultProperty", "childNodes")
 public:
