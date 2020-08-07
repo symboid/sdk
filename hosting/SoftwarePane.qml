@@ -6,6 +6,9 @@ import Symboid.Sdk.Hosting 1.0
 
 SettingsPane {
     title: qsTr("Software")
+    readonly property SoftwareVersion appVersion: SoftwareUpdate.appVersion
+    readonly property SoftwareVersion astroVersion: SoftwareUpdate.astroVersion
+    readonly property SoftwareVersion sdkVersion: SoftwareUpdate.sdkVersion
     SettingsGroup {
         title: qsTr("About")
         Rectangle {
@@ -15,7 +18,62 @@ SettingsPane {
         }
     }
     SettingsGroup {
-        title: qsTr("Version")
+        title: qsTr("Version details")
+        Grid {
+            anchors.horizontalCenter: parent.horizontalCenter
+            columns: 3
+            rowSpacing: 10
+            columnSpacing: 10
+            Text {
+                text: qsTr("Component")
+                font.bold: true
+            }
+            Text {
+                text: qsTr("Version")
+                font.bold: true
+            }
+            Text {
+                text: qsTr("Revision ID")
+                font.bold: true
+            }
+
+            Text {
+                text: qsTr("Application")
+            }
+            Text {
+                text: "%1.%2.%3.%4".arg(appVersion.major).arg(appVersion.minor).arg(appVersion.patch).arg(appVersion.serial)
+            }
+            TextInput {
+                text: appVersion.revid
+                readOnly: true
+                selectByMouse: true
+            }
+
+            Text {
+                text: qsTr("Astro")
+            }
+            Text {
+                text: "%1.%2.%3.%4".arg(astroVersion.major).arg(astroVersion.minor).arg(astroVersion.patch).arg(astroVersion.serial)
+            }
+            TextInput {
+                text: astroVersion.revid
+                readOnly: true
+                selectByMouse: true
+            }
+
+            Text {
+                text: qsTr("SDK")
+            }
+            Text {
+                text: "%1.%2.%3.%4".arg(sdkVersion.major).arg(sdkVersion.minor).arg(sdkVersion.patch).arg(sdkVersion.serial)
+            }
+            TextInput {
+                text: sdkVersion.revid
+                readOnly: true
+                selectByMouse: true
+            }
+
+        }
     }
     SettingsGroup {
         title: qsTr("Geographic database")
