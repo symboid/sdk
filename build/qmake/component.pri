@@ -17,7 +17,7 @@ QMAKE_EXTRA_TARGETS += revision
 OTHER_FILES += $$REVISION_SCRIPT
 
 # target for component.h and component.json generation
-COMPONENT_PROPS=$$shell_path("$$SYS_HOME/$$COMPONENT_NAME/component.json")
+#COMPONENT_PROPS=$$shell_path("$$SYS_HOME/$$COMPONENT_NAME/component.json")
 COMPONENT_H=$$shell_path("$$SYS_HOME/$$COMPONENT_NAME/component.h")
 component_h.target = $$COMPONENT_H
 component_h.depends = $$shell_path($$SYS_HOME/$$COMPONENT_NAME/component.ini) $$REVISION_STAMP
@@ -53,11 +53,11 @@ OTHER_FILES += \
     $$SYS_HOME/sdk/build/component/generate.vbs \
     $$SYS_HOME/sdk/build/component/generate.sh \
     $$SYS_HOME/$$COMPONENT_NAME/component.h \
-    $$SYS_HOME/$$COMPONENT_NAME/component.json \
+#    $$SYS_HOME/$$COMPONENT_NAME/component.json \
     $$SYS_HOME/$$COMPONENT_NAME/component.ini
 
 # target for component files clean
-component_files_clean.commands = -$(DEL_FILE) $$REVISION_STAMP $$COMPONENT_PROPS $$COMPONENT_H
+component_files_clean.commands = -$(DEL_FILE) $$REVISION_STAMP $$COMPONENT_H
 QMAKE_EXTRA_TARGETS += component_files_clean
 CLEAN_DEPS += component_files_clean
 

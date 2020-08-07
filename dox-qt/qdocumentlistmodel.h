@@ -7,8 +7,6 @@
 
 class QDocumentListModel : public QAbstractListModel
 {
-    Q_OBJECT
-
 public:
     QDocumentListModel(QObject* parent = nullptr);
 
@@ -23,7 +21,6 @@ public:
         ItemTitle,
         DocumentPath,
     };
-    Q_ENUM(Roles)
     QHash<int, QByteArray> roleNames() const override;
 
 protected:
