@@ -6,9 +6,6 @@ import Symboid.Sdk.Hosting 1.0
 
 SettingsPane {
     title: qsTr("Software")
-    readonly property SoftwareVersion appVersion: SoftwareUpdate.appVersion
-    readonly property SoftwareVersion astroVersion: SoftwareUpdate.astroVersion
-    readonly property SoftwareVersion sdkVersion: SoftwareUpdate.sdkVersion
     SettingsGroup {
         title: qsTr("About")
         Rectangle {
@@ -18,7 +15,51 @@ SettingsPane {
         }
     }
     SettingsGroup {
+        id: versionDetails
+        property int col1Width: 100
+        property int col2Width: 100
         title: qsTr("Version details")
+        Row {
+            Text {
+                text: qsTr("Component")
+                font.bold: true
+                width: versionDetails.col1Width
+            }
+            Text {
+                text: qsTr("Version")
+                font.bold: true
+                width: versionDetails.col2Width
+            }
+            Text {
+                text: qsTr("Revision ID")
+                font.bold: true
+            }
+        }
+        ListView {
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: 150
+            clip: true
+            model: SoftwareUpdate.componentVersions
+            delegate: Row {
+                anchors.topMargin: 10
+                Text {
+                    text: name
+                    width: versionDetails.col1Width
+                }
+                Text {
+                    text: "%1.%2.%3.%4".arg(major).arg(minor).arg(patch).arg(serial)
+                    width: versionDetails.col2Width
+                }
+                TextInput {
+                    text: revid
+                    readOnly: true
+                    selectByMouse: true
+                }
+            }
+        }
+
+        /*
         Grid {
             anchors.horizontalCenter: parent.horizontalCenter
             columns: 3
@@ -74,6 +115,7 @@ SettingsPane {
             }
 
         }
+        */
     }
     SettingsGroup {
         title: qsTr("Geographic database")

@@ -5,17 +5,21 @@
 #include "sdk/hosting/defs.h"
 #include <QObject>
 #include "sdk/arch/mainobject.h"
+#include "sdk/uicontrols-qt/qjsonsyncmodel.h"
 
-class QSoftwareVersion : public QObject
+class QSoftwareVersion : public QJsonSyncNode
 {
     Q_OBJECT
 public:
     static constexpr const char* qml_name = "SoftwareVersion";
 
     QSoftwareVersion(QObject* parent = Q_NULLPTR)
-        : QObject(parent)
+        : QJsonSyncNode(parent)
     {
     }
+
+    Q_PROPERTY(QString name MEMBER mName CONSTANT)
+    QString mName;
 
     Q_PROPERTY(int major MEMBER mMajor CONSTANT)
     int mMajor;
@@ -49,24 +53,11 @@ signals:
     void availableChanged();
 
 public:
-    Q_PROPERTY(QSoftwareVersion* appVersion READ appVersion CONSTANT)
-    void setAppVersion(int major, int minor, int patch, int serial, const QString& revId);
-    QSoftwareVersion* appVersion() const;
+    Q_PROPERTY(QAbstractListModel* componentVersions MEMBER mComponentVersionModel CONSTANT)
 private:
-    QSoftwareVersion* mAppVersion;
-
+    QJsonSyncModel* mComponentVersionModel;
 public:
-    Q_PROPERTY(QSoftwareVersion* astroVersion READ astroVersion CONSTANT)
-    void setAstroVersion(int major, int minor, int patch, int serial, const QString& revId);
-    QSoftwareVersion* astroVersion() const;
-private:
-    QSoftwareVersion* mAstroVersion;
-
-public:
-    Q_PROPERTY(QSoftwareVersion* sdkVersion READ sdkVersion CONSTANT)
-    QSoftwareVersion* sdkVersion() const;
-private:
-    QSoftwareVersion* mSdkVersion;
+    void addComponentVersion(const QString& name, int major, int minor, int patch, int serial, const QString& revId);
 };
 
 #endif // __SYMBOID_SDK_HOSTING_QSOFTWAREUPDATE_H__

@@ -22,7 +22,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="13"/>
+        <location filename="SoftwarePane.qml" line="10"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
@@ -33,77 +33,62 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="28"/>
+        <location filename="SoftwarePane.qml" line="24"/>
         <source>Component</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="32"/>
+        <location filename="SoftwarePane.qml" line="29"/>
         <source>Version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="36"/>
+        <location filename="SoftwarePane.qml" line="34"/>
         <source>Revision ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="41"/>
-        <source>Application</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="SoftwarePane.qml" line="53"/>
-        <source>Astro</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="SoftwarePane.qml" line="65"/>
-        <source>SDK</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="SoftwarePane.qml" line="79"/>
+        <location filename="SoftwarePane.qml" line="122"/>
         <source>Geographic database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="90"/>
+        <location filename="SoftwarePane.qml" line="133"/>
         <source>Update method</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="99"/>
+        <location filename="SoftwarePane.qml" line="142"/>
         <source>Automated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="106"/>
+        <location filename="SoftwarePane.qml" line="149"/>
         <source>Download and integration of new software revision will be performed automatically. New features will be available after application relaunch.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="111"/>
+        <location filename="SoftwarePane.qml" line="154"/>
         <source>Manual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="118"/>
+        <location filename="SoftwarePane.qml" line="161"/>
         <source>Software updates will be prompted and confirmed. New features and bugfixes are available after update process.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="123"/>
+        <location filename="SoftwarePane.qml" line="166"/>
         <source>Switched off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="130"/>
+        <location filename="SoftwarePane.qml" line="173"/>
         <source>No software updates will be executed at all. No new features and bugfixes are available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="136"/>
+        <location filename="SoftwarePane.qml" line="179"/>
         <source>Update process</source>
         <translation type="unfinished"></translation>
     </message>

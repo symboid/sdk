@@ -75,7 +75,7 @@ public:
         }
         else
         {
-            log_error << "Main Object '" << _MainObjectTraits::id << "' not found !";
+            log_error << "main object '" << _MainObjectTraits::id << "' not found!";
         }
     }
     ~main_object()
