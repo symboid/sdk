@@ -83,7 +83,7 @@ public:
     {
         basic_item* object_item = nullptr;
         find(_MainObjectTraits::id, object_item);
-        return dynamic_cast<item<_MainObjectTraits>*>(object_item);
+        return reinterpret_cast<item<_MainObjectTraits>*>(object_item);
     }
 
     void unload(const std::string& _main_object_id);
