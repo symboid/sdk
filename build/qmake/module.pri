@@ -11,10 +11,6 @@ DEFINES += BUILD_$$upper($$replace(TARGET,-,_))
 target.path = "$$INSTALL_PATH/bin"
 INSTALLS += target
 
-api_headers.path = "$$INSTALL_PATH/include/$$TARGET/mod"
-api_headers.files = $$_PRO_FILE_PWD_/*.h
-INSTALLS += api_headers
-
 CONFIG(UseComponentApi): {
 LIBS += -L$$INSTALL_PATH/lib
 }
@@ -110,8 +106,12 @@ defineReplace(moduleName) {
     component_name = $$1
     module_name = $$2
 
+android {
+    module_dir_name += $$component_name-$${module_name}_$$ANDROID_TARGET_ARCH
+}
+else {
     module_dir_name += $$component_name-$$module_name
-
+}
     return ($$module_dir_name)
 }
 

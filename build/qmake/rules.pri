@@ -65,7 +65,7 @@ clang {
     QMAKE_CXXFLAGS += -stdlib=libc++
     android {
         # fix of NDKr20
-        QMAKE_LFLAGS += -nostdlib++
+#        QMAKE_LFLAGS += -nostdlib++
     }
     else {
         QMAKE_LFLAGS += -stdlib=libc++
