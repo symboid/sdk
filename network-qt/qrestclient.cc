@@ -7,6 +7,7 @@ QRestCaller::QRestCaller(QObject* parent)
     : QObject(parent)
     , mReply(Q_NULLPTR)
     , mStatus(QNetworkReply::NoError)
+    , mIsResultCompact(false)
 {
 }
 
@@ -49,6 +50,11 @@ void QRestCaller::onError(QNetworkReply::NetworkError error)
 {
     mStatus = error;
     emit endUpdate();
+}
+
+void QRestCaller::setResultCompact(bool isResultCompact)
+{
+    mIsResultCompact = isResultCompact;
 }
 
 QRestClient::QRestClient(QObject* parent)

@@ -52,3 +52,8 @@ void QRestModel::runOperation()
         mRestClient->callGet(restCaller(), mOperation);
     }
 }
+
+void QRestModel::setResultCompact(bool isResultCompact)
+{
+    restCaller()->setResultCompact(isResultCompact);
+}

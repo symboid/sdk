@@ -37,6 +37,11 @@ private:
     QNetworkReply::NetworkError mStatus;
 public:
     QNetworkReply::NetworkError status() const { return mStatus; }
+
+public:
+    void setResultCompact(bool isResultCompact);
+protected:
+    bool mIsResultCompact;
 };
 
 class SDK_NETWORK_QT_API QRestClient : public QNetworkAccessManager

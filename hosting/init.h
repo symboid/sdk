@@ -5,6 +5,7 @@
 #include "sdk/hosting/defs.h"
 #include "sdk/arch/modqt.h"
 #include "sdk/uicontrols-qt/init.h"
+#include "sdk/network-qt/init.h"
 #include "sdk/hosting/qconfig.h"
 #include "sdk/hosting/qsoftwareconfig.h"
 #include "sdk/hosting/qsoftwareupdate.h"
@@ -21,6 +22,7 @@ struct SDK_HOSTING_API mod_sdk_hosting : arh::mod_qt<mod_sdk_hosting>
     ~mod_sdk_hosting();
 
     arh::mod_init<mod_sdk_uicontrols_qt> _M_mod_sdk_uicontrols_qt;
+    arh::mod_init<mod_sdk_network_qt> _M_mod_sdk_network_qt;
 
     qml_type_register<QConfigNode> _reg_config_node;
     qml_singleton_init<QSoftwareConfig> _reg_software_config;

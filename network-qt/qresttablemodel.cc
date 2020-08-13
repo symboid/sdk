@@ -20,9 +20,17 @@ void QRestTableJSON::fetchResult(QNetworkReply* reply)
             // empty json reply --> wrong parameters at request
             emit apiError();
         }
-        else {
+        else
+        {
             QJsonObject rootObject = replyDocument.object();
-            mResultArray = rootObject.begin()->toArray();
+            if (mIsResultCompact)
+            {
+                mResultArray = rootObject.begin()->toObject()["records"].toObject().begin()->toArray();
+            }
+            else
+            {
+                mResultArray = rootObject.begin()->toArray();
+            }
             mRowCount = mResultArray.count();
         }
     }
