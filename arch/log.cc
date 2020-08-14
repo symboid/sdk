@@ -4,8 +4,36 @@
 #if SY_PLATFORM_IS_ANDROID
 #include <android/log.h>
 #endif // __ANDROID__
+#include <QDebug>
 
 arh_ns_begin
+
+static void defaultMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    QByteArray localMsg = msg.toLocal8Bit();
+    const char *file = context.file ? context.file : "";
+    const char *function = context.function ? context.function : "";
+    switch (type)
+    {
+    case QtDebugMsg:
+    case QtInfoMsg:
+        log_info << localMsg.toStdString();
+//        fprintf(stderr, "Info: %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+        break;
+    case QtWarningMsg:
+        log_warning << localMsg.toStdString();
+        break;
+    case QtCriticalMsg:
+    case QtFatalMsg:
+        log_warning << localMsg.toStdString();
+        break;
+    }
+}
+
+log::log()
+{
+    qInstallMessageHandler(defaultMessageOutput);
+}
 
 std::string log::level_str(level _level)
 {
