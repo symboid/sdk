@@ -14,7 +14,9 @@ QDocumentFolderModel::QDocumentFolderModel(QObject* parent)
     mCurrentFolder.setSorting(QDir::Name | QDir::LocaleAware | QDir::IgnoreCase | QDir::DirsFirst);
     connect(this, SIGNAL(currentFolderChanged()), this, SLOT(updateDocumentList()));
 
-    setCurrentFolder(QDocument::documentFolder());
+    QString docDir(QDocument::documentFolder());
+    log_info << "Documents folder = '"<< docDir << "'";
+    setCurrentFolder(docDir);
 
     connect(this, SIGNAL(filterTextChanged()), this, SLOT(updateDocumentList()));
 }

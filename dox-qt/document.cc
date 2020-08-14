@@ -56,26 +56,9 @@ bool QDocument::save()
     return QJsonSyncFile::save();
 }
 
-QString QDocument::ensureAppDocDir(const QDir& sysDocDir)
-{
-    arh::main_object<arh::qt_application> application;
-    static QString appDocFolder(application->applicationName());
-    QString appDocDir;
-    if (sysDocDir.exists())
-    {
-        if (!sysDocDir.exists(appDocFolder))
-        {
-            sysDocDir.mkdir(appDocFolder);
-        }
-        appDocDir = sysDocDir.absoluteFilePath(appDocFolder);
-    }
-    log_info << "Documents folder = '"<< appDocDir << "'";
-    return appDocDir;
-}
-
 QString QDocument::documentFolder()
 {
+    static QString appDocFolder(arh::main_object<arh::qt_application>()->applicationName());
     static QDir sysDocDir(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation));
-    static QString appDocDir = sysDocDir.exists() ? ensureAppDocDir(sysDocDir) : "";
-    return appDocDir;
+    return sysDocDir.mkpath(appDocFolder) ? sysDocDir.absoluteFilePath(appDocFolder) : "";
 }

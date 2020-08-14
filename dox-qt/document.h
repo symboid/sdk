@@ -35,7 +35,6 @@ signals:
     void loadCurrent();
 
 public:
-    static QString ensureAppDocDir(const QDir& sysDocDir);
     static QString documentFolder();
     static constexpr const char* sFileExtension = ".sd";
 };
