@@ -45,10 +45,10 @@ QRecentDoxModel::~QRecentDoxModel()
     {
         QJsonDocument fileJson;
         QJsonArray recentDoxRefs;
-        for (QJsonSyncNode* documentInfo : mItems)
+        for (QDocumentInfo* documentInfo : mItems)
         {
             QJsonObject recentDoxPath;
-            recentDoxRefs.append(documentInfo->property("documentPath").toString());
+            recentDoxRefs.append(documentInfo->mDocumentPath);
         }
         fileJson.setArray(recentDoxRefs);
         fileShadow.write(fileJson.toJson());
@@ -61,8 +61,8 @@ void QRecentDoxModel::add(const QString& title, const QString& filePath)
     documentInfo->mDocumentTitle = title;
     documentInfo->mDocumentPath = filePath;
     Items::iterator documentRef = std::find_if(mItems.begin(), mItems.end(),
-        [filePath](const QJsonSyncNode* documentInfo)->bool
-        { return documentInfo->property("documentPath").toString() == filePath; }
+        [filePath](const QDocumentInfo* documentInfo)->bool
+        { return documentInfo->mDocumentPath == filePath; }
     );
     beginResetModel();
     if (documentRef != mItems.end())
@@ -80,8 +80,8 @@ void QRecentDoxModel::add(const QString& title, const QString& filePath)
 void QRecentDoxModel::remove(const QString& filePath)
 {
     Items::iterator documentRef = std::find_if(mItems.begin(), mItems.end(),
-        [filePath](const QJsonSyncNode* documentInfo)->bool
-        { return documentInfo->property("documentPath").toString() == filePath; }
+        [filePath](const QDocumentInfo* documentInfo)->bool
+        { return documentInfo->mDocumentPath == filePath; }
     );
     if (documentRef != mItems.end())
     {

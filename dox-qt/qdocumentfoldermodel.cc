@@ -62,7 +62,7 @@ void QDocumentFolderModel::updateDocumentList()
         {
             Items::iterator before = mItems.end();
             while (before != mItems.begin() &&
-                   title.localeAwareCompare((*(before-1))->property("documentTitle").toString()) < 0)
+                   title.localeAwareCompare((*(before-1))->mDocumentTitle) < 0)
             {
                 --before;
             }
@@ -80,7 +80,7 @@ bool QDocumentFolderModel::removeDocument(int documentIndex)
     bool successRemove = false;
     if (0 <= documentIndex && documentIndex < mItems.size())
     {
-        QFileInfo documentFileInfo(mItems.at(documentIndex)->property("documentPath").toString());
+        QFileInfo documentFileInfo(mItems.at(documentIndex)->mDocumentPath);
         if (documentFileInfo.dir().remove(documentFileInfo.fileName()))
         {
             beginResetModel();

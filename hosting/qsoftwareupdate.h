@@ -55,7 +55,7 @@ signals:
 public:
     Q_PROPERTY(QAbstractListModel* componentVersions MEMBER mComponentVersionModel CONSTANT)
 private:
-    QJsonSyncModel* mComponentVersionModel;
+    QJsonSyncModel<QSoftwareVersion>* mComponentVersionModel;
 public:
     void addComponentVersion(const QString& name, int major, int minor, int patch, int serial, const QString& revId);
 };

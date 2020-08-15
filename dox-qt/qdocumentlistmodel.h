@@ -23,13 +23,13 @@ public:
     QString mDocumentPath;
 };
 
-class QDocumentListModel : public QJsonSyncModel
+class QDocumentListModel : public QJsonSyncModel<QDocumentInfo>
 {
     Q_OBJECT
 
 public:
     QDocumentListModel(QObject* parent = Q_NULLPTR)
-        : QJsonSyncModel(QDocumentInfo::staticMetaObject, parent)
+        : QJsonSyncModel<QDocumentInfo>(parent)
     {
     }
 

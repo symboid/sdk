@@ -2,7 +2,7 @@
 #include "sdk/uicontrols-qt/setup.h"
 #include "sdk/uicontrols-qt/qjsonsyncmodel.h"
 
-QJsonSyncModel::QJsonSyncModel(const QMetaObject& nodeMeta, QObject* parent)
+QAbstractJsonSyncModel::QAbstractJsonSyncModel(const QMetaObject& nodeMeta, QObject* parent)
     : QAbstractListModel(parent)
     , mPropertyCount(nodeMeta.propertyCount() - nodeMeta.propertyOffset())
     , mRoleNames(QAbstractListModel::roleNames())
@@ -17,19 +17,19 @@ QJsonSyncModel::QJsonSyncModel(const QMetaObject& nodeMeta, QObject* parent)
 }
 
 
-int QJsonSyncModel::rowCount(const QModelIndex& parent) const
+int QAbstractJsonSyncModel::rowCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent)
-    return mItems.size();
+    return itemCount();
 }
 
-QVariant QJsonSyncModel::data(const QModelIndex& index, int role) const
+QVariant QAbstractJsonSyncModel::data(const QModelIndex& index, int role) const
 {
     QVariant value;
     int itemIndex = index.row();
-    if (0 <= itemIndex && itemIndex < mItems.size())
+    if (0 <= itemIndex && itemIndex < itemCount())
     {
-        if (const QJsonSyncNode* nodeItem = mItems[itemIndex])
+        if (const QJsonSyncNode* nodeItem = item(itemIndex))
         {
             const QByteArray propertyName(mRoleNames[role]);
             value = nodeItem->property(propertyName);
@@ -39,25 +39,7 @@ QVariant QJsonSyncModel::data(const QModelIndex& index, int role) const
     return value;
 }
 
-QHash<int,QByteArray> QJsonSyncModel::roleNames() const
+QHash<int,QByteArray> QAbstractJsonSyncModel::roleNames() const
 {
     return mRoleNames;
-}
-
-void QJsonSyncModel::addItem(QJsonSyncNode* itemNode)
-{
-    if (itemNode != nullptr)
-    {
-        itemNode->setParent(this);
-        mItems.push_back(itemNode);
-    }
-}
-
-void QJsonSyncModel::clearItems()
-{
-    for (QJsonSyncNode* item : mItems)
-    {
-        item->deleteLater();
-    }
-    mItems.clear();
 }
