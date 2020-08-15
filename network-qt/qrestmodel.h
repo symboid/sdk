@@ -46,6 +46,11 @@ public slots:
 signals:
     void successfullyFinished();
     void networkError(QNetworkReply::NetworkError networkError);
+
+public:
+    Q_PROPERTY(bool isResultCompact WRITE setResultCompact)
+private:
+    void setResultCompact(bool isResultCompact);
 };
 
 #endif // __SYMBOID_SDK_NETWORK_QT_QRESTMODEL_H__

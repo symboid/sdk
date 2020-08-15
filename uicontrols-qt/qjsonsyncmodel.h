@@ -8,7 +8,7 @@
 #include <QMetaProperty>
 #include <QVector>
 
-class QJsonSyncModel : public QAbstractListModel
+class SDK_UICONTROLS_QT_API QJsonSyncModel : public QAbstractListModel
 {
 public:
     QJsonSyncModel(const QMetaObject& nodeMeta, QObject* parent = Q_NULLPTR);

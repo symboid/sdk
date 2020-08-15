@@ -3,6 +3,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 import Symboid.Sdk.Controls 1.0
 import Symboid.Sdk.Hosting 1.0
+import Symboid.Sdk.Network 1.0
 
 SettingsPane {
     title: qsTr("Software")
@@ -58,64 +59,6 @@ SettingsPane {
                 }
             }
         }
-
-        /*
-        Grid {
-            anchors.horizontalCenter: parent.horizontalCenter
-            columns: 3
-            rowSpacing: 10
-            columnSpacing: 10
-            Text {
-                text: qsTr("Component")
-                font.bold: true
-            }
-            Text {
-                text: qsTr("Version")
-                font.bold: true
-            }
-            Text {
-                text: qsTr("Revision ID")
-                font.bold: true
-            }
-
-            Text {
-                text: qsTr("Application")
-            }
-            Text {
-                text: "%1.%2.%3.%4".arg(appVersion.major).arg(appVersion.minor).arg(appVersion.patch).arg(appVersion.serial)
-            }
-            TextInput {
-                text: appVersion.revid
-                readOnly: true
-                selectByMouse: true
-            }
-
-            Text {
-                text: qsTr("Astro")
-            }
-            Text {
-                text: "%1.%2.%3.%4".arg(astroVersion.major).arg(astroVersion.minor).arg(astroVersion.patch).arg(astroVersion.serial)
-            }
-            TextInput {
-                text: astroVersion.revid
-                readOnly: true
-                selectByMouse: true
-            }
-
-            Text {
-                text: qsTr("SDK")
-            }
-            Text {
-                text: "%1.%2.%3.%4".arg(sdkVersion.major).arg(sdkVersion.minor).arg(sdkVersion.patch).arg(sdkVersion.serial)
-            }
-            TextInput {
-                text: sdkVersion.revid
-                readOnly: true
-                selectByMouse: true
-            }
-
-        }
-        */
     }
     SettingsGroup {
         title: qsTr("Geographic database")
@@ -176,5 +119,33 @@ SettingsPane {
     }
     SettingsGroup {
         title: qsTr("Update process")
+        Item {
+            BusyIndicator {
+                id: busyIndicator
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.right: parent.right
+                running: false
+            }
+            RestTableModel {
+                id: softwareRestModel
+                isResultCompact: true
+                restClient: RestClient {
+                    apiAddress: "http://db.symboid.com/live.php"
+    //                authUser: "symboid_hosting"
+    //                authPass: "K0rtefa"
+                }
+                operation: "software?filter=name,eq,kirkoszkop&filter=platform,eq,win_x64"
+                onModelAboutToBeReset: busyIndicator.running = true
+                onModelReset: busyIndicator.running = false
+                onSuccessfullyFinished: {
+                    console.log("SOFTWARE QUERY SUCCESS!")
+                    console.log("SOFTWARE SERIAL = " + softwareRestModel.restObject.serial_num)
+                }
+                onNetworkError: {
+                    console.log("SOFTWARE QUERY ERROR!")
+                }
+            }
+            Component.onCompleted: softwareRestModel.runOperation()
+        }
     }
 }
