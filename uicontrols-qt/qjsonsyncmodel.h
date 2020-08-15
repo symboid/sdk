@@ -18,13 +18,15 @@ public:
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
     QHash<int,QByteArray> roleNames() const override;
 
-private:
+protected:
     int mPropertyCount;
     QHash<int,QByteArray> mRoleNames;
-    QVector<QJsonSyncNode*> mItems;
+    typedef QVector<QJsonSyncNode*> Items;
+    Items mItems;
 
 public:
     void addItem(QJsonSyncNode* itemNode);
+    void clearItems();
 };
 
 #endif // __SYMBOID_SD_UICONTROLS_QT_QJSONSYNCMODEL_H__

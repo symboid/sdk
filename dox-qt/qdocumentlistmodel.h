@@ -3,16 +3,35 @@
 #define __SYMBOID_SDK_DOX_QT_QDOCUMENTLISTMODEL_H__
 
 #include "sdk/dox-qt/setup.h"
-#include <QAbstractListModel>
+#include "sdk/uicontrols-qt/qjsonsyncmodel.h"
 
-class QDocumentListModel : public QAbstractListModel
+class QDocumentInfo : public QJsonSyncNode
 {
-public:
-    QDocumentListModel(QObject* parent = nullptr);
+    Q_OBJECT
 
 public:
-    int rowCount(const QModelIndex& index = QModelIndex()) const override;
-    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+    static constexpr const char* qml_name = "DocumentInfo";
+
+    QDocumentInfo(QObject* parent = Q_NULLPTR) : QJsonSyncNode(parent) {}
+
+    Q_PROPERTY(QString documentTitle MEMBER mDocumentTitle CONSTANT)
+    QString mDocumentTitle;
+
+    Q_PROPERTY(QString itemTitle MEMBER mDocumentTitle CONSTANT)
+
+    Q_PROPERTY(QString documentPath MEMBER mDocumentPath CONSTANT)
+    QString mDocumentPath;
+};
+
+class QDocumentListModel : public QJsonSyncModel
+{
+    Q_OBJECT
+
+public:
+    QDocumentListModel(QObject* parent = Q_NULLPTR)
+        : QJsonSyncModel(QDocumentInfo::staticMetaObject, parent)
+    {
+    }
 
 public:
     enum Roles
@@ -21,15 +40,7 @@ public:
         ItemTitle,
         DocumentPath,
     };
-    QHash<int, QByteArray> roleNames() const override;
-
-protected:
-    struct DocumentInfo
-    {
-        QString mTitle;
-        QString mPath;
-    };
-    QList<DocumentInfo> mDocumentList;
+    Q_ENUM(Roles)
 };
 
 #endif // __SYMBOID_SDK_DOX_QT_QDOCUMENTLISTMODEL_H__

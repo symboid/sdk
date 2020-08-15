@@ -8,7 +8,6 @@ SOURCES += \
     document.cc \
     init.cc \
     qdocumentfoldermodel.cc \
-    qdocumentlistmodel.cc \
     qrecentdoxmodel.cc
 
 HEADERS += \

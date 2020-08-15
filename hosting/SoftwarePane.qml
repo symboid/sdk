@@ -119,6 +119,15 @@ SettingsPane {
     }
     SettingsGroup {
         title: qsTr("Update process")
+        GroupBox {
+            title: qsTr("Status")
+            anchors.left: parent.left
+            anchors.right: parent.right
+            Label {
+                text: qsTr("Searching for update...")
+            }
+        }
+
         Item {
             BusyIndicator {
                 id: busyIndicator

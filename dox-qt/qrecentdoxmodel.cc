@@ -25,10 +25,10 @@ QRecentDoxModel::QRecentDoxModel(QObject* parent)
             document->setFilePath(recentDoxPath);
             if (document->load())
             {
-                DocumentInfo documentInfo;
-                documentInfo.mPath = recentDoxPath;
-                documentInfo.mTitle = document->title();
-                mDocumentList.push_back(documentInfo);
+                QDocumentInfo* documentInfo = new QDocumentInfo(this);
+                documentInfo->mDocumentPath = recentDoxPath;
+                documentInfo->mDocumentTitle = document->title();
+                mItems.push_back(documentInfo);
             }
             else
             {
@@ -45,10 +45,10 @@ QRecentDoxModel::~QRecentDoxModel()
     {
         QJsonDocument fileJson;
         QJsonArray recentDoxRefs;
-        for (DocumentInfo documentInfo : mDocumentList)
+        for (QJsonSyncNode* documentInfo : mItems)
         {
             QJsonObject recentDoxPath;
-            recentDoxRefs.append(documentInfo.mPath);
+            recentDoxRefs.append(documentInfo->property("documentPath").toString());
         }
         fileJson.setArray(recentDoxRefs);
         fileShadow.write(fileJson.toJson());
@@ -57,32 +57,36 @@ QRecentDoxModel::~QRecentDoxModel()
 
 void QRecentDoxModel::add(const QString& title, const QString& filePath)
 {
-    DocumentInfo documentInfo;
-    documentInfo.mTitle = title;
-    documentInfo.mPath = filePath;
-    QList<DocumentInfo>::iterator documentRef = std::find_if(mDocumentList.begin(), mDocumentList.end(),
-            [filePath](const DocumentInfo& documentInfo)->bool{return documentInfo.mPath == filePath;});
+    QDocumentInfo* documentInfo = new QDocumentInfo(this);
+    documentInfo->mDocumentTitle = title;
+    documentInfo->mDocumentPath = filePath;
+    Items::iterator documentRef = std::find_if(mItems.begin(), mItems.end(),
+        [filePath](const QJsonSyncNode* documentInfo)->bool
+        { return documentInfo->property("documentPath").toString() == filePath; }
+    );
     beginResetModel();
-    if (documentRef != mDocumentList.end())
+    if (documentRef != mItems.end())
     {
-        mDocumentList.erase(documentRef);
+        mItems.erase(documentRef);
     }
-    mDocumentList.push_front(documentInfo);
-    if (mDocumentList.size() > mMaxDoxCount)
+    mItems.push_front(documentInfo);
+    if (mItems.size() > mMaxDoxCount)
     {
-        mDocumentList.pop_back();
+        mItems.pop_back();
     }
     endResetModel();
 }
 
 void QRecentDoxModel::remove(const QString& filePath)
 {
-    QList<DocumentInfo>::iterator documentRef = std::find_if(mDocumentList.begin(), mDocumentList.end(),
-            [filePath](const DocumentInfo& documentInfo)->bool{return documentInfo.mPath == filePath;});
-    if (documentRef != mDocumentList.end())
+    Items::iterator documentRef = std::find_if(mItems.begin(), mItems.end(),
+        [filePath](const QJsonSyncNode* documentInfo)->bool
+        { return documentInfo->property("documentPath").toString() == filePath; }
+    );
+    if (documentRef != mItems.end())
     {
         beginResetModel();
-        mDocumentList.erase(documentRef);
+        mItems.erase(documentRef);
         endResetModel();
     }
 }

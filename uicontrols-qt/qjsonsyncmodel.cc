@@ -52,3 +52,12 @@ void QJsonSyncModel::addItem(QJsonSyncNode* itemNode)
         mItems.push_back(itemNode);
     }
 }
+
+void QJsonSyncModel::clearItems()
+{
+    for (QJsonSyncNode* item : mItems)
+    {
+        item->deleteLater();
+    }
+    mItems.clear();
+}

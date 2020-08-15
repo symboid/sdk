@@ -92,6 +92,16 @@
         <source>Update process</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="SoftwarePane.qml" line="123"/>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SoftwarePane.qml" line="127"/>
+        <source>Searching for update...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UiStyleSettingsGroup</name>

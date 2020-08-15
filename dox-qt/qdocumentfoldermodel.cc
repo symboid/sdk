@@ -50,7 +50,7 @@ void QDocumentFolderModel::updateDocumentList()
     mCurrentFolder.refresh();
     QRegExp filterExpression(QString(".*") + mFilterText + ".*", Qt::CaseInsensitive);
     QFileInfoList docFileInfoList = mCurrentFolder.entryInfoList();
-    mDocumentList.clear();
+    clearItems();
     for (QFileInfo docFileInfo : docFileInfoList)
     {
         QDocument document;
@@ -60,17 +60,16 @@ void QDocumentFolderModel::updateDocumentList()
 
         if (filterExpression.exactMatch(title))
         {
-            DocumentInfo documentInfo;
-            documentInfo.mTitle = title;
-            documentInfo.mPath = docFileInfo.filePath();
-
-            QList<DocumentInfo>::iterator before = mDocumentList.end();
-            while (before != mDocumentList.begin() &&
-                   title.localeAwareCompare((before-1)->mTitle) < 0)
+            Items::iterator before = mItems.end();
+            while (before != mItems.begin() &&
+                   title.localeAwareCompare((*(before-1))->property("documentTitle").toString()) < 0)
             {
                 --before;
             }
-            mDocumentList.insert(before, documentInfo);
+            QDocumentInfo* documentInfo = new QDocumentInfo(this);
+            documentInfo->mDocumentTitle = title;
+            documentInfo->mDocumentPath = docFileInfo.filePath();
+            mItems.insert(before, documentInfo);
         }
     }
     endResetModel();
@@ -79,13 +78,13 @@ void QDocumentFolderModel::updateDocumentList()
 bool QDocumentFolderModel::removeDocument(int documentIndex)
 {
     bool successRemove = false;
-    if (0 <= documentIndex && documentIndex < mDocumentList.size())
+    if (0 <= documentIndex && documentIndex < mItems.size())
     {
-        QFileInfo documentFileInfo(mDocumentList.at(documentIndex).mPath);
+        QFileInfo documentFileInfo(mItems.at(documentIndex)->property("documentPath").toString());
         if (documentFileInfo.dir().remove(documentFileInfo.fileName()))
         {
             beginResetModel();
-            mDocumentList.removeAt(documentIndex);
+            mItems.removeAt(documentIndex);
             endResetModel();
             successRemove = true;
             emit documentRemoved(documentFileInfo.absoluteFilePath());
