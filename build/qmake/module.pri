@@ -107,7 +107,12 @@ defineReplace(moduleName) {
     module_name = $$2
 
 android {
-    module_dir_name += $$component_name-$${module_name}_$$ANDROID_TARGET_ARCH
+    lessThan(QT_MINOR_VERSION,14) {
+        module_dir_name += $$component_name-$${module_name}
+    }
+    else {
+        module_dir_name += $$component_name-$${module_name}_$$ANDROID_TARGET_ARCH
+    }
 }
 else {
     module_dir_name += $$component_name-$$module_name
