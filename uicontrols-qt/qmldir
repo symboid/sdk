@@ -11,3 +11,8 @@ ItemSlot 1.0 ItemSlot.qml
 IndirectContainer 1.0 IndirectContainer.qml
 ProcessView 1.0 ProcessView.qml
 RecentInputOperation 1.0 RecentInputOperation.qml
+MainScreenParamBox 1.0 MainScreenParamBox.qml
+MainScreenTimer 1.0 MainScreenTimer.qml
+MainScreenTextField 1.0 MainScreenTextField.qml
+MainScreenComboBox 1.0 MainScreenComboBox.qml
+MainScreenBottomPane 1.0 MainScreenBottomPane.qml
