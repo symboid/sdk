@@ -1,8 +1,8 @@
 
-#ifndef __SYMBOID_SDK_DOX_QT_QDOCUMENTLISTMODEL_H__
-#define __SYMBOID_SDK_DOX_QT_QDOCUMENTLISTMODEL_H__
+#ifndef __SYMBOID_SDK_DOX_QDOCUMENTLISTMODEL_H__
+#define __SYMBOID_SDK_DOX_QDOCUMENTLISTMODEL_H__
 
-#include "sdk/dox-qt/setup.h"
+#include "sdk/dox/setup.h"
 #include "sdk/uicontrols-qt/qjsonsyncmodel.h"
 
 class QDocumentInfo : public QJsonSyncNode
@@ -43,4 +43,4 @@ public:
     Q_ENUM(Roles)
 };
 
-#endif // __SYMBOID_SDK_DOX_QT_QDOCUMENTLISTMODEL_H__
+#endif // __SYMBOID_SDK_DOX_QDOCUMENTLISTMODEL_H__

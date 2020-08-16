@@ -2,8 +2,8 @@
 #ifndef __SYMBOID_SDK_DOX_QDOCUMENTFOLDERMODEL_H__
 #define __SYMBOID_SDK_DOX_QDOCUMENTFOLDERMODEL_H__
 
-#include "sdk/dox-qt/defs.h"
-#include "sdk/dox-qt/qdocumentlistmodel.h"
+#include "sdk/dox/defs.h"
+#include "sdk/dox/qdocumentlistmodel.h"
 #include <QDir>
 
 class QDocumentFolderModel : public QDocumentListModel

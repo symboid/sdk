@@ -1,8 +1,8 @@
 
-#ifndef __SYMBOID_SDK_DOX_QT_DOCUMENT_H__
-#define __SYMBOID_SDK_DOX_QT_DOCUMENT_H__
+#ifndef __SYMBOID_SDK_DOX_DOCUMENT_H__
+#define __SYMBOID_SDK_DOX_DOCUMENT_H__
 
-#include "sdk/dox-qt/defs.h"
+#include "sdk/dox/defs.h"
 #include <QObject>
 #include "sdk/uicontrols-qt/qjsonsyncnode.h"
 #include "sdk/arch/modqt.h"
@@ -39,4 +39,4 @@ public:
     static constexpr const char* sFileExtension = ".sd";
 };
 
-#endif // __SYMBOID_SDK_DOX_QT_DOCUMENT_H__
+#endif // __SYMBOID_SDK_DOX_DOCUMENT_H__

@@ -1,5 +1,5 @@
 
-TARGET = sdk-dox-qt
+TARGET = sdk-dox
 BUILD_ROOT=../..
 COMPONENT_NAME=sdk
 include($${BUILD_ROOT}/sdk/build/qmake/qt-module.pri)
@@ -20,7 +20,7 @@ HEADERS += \
     setup.h
 
 RESOURCES += \
-    sdk-dox-qt.qrc
+    sdk-dox.qrc
 
 LIBS += $$moduleDep(sdk,arch)
 LIBS += $$moduleDep(sdk,uicontrols-qt)

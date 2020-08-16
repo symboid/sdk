@@ -1,7 +1,7 @@
 
-#include "sdk/dox-qt/setup.h"
-#include "sdk/dox-qt/qdocumentfoldermodel.h"
-#include "sdk/dox-qt/document.h"
+#include "sdk/dox/setup.h"
+#include "sdk/dox/qdocumentfoldermodel.h"
+#include "sdk/dox/document.h"
 #include <QFileInfo>
 
 QDocumentFolderModel::QDocumentFolderModel(QObject* parent)

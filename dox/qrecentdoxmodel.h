@@ -1,9 +1,9 @@
 
-#ifndef __SYMBOID_SDK_DOX_QT_QRECENTDOXMODEL_H__
-#define __SYMBOID_SDK_DOX_QT_QRECENTDOXMODEL_H__
+#ifndef __SYMBOID_SDK_DOX_QRECENTDOXMODEL_H__
+#define __SYMBOID_SDK_DOX_QRECENTDOXMODEL_H__
 
-#include "sdk/dox-qt/defs.h"
-#include "sdk/dox-qt/qdocumentlistmodel.h"
+#include "sdk/dox/defs.h"
+#include "sdk/dox/qdocumentlistmodel.h"
 
 class QRecentDoxModel : public QDocumentListModel
 {
@@ -22,4 +22,4 @@ public:
     Q_INVOKABLE void remove(const QString& filePath);
 };
 
-#endif // __SYMBOID_SDK_DOX_QT_QRECENTDOXMODEL_H__
+#endif // __SYMBOID_SDK_DOX_QRECENTDOXMODEL_H__

@@ -1,12 +1,12 @@
 
-#include "sdk/dox-qt/setup.h"
-#include "sdk/dox-qt/qrecentdoxmodel.h"
+#include "sdk/dox/setup.h"
+#include "sdk/dox/qrecentdoxmodel.h"
 #include <QStandardPaths>
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
-#include "sdk/dox-qt/document.h"
+#include "sdk/dox/document.h"
 #include "sdk/arch/log.h"
 
 QRecentDoxModel::QRecentDoxModel(QObject* parent)

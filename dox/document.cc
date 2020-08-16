@@ -1,6 +1,6 @@
 
-#include "sdk/dox-qt/setup.h"
-#include "sdk/dox-qt/document.h"
+#include "sdk/dox/setup.h"
+#include "sdk/dox/document.h"
 #include <QStandardPaths>
 #include <QDir>
 #include "sdk/arch/appqt.h"
