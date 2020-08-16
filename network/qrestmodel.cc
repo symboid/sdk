@@ -1,6 +1,6 @@
 
-#include "sdk/network-qt/setup.h"
-#include "sdk/network-qt/qrestmodel.h"
+#include "sdk/network/setup.h"
+#include "sdk/network/qrestmodel.h"
 
 QRestModel::QRestModel(QObject* parent)
     : QAbstractListModel(parent)

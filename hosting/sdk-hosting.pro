@@ -23,4 +23,4 @@ RESOURCES += \
 
 LIBS += $$moduleDep(sdk,arch)
 LIBS += $$moduleDep(sdk,uicontrols-qt)
-LIBS += $$moduleDep(sdk,network-qt)
+LIBS += $$moduleDep(sdk,network)

@@ -1,6 +1,6 @@
 
-#include "sdk/network-qt/setup.h"
-#include "sdk/network-qt/qrestclient.h"
+#include "sdk/network/setup.h"
+#include "sdk/network/qrestclient.h"
 #include <QNetworkReply>
 
 QRestCaller::QRestCaller(QObject* parent)

@@ -1,6 +1,6 @@
 
-#include "sdk/network-qt/setup.h"
-#include "sdk/network-qt/qresttablemodel.h"
+#include "sdk/network/setup.h"
+#include "sdk/network/qresttablemodel.h"
 #include <QJsonDocument>
 #include <QJsonObject>
 

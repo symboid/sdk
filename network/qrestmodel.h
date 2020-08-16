@@ -1,12 +1,12 @@
 
-#ifndef __SYMBOID_SDK_NETWORK_QT_QRESTMODEL_H__
-#define __SYMBOID_SDK_NETWORK_QT_QRESTMODEL_H__
+#ifndef __SYMBOID_SDK_NETWORK_QRESTMODEL_H__
+#define __SYMBOID_SDK_NETWORK_QRESTMODEL_H__
 
-#include "sdk/network-qt/defs.h"
-#include "sdk/network-qt/qrestclient.h"
+#include "sdk/network/defs.h"
+#include "sdk/network/qrestclient.h"
 #include <QAbstractListModel>
 
-class SDK_NETWORK_QT_API QRestModel : public QAbstractListModel
+class SDK_NETWORK_API QRestModel : public QAbstractListModel
 {
     Q_OBJECT
 
@@ -53,4 +53,4 @@ private:
     void setResultCompact(bool isResultCompact);
 };
 
-#endif // __SYMBOID_SDK_NETWORK_QT_QRESTMODEL_H__
+#endif // __SYMBOID_SDK_NETWORK_QRESTMODEL_H__

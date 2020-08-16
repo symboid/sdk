@@ -1,13 +1,13 @@
 
-#ifndef __SYMBOID_SDK_NETWORK_QT_QRESTTABLEMODEL_H__
-#define __SYMBOID_SDK_NETWORK_QT_QRESTTABLEMODEL_H__
+#ifndef __SYMBOID_SDK_NETWORK_QRESTTABLEMODEL_H__
+#define __SYMBOID_SDK_NETWORK_QRESTTABLEMODEL_H__
 
-#include "sdk/network-qt/defs.h"
-#include "sdk/network-qt/qrestmodel.h"
+#include "sdk/network/defs.h"
+#include "sdk/network/qrestmodel.h"
 #include <QJsonArray>
 #include <QJsonObject>
 
-class SDK_NETWORK_QT_API QRestTableJSON : public QRestCaller
+class SDK_NETWORK_API QRestTableJSON : public QRestCaller
 {
     Q_OBJECT
 
@@ -27,7 +27,7 @@ public:
     QJsonObject rowObject(int rowIndex) const;
 };
 
-class SDK_NETWORK_QT_API QRestTableModel : public QRestModel
+class SDK_NETWORK_API QRestTableModel : public QRestModel
 {
     Q_OBJECT
 
@@ -66,4 +66,4 @@ signals:
     void firstObjectChanged();
 };
 
-#endif // __SYMBOID_SDK_NETWORK_QT_QRESTTABLEMODEL_H__
+#endif // __SYMBOID_SDK_NETWORK_QRESTTABLEMODEL_H__

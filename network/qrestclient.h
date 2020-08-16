@@ -1,13 +1,13 @@
 
-#ifndef __SYMBOID_SDK_NETWORK_QT_QRESTCLIENT_H__
-#define __SYMBOID_SDK_NETWORK_QT_QRESTCLIENT_H__
+#ifndef __SYMBOID_SDK_NETWORK_QRESTCLIENT_H__
+#define __SYMBOID_SDK_NETWORK_QRESTCLIENT_H__
 
-#include "sdk/network-qt/defs.h"
+#include "sdk/network/defs.h"
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include "sdk/arch/mainobject.h"
 
-class SDK_NETWORK_QT_API QRestCaller : public QObject
+class SDK_NETWORK_API QRestCaller : public QObject
 {
     Q_OBJECT
 
@@ -44,7 +44,7 @@ protected:
     bool mIsResultCompact;
 };
 
-class SDK_NETWORK_QT_API QRestClient : public QNetworkAccessManager
+class SDK_NETWORK_API QRestClient : public QNetworkAccessManager
 {
     Q_OBJECT
 
@@ -84,4 +84,4 @@ public:
 
 Q_DECLARE_METATYPE(QRestClient*)
 
-#endif // __SYMBOID_SDK_NETWORK_QT_QRESTCLIENT_H__
+#endif // __SYMBOID_SDK_NETWORK_QRESTCLIENT_H__

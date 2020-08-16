@@ -1,6 +1,6 @@
 
-#include "sdk/network-qt/setup.h"
-#include "sdk/network-qt/qrestobjectmodel.h"
+#include "sdk/network/setup.h"
+#include "sdk/network/qrestobjectmodel.h"
 #include <QJsonDocument>
 
 QRestObjectJSON::QRestObjectJSON(QObject* parent)
