@@ -6,7 +6,7 @@ Pane {
     property alias item: textField
     property alias text: textField.text
     property Component button: null
-    readonly property int internalWidth: parent.defaultItemWidth - leftPadding - rightMargin
+    readonly property int internalWidth: metrics.defaultItemWidth - leftPadding - anchors.rightMargin
 
     Grid {
         verticalItemAlignment: Grid.AlignVCenter

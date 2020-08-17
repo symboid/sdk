@@ -6,17 +6,16 @@ import Symboid.Sdk.Controls 1.0
 Pane {
     property Item referenceItem: Item {}
     property Item controlItem: Item {}
-    property bool landscape: true
 
-//background: Rectangle { anchors.fill:parent; border.width:3; border.color:"red" }
+    width: metrics.paramSectionWidth
+    padding: metrics.paramSectionPadding
 
     readonly property int itemHeight: itemSlot.height + 2*padding
-    readonly property int landscapeSpace: mandalaSize - (referenceItem.y + referenceItem.height)
+    readonly property int landscapeSpace: metrics.mandalaSize - (referenceItem.y + referenceItem.height)
 
-    height:                  !landscape ? itemHeight :
-            landscapeSpace < itemHeight ? mandalaSize :
+    height:        !metrics.isLandscape ? itemHeight :
+            landscapeSpace < itemHeight ? metrics.mandalaSize :
                                           landscapeSpace
-    width: itemSlot.width
 
     ItemSlot {
         id: itemSlot

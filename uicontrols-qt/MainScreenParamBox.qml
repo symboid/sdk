@@ -5,12 +5,10 @@ import QtQuick.Controls 2.5
 Grid {
     property string title: ""
 
-    width: parent.paramSectionWidth
-    padding: parent.paramSectionPadding
+    width: metrics.paramSectionWidth
+    padding: metrics.paramSectionPadding
     columns: 1
     horizontalItemAlignment: Grid.AlignRight
-
-    readonly property int defaultItemWidth: width - 3*padding
 
     Label {
         id: titleLabel

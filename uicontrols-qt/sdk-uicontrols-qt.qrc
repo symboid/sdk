@@ -18,6 +18,8 @@
         <file>MainScreenParamBox.qml</file>
         <file>MainScreenTextField.qml</file>
         <file>MainScreenTimer.qml</file>
+        <file>MainScreenViewSelector.qml</file>
+        <file>MainScreen.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/arrow_left_icon&amp;24.png</file>
