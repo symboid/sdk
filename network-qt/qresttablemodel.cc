@@ -22,15 +22,8 @@ void QRestTableJSON::fetchResult(QNetworkReply* reply)
         }
         else
         {
-            QJsonObject rootObject = replyDocument.object();
-            if (mIsResultCompact)
-            {
-                mResultArray = rootObject.begin()->toObject()["records"].toObject().begin()->toArray();
-            }
-            else
-            {
-                mResultArray = rootObject.begin()->toArray();
-            }
+            QJsonObject rootObject(replyDocument.object());
+            mResultArray = rootObject.begin()->toArray();
             mRowCount = mResultArray.count();
         }
     }

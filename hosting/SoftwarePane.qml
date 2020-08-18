@@ -130,16 +130,16 @@ SettingsPane {
                 id: softwareRestModel
                 isResultCompact: true
                 restClient: RestClient {
-                    apiAddress: "http://db.symboid.com/live.php"
+                    apiAddress: "http://db.symboid.com/api.php"
     //                authUser: "symboid_hosting"
     //                authPass: "K0rtefa"
                 }
-                operation: "software?filter=name,eq,kirkoszkop&filter=platform,eq,win_x64"
+                operation: "software?transform=t1&filter=swid,eq,1001&filter=platform,eq,win_x64"
                 onModelAboutToBeReset: busyIndicator.running = true
                 onModelReset: busyIndicator.running = false
                 onSuccessfullyFinished: {
                     console.log("SOFTWARE QUERY SUCCESS!")
-                    console.log("SOFTWARE SERIAL = " + softwareRestModel.restObject.serial_num)
+                    console.log("SOFTWARE SERIAL = " + softwareRestModel.firstObject.serial_num)
                 }
                 onNetworkError: {
                     console.log("SOFTWARE QUERY ERROR!")
