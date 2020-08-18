@@ -25,6 +25,7 @@ public:
     static std::string level_str(level _level);
 
 public:
+    log();
     virtual ~log() = default;
 
 public:
