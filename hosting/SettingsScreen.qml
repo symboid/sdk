@@ -9,28 +9,29 @@ IndirectContainer {
 
     signal backClicked
 
-    ToolBar {
-        id: backButton
+    ScreenToolBar {
+        id: toolBar
         anchors.top: parent.top
         anchors.left: parent.left
-        Material.primary: "#95B2A0"
+        anchors.right: parent.right
 
         ToolButton {
+            id: backButton
             icon.source: "/icons/br_prev_icon&32.png"
             onClicked: backClicked()
         }
-    }
 
-    TabBar {
-        id: tabBar
-        anchors {
-            top: parent.top
-            left: backButton.right
-            right: parent.right
-        }
-        Component {
-            id: tabButtonComponent
-            TabButton {
+        TabBar {
+            id: tabBar
+            anchors {
+                left: backButton.right
+                right: parent.right
+            }
+            Material.background: "#95B2A0"
+            Component {
+                id: tabButtonComponent
+                TabButton {
+                }
             }
         }
     }
@@ -42,12 +43,12 @@ IndirectContainer {
         }
     }
 
-    reparentFrom: 3
+    reparentFrom: 2
     container: stackLayout
     StackLayout {
         id: stackLayout
         anchors {
-            top: tabBar.bottom
+            top: toolBar.bottom
             bottom: parent.bottom
             left: parent.left
             right: parent.right

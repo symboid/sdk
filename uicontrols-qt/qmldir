@@ -19,3 +19,4 @@ MainScreenComboBox 1.0 MainScreenComboBox.qml
 MainScreenBottomPane 1.0 MainScreenBottomPane.qml
 MainScreenViewSelector 1.0 MainScreenViewSelector.qml
 MainScreenDateTimeBox 1.0 MainScreenDateTimeBox.qml
+ScreenToolBar 1.0 ScreenToolBar.qml
