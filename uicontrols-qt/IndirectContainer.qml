@@ -7,11 +7,14 @@ Item {
     property int reparentFrom: 1
     property Item container: null
 
+    signal newChildAdded(var newChild)
     onChildrenChanged: {
         if (children.length > reparentFrom)
         {
-            children[reparentFrom].parent = container
+            var newChild = children[reparentFrom]
+            newChild.parent = container
             children.length = reparentFrom
+            newChildAdded(newChild)
         }
     }
 }

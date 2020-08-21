@@ -28,6 +28,7 @@ IndirectContainer {
         contentWidth: screenFlow.width
         contentHeight: screenFlow.height
         clip: true
+        boundsBehavior: Flickable.StopAtBounds
 
         Flow {
             id: screenFlow
