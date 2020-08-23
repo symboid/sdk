@@ -1,14 +1,14 @@
 
-#ifndef __SYMBOID_SD_UICONTROLS_QT_QJSONSYNCMODEL_H__
-#define __SYMBOID_SD_UICONTROLS_QT_QJSONSYNCMODEL_H__
+#ifndef __SYMBOID_SDK_CONTROLS_QJSONSYNCMODEL_H__
+#define __SYMBOID_SDK_CONTROLS_QJSONSYNCMODEL_H__
 
-#include "sdk/uicontrols-qt/defs.h"
+#include "sdk/controls/defs.h"
 #include <QAbstractListModel>
-#include "sdk/uicontrols-qt/qjsonsyncnode.h"
+#include "sdk/controls/qjsonsyncnode.h"
 #include <QMetaProperty>
 #include <QVector>
 
-class SDK_UICONTROLS_QT_API QAbstractJsonSyncModel : public QAbstractListModel
+class SDK_CONTROLS_API QAbstractJsonSyncModel : public QAbstractListModel
 {
 protected:
     QAbstractJsonSyncModel(const QMetaObject& nodeMeta, QObject* parent = Q_NULLPTR);
@@ -28,7 +28,7 @@ private:
 };
 
 template <class JsonSyncNode>
-class SDK_UICONTROLS_QT_API QJsonSyncModel : public QAbstractJsonSyncModel
+class SDK_CONTROLS_API QJsonSyncModel : public QAbstractJsonSyncModel
 {
 public:
     QJsonSyncModel(QObject* parent)

@@ -1,8 +1,8 @@
 
-#ifndef __SYMBOID_SDK_UICONTROLS_QT_QINPUTITEMOBJECT_H__
-#define __SYMBOID_SDK_UICONTROLS_QT_QINPUTITEMOBJECT_H__
+#ifndef __SYMBOID_SDK_CONTROLS_QINPUTITEMOBJECT_H__
+#define __SYMBOID_SDK_CONTROLS_QINPUTITEMOBJECT_H__
 
-#include "sdk/uicontrols-qt/defs.h"
+#include "sdk/controls/defs.h"
 #include <QObject>
 #include <QQmlListProperty>
 #include <QQuickItem>
@@ -106,4 +106,4 @@ private:
     QList<QInputOperation*> mList;
 };
 
-#endif // __SYMBOID_SDK_UICONTROLS_QT_QINPUTITEMOBJECT_H__
+#endif // __SYMBOID_SDK_CONTROLS_QINPUTITEMOBJECT_H__

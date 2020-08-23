@@ -23,4 +23,4 @@ RESOURCES += \
     sdk-dox.qrc
 
 LIBS += $$moduleDep(sdk,arch)
-LIBS += $$moduleDep(sdk,uicontrols-qt)
+LIBS += $$moduleDep(sdk,controls)

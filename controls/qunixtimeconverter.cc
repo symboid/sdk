@@ -1,6 +1,6 @@
 
-#include "sdk/uicontrols-qt/setup.h"
-#include "sdk/uicontrols-qt/qunixtimeconverter.h"
+#include "sdk/controls/setup.h"
+#include "sdk/controls/qunixtimeconverter.h"
 #include <QDateTime>
 
 QUnixTimeConverter::QUnixTimeConverter(QObject* parent) : QObject(parent)

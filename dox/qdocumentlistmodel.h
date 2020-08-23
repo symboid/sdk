@@ -3,7 +3,7 @@
 #define __SYMBOID_SDK_DOX_QDOCUMENTLISTMODEL_H__
 
 #include "sdk/dox/setup.h"
-#include "sdk/uicontrols-qt/qjsonsyncmodel.h"
+#include "sdk/controls/qjsonsyncmodel.h"
 
 class QDocumentInfo : public QJsonSyncNode
 {

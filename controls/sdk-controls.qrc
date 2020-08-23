@@ -32,6 +32,6 @@
         <file>icons/playback_stop_icon&amp;24.png</file>
     </qresource>
     <qresource prefix="/tr">
-        <file>sdk-uicontrols-qt_hu.qm</file>
+        <file>sdk-controls_hu.qm</file>
     </qresource>
 </RCC>

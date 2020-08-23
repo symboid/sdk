@@ -1,7 +1,6 @@
 
 import QtQuick 2.12
 import QtQuick.Controls 2.5
-import QtQuick.Controls.Material 2.12
 
 IndirectContainer {
     height: column.height
@@ -15,7 +14,6 @@ IndirectContainer {
             id: toolBar
             anchors.left: parent.left
             anchors.right: parent.right
-            Material.primary: "#95B2A0"
         }
 
         Repeater {

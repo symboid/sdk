@@ -5,7 +5,7 @@
 #include "sdk/hosting/defs.h"
 #include <QObject>
 #include "sdk/arch/mainobject.h"
-#include "sdk/uicontrols-qt/qjsonsyncmodel.h"
+#include "sdk/controls/qjsonsyncmodel.h"
 
 class QSoftwareVersion : public QJsonSyncNode
 {

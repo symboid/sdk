@@ -1,6 +1,6 @@
 
-#include "sdk/uicontrols-qt/setup.h"
-#include "sdk/uicontrols-qt/qjsonsyncnode.h"
+#include "sdk/controls/setup.h"
+#include "sdk/controls/qjsonsyncnode.h"
 #include <QMetaProperty>
 #include <QJsonDocument>
 #include <QFile>

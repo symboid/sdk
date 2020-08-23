@@ -1,13 +1,13 @@
 
-#ifndef __SYMBOID_SDK_UICONTROLS_QT_QJSONSYNCNODE_H__
-#define __SYMBOID_SDK_UICONTROLS_QT_QJSONSYNCNODE_H__
+#ifndef __SYMBOID_SDK_CONTROLS_QJSONSYNCNODE_H__
+#define __SYMBOID_SDK_CONTROLS_QJSONSYNCNODE_H__
 
-#include "sdk/uicontrols-qt/defs.h"
+#include "sdk/controls/defs.h"
 #include <QObject>
-#include "sdk/uicontrols-qt/listpropertyadapter.h"
+#include "sdk/controls/listpropertyadapter.h"
 #include <QJsonObject>
 
-class SDK_UICONTROLS_QT_API QJsonSyncNode : public QObject, public ListPropertyAdapter<QJsonSyncNode, QJsonSyncNode>
+class SDK_CONTROLS_API QJsonSyncNode : public QObject, public ListPropertyAdapter<QJsonSyncNode, QJsonSyncNode>
 {
     Q_OBJECT
     Q_CLASSINFO("DefaultProperty", "childNodes")
@@ -30,7 +30,7 @@ protected:
     virtual bool isPropertySynchronized(const QString& propertyName) const;
 };
 
-class SDK_UICONTROLS_QT_API QJsonSyncFile : public QJsonSyncNode
+class SDK_CONTROLS_API QJsonSyncFile : public QJsonSyncNode
 {
     Q_OBJECT
 public:
@@ -61,4 +61,4 @@ protected:
     bool isPropertySynchronized(const QString& propertyName) const override;
 };
 
-#endif // __SYMBOID_SDK_UICONTROLS_QT_QJSONSYNCNODE_H__
+#endif // __SYMBOID_SDK_CONTROLS_QJSONSYNCNODE_H__

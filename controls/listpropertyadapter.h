@@ -1,8 +1,8 @@
 
-#ifndef __SYMBOID_SDK_UICONTROLS_QT_LISTPROPERTYADAPTER_H__
-#define __SYMBOID_SDK_UICONTROLS_QT_LISTPROPERTYADAPTER_H__
+#ifndef __SYMBOID_SDK_CONTROLS_LISTPROPERTYADAPTER_H__
+#define __SYMBOID_SDK_CONTROLS_LISTPROPERTYADAPTER_H__
 
-#include "sdk/uicontrols-qt/defs.h"
+#include "sdk/controls/defs.h"
 #include <QQmlListProperty>
 #include <QList>
 
@@ -54,4 +54,4 @@ public:
     }
 };
 
-#endif // __SYMBOID_SDK_UICONTROLS_QT_LISTPROPERTYADAPTER_H__
+#endif // __SYMBOID_SDK_CONTROLS_LISTPROPERTYADAPTER_H__

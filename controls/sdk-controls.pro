@@ -1,5 +1,5 @@
 
-TARGET = sdk-uicontrols-qt
+TARGET = sdk-controls
 BUILD_ROOT=../..
 COMPONENT_NAME=sdk
 include($${BUILD_ROOT}/sdk/build/qmake/qt-module.pri)
@@ -22,6 +22,6 @@ HEADERS += \
     setup.h
 
 RESOURCES += \
-    sdk-uicontrols-qt.qrc
+    sdk-controls.qrc
 
 LIBS += $$moduleDep(sdk,arch)

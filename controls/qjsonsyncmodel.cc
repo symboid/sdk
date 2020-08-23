@@ -1,6 +1,6 @@
 
-#include "sdk/uicontrols-qt/setup.h"
-#include "sdk/uicontrols-qt/qjsonsyncmodel.h"
+#include "sdk/controls/setup.h"
+#include "sdk/controls/qjsonsyncmodel.h"
 
 QAbstractJsonSyncModel::QAbstractJsonSyncModel(const QMetaObject& nodeMeta, QObject* parent)
     : QAbstractListModel(parent)

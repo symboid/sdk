@@ -4,7 +4,7 @@
 
 #include "sdk/dox/defs.h"
 #include "sdk/arch/modqt.h"
-#include "sdk/uicontrols-qt/init.h"
+#include "sdk/controls/init.h"
 #include "sdk/dox/document.h"
 #include "sdk/dox/qdocumentfoldermodel.h"
 #include "sdk/dox/qrecentdoxmodel.h"
@@ -20,7 +20,7 @@ struct SDK_DOX_API mod_sdk_dox : arh::mod_qt<mod_sdk_dox>
     mod_sdk_dox();
     ~mod_sdk_dox();
 
-    arh::mod_init<mod_sdk_uicontrols_qt> _mod_sdk_uicontrols_qt;
+    arh::mod_init<mod_sdk_controls> _mod_sdk_controls;
 
     qml_alias_register<QJsonSyncNode> _reg_json_sync_node;
     qml_type_register<QDocument> _reg_document;

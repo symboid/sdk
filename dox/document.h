@@ -4,7 +4,7 @@
 
 #include "sdk/dox/defs.h"
 #include <QObject>
-#include "sdk/uicontrols-qt/qjsonsyncnode.h"
+#include "sdk/controls/qjsonsyncnode.h"
 #include "sdk/arch/modqt.h"
 #include <QDir>
 

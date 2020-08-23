@@ -1,6 +1,6 @@
 
-#include "sdk/uicontrols-qt/setup.h"
-#include "sdk/uicontrols-qt/qinputoperation.h"
+#include "sdk/controls/setup.h"
+#include "sdk/controls/qinputoperation.h"
 
 QInputOperation::QInputOperation(QObject *parent)
     : QObject(parent)

@@ -22,5 +22,5 @@ RESOURCES += \
     sdk-hosting.qrc
 
 LIBS += $$moduleDep(sdk,arch)
-LIBS += $$moduleDep(sdk,uicontrols-qt)
+LIBS += $$moduleDep(sdk,controls)
 LIBS += $$moduleDep(sdk,network)
