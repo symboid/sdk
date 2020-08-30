@@ -19,6 +19,9 @@ MultiNumberBox {
         second = Qt.binding(function(){return box(4).value})
     }
 
+    property bool showSeconds: true
+    onShowSecondsChanged: second = 0
+
     property CircularSpinBox dayLink: circularLink
 
     boxes: Row {
@@ -42,11 +45,13 @@ MultiNumberBox {
             circularLink: hourBox
         }
         EnumBox {
+            visible: showSeconds
             enabled: false
             from:0;to:0;valueTexts:[":"]
         }
         NumberBox {
             id: secondBox
+            visible: showSeconds
             from: 0
             to: 59
             digitCount: 2

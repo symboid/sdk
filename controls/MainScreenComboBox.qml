@@ -7,7 +7,7 @@ Pane {
     property alias textRole: comboBox.textRole
     property alias currentIndex: comboBox.currentIndex
 
-    width: metrics.defaultItemWidth
+    width: metrics.paramSectionWidth - 3 * padding - leftPadding - rightPadding
 
     ComboBox {
         id: comboBox

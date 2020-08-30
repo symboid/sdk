@@ -6,16 +6,21 @@ Pane {
     property alias item: textField
     property alias text: textField.text
     property Component button: null
-    readonly property int internalWidth: metrics.defaultItemWidth - leftPadding - anchors.rightMargin
+    readonly property int internalWidth: metrics.paramSectionWidth - 5*leftPadding - 2*rightPadding - 2
 
     Grid {
         verticalItemAlignment: Grid.AlignVCenter
         rows: 1
-        spacing: 10
 
         TextField {
             id: textField
-            width: internalWidth - (helperButton.active ? helperButton.width + parent.spacing : 0)
+            width: internalWidth - (button !== null ? helperButton.width + spacer.width : 0)
+        }
+        Item {
+            id: spacer
+            height: 1
+            width: padding
+            visible: button !== null
         }
         Loader {
             id: helperButton

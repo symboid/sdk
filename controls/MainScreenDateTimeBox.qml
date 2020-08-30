@@ -14,9 +14,11 @@ MainScreenParamBox {
     property alias minute: timeBox.minute
     property alias second: timeBox.second
 
-    property bool showDetails: false
+    property alias showTimeBox: timeBox.visible
+    property alias showCurrentTimer: currentTimer.visible
     readonly property alias unixTime: unixTimeConverter.unixTime
-    property bool currentTimerOn: false
+    property alias currentTimerOn: currentTimer.checked
+    property alias showSeconds: timeBox.showSeconds
 
     DateCoordBox {
         id: dateBox
@@ -30,9 +32,9 @@ MainScreenParamBox {
         circularLink: dateBox.dayLink
     }
     MainScreenTimer {
+        id: currentTimer
         text: qsTr("Current")
-        visible: showDetails
-        checked: currentTimerOn
+        visible: false
         onTriggered: {
             dateBox.setCurrent()
             timeBox.setCurrent()

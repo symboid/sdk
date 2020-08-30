@@ -8,7 +8,6 @@ Pane {
     property Item controlItem: Item {}
 
     width: metrics.paramSectionWidth
-    padding: metrics.paramSectionPadding
 
     readonly property int itemHeight: itemSlot.height + 2*padding
     readonly property int landscapeSpace: metrics.mandalaSize - (referenceItem.y + referenceItem.height)
