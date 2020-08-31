@@ -21,7 +21,7 @@ IndirectContainer {
             delegate: Rectangle {
                 anchors.left: parent.left
                 anchors.right: parent.right
-                height: 2
+                height: 1
                 readonly property var flagColor: [ "red", "white", "green" ]
                 color: flagColor[index]
             }
