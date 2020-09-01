@@ -28,7 +28,7 @@ private:
 };
 
 template <class JsonSyncNode>
-class SDK_CONTROLS_API QJsonSyncModel : public QAbstractJsonSyncModel
+class QJsonSyncModel : public QAbstractJsonSyncModel
 {
 public:
     QJsonSyncModel(QObject* parent)
