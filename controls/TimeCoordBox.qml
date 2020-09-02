@@ -70,7 +70,4 @@ MultiNumberBox {
         var current = new Date
         setTime(current.getHours(), current.getMinutes(), current.getSeconds())
     }
-    Component.onCompleted: {
-        setCurrent()
-    }
 }

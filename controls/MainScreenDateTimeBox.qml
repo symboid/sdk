@@ -49,4 +49,17 @@ MainScreenParamBox {
         minute: timeBox.minute
         second: timeBox.second
     }
+    function setDate(year,month,day)
+    {
+        dateBox.setDate(year,month,day)
+    }
+    function setTime(hour,minute,second)
+    {
+        timeBox.setTime(hour,minute,second)
+    }
+    function setCurrent()
+    {
+        dateBox.setCurrent()
+        timeBox.setCurrent()
+    }
 }

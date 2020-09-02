@@ -100,8 +100,4 @@ MultiNumberBox {
         var current = new Date
         setDate(current.getFullYear(), current.getMonth()+1, current.getDate())
     }
-
-    Component.onCompleted: {
-        setCurrent()
-    }
 }
