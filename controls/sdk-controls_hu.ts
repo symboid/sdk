@@ -12,4 +12,11 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>MainScreenDetailsSwitch</name>
+    <message>
+        <source>Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>
