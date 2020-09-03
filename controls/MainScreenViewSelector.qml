@@ -5,6 +5,8 @@ import QtQuick.Controls 2.5
 MainScreenBottomPane {
     property var viewNames: []
     property int currentIndex: 0
+    width: metrics.isLandscape ? metrics.paramSectionWidth : metrics.screenWidth
+
     controlItem: SpinBox {
         id: viewSpin
         to: viewNames.length - 1

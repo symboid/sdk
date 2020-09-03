@@ -14,8 +14,8 @@ IndirectContainer {
 
         readonly property int minParamSectionWidth: 300
         readonly property int paramSectionWidth:
-            metrics.isLandscape ? ((metrics.restSize / 2) < minParamSectionWidth ? minParamSectionWidth : metrics.restSize / 2)
-                                : ((metrics.mandalaSize / 2) < minParamSectionWidth ? metrics.mandalaSize : metrics.mandalaSize / 2)
+            isLandscape ? ((restSize / 2) < minParamSectionWidth ? minParamSectionWidth : restSize / 2)
+                        : ((mandalaSize / 2) < minParamSectionWidth ? mandalaSize : mandalaSize / 2)
     }
 
     container: screenFlow
