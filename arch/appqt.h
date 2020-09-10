@@ -28,6 +28,7 @@ struct app_qt : public mod_qt<_AppMod>
     app_qt(int* _argc, char*** _argv)
         : _M_qt_application(_argc, _argv)
     {
+        _M_qt_application->setApplicationName(_AppMod::name);
     }
     mod_main _M_mod_main;
     main_object_init<qt_application, int*, char***> _M_qt_application;
@@ -35,7 +36,6 @@ struct app_qt : public mod_qt<_AppMod>
     int exec() { return _M_qt_application->exec(); }
 
     QString name() const { return _M_qt_application->applicationName(); }
-    void setName(const QString& _app_name) { _M_qt_application->setApplicationName(_app_name); }
 };
 
 arh_ns_end
