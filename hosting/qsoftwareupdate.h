@@ -57,7 +57,20 @@ public:
 private:
     QJsonSyncModel<QSoftwareVersion>* mComponentVersionModel;
 public:
-    void addComponentVersion(const QString& name, int major, int minor, int patch, int serial, const QString& revId);
+    QSoftwareVersion* addComponentVersion(const QString& name, int major, int minor, int patch, int serial, const QString& revId);
+
+public:
+    Q_PROPERTY(QSoftwareVersion* appVersion READ appVersion CONSTANT)
+    QSoftwareVersion* appVersion();
+private:
+    QSoftwareVersion* mAppVersion = nullptr;
+public:
+    void setAppVersion(const QString& name, int major, int minor, int patch, int serial, const QString& revId);
+
+public:
+    Q_PROPERTY(int appSwid MEMBER mAppSwid CONSTANT)
+public:
+    int mAppSwid = 0;
 };
 
 #endif // __SYMBOID_SDK_HOSTING_QSOFTWAREUPDATE_H__

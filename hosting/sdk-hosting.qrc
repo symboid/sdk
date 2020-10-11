@@ -7,6 +7,7 @@
         <file>SoftwarePane.qml</file>
         <file>SettingsItem.qml</file>
         <file>UiStyleSettingsGroup.qml</file>
+        <file>LoadScreen.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/br_down_icon&amp;24.png</file>

@@ -16,7 +16,7 @@ bool QSoftwareUpdate::isAvailable() const
     return false;
 }
 
-void QSoftwareUpdate::addComponentVersion(const QString& name, int major, int minor, int patch, int serial, const QString& revId)
+QSoftwareVersion* QSoftwareUpdate::addComponentVersion(const QString& name, int major, int minor, int patch, int serial, const QString& revId)
 {
     QSoftwareVersion* componentVersion = new QSoftwareVersion;
     componentVersion->mName = name;
@@ -26,4 +26,16 @@ void QSoftwareUpdate::addComponentVersion(const QString& name, int major, int mi
     componentVersion->mSerial = serial;
     componentVersion->mRevId = revId;
     mComponentVersionModel->addItem(componentVersion);
+    return componentVersion;
+}
+
+void QSoftwareUpdate::setAppVersion(const QString& name, int major, int minor, int patch, int serial, const QString& revId)
+{
+    mAppVersion = addComponentVersion(name, major, minor, patch, serial, revId);
+}
+
+QSoftwareVersion* QSoftwareUpdate::appVersion()
+{
+    static QSoftwareVersion* emptyVersion = new QSoftwareVersion(this);
+    return mAppVersion != nullptr ? mAppVersion : emptyVersion;
 }

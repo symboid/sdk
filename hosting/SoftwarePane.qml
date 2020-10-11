@@ -127,7 +127,7 @@ SettingsPane {
                 text: qsTr("Searching for update...")
             }
         }
-
+/*
         Item {
             BusyIndicator {
                 id: busyIndicator
@@ -139,11 +139,11 @@ SettingsPane {
                 id: softwareRestModel
                 isResultCompact: true
                 restClient: RestClient {
-                    apiAddress: "http://db.symboid.com/api.php"
+                    apiAddress: "http://db.symboid.com/live.php"
     //                authUser: "symboid_hosting"
     //                authPass: "K0rtefa"
                 }
-                operation: "software?transform=t1&filter=swid,eq,1001&filter=platform,eq,win_x64"
+                operation: "software?transform=t1&filter=id,eq,1001" //"&filter=platform,eq,win_x64"
                 onModelAboutToBeReset: busyIndicator.running = true
                 onModelReset: busyIndicator.running = false
                 onSuccessfullyFinished: {
@@ -156,5 +156,6 @@ SettingsPane {
             }
             Component.onCompleted: softwareRestModel.runOperation()
         }
+        */
     }
 }
