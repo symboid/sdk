@@ -1,5 +1,6 @@
 
 import QtQuick 2.12
+import QtQuick.Controls 2.5
 
 MultiNumberBox {
 
@@ -32,9 +33,9 @@ MultiNumberBox {
             value: (new Date).getHours()
             circularLink: dayLink
         }
-        EnumBox {
-            enabled: false
-            from:0;to:0;valueTexts:[":"]
+        LabelBox {
+            text: ":"
+            anchors.verticalCenter: parent.verticalCenter
         }
         NumberBox {
             id: minuteBox
@@ -44,10 +45,10 @@ MultiNumberBox {
             value: (new Date).getMinutes()
             circularLink: hourBox
         }
-        EnumBox {
+        LabelBox {
+            text: ":"
             visible: showSeconds
-            enabled: false
-            from:0;to:0;valueTexts:[":"]
+            anchors.verticalCenter: parent.verticalCenter
         }
         NumberBox {
             id: secondBox

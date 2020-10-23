@@ -15,7 +15,7 @@ IndirectContainer {
             padding: 0
             anchors.left: parent.left
             anchors.right: parent.right
-//            background: null
+            background: null
 
             label: Label {
                 width: parent.width - 2*parent.padding

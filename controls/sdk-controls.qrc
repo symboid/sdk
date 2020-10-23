@@ -23,6 +23,7 @@
         <file>MainScreenDateTimeBox.qml</file>
         <file>ScreenToolBar.qml</file>
         <file>MainScreenDetailsSwitch.qml</file>
+        <file>LabelBox.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/arrow_left_icon&amp;24.png</file>

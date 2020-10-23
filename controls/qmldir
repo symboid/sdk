@@ -4,6 +4,7 @@ NumericBox 1.0 NumericBox.qml
 NumberBox 1.0 NumberBox.qml
 MultiNumberBox 1.0 MultiNumberBox.qml
 EnumBox 1.0 EnumBox.qml
+LabelBox 1.0 LabelBox.qml
 DateCoordBox 1.0 DateCoordBox.qml
 TimeCoordBox 1.0 TimeCoordBox.qml
 InputOperationsView 1.0 InputOperationsView.qml

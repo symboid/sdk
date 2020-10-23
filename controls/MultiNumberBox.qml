@@ -21,7 +21,11 @@ Pane {
             sourceComponent: boxes
             active: boxes !== null
             anchors.verticalCenter: parent.verticalCenter
+            readonly property int borderWidth: item !== undefined && item.children.length > 0 &&
+                                               item.children[0].background.border !== undefined ?
+                                               item.children[0].background.border.width: 0
             onSourceComponentChanged: {
+                item.spacing = -borderWidth
                 for (var b = 0; b < item.children.length; ++b)
                 {
                     var box = item.children[b]
