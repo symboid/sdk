@@ -4,3 +4,5 @@ DocumentFolderBox 1.0 DocumentFolderBox.qml
 DocumentFolderView 1.0 DocumentFolderView.qml
 SavedDoxOperation 1.0 SavedDoxOperation.qml
 RecentDoxOperation 1.0 RecentDoxOperation.qml
+DocumentScreen 1.0 DocumentScreen.qml
+DocumentListItem 1.0 DocumentListItem.qml
