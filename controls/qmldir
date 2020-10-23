@@ -22,3 +22,6 @@ MainScreenViewSelector 1.0 MainScreenViewSelector.qml
 MainScreenDateTimeBox 1.0 MainScreenDateTimeBox.qml
 MainScreenDetailsSwitch 1.0 MainScreenDetailsSwitch.qml
 ScreenToolBar 1.0 ScreenToolBar.qml
+LoadListItem 1.0 LoadListItem.qml
+LoadListView 1.0 LoadListView.qml
+LoadListToolBar 1.0 LoadListToolBar.qml

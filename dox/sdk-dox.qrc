@@ -13,6 +13,9 @@
         <file>icons/zoom_icon&amp;16.png</file>
         <file>icons/pencil_icon&amp;16.png</file>
         <file>icons/delete_icon&amp;16.png</file>
+        <file>icons/doc_new_icon&amp;32.png</file>
+        <file>icons/trash_icon&amp;32.png</file>
+        <file>icons/zoom_icon&amp;32.png</file>
     </qresource>
     <qresource prefix="/tr">
         <file>sdk-dox_hu.qm</file>
