@@ -6,7 +6,7 @@ IndirectContainer {
 
     readonly property QtObject metrics: QtObject {
         readonly property int screenWidth: width
-        readonly property int screenHeight: height - toolBar.height
+        readonly property int screenHeight: height
         readonly property bool isLandscape: screenWidth > screenHeight
         readonly property int mandalaSize: isLandscape ? screenHeight : screenWidth
         readonly property int screenSize: isLandscape ? screenWidth : screenHeight
@@ -19,34 +19,9 @@ IndirectContainer {
     }
 
     container: screenFlow
-    reparentFrom: 2
-
-    property alias toolButtons: toolButtonRepeater.model
-    ScreenToolBar {
-        id: toolBar
-        anchors {
-            top: parent.top
-            left: parent.left
-            right: parent.right
-        }
-        Row {
-            Repeater {
-                id: toolButtonRepeater
-                delegate: ToolButton {
-                    icon.source: toolIcon
-                    onClicked: toolOperation()
-                }
-            }
-        }
-    }
 
     Flickable {
-        anchors {
-            top: toolBar.bottom
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-        }
+        anchors.fill: parent
 
         flickableDirection: metrics.isLandscape ? Flickable.HorizontalFlick : Flickable.VerticalFlick
         contentWidth: screenFlow.width
