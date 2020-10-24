@@ -7,6 +7,14 @@ ToolBar {
     property alias toolModel: toolButtons.model
     property LoadListView listView: null
     property int textInputIndex: -1
+    property alias textInput: textInputItem.itemTitle
+    signal textInputClicked()
+
+    function textInputClose()
+    {
+        toolButtons.itemAt(textInputIndex).checked = false
+        textInputIndex = -1
+    }
 
     Column {
         anchors.horizontalCenter: parent.horizontalCenter
@@ -43,6 +51,8 @@ ToolBar {
             itemWidth: rowWidth
             loadIconSource: textInputIndex !== -1 ? toolModel.get(textInputIndex).iconSource : ""
             lineColor: toolbar.background.color
+            onEditAccepted: textInputClicked()
+            onButtonClicked: textInputClicked()
         }
     }
 }

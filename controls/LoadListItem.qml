@@ -4,13 +4,16 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
 
 Column {
-    property string itemTitle: ""
+    property alias itemTitle: itemNameEdit.text
     property int itemWidth: 200
     property alias loadIconSource: loadButton.icon.source
     property alias lineColor: line.color
     property bool editable: true
     property bool selectable: false
+    property bool revertedLayout: false
     signal itemClicked
+    signal buttonClicked
+    signal editAccepted
 
     function setEditFocus()
     {
@@ -24,6 +27,7 @@ Column {
         onClicked: itemClicked()
 
         Row {
+            layoutDirection: revertedLayout ? Qt.RightToLeft : Qt.LeftToRight
             anchors.horizontalCenter: parent.horizontalCenter
             Pane {
                 id: selectedPane
@@ -41,7 +45,7 @@ Column {
 
                 Text {
                     elide: Text.ElideRight
-                    text: itemNameEdit.text
+                    text: itemTitle
                     verticalAlignment: Text.AlignVCenter
                     leftPadding: itemNameEdit.leftPadding
                     rightPadding: itemNameEdit.rightPadding
@@ -49,8 +53,8 @@ Column {
 
                 TextField {
                     id: itemNameEdit
-                    text: itemTitle
                     verticalAlignment: Text.AlignVCenter
+                    onAccepted: editAccepted()
                 }
             }
             Pane {
@@ -59,8 +63,9 @@ Column {
                 background: null
                 RoundButton {
                     id: loadButton
-                    icon.source: "/icons/br_next_icon&24.png"
-                    visible: icon.source != ""
+                    icon.source: revertedLayout ? "/icons/br_prev_icon&24.png" : "/icons/br_next_icon&24.png"
+                    visible: icon.source !== ""
+                    onClicked: buttonClicked()
                 }
             }
         }
