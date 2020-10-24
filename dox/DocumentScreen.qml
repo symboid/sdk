@@ -49,8 +49,8 @@ Page {
             anchors.right: parent.right
             itemTitle: documentTitle
             itemWidth: rowWidth
-            editable: documentListView === null || index === documentListView.currentIndex
-            selectable: documentListView !== null && index === documentListView.currentIndex
+            editable: index === documentListView.currentIndex
+            selectable: index === documentListView.currentIndex
             onItemClicked: documentListView.currentIndex = index
         }
     }

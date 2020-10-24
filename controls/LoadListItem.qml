@@ -7,6 +7,7 @@ Column {
     property alias itemTitle: itemNameEdit.text
     property int itemWidth: 200
     property alias loadIconSource: loadButton.icon.source
+    property alias selectIndicator: selected.indicator
     property alias lineColor: line.color
     property bool editable: true
     property bool selectable: false

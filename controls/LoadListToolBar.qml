@@ -24,8 +24,6 @@ ToolBar {
                 id: toolButtons
                 delegate: ToolButton {
                     icon.source: iconSource
-                    icon.height: height
-                    icon.width: width
                     checkable: withTextInput
                     enabled: !withTextInput || textInputIndex == -1 || textInputIndex == index
                     onCheckedChanged: {
