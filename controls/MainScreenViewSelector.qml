@@ -7,26 +7,42 @@ MainScreenBottomPane {
     property int currentIndex: 0
     width: metrics.isLandscape ? metrics.paramSectionWidth : metrics.screenWidth
 
-    controlItem: SpinBox {
-        id: viewSpin
-        to: viewNames.length - 1
-        onValueChanged: currentIndex = value
-        textFromValue: function(value, locale)
-        {
-            return viewNames[value]
-        }
-
-        down.indicator: Image {
+    controlItem: Item {
+        height: prevButton.height
+        RoundButton {
+            id: prevButton
             anchors.left: parent.left
-            anchors.verticalCenter: parent.verticalCenter
-            opacity: viewSpin.value > viewSpin.from ? 1.0 : 0.1
-            source: "/icons/br_prev_icon&24.png"
+            icon.source: "/icons/br_prev_icon&24.png"
+            enabled: currentIndex > 0
+            onClicked: currentIndex--
         }
-        up.indicator: Image {
-            anchors.right: parent.right
+        Rectangle {
+            anchors.left: prevButton.right
+            anchors.right: viewName.left
             anchors.verticalCenter: parent.verticalCenter
-            opacity: viewSpin.value < viewSpin.to ? 1.0 : 0.1
-            source: "/icons/br_next_icon&24.png"
+            anchors.margins: 10
+            height: 1
+            color: "lightgrey"
+        }
+        Label {
+            id: viewName
+            anchors.centerIn: parent
+            text: viewNames[currentIndex]
+        }
+        Rectangle {
+            anchors.left: viewName.right
+            anchors.right: nextButton.left
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.margins: 10
+            height: 1
+            color: "lightgrey"
+        }
+        RoundButton {
+            id: nextButton
+            anchors.right: parent.right
+            icon.source: "/icons/br_next_icon&24.png"
+            enabled: currentIndex < (viewNames.length - 1)
+            onClicked: currentIndex++
         }
     }
 }
