@@ -9,6 +9,9 @@ Page {
 
     readonly property int rowWidth: 400
 
+    property Document currentDocument: null
+    signal documentLoaded
+
     header: LoadListToolBar {
         listView: documentListView
         toolModel: ListModel {
@@ -24,25 +27,34 @@ Page {
                 withTextInput: true
             }
         }
+        onTextInputClicked: {
+            if (textInputIndex === 0) {
+                if (textInput !== 0) {
+                    // saving previously loaded document
+                    currentDocument.save()
+
+                    currentDocument.loadCurrent()
+                    currentDocument.title = textInput
+                    currentDocument.save()
+                    documentLoaded()
+                    documentFolderModel.updateDocumentList()
+
+                    textInputClose()
+                }
+            }
+        }
     }
 
     DocumentFolderModel {
         id: documentFolderModel
-        /*
-        onFilterTextChanged: {
-            selectedPath = ""
-            currentIndex = -1
-        }
-        onDocumentRemoved: {
-            documentDeleted(documentPath)
-        }
-        */
     }
 
     LoadListView {
         id: documentListView
         anchors.fill: parent
         model: documentFolderModel
+
+        currentIndex: -1
 
         delegate: LoadListItem {
             anchors.left: parent.left
@@ -52,6 +64,17 @@ Page {
             editable: index === documentListView.currentIndex
             selectable: index === documentListView.currentIndex
             onItemClicked: documentListView.currentIndex = index
+            onButtonClicked: {
+                // saving previously loaded document
+                currentDocument.save()
+
+                // loading selected document
+                currentDocument.filePath = documentPath
+                currentDocument.load()
+                documentLoaded()
+
+                documentListView.currentIndex = -1
+            }
         }
     }
 }
