@@ -5,9 +5,9 @@ import Symboid.Sdk.Controls 1.0
 import Symboid.Sdk.Hosting 1.0
 import Symboid.Sdk.Network 1.0
 
-SettingsPane {
+SettingsGroup {
     title: qsTr("Software")
-    SettingsGroup {
+    SettingsGroupExpanding {
         title: qsTr("About")
         Rectangle {
             width: parent.width
@@ -15,7 +15,7 @@ SettingsPane {
             border.color: "blue"
         }
     }
-    SettingsGroup {
+    SettingsGroupExpanding {
         id: versionDetails
         property int col1Width: 100
         property int col2Width: 100
@@ -60,9 +60,10 @@ SettingsPane {
             }
         }
     }
-    SettingsGroup {
+    SettingsGroupExpanding {
         title: qsTr("Geographic database")
     }
+
     function setUpdateMethod()
     {
         SoftwareConfig.updateMethod =
@@ -70,7 +71,7 @@ SettingsPane {
                    manualSwUpdate.checked ? SoftwareConfig.UpdateManual :
                                             SoftwareConfig.UpdateNone
     }
-    SettingsGroup {
+    SettingsGroupExpanding {
         id: swUpdateGroup
         title: qsTr("Update method")
         Grid {
@@ -117,7 +118,7 @@ SettingsPane {
             }
         }
     }
-    SettingsGroup {
+    SettingsGroupExpanding {
         title: qsTr("Update process")
         GroupBox {
             title: qsTr("Status")
@@ -127,35 +128,5 @@ SettingsPane {
                 text: qsTr("Searching for update...")
             }
         }
-/*
-        Item {
-            BusyIndicator {
-                id: busyIndicator
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.right: parent.right
-                running: false
-            }
-            RestTableModel {
-                id: softwareRestModel
-                isResultCompact: true
-                restClient: RestClient {
-                    apiAddress: "http://db.symboid.com/live.php"
-    //                authUser: "symboid_hosting"
-    //                authPass: "K0rtefa"
-                }
-                operation: "software?transform=t1&filter=id,eq,1001" //"&filter=platform,eq,win_x64"
-                onModelAboutToBeReset: busyIndicator.running = true
-                onModelReset: busyIndicator.running = false
-                onSuccessfullyFinished: {
-                    console.log("SOFTWARE QUERY SUCCESS!")
-                    console.log("SOFTWARE SERIAL = " + softwareRestModel.firstObject.serial_num)
-                }
-                onNetworkError: {
-                    console.log("SOFTWARE QUERY ERROR!")
-                }
-            }
-            Component.onCompleted: softwareRestModel.runOperation()
-        }
-        */
     }
 }

@@ -2,6 +2,7 @@ module Symboid.Sdk.Hosting
 SettingsScreen 1.0 SettingsScreen.qml
 SettingsPane 1.0 SettingsPane.qml
 SettingsGroup 1.0 SettingsGroup.qml
+SettingsGroupExpanding 1.0 SettingsGroupExpanding.qml
 SettingsItem 1.0 SettingsItem.qml
 SoftwarePane 1.0 SoftwarePane.qml
 UiStyleSettingsGroup 1.0 UiStyleSettingsGroup.qml

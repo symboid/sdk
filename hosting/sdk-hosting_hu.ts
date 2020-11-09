@@ -62,7 +62,6 @@
     <message>
         <location filename="SoftwarePane.qml" line="22"/>
         <source>Version details</source>
-        <oldsource>Version</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -86,52 +85,52 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="75"/>
+        <location filename="SoftwarePane.qml" line="76"/>
         <source>Update method</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="84"/>
+        <location filename="SoftwarePane.qml" line="85"/>
         <source>Automated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="91"/>
+        <location filename="SoftwarePane.qml" line="92"/>
         <source>Download and integration of new software revision will be performed automatically. New features will be available after application relaunch.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="96"/>
+        <location filename="SoftwarePane.qml" line="97"/>
         <source>Manual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="103"/>
+        <location filename="SoftwarePane.qml" line="104"/>
         <source>Software updates will be prompted and confirmed. New features and bugfixes are available after update process.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="108"/>
+        <location filename="SoftwarePane.qml" line="109"/>
         <source>Switched off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="115"/>
+        <location filename="SoftwarePane.qml" line="116"/>
         <source>No software updates will be executed at all. No new features and bugfixes are available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="121"/>
+        <location filename="SoftwarePane.qml" line="122"/>
         <source>Update process</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="123"/>
+        <location filename="SoftwarePane.qml" line="124"/>
         <source>Status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="127"/>
+        <location filename="SoftwarePane.qml" line="128"/>
         <source>Searching for update...</source>
         <translation type="unfinished"></translation>
     </message>

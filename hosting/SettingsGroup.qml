@@ -2,45 +2,16 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
 
-Column {
-    property alias title: titleText.text
-    property bool collapsed: false
+SettingsTreeNode {
 
-    spacing: 10
-    width: parent !== null ? parent.columnWidth : 200
+    property alias title: titleLabel.text
 
-    Rectangle {
-        height: 1
-        width: parent.width
-        color: "grey"
-    }
-    Row {
-        spacing: 10
-        RoundButton {
-            id: titleButton
-            checkable: true
-            checked: !collapsed
-            onToggled: collapsed = !collapsed
-            icon.source: collapsed ? "/icons/br_next_icon&24.png" : "/icons/br_down_icon&24.png"
-            width:36;height:36
+    SettingsItem {
+        background: Rectangle {
+            color: "lightgray"
         }
-        Label {
-            id: titleText
-            font.bold: true
-            font.italic: true
-            anchors.verticalCenter: parent.verticalCenter
-            MouseArea {
-                anchors.fill: parent
-                onClicked: collapsed = !collapsed
-            }
-        }
-    }
-
-    onChildrenChanged: {
-        if (children.length > 2)
-        {
-            var newChild = children[children.length - 1]
-            newChild.visible = Qt.binding(function(){return !collapsed})
+        setting: Label {
+            id: titleLabel
         }
     }
 }
