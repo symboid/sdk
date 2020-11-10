@@ -5,5 +5,5 @@ import Symboid.Sdk.Controls 1.0
 
 Column {
     anchors.horizontalCenter: parent.horizontalCenter
-    width: parent.width
+    width: settingsView.width
 }

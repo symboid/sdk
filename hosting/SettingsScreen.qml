@@ -6,21 +6,35 @@ import Symboid.Sdk.Controls 1.0
 import QtQuick.Controls.Material 2.12
 
 IndirectContainer {
-    id: settingsScreen
-    container: panesColumn
 
-    signal backClicked
+    container: firstPane
+    reparentFrom: 2
 
-    Flickable {
-        anchors.fill: parent
-        clip: true
-        flickableDirection: Flickable.VerticalFlick
-        contentWidth: panesColumn.width
-        contentHeight: panesColumn.height
-        Column {
-            id: panesColumn
-            anchors.horizontalCenter: parent.horizontalCenter
-            width: settingsScreen.width
+    ToolBar {
+        id: toolbar
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+        }
+        ToolButton {
+            icon.source: "/icons/br_prev_icon&32.png"
+            enabled: settingsView.currentIndex > 0
+            onClicked: settingsView.removeItem(settingsView.currentItem)
+        }
+    }
+
+    property SettingsView settingsView: sv
+    SettingsView {
+        id: sv
+        anchors {
+            top: toolbar.bottom
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+        SettingsPane {
+            id: firstPane
         }
     }
 }
