@@ -75,3 +75,26 @@ QVariant QConfigNode::data(const QModelIndex& index, int role) const
     }
     return orbisData;
 }
+
+QString QConfigNode::configPath(const QString& parentConfigPath) const
+{
+    return parentConfigPath != "" ? parentConfigPath + "/" + mName : mName;
+}
+
+void QConfigNode::loadFromSettings(QSettings* settings, const QString& parentConfigPath)
+{
+    const QString path(configPath(parentConfigPath));
+    for (QConfigNode* subConfigNode : mSubConfigs)
+    {
+        subConfigNode->loadFromSettings(settings, path);
+    }
+}
+
+void QConfigNode::saveToSettings(QSettings* settings, const QString& parentConfigPath)
+{
+    const QString path(configPath(parentConfigPath));
+    for (QConfigNode* subConfigNode : mSubConfigs)
+    {
+        subConfigNode->saveToSettings(settings, path);
+    }
+}

@@ -9,6 +9,7 @@
 #include <QMetaType>
 #include <QVariant>
 #include <QAbstractListModel>
+#include <QSettings>
 
 class SDK_HOSTING_API QConfigNode : public QAbstractListModel
 {
@@ -49,6 +50,12 @@ public:
     QHash<int, QByteArray> roleNames() const override;
     int rowCount(const QModelIndex& index = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+
+protected:
+    QString configPath(const QString& parentConfigPath) const;
+public:
+    virtual void loadFromSettings(QSettings* settings, const QString& parentConfigPath = "");
+    virtual void saveToSettings(QSettings* settings, const QString& parentConfigPath = "");
 };
 
 Q_DECLARE_METATYPE(QConfigNode*)
@@ -61,10 +68,12 @@ public:
     QConfigProperty(QConfigNode* parentNode, const char* parentSignal,
                     const QString& name, const ConfigValue& defaultValue)
         : QConfigNode(name, parentNode, parentSignal)
-        , mValue(defaultValue)
+        , mDefaultValue(defaultValue)
+        , mValue(mDefaultValue)
     {
     }
 private:
+    const ConfigValue mDefaultValue;
     ConfigValue mValue;
 public:
     ConfigValue configValue() const
@@ -83,6 +92,24 @@ public:
     void setValue(const QVariant& value) override
     {
         setConfigValue(value.value<ConfigValue>());
+    }
+    void loadFromSettings(QSettings* settings, const QString& parentConfigPath = "") override
+    {
+        const QString path(configPath(parentConfigPath));
+        if (settings && settings->contains(path)) {
+            QVariant valueVariant = settings->value(path);
+            if (valueVariant.isValid())
+            {
+                setValue(valueVariant);
+            }
+        }
+    }
+    void saveToSettings(QSettings* settings, const QString& parentConfigPath = "") override
+    {
+        if (mValue != mDefaultValue)
+        {
+            settings->setValue(configPath(parentConfigPath), QVariant(mValue));
+        }
     }
 };
 
