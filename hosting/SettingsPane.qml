@@ -4,6 +4,7 @@ import QtQuick.Controls 2.5
 import Symboid.Sdk.Controls 1.0
 
 IndirectContainer {
+    property string title: ""
     container: rootTreeNode
     Flickable {
         anchors.fill: parent

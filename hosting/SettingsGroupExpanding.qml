@@ -14,7 +14,10 @@ SettingsTreeNode {
         leftItem: RoundButton {
             id: expandButton
             checkable: true
-            icon.source: !expanded ? "/icons/br_next_icon&24.png" : "/icons/br_down_icon&24.png"
+            radius: height / 6
+            text: !expanded ? "+" : "-"
+            font.bold: true
+//            icon.source: !expanded ? "/icons/br_next_icon&24.png" : "/icons/br_down_icon&24.png"
         }
     }
 

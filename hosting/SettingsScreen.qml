@@ -22,6 +22,11 @@ IndirectContainer {
             enabled: settingsView.currentIndex > 0
             onClicked: settingsView.removeItem(settingsView.currentItem)
         }
+        Label {
+            anchors.centerIn: parent
+            text: settingsView.currentItem.title
+            font.italic: true
+        }
     }
 
     property SettingsView settingsView: sv
@@ -35,6 +40,7 @@ IndirectContainer {
         }
         SettingsPane {
             id: firstPane
+            title: qsTr("Settings")
         }
     }
 }

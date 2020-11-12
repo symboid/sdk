@@ -48,6 +48,14 @@
     </message>
 </context>
 <context>
+    <name>SettingsScreen</name>
+    <message>
+        <location filename="SettingsScreen.qml" line="43"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SoftwarePane</name>
     <message>
         <location filename="SoftwarePane.qml" line="9"/>
