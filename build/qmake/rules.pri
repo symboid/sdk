@@ -71,7 +71,7 @@ clang {
     }
     else {
         QMAKE_LFLAGS += -stdlib=libc++
-        QMAKE_MACOSX_DEPLOYMENT_TARGET=10.11
+        QMAKE_MACOSX_DEPLOYMENT_TARGET=10.13
         QMAKE_OBJECTIVE_CFLAGS += -fobjc-arc
     }
 }
