@@ -2,6 +2,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
 import Symboid.Sdk.Controls 1.0
+import QtGraphicalEffects 1.0
 
 Column {
     property Item setting: Item {}
@@ -11,12 +12,7 @@ Column {
     readonly property int cellWidth: 400
     readonly property int rowWidth: parent.width
 
-
-    property string hint: ""
-    property Label hintLabel: Label {
-        wrapMode: Text.WordWrap
-        text: hint
-    }
+    property alias hint: hintLabel.text
 
     Pane {
         id: itemPane
@@ -38,9 +34,46 @@ Column {
                 item: leftItem
             }
 
-            ItemSlot {
-                item: setting
-                width: cellWidth
+            Column {
+                spacing: itemPane.padding
+                Row {
+                    ItemSlot {
+                        item: setting
+                        width: cellWidth - infoButton.width
+                    }
+                    Image {
+                        id: infoButton
+                        visible: hint !== ""
+                        anchors.verticalCenter: parent.verticalCenter
+                        source: "/icons/info_icon&24.png"
+                        property bool checked: false
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: parent.checked = !parent.checked
+                        }
+                        smooth: true
+                        ColorOverlay {
+                            anchors.fill: parent
+                            source: parent
+                            color: "gray"
+                        }
+                    }
+                }
+                Rectangle {
+                    height: 1
+                    width: cellWidth
+                    color: "lightgray"
+                    visible: hintLabel.visible
+                }
+                Label {
+                    id: hintLabel
+                    visible: infoButton.checked
+                    horizontalAlignment: Label.AlignRight
+                    width: cellWidth
+                    wrapMode: Text.WordWrap
+                    text: hint
+                    font.italic: true
+                }
             }
 
             ItemSlot {

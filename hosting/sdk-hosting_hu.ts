@@ -146,8 +146,19 @@
 <context>
     <name>UiStyleSettingsGroup</name>
     <message>
-        <location filename="UiStyleSettingsGroup.qml" line="7"/>
+        <location filename="UiStyleSettingsGroup.qml" line="8"/>
         <source>User interface look and feel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="UiStyleSettingsGroup.qml" line="23"/>
+        <source>Style:</source>
+        <oldsource>Style</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="UiStyleSettingsGroup.qml" line="44"/>
+        <source>In order to apply the selected UI style the application must be restarted!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
