@@ -15,6 +15,7 @@ Column {
     signal itemClicked
     signal buttonClicked
     signal editAccepted
+    signal editCanceled
 
     function setEditFocus()
     {
@@ -56,6 +57,7 @@ Column {
                     id: itemNameEdit
                     verticalAlignment: Text.AlignVCenter
                     onAccepted: editAccepted()
+                    Keys.onEscapePressed: editCanceled()
                 }
             }
             Pane {

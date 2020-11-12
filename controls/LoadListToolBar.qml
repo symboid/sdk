@@ -50,6 +50,7 @@ ToolBar {
             loadIconSource: textInputIndex !== -1 ? toolModel.get(textInputIndex).iconSource : ""
             lineColor: toolbar.background.color
             onEditAccepted: textInputClicked()
+            onEditCanceled: textInputClose()
             onButtonClicked: textInputClicked()
         }
     }
