@@ -19,8 +19,8 @@ IndirectContainer {
         }
         ToolButton {
             icon.source: "/icons/br_prev_icon&32.png"
-            enabled: settingsView.currentIndex > 0
-            onClicked: settingsView.removeItem(settingsView.currentItem)
+            enabled: settingsView.depth > 1
+            onClicked: settingsView.pop()
         }
         Label {
             anchors.centerIn: parent
@@ -38,7 +38,7 @@ IndirectContainer {
             right: parent.right
             bottom: parent.bottom
         }
-        SettingsPane {
+        initialItem: SettingsPane {
             id: firstPane
             title: qsTr("Settings")
         }

@@ -15,8 +15,7 @@ SettingsTreeNode {
             icon.source: "/icons/br_next_icon&24.png"
             onClicked: {
                 if (settingsPane !== null) {
-                    settingsView.addItem(settingsPane.createObject(null,{}))
-                    settingsView.incrementCurrentIndex()
+                    settingsView.push(settingsPane.createObject(settingsView,{}))
                 }
             }
         }
