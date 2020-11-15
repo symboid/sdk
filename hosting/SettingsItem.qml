@@ -20,26 +20,31 @@ Column {
         width: rowWidth
         Grid {
             rows: 1
-            columns: 5
+            columns: 6
             columnSpacing: 10
             anchors.horizontalCenter: parent.horizontalCenter
             verticalItemAlignment: Grid.AlignVCenter
 
             Item {
                 height: 1
-                width: (rowWidth - cellWidth)/2 - leftItemSlot.width
+                width: (rowWidth - cellWidth) / 2 - leftItemSlot.width
+                       - (leftItemSlot.width > 0 ? 3 : 2) * parent.columnSpacing
             }
             ItemSlot {
                 id: leftItemSlot
                 item: leftItem
             }
-
+            Item {
+                width:1;
+                height: parent.height
+            }
             Column {
+                id: settingColumn
                 spacing: itemPane.padding
                 Row {
                     ItemSlot {
                         item: setting
-                        width: cellWidth - infoButton.width
+                        width: cellWidth - (infoButton.visible ? infoButton.width : 0)
                     }
                     Image {
                         id: infoButton
@@ -52,11 +57,6 @@ Column {
                             onClicked: parent.checked = !parent.checked
                         }
                         smooth: true
-                        ColorOverlay {
-                            anchors.fill: parent
-                            source: parent
-                            color: "gray"
-                        }
                     }
                 }
                 Rectangle {
@@ -75,14 +75,19 @@ Column {
                     font.italic: true
                 }
             }
-
+            Rectangle {
+                width:1;
+                height: parent.height
+                color: "lightgray"
+            }
             ItemSlot {
                 id: rightItemSlot
                 item: rightItem
             }
             Item {
                 height: 1
-                width: (rowWidth - cellWidth)/2 - rightItemSlot.width
+                width: (rowWidth - cellWidth) / 2 - rightItemSlot.width
+                       - (rightItemSlot.width > 0 ? 3 : 2) * parent.columnSpacing
             }
         }
     }

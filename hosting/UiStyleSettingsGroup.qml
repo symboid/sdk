@@ -35,7 +35,7 @@ SettingsGroupExpanding {
                     }
                     currentIndex = styleIndex
                 }
-                model: [ "Material", "Universal", "Fusion", "Default" ]
+                model: [ "Default", "Material", "Universal", "Fusion" ]
                 onCurrentTextChanged: {
                     appSettings.style = currentText
                 }

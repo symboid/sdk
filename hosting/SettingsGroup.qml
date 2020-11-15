@@ -12,6 +12,7 @@ SettingsTreeNode {
         }
         setting: Label {
             id: titleLabel
+            horizontalAlignment: Label.AlignHCenter
         }
     }
 }
