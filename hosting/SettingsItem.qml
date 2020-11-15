@@ -18,28 +18,24 @@ Column {
         id: itemPane
         anchors.horizontalCenter: parent.horizontalCenter
         width: rowWidth
-        Grid {
-            rows: 1
-            columns: 6
-            columnSpacing: 10
+        Row {
+            spacing: 10
             anchors.horizontalCenter: parent.horizontalCenter
-            verticalItemAlignment: Grid.AlignVCenter
+            anchors.horizontalCenterOffset: (rightItemSlot.width - leftItemSlot.width) / 2
+                    + (rightItemSlot.width > 0)*5 - (leftItemSlot.width > 0)*5
 
-            Item {
-                height: 1
-                width: (rowWidth - cellWidth) / 2 - leftItemSlot.width
-                       - (leftItemSlot.width > 0 ? 3 : 2) * parent.columnSpacing
-            }
             ItemSlot {
                 id: leftItemSlot
+                anchors.verticalCenter: parent.verticalCenter
                 item: leftItem
             }
             Item {
-                width:1;
-                height: parent.height
+                width: 1
+                height: 1
             }
             Column {
-                id: settingColumn
+                id: itemColumn
+                anchors.verticalCenter: parent.verticalCenter
                 spacing: itemPane.padding
                 Row {
                     ItemSlot {
@@ -51,11 +47,13 @@ Column {
                         visible: hint !== ""
                         anchors.verticalCenter: parent.verticalCenter
                         source: "/icons/info_icon&24.png"
+                        height: 24
                         property bool checked: false
                         MouseArea {
                             anchors.fill: parent
                             onClicked: parent.checked = !parent.checked
                         }
+                        opacity: 0.25
                         smooth: true
                     }
                 }
@@ -76,18 +74,14 @@ Column {
                 }
             }
             Rectangle {
-                width:1;
-                height: parent.height
+                width: 1
+                height: Math.max(leftItemSlot.height,itemColumn.height, rightItemSlot.height)
                 color: "lightgray"
             }
             ItemSlot {
                 id: rightItemSlot
+                anchors.verticalCenter: parent.verticalCenter
                 item: rightItem
-            }
-            Item {
-                height: 1
-                width: (rowWidth - cellWidth) / 2 - rightItemSlot.width
-                       - (rightItemSlot.width > 0 ? 3 : 2) * parent.columnSpacing
             }
         }
     }
