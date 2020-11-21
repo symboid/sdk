@@ -68,78 +68,54 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="22"/>
-        <source>Version details</source>
+        <location filename="SoftwarePane.qml" line="13"/>
+        <location filename="SoftwarePane.qml" line="15"/>
+        <source>Build information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="25"/>
-        <source>Component</source>
+        <location filename="SoftwarePane.qml" line="17"/>
+        <source>Components</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="30"/>
-        <source>Version</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="SoftwarePane.qml" line="35"/>
-        <source>Revision ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="SoftwarePane.qml" line="64"/>
+        <location filename="SoftwarePane.qml" line="89"/>
         <source>Geographic database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="76"/>
-        <source>Update method</source>
+        <location filename="SoftwarePane.qml" line="101"/>
+        <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="85"/>
+        <location filename="SoftwarePane.qml" line="110"/>
         <source>Automated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="92"/>
+        <location filename="SoftwarePane.qml" line="115"/>
         <source>Download and integration of new software revision will be performed automatically. New features will be available after application relaunch.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="97"/>
+        <location filename="SoftwarePane.qml" line="121"/>
         <source>Manual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="104"/>
+        <location filename="SoftwarePane.qml" line="126"/>
         <source>Software updates will be prompted and confirmed. New features and bugfixes are available after update process.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="109"/>
+        <location filename="SoftwarePane.qml" line="131"/>
         <source>Switched off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="116"/>
+        <location filename="SoftwarePane.qml" line="136"/>
         <source>No software updates will be executed at all. No new features and bugfixes are available.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="SoftwarePane.qml" line="122"/>
-        <source>Update process</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="SoftwarePane.qml" line="124"/>
-        <source>Status</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="SoftwarePane.qml" line="128"/>
-        <source>Searching for update...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
