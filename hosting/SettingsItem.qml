@@ -7,12 +7,26 @@ import QtGraphicalEffects 1.0
 Column {
     property Item setting: Item {}
     property Item leftItem: Item {}
-    property Item rightItem: Item {}
+    property Item rightItem: hint !== "" ? infoButton : emptyItem
     property alias background: itemPane.background
     readonly property int cellWidth: Math.min(400, parent.width - 2*settingRow.sideItemSpace)
     readonly property int rowWidth: parent.width
 
     property alias hint: hintLabel.text
+
+    property Item emptyItem: Item {}
+    property Item infoButton: Image {
+        source: "/icons/info_icon&24.png"
+        height: 24
+        width: 24
+        property bool checked: false
+        MouseArea {
+            anchors.fill: parent
+            onClicked: parent.checked = !parent.checked
+        }
+        opacity: 0.25
+        smooth: true
+    }
 
     Pane {
         id: itemPane
@@ -39,25 +53,10 @@ Column {
                 id: itemColumn
                 anchors.verticalCenter: parent.verticalCenter
                 spacing: itemPane.padding
-                Row {
-                    ItemSlot {
-                        item: setting
-                        width: cellWidth - (infoButton.visible ? infoButton.width : 0)
-                    }
-                    Image {
-                        id: infoButton
-                        visible: hint !== ""
-                        anchors.verticalCenter: parent.verticalCenter
-                        source: "/icons/info_icon&24.png"
-                        height: 24
-                        property bool checked: false
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: parent.checked = !parent.checked
-                        }
-                        opacity: 0.25
-                        smooth: true
-                    }
+                ItemSlot {
+                    id: settingSlot
+                    item: setting
+                    width: cellWidth
                 }
                 Rectangle {
                     height: 1
