@@ -9,7 +9,7 @@ Column {
     property Item leftItem: Item {}
     property Item rightItem: Item {}
     property alias background: itemPane.background
-    readonly property int cellWidth: 400
+    readonly property int cellWidth: Math.min(400, parent.width - 2*settingRow.sideItemSpace)
     readonly property int rowWidth: parent.width
 
     property alias hint: hintLabel.text
@@ -19,6 +19,8 @@ Column {
         anchors.horizontalCenter: parent.horizontalCenter
         width: rowWidth
         Row {
+            id: settingRow
+            readonly property int sideItemSpace: height + 3*spacing + 1
             spacing: 10
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.horizontalCenterOffset: (rightItemSlot.width - leftItemSlot.width) / 2
