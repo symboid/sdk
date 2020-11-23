@@ -110,6 +110,10 @@ public:
         {
             settings->setValue(configPath(parentConfigPath), QVariant(mValue));
         }
+        else
+        {
+            settings->remove(configPath(parentConfigPath));
+        }
     }
 };
 
