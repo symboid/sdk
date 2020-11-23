@@ -6,7 +6,7 @@ import QtQuick.Layouts 1.12
 Column {
     property ListView listView: null
     property string itemTitle: ""
-    property int itemWidth: 200
+    property int itemWidth: Math.min(200, parent.width)
     property alias loadIconSource: loadButton.icon.source
     property alias lineColor: line.color
     property bool editable: true

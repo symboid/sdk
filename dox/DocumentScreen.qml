@@ -60,7 +60,7 @@ Page {
             anchors.left: parent.left
             anchors.right: parent.right
             itemTitle: documentTitle
-            itemWidth: rowWidth
+            itemWidth: Math.min(rowWidth, documentListView.width)
             editable: index === documentListView.currentIndex
             selectable: index === documentListView.currentIndex
             onItemClicked: documentListView.currentIndex = index

@@ -17,7 +17,6 @@ SettingsTreeNode {
             radius: height / 6
             text: !expanded ? "+" : "-"
             font.bold: true
-//            icon.source: !expanded ? "/icons/br_next_icon&24.png" : "/icons/br_down_icon&24.png"
         }
     }
 
@@ -26,6 +25,10 @@ SettingsTreeNode {
         {
             var newChild = children[children.length - 1]
             newChild.visible = Qt.binding(function(){return expanded})
+            if (newChild instanceof SettingsItem)
+            {
+                newChild.indented = true
+            }
         }
     }
 }
