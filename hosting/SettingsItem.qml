@@ -6,13 +6,15 @@ import QtGraphicalEffects 1.0
 
 Column {
     property Item setting: Item {}
-    property Item leftItem: Item {}
+    property Item leftItem: Item { height: 1; width: indented ? defaultItemHeight : 0 }
     property Item rightItem: hint !== "" ? infoButton : emptyItem
     property alias background: itemPane.background
-    readonly property int cellWidth: Math.min(400, parent.width - 2*settingRow.sideItemSpace)
+    readonly property int defaultItemHeight: 48
+    readonly property int cellWidth: Math.min(400, parent.width - 2*settingRow.spacing)
     readonly property int rowWidth: parent.width
 
     property alias hint: hintLabel.text
+    property bool indented: false
 
     property Item emptyItem: Item {}
     property Item infoButton: Image {
@@ -34,20 +36,13 @@ Column {
         width: rowWidth
         Row {
             id: settingRow
-            readonly property int sideItemSpace: height + 3*spacing + 1
             spacing: 10
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.horizontalCenterOffset: (rightItemSlot.width - leftItemSlot.width) / 2
-                    + (rightItemSlot.width > 0)*5 - (leftItemSlot.width > 0)*5
 
             ItemSlot {
                 id: leftItemSlot
                 anchors.verticalCenter: parent.verticalCenter
                 item: leftItem
-            }
-            Item {
-                width: 1
-                height: 1
             }
             Column {
                 id: itemColumn
@@ -56,32 +51,30 @@ Column {
                 ItemSlot {
                     id: settingSlot
                     item: setting
-                    width: cellWidth
+                    width: cellWidth - (leftItemSlot.width > 0 ? leftItemSlot.width + parent.spacing : 0)
+                    - (rightItemSlot.width > 0 ? rightItemSlot.width + parent.spacing : 0)
                 }
                 Rectangle {
                     height: 1
-                    width: cellWidth
+                    width: settingSlot.width
                     color: "lightgray"
                     visible: hintLabel.visible
                 }
+
                 Label {
                     id: hintLabel
                     visible: infoButton.checked
                     horizontalAlignment: Label.AlignRight
-                    width: cellWidth
+                    width: settingSlot.width
                     wrapMode: Text.WordWrap
                     text: hint
                     font.italic: true
                 }
             }
-            Rectangle {
-                width: 1
-                height: Math.max(leftItemSlot.height,itemColumn.height, rightItemSlot.height)
-                color: "lightgray"
-            }
             ItemSlot {
                 id: rightItemSlot
-                anchors.verticalCenter: parent.verticalCenter
+                anchors.top: parent.top
+                anchors.topMargin: item !== null ? (defaultItemHeight - item.height)/2 : 0
                 item: rightItem
             }
         }
