@@ -18,12 +18,12 @@ public:
 
     Q_OBJECT
 public:
-    QConfigNode();
+    QConfigNode(QObject* parent = nullptr);
     QConfigNode(const QString& name, QConfigNode* parentNode, const char* parentSignal = nullptr);
 
 public:
-    Q_PROPERTY(QString name MEMBER mName CONSTANT)
-    const QString mName;
+    Q_PROPERTY(QString title MEMBER mTitle CONSTANT)
+    const QString mTitle;
 
     Q_PROPERTY(QVariant value READ value WRITE setValue NOTIFY changed)
 public:
@@ -42,7 +42,7 @@ public:
 public:
     enum Roles
     {
-        NameRole = Qt::UserRole,
+        TitleRole = Qt::UserRole,
         ValueRole,
         ItemRole,
     };
@@ -125,7 +125,9 @@ private: \
     QConfigProperty<type>* _M_##name = new QConfigProperty<type>(this,SIGNAL(name##Changed()),title,defaultValue); \
 public: \
     type name() const { return _M_##name->configValue(); } \
-    void name##Set(type value) { _M_##name->setConfigValue(value); }
+    void name##Set(type value) { _M_##name->setConfigValue(value); } \
+Q_PROPERTY(QString name##_title READ name##Title CONSTANT) \
+    QString name##Title() const { return _M_##name->mTitle; }
 
 #define Q_CONFIG_NODE(type,name) \
     Q_PROPERTY(QConfigNode* name READ name NOTIFY name##Changed) \
