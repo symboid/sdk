@@ -5,13 +5,13 @@
 
 QConfigNode::QConfigNode(QObject* parent)
     : QAbstractListModel(parent)
-    , mName("")
+    , mTitle("")
 {
 }
 
-QConfigNode::QConfigNode(const QString& name, QConfigNode* parentNode, const char* parentSignal)
+QConfigNode::QConfigNode(const QString& title, QConfigNode* parentNode, const char* parentSignal)
     : QAbstractListModel(parentNode)
-    , mName(name)
+    , mTitle(title)
 {
     if (parentNode != nullptr)
     {
@@ -42,7 +42,7 @@ QConfigNode* QConfigNode::subConfig(int index)
 QHash<int, QByteArray> QConfigNode::roleNames() const
 {
     QHash<int, QByteArray> roles = QAbstractListModel::roleNames();
-    roles[NameRole] = "config_name";
+    roles[TitleRole] = "config_title";
     roles[ValueRole] = "config_value";
     roles[ItemRole] = "config_item";
     return roles;
@@ -65,9 +65,9 @@ QVariant QConfigNode::data(const QModelIndex& index, int role) const
     {
         orbisData = subConfigNode->value();
     }
-    else if (role == NameRole)
+    else if (role == TitleRole)
     {
-        orbisData = subConfigNode->mName;
+        orbisData = subConfigNode->mTitle;
     }
     else if (role == ItemRole)
     {
@@ -78,7 +78,7 @@ QVariant QConfigNode::data(const QModelIndex& index, int role) const
 
 QString QConfigNode::configPath(const QString& parentConfigPath) const
 {
-    return parentConfigPath != "" ? parentConfigPath + "/" + mName : mName;
+    return parentConfigPath != "" ? parentConfigPath + "/" + mTitle : mTitle;
 }
 
 void QConfigNode::loadFromSettings(QSettings* settings, const QString& parentConfigPath)
