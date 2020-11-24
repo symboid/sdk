@@ -18,7 +18,7 @@ public:
 
     Q_OBJECT
 public:
-    QConfigNode();
+    QConfigNode(QObject* parent = nullptr);
     QConfigNode(const QString& name, QConfigNode* parentNode, const char* parentSignal = nullptr);
 
 public:

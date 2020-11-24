@@ -3,8 +3,8 @@
 #include "sdk/hosting/qconfig.h"
 #include "sdk/hosting/qsoftwareconfig.h"
 
-QConfigNode::QConfigNode()
-    : QAbstractListModel(nullptr)
+QConfigNode::QConfigNode(QObject* parent)
+    : QAbstractListModel(parent)
     , mName("")
 {
 }
