@@ -12,6 +12,7 @@
         <file>SettingsGroupLink.qml</file>
         <file>SettingsView.qml</file>
         <file>SettingsPane.qml</file>
+        <file>SettingsGroupFixed.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/br_down_icon&amp;24.png</file>

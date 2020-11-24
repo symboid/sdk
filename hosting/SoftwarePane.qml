@@ -5,7 +5,7 @@ import Symboid.Sdk.Controls 1.0
 import Symboid.Sdk.Hosting 1.0
 import Symboid.Sdk.Network 1.0
 
-SettingsGroup {
+SettingsGroupFixed {
     title: qsTr("Software")
     SettingsGroupExpanding {
         title: qsTr("About")
@@ -13,7 +13,7 @@ SettingsGroup {
             title: qsTr("Build information")
             settingsPane: SettingsPane {
                 title: qsTr("Build information")
-                SettingsGroup {
+                SettingsGroupFixed {
                     title: qsTr("Components")
                     Repeater {
                         model: SoftwareUpdate.componentVersions

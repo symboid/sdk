@@ -4,10 +4,10 @@ import QtQuick.Controls 2.5
 import Symboid.Sdk.Controls 1.0
 import QtGraphicalEffects 1.0
 
-Column {
+SettingsTreeNode {
     property Item setting: Item {}
     property Item leftItem: Item { height: 1; width: indented ? defaultItemHeight : 0 }
-    property Item rightItem: hint !== "" ? infoButton : emptyItem
+    property Item rightItem: hint !== "" ? infoItem : emptyItem
     property alias background: itemPane.background
     readonly property int defaultItemHeight: 48
     readonly property int cellWidth: Math.min(400, parent.width - 2*settingRow.spacing)
@@ -17,17 +17,23 @@ Column {
     property bool indented: false
 
     property Item emptyItem: Item {}
-    property Item infoButton: Image {
-        source: "/icons/info_icon&24.png"
-        height: 24
-        width: 24
-        property bool checked: false
-        MouseArea {
-            anchors.fill: parent
-            onClicked: parent.checked = !parent.checked
+    property Item infoItem: Item {
+        width: defaultItemHeight
+        height: defaultItemHeight
+        Image {
+            id: infoButton
+            anchors.centerIn: parent
+            source: "/icons/info_icon&24.png"
+            height: 24
+            width: 24
+            property bool checked: false
+            MouseArea {
+                anchors.fill: parent
+                onClicked: parent.checked = !parent.checked
+            }
+            opacity: 0.25
+            smooth: true
         }
-        opacity: 0.25
-        smooth: true
     }
 
     Pane {

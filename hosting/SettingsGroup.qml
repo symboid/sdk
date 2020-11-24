@@ -2,17 +2,11 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
 
-SettingsTreeNode {
-
+SettingsItem {
     property alias title: titleLabel.text
+    property alias titleAlignment: titleLabel.horizontalAlignment
 
-    SettingsItem {
-        background: Rectangle {
-            color: "lightgray"
-        }
-        setting: Label {
-            id: titleLabel
-            horizontalAlignment: Label.AlignHCenter
-        }
+    setting: Label {
+        id: titleLabel
     }
 }
