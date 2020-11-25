@@ -3,6 +3,6 @@
 #include "sdk/hosting/qsoftwareconfig.h"
 
 QSoftwareConfig::QSoftwareConfig(QConfigNode* parentNode)
-    : QConfigNode(tr("Software"), parentNode)
+    : QConfigNode("software", tr("Software"), parentNode)
 {
 }

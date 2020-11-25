@@ -19,7 +19,7 @@ public:
     Q_OBJECT
 public:
     QConfigNode(QObject* parent = nullptr);
-    QConfigNode(const QString& name, QConfigNode* parentNode, const char* parentSignal = nullptr);
+    QConfigNode(const QString& id, const QString& title, QConfigNode* parentNode, const char* parentSignal = nullptr);
 
 public:
     Q_PROPERTY(QString title MEMBER mTitle CONSTANT)
@@ -33,6 +33,7 @@ signals:
     void changed();
 
 private:
+    const QString mId;
     QVector<QConfigNode*> mSubConfigs;
 public:
     int subConfigCount() const;
@@ -66,8 +67,8 @@ class QConfigProperty : public QConfigNode
 {
 public:
     QConfigProperty(QConfigNode* parentNode, const char* parentSignal,
-                    const QString& name, const ConfigValue& defaultValue)
-        : QConfigNode(name, parentNode, parentSignal)
+                    const QString& id, const QString& title, const ConfigValue& defaultValue)
+        : QConfigNode(id, title, parentNode, parentSignal)
         , mDefaultValue(defaultValue)
         , mValue(mDefaultValue)
     {
@@ -122,7 +123,7 @@ Q_PROPERTY(type name READ name WRITE name##Set NOTIFY name##Changed) \
 Q_SIGNALS: \
     void name##Changed(); \
 private: \
-    QConfigProperty<type>* _M_##name = new QConfigProperty<type>(this,SIGNAL(name##Changed()),title,defaultValue); \
+    QConfigProperty<type>* _M_##name = new QConfigProperty<type>(this,SIGNAL(name##Changed()),#name,title,defaultValue); \
 public: \
     type name() const { return _M_##name->configValue(); } \
     void name##Set(type value) { _M_##name->setConfigValue(value); } \
@@ -136,7 +137,7 @@ Q_PROPERTY(QConfigNode* name##_node READ name##Node CONSTANT) \
     Q_SIGNALS: \
         void name##Changed(); \
     private: \
-        type* _M_##name = new type(this,SIGNAL(name##Changed())); \
+        type* _M_##name = new type(#name,this,SIGNAL(name##Changed())); \
     public: \
         type* name() const { return _M_##name; }
 
@@ -144,7 +145,7 @@ class SDK_HOSTING_API QConfigSync : public QConfigNode
 {
     Q_OBJECT
 public:
-    QConfigSync(const QString& name, QConfigNode* parentNode, const char* parentSignal = nullptr);
+    QConfigSync(const QString& id, const QString& title, QConfigNode* parentNode, const char* parentSignal = nullptr);
     ~QConfigSync();
 };
 

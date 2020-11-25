@@ -2,8 +2,8 @@
 #include "sdk/hosting/setup.h"
 #include "sdk/hosting/quiconfig.h"
 
-QUiConfig::QUiConfig(QConfigNode* parentNode, const char* parentSignal)
-    : QConfigNode(tr("Ui"), parentNode, parentSignal)
+QUiConfig::QUiConfig(const QString& id, QConfigNode* parentNode, const char* parentSignal)
+    : QConfigNode(id, tr("Ui"), parentNode, parentSignal)
     , mStyleModel({"Default", "Material", "Universal", "Fusion"})
 {
     QSettings settings;

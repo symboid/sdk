@@ -6,12 +6,14 @@
 QConfigNode::QConfigNode(QObject* parent)
     : QAbstractListModel(parent)
     , mTitle("")
+    , mId("")
 {
 }
 
-QConfigNode::QConfigNode(const QString& title, QConfigNode* parentNode, const char* parentSignal)
+QConfigNode::QConfigNode(const QString& id, const QString& title, QConfigNode* parentNode, const char* parentSignal)
     : QAbstractListModel(parentNode)
     , mTitle(title)
+    , mId(id.toLower())
 {
     if (parentNode != nullptr)
     {
@@ -78,7 +80,7 @@ QVariant QConfigNode::data(const QModelIndex& index, int role) const
 
 QString QConfigNode::configPath(const QString& parentConfigPath) const
 {
-    return parentConfigPath != "" ? parentConfigPath + "/" + mTitle : mTitle;
+    return parentConfigPath != "" ? parentConfigPath + "/" + mId : mId;
 }
 
 void QConfigNode::loadFromSettings(QSettings* settings, const QString& parentConfigPath)
@@ -99,8 +101,8 @@ void QConfigNode::saveToSettings(QSettings* settings, const QString& parentConfi
     }
 }
 
-QConfigSync::QConfigSync(const QString& name, QConfigNode* parentNode, const char* parentSignal)
-    : QConfigNode(name, parentNode, parentSignal)
+QConfigSync::QConfigSync(const QString& id, const QString& title, QConfigNode* parentNode, const char* parentSignal)
+    : QConfigNode(id, title, parentNode, parentSignal)
 {
     QSettings settings;
     loadFromSettings(&settings);

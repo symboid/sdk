@@ -9,7 +9,7 @@ class SDK_HOSTING_API QUiConfig : public QConfigNode
 {
     Q_OBJECT
 public:
-    QUiConfig(QConfigNode* parentNode, const char* parentSignal);
+    QUiConfig(const QString& id, QConfigNode* parentNode, const char* parentSignal);
     ~QUiConfig();
 
     Q_CONFIG_PROPERTY(QString, style, "Default", tr("Style"))
