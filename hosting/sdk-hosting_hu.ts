@@ -146,7 +146,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="UiStyleSettingsGroup.qml" line="39"/>
+        <location filename="UiStyleSettingsGroup.qml" line="38"/>
         <source>In order to apply the selected UI style the application must be restarted!</source>
         <translation type="unfinished"></translation>
     </message>

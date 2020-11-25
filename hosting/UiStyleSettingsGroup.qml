@@ -10,14 +10,14 @@ SettingsGroupExpanding {
     SettingsItem {
         id: settingsItem
         setting: Row {
-            spacing: 50
+            spacing: 10
             Label {
                 id: label
                 anchors.verticalCenter: parent.verticalCenter
                 text: qsTr("Style:")
             }
             ComboBox {
-                width: 200
+//                width: 200
                 currentIndex: {
                     var style = AppConfig.ui.style
                     var styleIndex = -1

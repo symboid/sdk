@@ -9,13 +9,14 @@ SettingsTreeNode {
     property Item leftItem: Item { height: 1; width: indented ? defaultItemHeight : 0 }
     property Item rightItem: hint !== "" ? infoItem : emptyItem
     property alias background: itemPane.background
-    readonly property int defaultItemHeight: 48
+    readonly property int defaultItemHeight: metrics.height
     readonly property int cellWidth: Math.min(400, parent.width - 2*settingRow.spacing)
     readonly property int rowWidth: parent.width
 
     property alias hint: hintLabel.text
     property bool indented: false
 
+    property Item metrics: RoundButton {}
     property Item emptyItem: Item {}
     property Item infoItem: Item {
         width: defaultItemHeight
@@ -79,8 +80,7 @@ SettingsTreeNode {
             }
             ItemSlot {
                 id: rightItemSlot
-                anchors.top: parent.top
-                anchors.topMargin: item !== null ? (defaultItemHeight - item.height)/2 : 0
+                anchors.verticalCenter: parent.verticalCenter
                 item: rightItem
             }
         }
