@@ -127,7 +127,9 @@ public: \
     type name() const { return _M_##name->configValue(); } \
     void name##Set(type value) { _M_##name->setConfigValue(value); } \
 Q_PROPERTY(QString name##_title READ name##Title CONSTANT) \
-    QString name##Title() const { return _M_##name->mTitle; }
+    QString name##Title() const { return _M_##name->mTitle; } \
+Q_PROPERTY(QConfigNode* name##_node READ name##Node CONSTANT) \
+    QConfigNode* name##Node() const { return _M_##name; }
 
 #define Q_CONFIG_NODE(type,name) \
     Q_PROPERTY(QConfigNode* name READ name NOTIFY name##Changed) \
