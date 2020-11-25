@@ -48,6 +48,19 @@
     </message>
 </context>
 <context>
+    <name>QUiConfig</name>
+    <message>
+        <location filename="quiconfig.cc" line="6"/>
+        <source>Ui</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="quiconfig.h" line="15"/>
+        <source>Style</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SettingsScreen</name>
     <message>
         <location filename="SettingsScreen.qml" line="43"/>
@@ -127,13 +140,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="UiStyleSettingsGroup.qml" line="23"/>
+        <location filename="UiStyleSettingsGroup.qml" line="17"/>
         <source>Style:</source>
         <oldsource>Style</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="UiStyleSettingsGroup.qml" line="44"/>
+        <location filename="UiStyleSettingsGroup.qml" line="39"/>
         <source>In order to apply the selected UI style the application must be restarted!</source>
         <translation type="unfinished"></translation>
     </message>

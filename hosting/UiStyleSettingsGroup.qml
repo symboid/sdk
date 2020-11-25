@@ -1,17 +1,11 @@
 
 import QtQuick 2.12
 import QtQuick.Controls 2.5
-import Qt.labs.settings 1.0
+import Symboid.Sdk.Hosting 1.0
 
 SettingsGroupExpanding {
 
     title: qsTr("User interface look and feel")
-
-    Settings {
-        id: appSettings
-        category: "ui"
-        property string style: ""
-    }
 
     SettingsItem {
         id: settingsItem
@@ -24,8 +18,8 @@ SettingsGroupExpanding {
             }
             ComboBox {
                 width: 200
-                Component.onCompleted: {
-                    var style = appSettings.style
+                currentIndex: {
+                    var style = AppConfig.ui.style
                     var styleIndex = -1
                     for (var i = 0; styleIndex === -1 && i < count; ++i)
                     {
@@ -33,11 +27,11 @@ SettingsGroupExpanding {
                             styleIndex = i
                         }
                     }
-                    currentIndex = styleIndex
+                    return styleIndex
                 }
                 model: [ "Default", "Material", "Universal", "Fusion" ]
-                onCurrentTextChanged: {
-                    appSettings.style = currentText
+                onCurrentIndexChanged: {
+                    AppConfig.ui.style = model[currentIndex]
                 }
             }
         }

@@ -8,14 +8,17 @@ SOURCES += \
     init.cc \
     qconfig.cc \
     qsoftwareconfig.cc \
-    qsoftwareupdate.cc
+    qsoftwareupdate.cc \
+    quiconfig.cc
 
 HEADERS += \
     defs.h \
     init.h \
+    qappconfig.h \
     qconfig.h \
     qsoftwareconfig.h \
     qsoftwareupdate.h \
+    quiconfig.h \
     setup.h
 
 RESOURCES += \

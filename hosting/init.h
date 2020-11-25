@@ -7,6 +7,7 @@
 #include "sdk/controls/init.h"
 #include "sdk/network/init.h"
 #include "sdk/hosting/qconfig.h"
+#include "sdk/hosting/qappconfig.h"
 #include "sdk/hosting/qsoftwareconfig.h"
 #include "sdk/hosting/qsoftwareupdate.h"
 
@@ -25,6 +26,7 @@ struct SDK_HOSTING_API mod_sdk_hosting : arh::mod_qt<mod_sdk_hosting>
     arh::mod_init<mod_sdk_network> _M_mod_sdk_network;
 
     qml_type_register<QConfigNode> _reg_config_node;
+    qml_singleton_init<QAppConfig> _reg_app_config;
     qml_singleton_init<QSoftwareConfig> _reg_software_config;
     qml_type_register<QSoftwareVersion> _reg_software_version;
     qml_singleton_init<QSoftwareUpdate> _reg_software_update;
