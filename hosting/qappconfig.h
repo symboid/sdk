@@ -7,7 +7,7 @@
 #include "sdk/arch/mainobject.h"
 #include "sdk/hosting/quiconfig.h"
 
-class QAppConfig : public QConfigNode
+class SDK_HOSTING_API QAppConfig : public QConfigNode
 {
     Q_OBJECT
     QML_SINGLETON(AppConfig)

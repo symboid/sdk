@@ -7,7 +7,7 @@
 #include "sdk/arch/mainobject.h"
 #include "sdk/controls/qjsonsyncmodel.h"
 
-class QSoftwareVersion : public QJsonSyncNode
+class SDK_HOSTING_API QSoftwareVersion : public QJsonSyncNode
 {
     Q_OBJECT
 public:

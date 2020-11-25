@@ -5,7 +5,7 @@
 #include "sdk/hosting/defs.h"
 #include "sdk/hosting/qconfig.h"
 
-class QSoftwareConfig : public QConfigNode
+class SDK_HOSTING_API QSoftwareConfig : public QConfigNode
 {
     Q_OBJECT
     QML_SINGLETON(SoftwareConfig)
