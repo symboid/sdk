@@ -6,7 +6,7 @@ import QtGraphicalEffects 1.0
 
 SettingsTreeNode {
     property Item setting: Item {}
-    property Item leftItem: Item { height: 1; width: indented ? defaultItemHeight : 0 }
+    property Item leftItem: Item { height: defaultItemHeight; width: indented ? defaultItemHeight : 0 }
     property Item rightItem: hint !== "" ? infoItem : emptyItem
     property alias background: itemPane.background
     readonly property int defaultItemHeight: metrics.height
@@ -80,7 +80,6 @@ SettingsTreeNode {
             }
             ItemSlot {
                 id: rightItemSlot
-                anchors.verticalCenter: parent.verticalCenter
                 item: rightItem
             }
         }

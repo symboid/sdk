@@ -10,26 +10,15 @@ SettingsGroupExpanding {
     SettingsItem {
         id: settingsItem
         setting: Row {
-            spacing: 10
+            spacing: 20
             Label {
                 id: label
                 anchors.verticalCenter: parent.verticalCenter
-                text: qsTr("Style:")
+                text: AppConfig.ui.style_title + ":"
             }
             ComboBox {
-//                width: 200
-                currentIndex: {
-                    var style = AppConfig.ui.style
-                    var styleIndex = -1
-                    for (var i = 0; styleIndex === -1 && i < count; ++i)
-                    {
-                        if (model[i] === style) {
-                            styleIndex = i
-                        }
-                    }
-                    return styleIndex
-                }
-                model: [ "Default", "Material", "Universal", "Fusion" ]
+                currentIndex: AppConfig.ui.styleIndex
+                model: AppConfig.ui.styleModel
                 onCurrentIndexChanged: {
                     AppConfig.ui.style = model[currentIndex]
                 }
