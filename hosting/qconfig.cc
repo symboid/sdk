@@ -98,3 +98,17 @@ void QConfigNode::saveToSettings(QSettings* settings, const QString& parentConfi
         subConfigNode->saveToSettings(settings, path);
     }
 }
+
+QConfigSync::QConfigSync(const QString& name, QConfigNode* parentNode, const char* parentSignal)
+    : QConfigNode(name, parentNode, parentSignal)
+{
+    QSettings settings;
+    loadFromSettings(&settings);
+}
+
+QConfigSync::~QConfigSync()
+{
+    QSettings settings;
+    saveToSettings(&settings);
+    settings.sync();
+}
