@@ -4,32 +4,32 @@
 <context>
     <name>LoadScreen</name>
     <message>
-        <location filename="LoadScreen.qml" line="98"/>
+        <location filename="LoadScreen.qml" line="99"/>
         <source>Software update found!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="LoadScreen.qml" line="97"/>
+        <location filename="LoadScreen.qml" line="98"/>
         <source>Loading...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="LoadScreen.qml" line="99"/>
+        <location filename="LoadScreen.qml" line="100"/>
         <source>Downloading update...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="LoadScreen.qml" line="120"/>
+        <location filename="LoadScreen.qml" line="121"/>
         <source>Skip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="LoadScreen.qml" line="125"/>
+        <location filename="LoadScreen.qml" line="126"/>
         <source>Apply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="LoadScreen.qml" line="130"/>
+        <location filename="LoadScreen.qml" line="131"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>

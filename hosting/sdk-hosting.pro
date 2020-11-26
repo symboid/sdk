@@ -6,6 +6,7 @@ include($${BUILD_ROOT}/sdk/build/qmake/qt-module.pri)
 
 SOURCES += \
     init.cc \
+    qappconfig.cc \
     qconfig.cc \
     qsoftwareupdate.cc \
     quiconfig.cc

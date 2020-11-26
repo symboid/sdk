@@ -5,14 +5,14 @@
 #include "sdk/hosting/defs.h"
 #include "sdk/hosting/qconfig.h"
 
-class SDK_HOSTING_API QSoftwareConfig : public QConfigSync
+class SDK_HOSTING_API QSoftwareConfig : public QConfigNode
 {
     Q_OBJECT
 public:
     static constexpr const char* qml_name = "SoftwareConfig";
 
     QSoftwareConfig(const QString& id, QConfigNode* parentNode, const char* parentSignal)
-        : QConfigSync(id, tr("Software"), parentNode, parentSignal)
+        : QConfigNode(id, tr("Software"), parentNode, parentSignal)
     {
     }
 

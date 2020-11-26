@@ -141,15 +141,4 @@ Q_PROPERTY(QConfigNode* name##_node READ name##Node CONSTANT) \
     public: \
         type* name() const { return _M_##name; }
 
-class SDK_HOSTING_API QConfigSync : public QConfigNode
-{
-    Q_OBJECT
-public:
-    QConfigSync(const QString& id, const QString& title, QConfigNode* parentNode, const char* parentSignal = nullptr);
-    ~QConfigSync();
-
-    void loadSettings();
-    void saveSettings();
-};
-
 #endif // __SYMBOID_SDK_HOSTING_QCONFIGNODE_H__

@@ -14,12 +14,8 @@ class SDK_HOSTING_API QAppConfig : public QConfigNode
     QML_SINGLETON(AppConfig)
 
 public:
-    QAppConfig(QObject* parent = Q_NULLPTR) : QConfigNode(parent)
-    {
-        ui()->loadSettings();
-        software()->loadSettings();
-    }
-    ~QAppConfig() {}
+    QAppConfig(QObject* parent = Q_NULLPTR);
+    ~QAppConfig();
 
     Q_CONFIG_NODE(QUiConfig, ui)
     Q_CONFIG_NODE(QSoftwareConfig, software)

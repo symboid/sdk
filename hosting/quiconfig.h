@@ -5,7 +5,7 @@
 #include "sdk/hosting/defs.h"
 #include "sdk/hosting/qconfig.h"
 
-class SDK_HOSTING_API QUiConfig : public QConfigSync
+class SDK_HOSTING_API QUiConfig : public QConfigNode
 {
     Q_OBJECT
 public:
