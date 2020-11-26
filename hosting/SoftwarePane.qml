@@ -52,7 +52,7 @@ SettingsGroupFixed {
         SettingsRadioButton {
             id: automatedSwUpdate
             text: qsTr("Automated")
-//            enabled: false
+            enabled: false
             enumConfig: AppConfig.software.update_method_node
             enumValue: 0//SoftwareConfig.UpdateAutomatic
             hint: qsTr("Download and integration of new software revision will be performed automatically. New features will be available after application relaunch.")

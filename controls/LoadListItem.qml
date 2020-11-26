@@ -45,7 +45,7 @@ Column {
                 currentIndex: editable
                 width: itemWidth - selectedPane.width - loadButtonPane.width
 
-                Text {
+                Label {
                     elide: Text.ElideRight
                     text: itemTitle
                     verticalAlignment: Text.AlignVCenter

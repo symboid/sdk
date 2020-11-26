@@ -2,7 +2,6 @@
     <qresource prefix="/Symboid/Sdk/Dox">
         <file>qmldir</file>
         <file>DocumentScreen.qml</file>
-        <file>DocumentListItem.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/zoom_icon&amp;16.png</file>
