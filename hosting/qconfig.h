@@ -19,11 +19,7 @@ public:
     Q_OBJECT
 public:
     QConfigNode(QObject* parent = nullptr);
-    QConfigNode(const QString& id, const QString& title, QConfigNode* parentNode, const char* parentSignal = nullptr);
-
-public:
-    Q_PROPERTY(QString title MEMBER mTitle CONSTANT)
-    const QString mTitle;
+    QConfigNode(const QString& id, QConfigNode* parentNode, const char* parentSignal = nullptr);
 
     Q_PROPERTY(QVariant value READ value WRITE setValue NOTIFY changed)
 public:
@@ -43,7 +39,6 @@ public:
 public:
     enum Roles
     {
-        TitleRole = Qt::UserRole,
         ValueRole,
         ItemRole,
     };
@@ -67,8 +62,8 @@ class QConfigProperty : public QConfigNode
 {
 public:
     QConfigProperty(QConfigNode* parentNode, const char* parentSignal,
-                    const QString& id, const QString& title, const ConfigValue& defaultValue)
-        : QConfigNode(id, title, parentNode, parentSignal)
+                    const QString& id, const ConfigValue& defaultValue)
+        : QConfigNode(id, parentNode, parentSignal)
         , mDefaultValue(defaultValue)
         , mValue(mDefaultValue)
     {
@@ -118,17 +113,15 @@ public:
     }
 };
 
-#define Q_CONFIG_PROPERTY(type,name,defaultValue,title) \
+#define Q_CONFIG_PROPERTY(type,name,defaultValue) \
 Q_PROPERTY(type name READ name WRITE name##Set NOTIFY name##Changed) \
 Q_SIGNALS: \
     void name##Changed(); \
 private: \
-    QConfigProperty<type>* _M_##name = new QConfigProperty<type>(this,SIGNAL(name##Changed()),#name,title,defaultValue); \
+    QConfigProperty<type>* _M_##name = new QConfigProperty<type>(this,SIGNAL(name##Changed()),#name,defaultValue); \
 public: \
     type name() const { return _M_##name->configValue(); } \
     void name##Set(type value) { _M_##name->setConfigValue(value); } \
-Q_PROPERTY(QString name##_title READ name##Title CONSTANT) \
-    QString name##Title() const { return _M_##name->mTitle; } \
 Q_PROPERTY(QConfigNode* name##_node READ name##Node CONSTANT) \
     QConfigNode* name##Node() const { return _M_##name; }
 

@@ -13,11 +13,12 @@ SettingsItem {
         id: switchItem
         Label {
             id: label
+            anchors.verticalCenter: parent.verticalCenter
             width: cellWidth - switchButton.width
-            text: configNode.title
         }
         Switch {
             id: switchButton
+            anchors.verticalCenter: parent.verticalCenter
             checked: configNode.value
             onCheckedChanged: {
                 configNode.value = checked

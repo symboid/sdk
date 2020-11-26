@@ -45,7 +45,7 @@ SettingsGroupFixed {
         title: qsTr("Geographic database")
     }
     SettingsGroupExpanding {
-        title: qsTr("Update")
+        title: qsTr("Update method")
         ButtonGroup {
             buttons: [ automatedSwUpdate.button, manualSwUpdate.button, noSwUpdate.button ]
         }

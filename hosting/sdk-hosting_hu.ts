@@ -35,32 +35,6 @@
     </message>
 </context>
 <context>
-    <name>QSoftwareConfig</name>
-    <message>
-        <location filename="qsoftwareconfig.h" line="15"/>
-        <source>Software</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="qsoftwareconfig.h" line="27"/>
-        <source>Update method</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>QUiConfig</name>
-    <message>
-        <location filename="quiconfig.cc" line="6"/>
-        <source>Ui</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="quiconfig.h" line="14"/>
-        <source>Style</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>SettingsScreen</name>
     <message>
         <location filename="SettingsScreen.qml" line="43"/>
@@ -98,7 +72,8 @@
     </message>
     <message>
         <location filename="SoftwarePane.qml" line="48"/>
-        <source>Update</source>
+        <source>Update method</source>
+        <oldsource>Update</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -135,12 +110,12 @@
 <context>
     <name>UiStyleSettingsGroup</name>
     <message>
-        <location filename="UiStyleSettingsGroup.qml" line="8"/>
-        <source>User interface look and feel</source>
+        <location filename="UiStyleSettingsGroup.qml" line="13"/>
+        <source>User interface style:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="UiStyleSettingsGroup.qml" line="27"/>
+        <location filename="UiStyleSettingsGroup.qml" line="23"/>
         <source>In order to apply the selected UI style the application must be restarted!</source>
         <translation type="unfinished"></translation>
     </message>

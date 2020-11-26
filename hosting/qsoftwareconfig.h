@@ -12,7 +12,7 @@ public:
     static constexpr const char* qml_name = "SoftwareConfig";
 
     QSoftwareConfig(const QString& id, QConfigNode* parentNode, const char* parentSignal)
-        : QConfigNode(id, tr("Software"), parentNode, parentSignal)
+        : QConfigNode(id, parentNode, parentSignal)
     {
     }
 
@@ -24,7 +24,7 @@ public:
     };
     Q_ENUM(UpdateMethod)
 
-    Q_CONFIG_PROPERTY(int, update_method, 1, tr("Update method"))
+    Q_CONFIG_PROPERTY(int, update_method, 1)
 };
 
 #endif // __SYMBOID_SDK_HOSTING_QSOFTWARECONFIG_H__

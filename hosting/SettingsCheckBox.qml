@@ -11,7 +11,6 @@ SettingsItem {
 
     setting: CheckBox {
         id: checkBox
-        text: configNode.title
         checked: configNode.value
         onCheckedChanged: {
             configNode.value = checked

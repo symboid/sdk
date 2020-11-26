@@ -5,14 +5,12 @@
 
 QConfigNode::QConfigNode(QObject* parent)
     : QAbstractListModel(parent)
-    , mTitle("")
     , mId("")
 {
 }
 
-QConfigNode::QConfigNode(const QString& id, const QString& title, QConfigNode* parentNode, const char* parentSignal)
+QConfigNode::QConfigNode(const QString& id, QConfigNode* parentNode, const char* parentSignal)
     : QAbstractListModel(parentNode)
-    , mTitle(title)
     , mId(id.toLower())
 {
     if (parentNode != nullptr)
@@ -44,7 +42,6 @@ QConfigNode* QConfigNode::subConfig(int index)
 QHash<int, QByteArray> QConfigNode::roleNames() const
 {
     QHash<int, QByteArray> roles = QAbstractListModel::roleNames();
-    roles[TitleRole] = "config_title";
     roles[ValueRole] = "config_value";
     roles[ItemRole] = "config_item";
     return roles;
@@ -66,10 +63,6 @@ QVariant QConfigNode::data(const QModelIndex& index, int role) const
     else if (role == ValueRole)
     {
         orbisData = subConfigNode->value();
-    }
-    else if (role == TitleRole)
-    {
-        orbisData = subConfigNode->mTitle;
     }
     else if (role == ItemRole)
     {
