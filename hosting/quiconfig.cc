@@ -2,12 +2,6 @@
 #include "sdk/hosting/setup.h"
 #include "sdk/hosting/quiconfig.h"
 
-QUiConfig::QUiConfig(const QString& id, QConfigNode* parentNode, const char* parentSignal)
-    : QConfigNode(id, parentNode, parentSignal)
-    , mStyleModel({"Default", "Material", "Universal", "Fusion"})
-{
-}
-
 int QUiConfig::styleIndex() const
 {
     const QString currentStyle = style();

@@ -9,7 +9,11 @@ class SDK_HOSTING_API QUiConfig : public QConfigNode
 {
     Q_OBJECT
 public:
-    QUiConfig(const QString& id, QConfigNode* parentNode, const char* parentSignal);
+    QUiConfig(const QString& id, QConfigNode* parentNode, const char* parentSignal)
+        : QConfigNode(id, parentNode, parentSignal)
+        , mStyleModel({"Default", "Material", "Universal", "Fusion"})
+    {
+    }
 
     Q_CONFIG_PROPERTY(QString, style, "Default")
 
