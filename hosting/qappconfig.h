@@ -6,6 +6,7 @@
 #include "sdk/hosting/qconfig.h"
 #include "sdk/arch/mainobject.h"
 #include "sdk/hosting/quiconfig.h"
+#include "sdk/hosting/qsoftwareconfig.h"
 
 class SDK_HOSTING_API QAppConfig : public QConfigNode
 {
@@ -13,10 +14,15 @@ class SDK_HOSTING_API QAppConfig : public QConfigNode
     QML_SINGLETON(AppConfig)
 
 public:
-    QAppConfig(QObject* parent = Q_NULLPTR) : QConfigNode(parent) {}
+    QAppConfig(QObject* parent = Q_NULLPTR) : QConfigNode(parent)
+    {
+        ui()->loadSettings();
+        software()->loadSettings();
+    }
     ~QAppConfig() {}
 
     Q_CONFIG_NODE(QUiConfig, ui)
+    Q_CONFIG_NODE(QSoftwareConfig, software)
 };
 
 #endif // __SYMBOID_SDK_HOSTING_QGENERICCONFIG_H__

@@ -8,6 +8,7 @@ SettingsGroupLink 1.0 SettingsGroupLink.qml
 SettingsItem 1.0 SettingsItem.qml
 SettingsCheckBox 1.0 SettingsCheckBox.qml
 SettingsSwitch 1.0 SettingsSwitch.qml
+SettingsRadioButton 1.0 SettingsRadioButton.qml
 SoftwarePane 1.0 SoftwarePane.qml
 UiStyleSettingsGroup 1.0 UiStyleSettingsGroup.qml
 LoadScreen 1.0 LoadScreen.qml

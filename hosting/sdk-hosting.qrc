@@ -15,6 +15,7 @@
         <file>SettingsGroupFixed.qml</file>
         <file>SettingsCheckBox.qml</file>
         <file>SettingsSwitch.qml</file>
+        <file>SettingsRadioButton.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/br_down_icon&amp;24.png</file>

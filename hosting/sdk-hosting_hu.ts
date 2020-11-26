@@ -4,32 +4,32 @@
 <context>
     <name>LoadScreen</name>
     <message>
-        <location filename="LoadScreen.qml" line="94"/>
+        <location filename="LoadScreen.qml" line="98"/>
         <source>Software update found!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="LoadScreen.qml" line="93"/>
+        <location filename="LoadScreen.qml" line="97"/>
         <source>Loading...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="LoadScreen.qml" line="95"/>
+        <location filename="LoadScreen.qml" line="99"/>
         <source>Downloading update...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="LoadScreen.qml" line="116"/>
+        <location filename="LoadScreen.qml" line="120"/>
         <source>Skip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="LoadScreen.qml" line="121"/>
+        <location filename="LoadScreen.qml" line="125"/>
         <source>Apply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="LoadScreen.qml" line="126"/>
+        <location filename="LoadScreen.qml" line="130"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -37,12 +37,12 @@
 <context>
     <name>QSoftwareConfig</name>
     <message>
-        <location filename="qsoftwareconfig.cc" line="6"/>
+        <location filename="qsoftwareconfig.h" line="15"/>
         <source>Software</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qsoftwareconfig.h" line="23"/>
+        <location filename="qsoftwareconfig.h" line="27"/>
         <source>Update method</source>
         <translation type="unfinished"></translation>
     </message>
@@ -55,7 +55,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="quiconfig.h" line="15"/>
+        <location filename="quiconfig.h" line="14"/>
         <source>Style</source>
         <translation type="unfinished"></translation>
     </message>
@@ -92,42 +92,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="89"/>
+        <location filename="SoftwarePane.qml" line="45"/>
         <source>Geographic database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="101"/>
+        <location filename="SoftwarePane.qml" line="48"/>
         <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="110"/>
+        <location filename="SoftwarePane.qml" line="54"/>
         <source>Automated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="115"/>
+        <location filename="SoftwarePane.qml" line="58"/>
         <source>Download and integration of new software revision will be performed automatically. New features will be available after application relaunch.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="121"/>
+        <location filename="SoftwarePane.qml" line="62"/>
         <source>Manual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="126"/>
+        <location filename="SoftwarePane.qml" line="65"/>
         <source>Software updates will be prompted and confirmed. New features and bugfixes are available after update process.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="131"/>
+        <location filename="SoftwarePane.qml" line="69"/>
         <source>Switched off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="136"/>
+        <location filename="SoftwarePane.qml" line="72"/>
         <source>No software updates will be executed at all. No new features and bugfixes are available.</source>
         <translation type="unfinished"></translation>
     </message>

@@ -5,24 +5,26 @@
 #include "sdk/hosting/defs.h"
 #include "sdk/hosting/qconfig.h"
 
-class SDK_HOSTING_API QSoftwareConfig : public QConfigNode
+class SDK_HOSTING_API QSoftwareConfig : public QConfigSync
 {
     Q_OBJECT
-    QML_SINGLETON(SoftwareConfig)
 public:
-    QSoftwareConfig(QConfigNode* parentNode);
+    static constexpr const char* qml_name = "SoftwareConfig";
+
+    QSoftwareConfig(const QString& id, QConfigNode* parentNode, const char* parentSignal)
+        : QConfigSync(id, tr("Software"), parentNode, parentSignal)
+    {
+    }
 
     enum UpdateMethod
     {
-        UpdateAutomatic,
-        UpdateManual,
-        UpdateNone
+        UpdateAutomatic = 0,
+        UpdateManual    = 1,
+        UpdateNone      = 2,
     };
     Q_ENUM(UpdateMethod)
 
-    Q_CONFIG_PROPERTY(UpdateMethod, updateMethod, UpdateManual, tr("Update method"))
+    Q_CONFIG_PROPERTY(int, update_method, 1, tr("Update method"))
 };
-
-//Q_DECLARE_METATYPE()
 
 #endif // __SYMBOID_SDK_HOSTING_QSOFTWARECONFIG_H__

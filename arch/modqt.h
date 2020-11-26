@@ -41,7 +41,18 @@ struct mod_qt : mod<_Mod>, mod_qt_translation<_Mod>
     {
         qml_type_register()
         {
-            qmlRegisterType<_Type>(_Mod::qml_pkg_name, _Mod::qml_pkg_ver_major, _Mod::qml_pkg_ver_minor, _Type::qml_name);
+            qmlRegisterType<_Type>(_Mod::qml_pkg_name,
+                    _Mod::qml_pkg_ver_major, _Mod::qml_pkg_ver_minor, _Type::qml_name);
+        }
+    };
+    template <class _Type>
+    struct qml_domain_register
+    {
+        qml_domain_register()
+        {
+            qmlRegisterUncreatableType<_Type>(_Mod::qml_pkg_name,
+                    _Mod::qml_pkg_ver_major, _Mod::qml_pkg_ver_minor, _Type::qml_name,
+                    "Not instantiated in qml!");
         }
     };
     template <class _Type>

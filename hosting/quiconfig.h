@@ -5,12 +5,11 @@
 #include "sdk/hosting/defs.h"
 #include "sdk/hosting/qconfig.h"
 
-class SDK_HOSTING_API QUiConfig : public QConfigNode
+class SDK_HOSTING_API QUiConfig : public QConfigSync
 {
     Q_OBJECT
 public:
     QUiConfig(const QString& id, QConfigNode* parentNode, const char* parentSignal);
-    ~QUiConfig();
 
     Q_CONFIG_PROPERTY(QString, style, "Default", tr("Style"))
 

@@ -147,6 +147,9 @@ class SDK_HOSTING_API QConfigSync : public QConfigNode
 public:
     QConfigSync(const QString& id, const QString& title, QConfigNode* parentNode, const char* parentSignal = nullptr);
     ~QConfigSync();
+
+    void loadSettings();
+    void saveSettings();
 };
 
 #endif // __SYMBOID_SDK_HOSTING_QCONFIGNODE_H__

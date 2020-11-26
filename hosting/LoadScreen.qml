@@ -43,7 +43,12 @@ Item {
         onNetworkError: {
             console.error("Network error fetching software update info!")
         }
-        Component.onCompleted: runOperation()
+        Component.onCompleted: {
+            if (AppConfig.software.update_method === SoftwareConfig.UpdateManual) {
+                console.log("Checking for software update...")
+                runOperation()
+            }
+        }
 
         readonly property string currentVersion:
             SoftwareUpdate.appVersion.major + "." + SoftwareUpdate.appVersion.minor + "." +
