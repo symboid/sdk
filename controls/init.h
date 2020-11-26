@@ -4,7 +4,6 @@
 
 #include "sdk/controls/defs.h"
 #include "sdk/arch/modqt.h"
-#include "sdk/controls/qinputoperation.h"
 #include "sdk/controls/qunixtimeconverter.h"
 
 struct SDK_CONTROLS_API mod_sdk_controls : arh::mod_qt<mod_sdk_controls>
@@ -18,8 +17,6 @@ struct SDK_CONTROLS_API mod_sdk_controls : arh::mod_qt<mod_sdk_controls>
     mod_sdk_controls();
     ~mod_sdk_controls();
 
-    qml_type_register<QInputOperation> _reg_input_item_object;
-    qml_type_register<QInputOperationsItem> _reg_input_operations;
     qml_type_register<QUnixTimeConverter> _reg_unix_time_converter;
 };
 

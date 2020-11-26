@@ -7,8 +7,7 @@ include($${BUILD_ROOT}/sdk/build/qmake/qt-module.pri)
 SOURCES += \
     document.cc \
     init.cc \
-    qdocumentfoldermodel.cc \
-    qrecentdoxmodel.cc
+    qdocumentfoldermodel.cc
 
 HEADERS += \
     defs.h \
@@ -16,7 +15,6 @@ HEADERS += \
     init.h \
     qdocumentfoldermodel.h \
     qdocumentlistmodel.h \
-    qrecentdoxmodel.h \
     setup.h
 
 RESOURCES += \

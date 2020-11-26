@@ -8,11 +8,9 @@
         <file>TimeCoordBox.qml</file>
         <file>CircularSpinBox.qml</file>
         <file>MultiNumberBox.qml</file>
-        <file>InputOperationsView.qml</file>
         <file>ItemSlot.qml</file>
         <file>ProcessView.qml</file>
         <file>IndirectContainer.qml</file>
-        <file>RecentInputOperation.qml</file>
         <file>MainScreenBottomPane.qml</file>
         <file>MainScreenComboBox.qml</file>
         <file>MainScreenParamBox.qml</file>
