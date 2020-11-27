@@ -14,7 +14,7 @@ SettingsItem {
         Label {
             id: label
             anchors.verticalCenter: parent.verticalCenter
-            width: cellWidth - switchButton.width
+            width: maxItemWidth - switchButton.width
         }
         Switch {
             id: switchButton

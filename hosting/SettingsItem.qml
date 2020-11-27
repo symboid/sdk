@@ -11,7 +11,7 @@ SettingsTreeNode {
     readonly property int defaultItemHeight: metrics.height
     readonly property int cellWidth: Math.min(400, parent.width - 2*settingRow.spacing)
     readonly property int rowWidth: parent.width
-
+    readonly property int maxItemWidth: cellWidth - leftItem.width - rightItem.width - (leftItem.width > 0) * 10 - (rightItem.width > 0) * 10
     property alias hint: hintLabel.text
     property bool indented: false
 
