@@ -125,13 +125,16 @@ public: \
 Q_PROPERTY(QConfigNode* name##_node READ name##Node CONSTANT) \
     QConfigNode* name##Node() const { return _M_##name; }
 
-#define Q_CONFIG_NODE(type,name) \
+#define Q_CONFIG_NODE_INTERFACE(type,name) \
     Q_PROPERTY(QConfigNode* name READ name NOTIFY name##Changed) \
     Q_SIGNALS: \
         void name##Changed(); \
-    private: \
-        type* _M_##name = new type(#name,this,SIGNAL(name##Changed())); \
     public: \
         type* name() const { return _M_##name; }
+
+#define Q_CONFIG_NODE(type,name) \
+    Q_CONFIG_NODE_INTERFACE(type,name) \
+    private: \
+        type* _M_##name = new type(#name,this,SIGNAL(name##Changed())); \
 
 #endif // __SYMBOID_SDK_HOSTING_QCONFIGNODE_H__
