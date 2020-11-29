@@ -30,14 +30,11 @@ Page {
         onTextInputClicked: {
             if (textInputIndex === 0) {
                 if (textInput !== 0) {
-                    // saving previously loaded document
-                    currentDocument.save()
-
+                    // loading the current document content as new content
                     currentDocument.loadCurrent()
                     currentDocument.title = textInput
-                    currentDocument.save()
                     documentLoaded()
-                    documentFolderModel.updateDocumentList()
+//                    documentFolderModel.updateDocumentList()
 
                     textInputClose()
                 }
@@ -65,9 +62,6 @@ Page {
             selectable: index === documentListView.currentIndex
             onItemClicked: documentListView.currentIndex = index
             onButtonClicked: {
-                // saving previously loaded document
-                currentDocument.save()
-
                 // loading selected document
                 currentDocument.filePath = documentPath
                 currentDocument.load()
