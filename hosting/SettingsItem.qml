@@ -14,6 +14,7 @@ SettingsTreeNode {
     readonly property int maxItemWidth: cellWidth - leftItem.width - rightItem.width - (leftItem.width > 0) * 10 - (rightItem.width > 0) * 10
     property alias hint: hintLabel.text
     property bool indented: false
+    property bool withSeparator: false
 
     property Item metrics: RoundButton {}
     property Item emptyItem: Item {}
@@ -86,7 +87,7 @@ SettingsTreeNode {
     Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         width: rowWidth
-        height: 1
-        color: "lightgray"
+        height: withSeparator ? 2 : 1
+        color: withSeparator ? "darkgray" : "lightgray"
     }
 }
