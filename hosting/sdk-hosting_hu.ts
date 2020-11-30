@@ -111,7 +111,7 @@
     <name>UiStyleSettingsGroup</name>
     <message>
         <location filename="UiStyleSettingsGroup.qml" line="13"/>
-        <source>User interface style:</source>
+        <source>UI style:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

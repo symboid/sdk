@@ -10,7 +10,7 @@ SettingsItem {
         Label {
             id: label
             anchors.verticalCenter: parent.verticalCenter
-            text: qsTr("User interface style:")
+            text: qsTr("UI style:")
         }
         ComboBox {
             currentIndex: AppConfig.ui.styleIndex

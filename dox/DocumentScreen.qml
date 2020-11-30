@@ -34,7 +34,6 @@ Page {
                     currentDocument.loadCurrent()
                     currentDocument.title = textInput
                     documentLoaded()
-//                    documentFolderModel.updateDocumentList()
 
                     textInputClose()
                 }
@@ -44,6 +43,11 @@ Page {
 
     DocumentFolderModel {
         id: documentFolderModel
+    }
+
+    function refresh()
+    {
+        documentFolderModel.updateDocumentList()
     }
 
     LoadListView {
