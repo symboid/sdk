@@ -28,6 +28,8 @@ public:
 signals:
     void changed();
 
+public:
+    Q_PROPERTY(QString id MEMBER mId CONSTANT)
 private:
     const QString mId;
     QVector<QConfigNode*> mSubConfigs;
