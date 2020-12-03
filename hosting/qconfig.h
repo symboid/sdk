@@ -162,7 +162,7 @@ public:
 
 #define Q_CONFIG_NODE_MEMBER(type,name,...) \
 private: \
-    type* _M_##name = createConfig<type>(#name,this,SIGNAL(name##Changed()),__VA_ARGS__);
+    type* _M_##name = createConfig<type>(#name,this,SIGNAL(name##Changed()),##__VA_ARGS__);
 
 #define Q_CONFIG_NODE_INTERFACE(type,name) \
 Q_PROPERTY(QAbstractConfig* name READ name NOTIFY name##Changed) \
@@ -173,7 +173,7 @@ public: \
 
 #define Q_CONFIG_NODE(type,name,...) \
     Q_CONFIG_NODE_INTERFACE(type,name) \
-    Q_CONFIG_NODE_MEMBER(type,name,__VA_ARGS__)
+    Q_CONFIG_NODE_MEMBER(type,name,##__VA_ARGS__)
 
 #define Q_CONFIG_PROPERTY(type,name,defaultValue) \
 Q_PROPERTY(type name READ name WRITE name##Set NOTIFY name##Changed) \
