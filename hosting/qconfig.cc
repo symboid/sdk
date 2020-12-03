@@ -78,3 +78,12 @@ void QAbstractConfig::saveToSettings(QSettings* settings, const QString& parentC
     }
 }
 
+QConfigNode::QConfigNode(QObject* parent)
+    : QConfigContainer<QAbstractConfig>(parent)
+{
+}
+
+QConfigNode::QConfigNode(const QString& id, QAbstractConfig* parentNode, const char* parentSignal)
+    : QConfigContainer<QAbstractConfig>(id, parentNode, parentSignal)
+{
+}

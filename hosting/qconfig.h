@@ -94,7 +94,12 @@ public:
     }
 };
 
-typedef QConfigContainer<QAbstractConfig> QConfigNode;
+class SDK_HOSTING_API QConfigNode : public QConfigContainer<QAbstractConfig>
+{
+public:
+    QConfigNode(QObject* parent);
+    QConfigNode(const QString& id, QAbstractConfig* parentNode, const char* parentSignal);
+};
 
 Q_DECLARE_METATYPE(QAbstractConfig*)
 Q_DECLARE_METATYPE(const QAbstractConfig*)
@@ -155,28 +160,31 @@ public:
     }
 };
 
+#define Q_CONFIG_NODE_MEMBER(type,name,...) \
+private: \
+    type* _M_##name = createConfig<type>(#name,this,SIGNAL(name##Changed()),__VA_ARGS__);
+
+#define Q_CONFIG_NODE_INTERFACE(type,name) \
+Q_PROPERTY(QAbstractConfig* name READ name NOTIFY name##Changed) \
+Q_SIGNALS: \
+    void name##Changed(); \
+public: \
+    type* name() const { return _M_##name; }
+
+#define Q_CONFIG_NODE(type,name,...) \
+    Q_CONFIG_NODE_INTERFACE(type,name) \
+    Q_CONFIG_NODE_MEMBER(type,name,__VA_ARGS__)
+
 #define Q_CONFIG_PROPERTY(type,name,defaultValue) \
 Q_PROPERTY(type name READ name WRITE name##Set NOTIFY name##Changed) \
 Q_SIGNALS: \
     void name##Changed(); \
-private: \
-    QConfigProperty<type>* _M_##name = createConfig<QConfigProperty<type>>(#name,this,SIGNAL(name##Changed()),defaultValue); \
 public: \
     type name() const { return _M_##name->configValue(); } \
     void name##Set(type value) { _M_##name->setConfigValue(value); } \
+    Q_CONFIG_NODE_MEMBER(QConfigProperty<type>,name,defaultValue) \
+public: \
 Q_PROPERTY(QAbstractConfig* name##_node READ name##Node CONSTANT) \
     QAbstractConfig* name##Node() const { return _M_##name; }
-
-#define Q_CONFIG_NODE_INTERFACE(type,name) \
-    Q_PROPERTY(QAbstractConfig* name READ name NOTIFY name##Changed) \
-    Q_SIGNALS: \
-        void name##Changed(); \
-    public: \
-        type* name() const { return _M_##name; }
-
-#define Q_CONFIG_NODE(type,name) \
-    Q_CONFIG_NODE_INTERFACE(type,name) \
-    private: \
-        type* _M_##name = createConfig<type>(#name,this,SIGNAL(name##Changed())); \
 
 #endif // __SYMBOID_SDK_HOSTING_QCONFIGNODE_H__
