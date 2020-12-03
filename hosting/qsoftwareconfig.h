@@ -11,7 +11,7 @@ class SDK_HOSTING_API QSoftwareConfig : public QConfigNode
 public:
     static constexpr const char* qml_name = "SoftwareConfig";
 
-    QSoftwareConfig(const QString& id, QConfigNode* parentNode, const char* parentSignal)
+    QSoftwareConfig(const QString& id, QAbstractConfig* parentNode, const char* parentSignal)
         : QConfigNode(id, parentNode, parentSignal)
     {
     }

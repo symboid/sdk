@@ -11,15 +11,15 @@
 #include <QAbstractListModel>
 #include <QSettings>
 
-class SDK_HOSTING_API QConfigNode : public QAbstractListModel
+class SDK_HOSTING_API QAbstractConfig : public QAbstractListModel
 {
 public:
     static constexpr const char* qml_name = "ConfigNode";
 
     Q_OBJECT
 public:
-    QConfigNode(QObject* parent = nullptr);
-    QConfigNode(const QString& id, QConfigNode* parentNode, const char* parentSignal = nullptr);
+    QAbstractConfig(QObject* parent);
+    QAbstractConfig(const QString& id, QAbstractConfig* parentNode, const char* parentSignal = nullptr);
 
     Q_PROPERTY(QVariant value READ value WRITE setValue NOTIFY changed)
 public:
@@ -32,11 +32,11 @@ public:
     Q_PROPERTY(QString id MEMBER mId CONSTANT)
 private:
     const QString mId;
-    QVector<QConfigNode*> mSubConfigs;
-public:
-    int subConfigCount() const;
-    const QConfigNode* subConfig(int index) const;
-    QConfigNode* subConfig(int index);
+
+private:
+    virtual int subConfigCount() const = 0;
+    virtual const QAbstractConfig* subConfig(int index) const = 0;
+    virtual QAbstractConfig* subConfig(int index) = 0;
 
 public:
     enum Roles
@@ -54,17 +54,57 @@ protected:
 public:
     virtual void loadFromSettings(QSettings* settings, const QString& parentConfigPath = "");
     virtual void saveToSettings(QSettings* settings, const QString& parentConfigPath = "");
+
+    template <class Config, class ParentConfig, class... Params>
+    static Config* createConfig(const QString& id, ParentConfig* parentConfig, const char* parentSignal, Params... params)
+    {
+        Config* config = new Config(id, parentConfig, parentSignal, params...);
+        parentConfig->mSubConfigs.push_back(config);
+        return config;
+    }
 };
 
-Q_DECLARE_METATYPE(QConfigNode*)
-Q_DECLARE_METATYPE(const QConfigNode*)
+template <class ItemConfig>
+class QConfigContainer : public QAbstractConfig
+{
+public:
+    QConfigContainer(QObject* parent)
+        : QAbstractConfig(parent)
+    {
+    }
+    QConfigContainer(const QString& id, QAbstractConfig* parentNode, const char* parentSignal)
+        : QAbstractConfig(id, parentNode, parentSignal)
+    {
+    }
+
+public:
+    QVector<ItemConfig*> mSubConfigs;
+public:
+    int subConfigCount() const override
+    {
+        return mSubConfigs.size();
+    }
+    const ItemConfig* subConfig(int index) const override
+    {
+        return 0 <= index && index < mSubConfigs.size() ? mSubConfigs[index] : nullptr;
+    }
+    ItemConfig* subConfig(int index) override
+    {
+        return 0 <= index && index < mSubConfigs.size() ? mSubConfigs[index] : nullptr;
+    }
+};
+
+typedef QConfigContainer<QAbstractConfig> QConfigNode;
+
+Q_DECLARE_METATYPE(QAbstractConfig*)
+Q_DECLARE_METATYPE(const QAbstractConfig*)
 
 template <typename ConfigValue>
 class QConfigProperty : public QConfigNode
 {
 public:
-    QConfigProperty(QConfigNode* parentNode, const char* parentSignal,
-                    const QString& id, const ConfigValue& defaultValue)
+    QConfigProperty(const QString& id, QAbstractConfig* parentNode, const char* parentSignal,
+                    const ConfigValue& defaultValue)
         : QConfigNode(id, parentNode, parentSignal)
         , mDefaultValue(defaultValue)
         , mValue(mDefaultValue)
@@ -120,15 +160,15 @@ Q_PROPERTY(type name READ name WRITE name##Set NOTIFY name##Changed) \
 Q_SIGNALS: \
     void name##Changed(); \
 private: \
-    QConfigProperty<type>* _M_##name = new QConfigProperty<type>(this,SIGNAL(name##Changed()),#name,defaultValue); \
+    QConfigProperty<type>* _M_##name = createConfig<QConfigProperty<type>>(#name,this,SIGNAL(name##Changed()),defaultValue); \
 public: \
     type name() const { return _M_##name->configValue(); } \
     void name##Set(type value) { _M_##name->setConfigValue(value); } \
-Q_PROPERTY(QConfigNode* name##_node READ name##Node CONSTANT) \
-    QConfigNode* name##Node() const { return _M_##name; }
+Q_PROPERTY(QAbstractConfig* name##_node READ name##Node CONSTANT) \
+    QAbstractConfig* name##Node() const { return _M_##name; }
 
 #define Q_CONFIG_NODE_INTERFACE(type,name) \
-    Q_PROPERTY(QConfigNode* name READ name NOTIFY name##Changed) \
+    Q_PROPERTY(QAbstractConfig* name READ name NOTIFY name##Changed) \
     Q_SIGNALS: \
         void name##Changed(); \
     public: \
@@ -137,6 +177,6 @@ Q_PROPERTY(QConfigNode* name##_node READ name##Node CONSTANT) \
 #define Q_CONFIG_NODE(type,name) \
     Q_CONFIG_NODE_INTERFACE(type,name) \
     private: \
-        type* _M_##name = new type(#name,this,SIGNAL(name##Changed())); \
+        type* _M_##name = createConfig<type>(#name,this,SIGNAL(name##Changed())); \
 
 #endif // __SYMBOID_SDK_HOSTING_QCONFIGNODE_H__

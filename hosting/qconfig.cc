@@ -3,19 +3,18 @@
 #include "sdk/hosting/qconfig.h"
 #include "sdk/hosting/qsoftwareconfig.h"
 
-QConfigNode::QConfigNode(QObject* parent)
+QAbstractConfig::QAbstractConfig(QObject* parent)
     : QAbstractListModel(parent)
     , mId("")
 {
 }
 
-QConfigNode::QConfigNode(const QString& id, QConfigNode* parentNode, const char* parentSignal)
+QAbstractConfig::QAbstractConfig(const QString& id, QAbstractConfig* parentNode, const char* parentSignal)
     : QAbstractListModel(parentNode)
     , mId(id.toLower())
 {
     if (parentNode != nullptr)
     {
-        parentNode->mSubConfigs.push_back(this);
         connect(this, SIGNAL(changed()), parentNode, SIGNAL(changed()));
         if (parentSignal != nullptr)
         {
@@ -24,22 +23,7 @@ QConfigNode::QConfigNode(const QString& id, QConfigNode* parentNode, const char*
     }
 }
 
-int QConfigNode::subConfigCount() const
-{
-    return mSubConfigs.size();
-}
-
-const QConfigNode* QConfigNode::subConfig(int index) const
-{
-    return 0 <= index && index < mSubConfigs.size() ? mSubConfigs[index] : nullptr;
-}
-
-QConfigNode* QConfigNode::subConfig(int index)
-{
-    return 0 <= index && index < mSubConfigs.size() ? mSubConfigs[index] : nullptr;
-}
-
-QHash<int, QByteArray> QConfigNode::roleNames() const
+QHash<int, QByteArray> QAbstractConfig::roleNames() const
 {
     QHash<int, QByteArray> roles = QAbstractListModel::roleNames();
     roles[ValueRole] = "config_value";
@@ -47,16 +31,16 @@ QHash<int, QByteArray> QConfigNode::roleNames() const
     return roles;
 }
 
-int QConfigNode::rowCount(const QModelIndex& index) const
+int QAbstractConfig::rowCount(const QModelIndex& index) const
 {
     Q_UNUSED(index);
     return subConfigCount();
 }
 
-QVariant QConfigNode::data(const QModelIndex& index, int role) const
+QVariant QAbstractConfig::data(const QModelIndex& index, int role) const
 {
     QVariant orbisData;
-    const QConfigNode* subConfigNode = subConfig(index.row());
+    const QAbstractConfig* subConfigNode = subConfig(index.row());
     if (subConfigNode == nullptr)
     {
     }
@@ -66,30 +50,31 @@ QVariant QConfigNode::data(const QModelIndex& index, int role) const
     }
     else if (role == ItemRole)
     {
-        orbisData = QVariant::fromValue(const_cast<QConfigNode*>(subConfigNode));
+        orbisData = QVariant::fromValue(const_cast<QAbstractConfig*>(subConfigNode));
     }
     return orbisData;
 }
 
-QString QConfigNode::configPath(const QString& parentConfigPath) const
+QString QAbstractConfig::configPath(const QString& parentConfigPath) const
 {
     return parentConfigPath != "" ? parentConfigPath + "/" + mId : mId;
 }
 
-void QConfigNode::loadFromSettings(QSettings* settings, const QString& parentConfigPath)
+void QAbstractConfig::loadFromSettings(QSettings* settings, const QString& parentConfigPath)
 {
     const QString path(configPath(parentConfigPath));
-    for (QConfigNode* subConfigNode : mSubConfigs)
+    for (int c = 0, cCount = subConfigCount(); c < cCount; ++c)
     {
-        subConfigNode->loadFromSettings(settings, path);
+        subConfig(c)->loadFromSettings(settings, path);
     }
 }
 
-void QConfigNode::saveToSettings(QSettings* settings, const QString& parentConfigPath)
+void QAbstractConfig::saveToSettings(QSettings* settings, const QString& parentConfigPath)
 {
     const QString path(configPath(parentConfigPath));
-    for (QConfigNode* subConfigNode : mSubConfigs)
+    for (int c = 0, cCount = subConfigCount(); c < cCount; ++c)
     {
-        subConfigNode->saveToSettings(settings, path);
+        subConfig(c)->saveToSettings(settings, path);
     }
 }
+
