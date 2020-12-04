@@ -60,6 +60,7 @@ Page {
         delegate: LoadListItem {
             anchors.left: parent.left
             anchors.right: parent.right
+            centeredWithSelector: false
             itemTitle: documentTitle
             itemWidth: Math.min(rowWidth, documentListView.width)
             editable: index === documentListView.currentIndex
