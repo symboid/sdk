@@ -25,6 +25,7 @@
         <file>LoadListItem.qml</file>
         <file>LoadListView.qml</file>
         <file>LoadListToolBar.qml</file>
+        <file>MessageDialog.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/arrow_left_icon&amp;24.png</file>
