@@ -10,6 +10,7 @@ TimeCoordBox 1.0 TimeCoordBox.qml
 ItemSlot 1.0 ItemSlot.qml
 IndirectContainer 1.0 IndirectContainer.qml
 ProcessView 1.0 ProcessView.qml
+ProcessPage 1.0 ProcessPage.qml
 MainScreen 1.0 MainScreen.qml
 MainScreenParamBox 1.0 MainScreenParamBox.qml
 MainScreenTimer 1.0 MainScreenTimer.qml
@@ -23,4 +24,4 @@ ScreenToolBar 1.0 ScreenToolBar.qml
 LoadListItem 1.0 LoadListItem.qml
 LoadListView 1.0 LoadListView.qml
 LoadListToolBar 1.0 LoadListToolBar.qml
-MessageDialog 1.0 MessageDialog.qml
+MessagePopup 1.0 MessagePopup.qml

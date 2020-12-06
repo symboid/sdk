@@ -25,7 +25,8 @@
         <file>LoadListItem.qml</file>
         <file>LoadListView.qml</file>
         <file>LoadListToolBar.qml</file>
-        <file>MessageDialog.qml</file>
+        <file>MessagePopup.qml</file>
+        <file>ProcessPage.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/arrow_left_icon&amp;24.png</file>
@@ -35,6 +36,10 @@
         <file>icons/playback_rec_icon&amp;24.png</file>
         <file>icons/playback_stop_icon&amp;24.png</file>
         <file>icons/br_prev_icon&amp;24.png</file>
+        <file>icons/delete_icon&amp;32.png</file>
+        <file>icons/info_icon&amp;32.png</file>
+        <file>icons/attention_icon&amp;32.png</file>
+        <file>icons/round_delete_icon&amp;32.png</file>
     </qresource>
     <qresource prefix="/tr">
         <file>sdk-controls_hu.qm</file>
