@@ -25,4 +25,7 @@ Page {
             running: true
         }
     }
+
+    property MessageDialog messageDialog: MessageDialog {
+    }
 }

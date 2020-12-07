@@ -25,3 +25,4 @@ LoadListItem 1.0 LoadListItem.qml
 LoadListView 1.0 LoadListView.qml
 LoadListToolBar 1.0 LoadListToolBar.qml
 MessagePopup 1.0 MessagePopup.qml
+MessageDialog 1.0 MessageDialog.qml

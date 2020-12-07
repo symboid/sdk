@@ -27,6 +27,7 @@
         <file>LoadListToolBar.qml</file>
         <file>MessagePopup.qml</file>
         <file>ProcessPage.qml</file>
+        <file>MessageDialog.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/arrow_left_icon&amp;24.png</file>
