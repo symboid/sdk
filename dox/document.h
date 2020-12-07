@@ -29,11 +29,14 @@ signals:
     void titleChanged();
 
 public:
+    Q_INVOKABLE bool existsAnother();
     Q_INVOKABLE bool save();
 
 signals:
     void loadCurrent();
 
+private:
+    static QString createFilePath(QString documentTitle);
 public:
     static QString documentFolder();
     static constexpr const char* sFileExtension = ".sd";

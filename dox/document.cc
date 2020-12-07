@@ -25,35 +25,50 @@ void QDocument::setTitle(const QString& title)
     }
 }
 
+bool QDocument::existsAnother()
+{
+    bool exists = false;
+    const QString anotherFilePath = createFilePath(mTitle);
+    if (mFilePath != anotherFilePath)
+    {
+        QDocument anotherDocument;
+        anotherDocument.setFilePath(anotherFilePath);
+        exists = anotherDocument.load();
+    }
+    return exists;
+}
+
 bool QDocument::save()
 {
     if (mFilePath == "" && mTitle != "")
     {
-        for (QChar t : mTitle)
-        {
-            QChar lower(t.toLower());
-            if ('a' <= lower && lower <= 'z')
-            {
-                mFilePath.push_back(t);
-            }
-            else if ('0' <= lower && lower <= '9')
-            {
-                mFilePath.push_back(lower);
-            }
-            else
-            {
-                mFilePath.push_back('_');
-            }
-        }
-        mFilePath = documentFolder() + QDir::separator() + mFilePath;
-        QDir systemDocumentDir(documentFolder());
-        while (systemDocumentDir.exists(mFilePath + sFileExtension))
-        {
-            mFilePath.push_back('_');
-        }
-        mFilePath = systemDocumentDir.absoluteFilePath(mFilePath + sFileExtension);
+        mFilePath = createFilePath(mTitle);
     }
     return QJsonSyncFile::save();
+}
+
+QString QDocument::createFilePath(QString documentTitle)
+{
+    QString filePath;
+    if (documentTitle != "")
+    {
+        for (int t = 0, length = documentTitle.length(); t < length; ++t)
+        {
+            if (!documentTitle[t].isLetterOrNumber())
+            {
+                documentTitle[t] = '_';
+            }
+        }
+        filePath = documentFolder() + QDir::separator() + documentTitle;
+
+        QDir systemDocumentDir(documentFolder());
+        while (systemDocumentDir.exists(filePath + sFileExtension))
+        {
+            filePath.push_back('_');
+        }
+        filePath = systemDocumentDir.absoluteFilePath(filePath + sFileExtension);
+    }
+    return filePath;
 }
 
 QString QDocument::documentFolder()
