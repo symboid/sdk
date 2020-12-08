@@ -21,6 +21,22 @@ public:
 
     Q_PROPERTY(QString documentPath MEMBER mDocumentPath CONSTANT)
     QString mDocumentPath;
+
+    Q_PROPERTY(bool documentSelected READ isDocumentSelected WRITE setDocumentSelected NOTIFY documentSelectedChanged)
+private:
+    bool mDocumentSelected = false;
+public:
+    bool isDocumentSelected() const { return mDocumentSelected; }
+    void setDocumentSelected(bool isDocumentSelected)
+    {
+        if (mDocumentSelected != isDocumentSelected)
+        {
+            mDocumentSelected = isDocumentSelected;
+            emit documentSelectedChanged();
+        }
+    }
+signals:
+    void documentSelectedChanged();
 };
 
 class QDocumentListModel : public QJsonSyncModel<QDocumentInfo>
@@ -39,6 +55,7 @@ public:
         DocumentTitle = Qt::UserRole,
         ItemTitle,
         DocumentPath,
+        DocumentSelected,
     };
     Q_ENUM(Roles)
 };

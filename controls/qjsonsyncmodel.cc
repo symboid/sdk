@@ -34,9 +34,23 @@ QVariant QAbstractJsonSyncModel::data(const QModelIndex& index, int role) const
             const QByteArray propertyName(mRoleNames[role]);
             value = nodeItem->property(propertyName);
         }
-
     }
     return value;
+}
+
+bool QAbstractJsonSyncModel::setData(const QModelIndex& index, const QVariant& value, int role)
+{
+    bool setSuccess = false;
+    int itemIndex = index.row();
+    if (0 <= itemIndex && itemIndex < itemCount())
+    {
+        if (QJsonSyncNode* nodeItem = item(itemIndex))
+        {
+            const QByteArray propertyName(mRoleNames[role]);
+            setSuccess = nodeItem->setProperty(propertyName, value);
+        }
+    }
+    return setSuccess;
 }
 
 QHash<int,QByteArray> QAbstractJsonSyncModel::roleNames() const

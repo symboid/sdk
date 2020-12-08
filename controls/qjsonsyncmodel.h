@@ -16,6 +16,7 @@ protected:
 public:
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+    bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole) override;
     QHash<int,QByteArray> roleNames() const override;
 
 private:
@@ -25,6 +26,7 @@ private:
 private:
     virtual int itemCount() const = 0;
     virtual const QJsonSyncNode* item(int itemIndex) const = 0;
+    virtual QJsonSyncNode* item(int itemIndex) = 0;
 };
 
 template <class JsonSyncNode>
@@ -43,6 +45,7 @@ protected:
 private:
     int itemCount() const override { return  mItems.size(); }
     const QJsonSyncNode* item(int itemIndex) const override { return mItems.at(itemIndex); }
+    QJsonSyncNode* item(int itemIndex) override { return mItems.at(itemIndex); }
 
 public:
     void addItem(JsonSyncNode* itemNode)

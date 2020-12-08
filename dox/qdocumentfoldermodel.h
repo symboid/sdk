@@ -33,7 +33,8 @@ signals:
 
 public slots:
     Q_INVOKABLE void updateDocumentList();
-    Q_INVOKABLE bool removeDocument(int documentIndex);
+    Q_INVOKABLE bool removeDocument(int documentIndex, bool withModelReset = true);
+    Q_INVOKABLE bool removeSelectedDocuments();
 signals:
     void documentRemoved(const QString& documentPath);
 };

@@ -5,7 +5,7 @@ import Symboid.Sdk.Dox 1.0
 import Symboid.Sdk.Controls 1.0
 import QtQuick.Layouts 1.12
 
-Page {
+ProcessPage {
 
     readonly property int rowWidth: 400
 
@@ -18,13 +18,18 @@ Page {
             ListElement {
                 iconSource: "/icons/doc_new_icon&32.png"
                 withTextInput: true
+                toolAction: function() {}
             }
             ListElement {
                 iconSource: "/icons/trash_icon&32.png"
+                toolAction: function() {
+                    removeConfirm.open()
+                }
             }
             ListElement {
                 iconSource: "/icons/zoom_icon&32.png"
                 withTextInput: true
+                toolAction: function() {}
             }
         }
         onTextInputClicked: {
@@ -39,6 +44,16 @@ Page {
                 }
             }
         }
+        MessageDialog {
+            id: removeConfirm
+            message: qsTr("Do you want to remove the selected documents?")
+            standardButtons: DialogButtonBox.Yes | DialogButtonBox.No
+            onAccepted: {
+                documentFolderModel.removeSelectedDocuments()
+                documentListView.currentIndex = -1
+            }
+        }
+
     }
 
     DocumentFolderModel {
@@ -63,7 +78,7 @@ Page {
             centeredWithSelector: false
             itemTitle: documentTitle
             itemWidth: Math.min(rowWidth, documentListView.width)
-            editable: index === documentListView.currentIndex
+            editable: false
             selectable: index === documentListView.currentIndex
             onItemClicked: documentListView.currentIndex = index
             onButtonClicked: {
@@ -74,6 +89,8 @@ Page {
 
                 documentListView.currentIndex = -1
             }
+            onSelectedChanged: documentSelected = selected
+            selected: documentSelected
         }
     }
 }

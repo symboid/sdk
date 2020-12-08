@@ -75,7 +75,7 @@ void QDocumentFolderModel::updateDocumentList()
     endResetModel();
 }
 
-bool QDocumentFolderModel::removeDocument(int documentIndex)
+bool QDocumentFolderModel::removeDocument(int documentIndex, bool withModelReset)
 {
     bool successRemove = false;
     if (0 <= documentIndex && documentIndex < mItems.size())
@@ -83,12 +83,31 @@ bool QDocumentFolderModel::removeDocument(int documentIndex)
         QFileInfo documentFileInfo(mItems.at(documentIndex)->mDocumentPath);
         if (documentFileInfo.dir().remove(documentFileInfo.fileName()))
         {
-            beginResetModel();
+            if (withModelReset) beginResetModel();
             mItems.removeAt(documentIndex);
-            endResetModel();
+            if (withModelReset) endResetModel();
             successRemove = true;
             emit documentRemoved(documentFileInfo.absoluteFilePath());
         }
     }
     return successRemove;
+}
+
+bool QDocumentFolderModel::removeSelectedDocuments()
+{
+    bool removeSuccess = true;
+    int i = 0;
+    while (removeSuccess && i < mItems.count())
+    {
+        QDocumentInfo* documentInfo = mItems[i];
+        if (documentInfo && documentInfo->isDocumentSelected())
+        {
+            removeSuccess = removeDocument(i);
+        }
+        else
+        {
+            ++i;
+        }
+    }
+    return removeSuccess;
 }
