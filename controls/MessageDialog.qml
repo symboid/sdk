@@ -3,18 +3,15 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 
 Dialog {
+    property alias message: messageLabel.text
     width: parent.width
-    contentItem: Column {
-        Rectangle {
-            width: 400
-            height: 150
-            border.color: "red"
-            border.width: 1
-        }
+    contentItem: Label {
+        id: messageLabel
+        width: parent.width
+        horizontalAlignment: Label.AlignHCenter
     }
     footer: DialogButtonBox {
+        id: buttonBox
         alignment: Qt.AlignHCenter
-        standardButtons: DialogButtonBox.Yes | DialogButtonBox.No
     }
-
 }

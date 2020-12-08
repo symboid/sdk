@@ -38,6 +38,7 @@ ToolBar {
                             textInputIndex = -1
                         }
                     }
+                    onClicked: toolAction()
                 }
             }
         }
