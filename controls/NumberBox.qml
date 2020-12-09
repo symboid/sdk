@@ -20,7 +20,7 @@ NumericBox {
     valueFromText: function(text, locale)
     {
         var suffixPos = String(text).indexOf(displaySuffix)
-        var valueString = (suffixPos !== 0) ? String(text).substring(0, suffixPos) : text
+        var valueString = (displaySuffix != "" && suffixPos !== -1) ? String(text).substring(0, suffixPos) : String(text)
         return Number(valueString)
     }
     validator: RegExpValidator {
