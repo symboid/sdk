@@ -2,35 +2,23 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="hu_HU">
 <context>
-    <name>LoadScreen</name>
+    <name>LoadingPage</name>
     <message>
-        <location filename="LoadScreen.qml" line="99"/>
-        <source>Software update found!</source>
+        <location filename="LoadingPage.qml" line="12"/>
+        <source>Software update is available. Do you want to process?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="LoadScreen.qml" line="98"/>
+        <location filename="LoadingPage.qml" line="81"/>
         <source>Loading...</source>
         <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>SettingsPage</name>
     <message>
-        <location filename="LoadScreen.qml" line="100"/>
-        <source>Downloading update...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="LoadScreen.qml" line="121"/>
-        <source>Skip</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="LoadScreen.qml" line="126"/>
-        <source>Apply</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="LoadScreen.qml" line="131"/>
-        <source>Cancel</source>
+        <location filename="SettingsPage.qml" line="28"/>
+        <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
