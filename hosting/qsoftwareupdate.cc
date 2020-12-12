@@ -2,6 +2,7 @@
 #include "sdk/hosting/setup.h"
 #include "sdk/hosting/qsoftwareupdate.h"
 #include "sdk/component.h"
+#include <QProcess>
 
 QSoftwareUpdate::QSoftwareUpdate(QObject* parent)
     : QObject(parent)
@@ -38,4 +39,13 @@ QSoftwareVersion* QSoftwareUpdate::appVersion()
 {
     static QSoftwareVersion* emptyVersion = new QSoftwareVersion(this);
     return mAppVersion != nullptr ? mAppVersion : emptyVersion;
+}
+
+bool QSoftwareUpdate::execUpdater(const QString& installerFilePath)
+{
+    QProcess* updateProcess = new QProcess(this);
+    updateProcess->setProgram(installerFilePath);
+    bool startSuccess = updateProcess->startDetached();
+    updateProcess->deleteLater();
+    return startSuccess;
 }

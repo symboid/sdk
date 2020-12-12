@@ -6,7 +6,7 @@
         <file>SoftwarePane.qml</file>
         <file>SettingsItem.qml</file>
         <file>UiStyleSettingsGroup.qml</file>
-        <file>LoadScreen.qml</file>
+        <file>LoadingPage.qml</file>
         <file>SettingsTreeNode.qml</file>
         <file>SettingsGroupExpanding.qml</file>
         <file>SettingsGroupLink.qml</file>
@@ -16,6 +16,10 @@
         <file>SettingsCheckBox.qml</file>
         <file>SettingsSwitch.qml</file>
         <file>SettingsRadioButton.qml</file>
+        <file>MainAppWindow.qml</file>
+        <file>SettingsPage.qml</file>
+        <file>SoftwareUpdatePage.qml</file>
+        <file>SoftwareUpdateObject.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/br_down_icon&amp;24.png</file>

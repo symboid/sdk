@@ -1,4 +1,5 @@
 module Symboid.Sdk.Hosting
+SettingsPage 1.0 SettingsPage.qml
 SettingsScreen 1.0 SettingsScreen.qml
 SettingsPane 1.0 SettingsPane.qml
 SettingsGroup 1.0 SettingsGroup.qml
@@ -11,4 +12,7 @@ SettingsSwitch 1.0 SettingsSwitch.qml
 SettingsRadioButton 1.0 SettingsRadioButton.qml
 SoftwarePane 1.0 SoftwarePane.qml
 UiStyleSettingsGroup 1.0 UiStyleSettingsGroup.qml
-LoadScreen 1.0 LoadScreen.qml
+MainAppWindow 1.0 MainAppWindow.qml
+LoadingPage 1.0 LoadingPage.qml
+SoftwareUpdatePage 1.0 SoftwareUpdatePage.qml
+singleton SoftwareUpdateObject 1.0 SoftwareUpdateObject.qml

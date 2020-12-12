@@ -71,6 +71,9 @@ public:
     Q_PROPERTY(int appSwid MEMBER mAppSwid CONSTANT)
 public:
     int mAppSwid = 0;
+
+public:
+    Q_INVOKABLE bool execUpdater(const QString& installerFilePath);
 };
 
 #endif // __SYMBOID_SDK_HOSTING_QSOFTWAREUPDATE_H__
