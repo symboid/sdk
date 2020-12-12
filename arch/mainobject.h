@@ -121,7 +121,7 @@ public: \
 #define Q_MAIN_OBJECT(_main_object_name, _main_object_type) \
     __MAIN_OBJECT(Q##_main_object_name, _main_object_name, _main_object_type, false)
 
-#define QML_SINGLETON(_qml_name) \
+#define QML_SINGLETON_OBJECT(_qml_name) \
     Q_MAIN_OBJECT(_qml_name, qml singleton) \
 public: \
     static constexpr const char* qml_name = id;

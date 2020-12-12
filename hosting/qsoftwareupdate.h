@@ -40,7 +40,7 @@ public:
 class SDK_HOSTING_API QSoftwareUpdate : public QObject
 {
     Q_OBJECT
-    QML_SINGLETON(SoftwareUpdate)
+    QML_SINGLETON_OBJECT(SoftwareUpdate)
 
 public:
     QSoftwareUpdate(QObject* parent = Q_NULLPTR);

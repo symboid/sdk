@@ -3,6 +3,7 @@
 #include "sdk/dox/qdocumentfoldermodel.h"
 #include "sdk/dox/document.h"
 #include <QFileInfo>
+#include <QRegularExpression>
 
 QDocumentFolderModel::QDocumentFolderModel(QObject* parent)
     : QDocumentListModel(parent)
@@ -48,7 +49,7 @@ void QDocumentFolderModel::updateDocumentList()
 {
     beginResetModel();
     mCurrentFolder.refresh();
-    QRegExp filterExpression(QString(".*") + mFilterText + ".*", Qt::CaseInsensitive);
+    QRegularExpression filterExpression(QString(".*") + mFilterText + ".*", QRegularExpression::CaseInsensitiveOption);
     QFileInfoList docFileInfoList = mCurrentFolder.entryInfoList();
     clearItems();
     for (QFileInfo docFileInfo : docFileInfoList)
@@ -58,7 +59,7 @@ void QDocumentFolderModel::updateDocumentList()
         document.load();
         const QString title = document.title();
 
-        if (filterExpression.exactMatch(title))
+        if (filterExpression.match(title).hasMatch())
         {
             Items::iterator before = mItems.end();
             while (before != mItems.begin() &&

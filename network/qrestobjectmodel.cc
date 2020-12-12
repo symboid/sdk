@@ -38,7 +38,7 @@ int QRestObjectJSON::fieldCount() const
 
 QVariant QRestObjectJSON::value(int fieldIndex) const
 {
-    return 0 <= fieldIndex && fieldIndex < mFields.size() ? mFields.at(fieldIndex).value() : QVariant();
+    return 0 <= fieldIndex && fieldIndex < mFields.size() ? mFields.at(fieldIndex).value().toVariant() : QVariant();
 }
 
 QString QRestObjectJSON::field(int fieldIndex) const
@@ -68,7 +68,7 @@ QRestObjectModel::QRestObjectModel(QObject* parent)
 
 int QRestObjectModel::rowCount(const QModelIndex& parent) const
 {
-    Q_UNUSED(parent);
+    Q_UNUSED(parent)
     return mRestObject.fieldCount();
 }
 

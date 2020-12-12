@@ -11,7 +11,7 @@
 class SDK_HOSTING_API QAppConfig : public QConfigNode
 {
     Q_OBJECT
-    QML_SINGLETON(AppConfig)
+    QML_SINGLETON_OBJECT(AppConfig)
 
 public:
     QAppConfig(QObject* parent = Q_NULLPTR);
