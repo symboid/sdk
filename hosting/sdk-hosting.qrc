@@ -19,6 +19,7 @@
         <file>MainAppWindow.qml</file>
         <file>SettingsPage.qml</file>
         <file>SoftwareUpdatePage.qml</file>
+        <file>SoftwareUpdateObject.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/br_down_icon&amp;24.png</file>

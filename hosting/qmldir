@@ -15,3 +15,4 @@ UiStyleSettingsGroup 1.0 UiStyleSettingsGroup.qml
 MainAppWindow 1.0 MainAppWindow.qml
 LoadingPage 1.0 LoadingPage.qml
 SoftwareUpdatePage 1.0 SoftwareUpdatePage.qml
+singleton SoftwareUpdateObject 1.0 SoftwareUpdateObject.qml

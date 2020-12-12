@@ -7,6 +7,7 @@
 #include "sdk/network/qrestclient.h"
 #include "sdk/network/qrestobjectmodel.h"
 #include "sdk/network/qresttablemodel.h"
+#include "sdk/network/qfiledownloader.h"
 
 struct SDK_NETWORK_API mod_sdk_network : arh::mod_qt<mod_sdk_network>
 {
@@ -22,6 +23,7 @@ struct SDK_NETWORK_API mod_sdk_network : arh::mod_qt<mod_sdk_network>
     qml_type_register<QRestClient> _reg_rest_client;
     qml_type_register<QRestObjectModel> _reg_rest_object_model;
     qml_type_register<QRestTableModel> _reg_rest_table_model;
+    qml_type_register<QFileDownloader> _reg_file_downloader;
 };
 
 #endif // __SYMBOID_SDK_NETWORK_INIT_H__

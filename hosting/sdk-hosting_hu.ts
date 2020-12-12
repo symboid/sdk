@@ -4,12 +4,12 @@
 <context>
     <name>LoadingPage</name>
     <message>
-        <location filename="LoadingPage.qml" line="12"/>
+        <location filename="LoadingPage.qml" line="15"/>
         <source>Software update is available. Do you want to process?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="LoadingPage.qml" line="81"/>
+        <location filename="LoadingPage.qml" line="47"/>
         <source>Loading...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -92,6 +92,45 @@
     <message>
         <location filename="SoftwarePane.qml" line="72"/>
         <source>No software updates will be executed at all. No new features and bugfixes are available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SoftwareUpdatePage</name>
+    <message>
+        <location filename="SoftwareUpdatePage.qml" line="20"/>
+        <source>Downloading software update...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SoftwareUpdatePage.qml" line="35"/>
+        <source>Download has been failed!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SoftwareUpdatePage.qml" line="39"/>
+        <location filename="SoftwareUpdatePage.qml" line="77"/>
+        <source>Continue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SoftwareUpdatePage.qml" line="49"/>
+        <source>Software update is ready to install.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SoftwareUpdatePage.qml" line="53"/>
+        <source>Restart and install</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SoftwareUpdatePage.qml" line="73"/>
+        <source>Software update cannot be executed!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SoftwareUpdatePage.qml" line="24"/>
+        <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

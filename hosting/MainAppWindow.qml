@@ -23,18 +23,23 @@ ApplicationWindow {
                 mainScreenLoader.source = mainPageUrl
             }
             onLoadSoftwareUpdatePage: {
-                loadProcess.currentIndex = 2
+                loadProcess.currentIndex = 1
+                softwareUpdatePage.startUpdate()
             }
         }
-
+        SoftwareUpdatePage {
+            id: softwareUpdatePage
+            onUpdateCanceled: {
+                console.info("Loading main page...")
+                mainScreenLoader.source = mainPageUrl
+            }
+        }
         Loader {
             id: mainScreenLoader
             onLoaded: {
                 console.info("Main page loaded.")
-                loadProcess.currentIndex = 1
+                loadProcess.currentIndex = 2
             }
-        }
-        SoftwareUpdatePage {
         }
     }
 }
