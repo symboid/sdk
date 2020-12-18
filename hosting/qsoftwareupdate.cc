@@ -43,9 +43,12 @@ QSoftwareVersion* QSoftwareUpdate::appVersion()
 
 bool QSoftwareUpdate::execUpdater(const QString& installerFilePath)
 {
+    bool startSuccess = false;
+#ifndef Q_OS_IOS
     QProcess* updateProcess = new QProcess(this);
     updateProcess->setProgram(installerFilePath);
-    bool startSuccess = updateProcess->startDetached();
+    startSuccess = updateProcess->startDetached();
     updateProcess->deleteLater();
+#endif
     return startSuccess;
 }

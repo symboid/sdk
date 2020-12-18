@@ -109,7 +109,7 @@
     </message>
     <message>
         <location filename="SoftwareUpdatePage.qml" line="39"/>
-        <location filename="SoftwareUpdatePage.qml" line="77"/>
+        <location filename="SoftwareUpdatePage.qml" line="76"/>
         <source>Continue</source>
         <translation type="unfinished"></translation>
     </message>
@@ -124,7 +124,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SoftwareUpdatePage.qml" line="73"/>
+        <location filename="SoftwareUpdatePage.qml" line="72"/>
         <source>Software update cannot be executed!</source>
         <translation type="unfinished"></translation>
     </message>
