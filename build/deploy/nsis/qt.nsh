@@ -8,7 +8,7 @@
 !ifdef _Config_QtVer
 	!define QtVer "${_Config_QtVer}"
 !else
-	!define QtVer 5.14.1
+	!define QtVer 5.14.2
 !endif
 
 ; directory of currently installed and used Qt Toolchain:

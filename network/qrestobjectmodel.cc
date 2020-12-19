@@ -3,13 +3,16 @@
 #include "sdk/network/qrestobjectmodel.h"
 #include <QJsonDocument>
 
-QRestObjectJSON::QRestObjectJSON(QObject* parent)
+QRestObject::QRestObject(QObject* parent)
     : QRestCaller(parent)
+    , mIsValid(false)
 {
 }
 
-void QRestObjectJSON::fetchResult(QNetworkReply* reply)
+void QRestObject::fetchResult(QNetworkReply* reply)
 {
+    mIsValid = false;
+    emit isValidChanged();
     if (reply)
     {
         QJsonDocument replyDocument = QJsonDocument::fromJson(reply->readAll());
@@ -27,31 +30,38 @@ void QRestObjectJSON::fetchResult(QNetworkReply* reply)
                 mFields.push_back(it);
                 ++it;
             }
+            mIsValid = true;
+            emit isValidChanged();
         }
     }
 }
 
-int QRestObjectJSON::fieldCount() const
+bool QRestObject::isValid() const
+{
+    return mIsValid;
+}
+
+int QRestObject::fieldCount() const
 {
     return mResultObject.count();
 }
 
-QVariant QRestObjectJSON::value(int fieldIndex) const
+QVariant QRestObject::value(int fieldIndex) const
 {
     return 0 <= fieldIndex && fieldIndex < mFields.size() ? mFields.at(fieldIndex).value().toVariant() : QVariant();
 }
 
-QString QRestObjectJSON::field(int fieldIndex) const
+QString QRestObject::field(int fieldIndex) const
 {
     return 0 <= fieldIndex && fieldIndex < mFields.size() ? mFields.at(fieldIndex).key() : QString();
 }
 
-QVariant QRestObjectJSON::value(const QString& fieldName) const
+QVariant QRestObject::value(const QString& fieldName) const
 {
     return mResultObject[fieldName].toVariant();
 }
 
-QJsonObject QRestObjectJSON::resultObject() const
+QJsonObject QRestObject::resultObject() const
 {
     return mResultObject;
 }
@@ -64,6 +74,7 @@ QRestObjectModel::QRestObjectModel(QObject* parent)
     connect(&mRestObject, SIGNAL(endUpdateResult()), this, SIGNAL(restObjectChanged()));
     connect(&mRestObject, SIGNAL(endUpdateResult()), this, SIGNAL(successfullyFinished()));
     connect(&mRestObject, SIGNAL(networkError(QNetworkReply::NetworkError)), this, SIGNAL(networkError(QNetworkReply::NetworkError)));
+    connect(&mRestObject, SIGNAL(isValidChanged()), this, SIGNAL(isValidChanged()));
 }
 
 int QRestObjectModel::rowCount(const QModelIndex& parent) const
@@ -82,6 +93,11 @@ QHash<int, QByteArray> QRestObjectModel::roleNames() const
     QHash<int, QByteArray> roles = QAbstractListModel::roleNames();
     roles[Qt::UserRole] = "field";
     return roles;
+}
+
+bool QRestObjectModel::isValid() const
+{
+    return mRestObject.isValid();
 }
 
 QJsonObject QRestObjectModel::restObject() const

@@ -6,21 +6,23 @@
 #include "sdk/network/qrestmodel.h"
 #include <QJsonObject>
 
-class SDK_NETWORK_API QRestObjectJSON : public QRestCaller
+class SDK_NETWORK_API QRestObject : public QRestCaller
 {
     Q_OBJECT
 
 public:
-    QRestObjectJSON(QObject* parent = Q_NULLPTR);
+    QRestObject(QObject* parent = Q_NULLPTR);
 
 private:
     void fetchResult(QNetworkReply* reply) override;
 
 private:
+    bool mIsValid;
     QJsonObject mResultObject;
     QVector<QJsonObject::const_iterator> mFields;
 
 public:
+    bool isValid() const;
     int fieldCount() const;
     QVariant value(int fieldIndex) const;
     QString field(int fieldIndex) const;
@@ -28,6 +30,9 @@ public:
 
 public:
     QJsonObject resultObject() const;
+
+signals:
+    void isValidChanged();
 };
 
 class SDK_NETWORK_API QRestObjectModel : public QRestModel
@@ -47,13 +52,16 @@ public:
 
 private:
     QRestCaller* restCaller() override { return &mRestObject; }
-    QRestObjectJSON mRestObject;
+    QRestObject mRestObject;
 
 public:
+    Q_PROPERTY(bool isValid READ isValid NOTIFY isValidChanged)
     Q_PROPERTY(QJsonObject restObject READ restObject NOTIFY restObjectChanged)
 private:
+    bool isValid() const;
     QJsonObject restObject() const;
 signals:
+    void isValidChanged();
     void restObjectChanged();
 };
 

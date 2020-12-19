@@ -41,12 +41,34 @@ QSoftwareVersion* QSoftwareUpdate::appVersion()
     return mAppVersion != nullptr ? mAppVersion : emptyVersion;
 }
 
+QString QSoftwareUpdate::platform() const
+{
+#if defined Q_OS_WIN64
+    return "win_x64";
+#elif defined Q_OS_WIN32
+    return "win_x86";
+#elif defined Q_OS_ANDROID
+    return "android";
+#elif defined Q_OS_LINUX
+    return "linux";
+#elif defined Q_OS_MACOS
+    return "macos";
+#elif defined Q_OS_IOS
+    return "ios";
+#else
+    return "???";
+#endif
+}
+
 bool QSoftwareUpdate::execUpdater(const QString& installerFilePath)
 {
     bool startSuccess = false;
 #ifndef Q_OS_IOS
     QProcess* updateProcess = new QProcess(this);
     updateProcess->setProgram(installerFilePath);
+#if defined Q_OS_WIN
+    updateProcess->setArguments({"--autorun:1"});
+#endif
     startSuccess = updateProcess->startDetached();
     updateProcess->deleteLater();
 #endif

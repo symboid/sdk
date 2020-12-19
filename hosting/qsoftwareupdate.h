@@ -73,6 +73,11 @@ public:
     int mAppSwid = 0;
 
 public:
+    Q_PROPERTY(QString platform READ platform CONSTANT)
+public:
+    QString platform() const;
+
+public:
     Q_INVOKABLE bool execUpdater(const QString& installerFilePath);
 };
 
