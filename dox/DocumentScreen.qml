@@ -40,7 +40,7 @@ ProcessPage {
                     currentDocument.title = textInput
                     documentLoaded()
 
-                    textInputClose()
+                    textInputShow(false)
                 }
             }
         }

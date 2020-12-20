@@ -10,9 +10,9 @@ ToolBar {
     property alias textInput: textInputItem.itemTitle
     signal textInputClicked()
 
-    function textInputClose()
+    function textInputShow(show)
     {
-        toolButtons.itemAt(textInputIndex).checked = false
+        toolButtons.itemAt(textInputIndex).checked = show
         textInputIndex = -1
     }
 
@@ -52,7 +52,7 @@ ToolBar {
             loadIconSource: textInputIndex !== -1 ? toolModel.get(textInputIndex).iconSource : ""
             lineColor: toolbar.background.color
             onEditAccepted: textInputClicked()
-            onEditCanceled: textInputClose()
+            onEditCanceled: textInputShow(false)
             onButtonClicked: textInputClicked()
         }
     }
