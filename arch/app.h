@@ -18,6 +18,6 @@ struct app : mod<_AppMod>
 arh_ns_end
 
 #define APP_OBJECT(app_name) \
-    __MAIN_OBJECT(app_##app_name, app_name, app, true)
+    __MAIN_OBJECT(app_##app_name, app_name##_app, app, true)
 
 #endif // __SYMBOID_SDK_APP_APP_H__

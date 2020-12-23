@@ -5,18 +5,18 @@
     <name>MainScreenDateTimeBox</name>
     <message>
         <source>Date and time</source>
-        <translation type="unfinished"></translation>
+        <translation>Dátum és idő</translation>
     </message>
     <message>
         <source>Current</source>
-        <translation type="unfinished"></translation>
+        <translation>Éppen most</translation>
     </message>
 </context>
 <context>
     <name>MainScreenDetailsSwitch</name>
     <message>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Részletek</translation>
     </message>
 </context>
 </TS>

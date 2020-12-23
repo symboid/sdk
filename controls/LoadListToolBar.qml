@@ -13,7 +13,10 @@ ToolBar {
     function textInputShow(show)
     {
         toolButtons.itemAt(textInputIndex).checked = show
-        textInputIndex = -1
+        if (!show)
+        {
+            textInputIndex = -1
+        }
     }
 
     Column {
