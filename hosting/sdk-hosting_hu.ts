@@ -25,7 +25,7 @@
 <context>
     <name>SettingsScreen</name>
     <message>
-        <location filename="SettingsScreen.qml" line="43"/>
+        <location filename="SettingsScreen.qml" line="42"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
