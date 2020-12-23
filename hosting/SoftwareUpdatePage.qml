@@ -50,7 +50,7 @@ ProcessPage {
             }
             PropertyChanges {
                 target: updateButton
-                text: qsTr("Restart and install")
+                text: qsTr("Install and restart")
                 onClicked: {
                     if (SoftwareUpdate.execUpdater(softwareUpdateDownloader.localPath))
                     {

@@ -5,7 +5,7 @@
     <name>DocumentScreen</name>
     <message>
         <source>Do you want to remove the selected documents?</source>
-        <translation type="unfinished"></translation>
+        <translation>Valóban szeretné törölni a kiválasztott iratokat?</translation>
     </message>
 </context>
 </TS>
