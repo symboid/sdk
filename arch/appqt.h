@@ -14,6 +14,7 @@ arh_ns_begin
 template<>
 inline QGuiApplication* main_object_create(int* _argc, char*** _argv)
 {
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     return new QGuiApplication(*_argc, *_argv);
 }
 
