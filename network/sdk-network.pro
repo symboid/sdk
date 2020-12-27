@@ -2,7 +2,7 @@
 TARGET = sdk-network
 BUILD_ROOT=../..
 COMPONENT_NAME=sdk
-include($${BUILD_ROOT}/sdk/build/qmake/qt-module.pri)
+include($${BUILD_ROOT}/build/qmake/qt-module.pri)
 
 SOURCES += \
     init.cc \
