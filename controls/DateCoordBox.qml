@@ -33,13 +33,13 @@ MultiNumberBox {
 
             textFromValue: function(value, locale)
             {
-                return (new Date(2000, value - 1, 1)).toLocaleDateString(locale, "MMMM")
+                return (new Date(2000, value - 1, 1)).toLocaleDateString(locale, "MMM")
             }
             valueFromText: function(text, locale)
             {
                 var monthDate = Date.fromLocaleDateString(locale, "???", "")
                 var formatStr = ""
-                for (var f = 0; monthDate.toString()==="Invalid Date" && f<4; ++f)
+                for (var f = 0; monthDate.toString()==="Invalid Date" && f<3; ++f)
                 {
                     formatStr += "M"
                     monthDate = Date.fromLocaleDateString(locale, text, formatStr)
@@ -55,7 +55,7 @@ MultiNumberBox {
                     {
                         var monthDate = new Date(2000, m, 1)
                         var formatStr = ""
-                        for (var l = 0; l < 4; ++l)
+                        for (var l = 0; l < 3; ++l)
                         {
                             formatStr += "M"
                             regExpStr += monthDate.toLocaleDateString(Qt.locale(), formatStr)
