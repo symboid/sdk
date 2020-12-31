@@ -52,6 +52,7 @@ ToolBar {
             width: toolbar.width
             itemWidth: rowWidth
             loadIconSource: textInputIndex !== -1 ? toolModel.get(textInputIndex).iconSource : ""
+            selectorVisible: false
             lineColor: toolbar.background.color
             onEditAccepted: textInputClicked()
             onEditCanceled: textInputShow(false)

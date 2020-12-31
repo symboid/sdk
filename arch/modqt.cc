@@ -12,8 +12,7 @@ void basic_qt_translation::load(const QString& _mod_name)
 
     static const QLocale system_locale = QLocale::system();
     static const QString lang_code = system_locale.name().left(2);
-    QString qm_file_path = lang_code.isEmpty() ? "" :
-            QString(":tr/%1_%2.qm").arg(mod_file_name, lang_code);
+    QString qm_file_path = QString(":tr/%1_%2.qm").arg(mod_file_name, lang_code);
 
     if (lang_code == "en")
     {

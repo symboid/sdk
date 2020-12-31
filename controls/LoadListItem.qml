@@ -9,6 +9,7 @@ Column {
     property alias loadIconSource: loadButton.icon.source
     property alias selectIndicator: selected.indicator
     property alias selected: selected.checked
+    property alias selectorVisible: selected.visible
     property alias lineColor: line.color
     property bool editable: true
     property bool selectable: false
