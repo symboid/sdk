@@ -35,6 +35,67 @@ Pane {
                     }
                 }
             }
+            Popup {
+                id: popupItem
+
+                property int visibleCount: 4
+
+                padding: 1
+                width: 2*numBoxes.width+2*padding
+                height: visibleCount * numBoxes.height
+                anchors.centerIn: parent
+
+                Row {
+                    anchors.fill: parent
+                    Repeater {
+                        model: boxCount
+                        delegate: Tumbler {
+                            readonly property NumericBox inputNumber: box(index)
+                            height: parent.height
+                            width: inputNumber.width * 2
+                            enabled: inputNumber.enabled
+
+                            model: inputNumber.model
+                            wrap: true
+                            currentIndex: inputNumber.value - inputNumber.from
+                            onCurrentIndexChanged: {
+                                if (currentIndex < inputNumber.to - inputNumber.from + 1)
+                                {
+                                    inputNumber.value = inputNumber.from + currentIndex
+                                }
+                                else
+                                {
+                                    var correctPosition = (prevIndex === 0) ?
+                                                inputNumber.to - inputNumber.from : 0
+                                    this.positionViewAtIndex(correctPosition, Tumbler.Center)
+                                }
+                                prevIndex = currentIndex
+                            }
+                            property int prevIndex: -1
+
+                            visibleItemCount: popupItem.visibleCount
+
+                            onVisibleChanged: {
+                                if (!visible && inputNumber !== null)
+                                {
+                                    inputNumber.value = inputNumber.from + currentIndex
+                                }
+                            }
+
+                            delegate: Text {
+                                width: inputNumber.width
+                                height: inputNumber.height
+                                text: inputNumber.textFromValue(inputNumber.from + modelData, Qt.locale())
+                                visible: modelData < (inputNumber.to - inputNumber.from + 1)
+                                font.bold: Math.abs(Tumbler.displacement) < 0.5
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                                opacity: 1.0 - Math.abs(Tumbler.displacement) / visibleItemCount
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         Item { width:10; height:1; visible: editable }
@@ -46,70 +107,6 @@ Pane {
             visible: editable
             text: "..."
             onClicked: !popupItem.visible ? popupItem.open() : popupItem.close()
-        }
-
-        Popup {
-            id: popupItem
-
-            property int visibleCount: 4
-
-            padding: 1
-            width: 2*numBoxes.width+2*padding
-            height: visibleCount * numBoxes.height
-            x: -1
-            y: -(visibleCount / 2 - 0.5) * numBoxes.height
-
-            Row {
-                anchors.fill: parent
-                Repeater {
-                    model: boxCount
-                    delegate: Tumbler {
-                        readonly property NumericBox inputNumber: box(index)
-                        height: parent.height
-                        width: inputNumber.width * 2
-                        enabled: inputNumber.enabled
-
-//                        model: inputNumber.to - inputNumber.from + 1
-                        model: inputNumber.model
-                        wrap: true
-                        currentIndex: inputNumber.value - inputNumber.from
-                        onCurrentIndexChanged: {
-                            if (currentIndex < inputNumber.to - inputNumber.from + 1)
-                            {
-                                inputNumber.value = inputNumber.from + currentIndex
-                            }
-                            else
-                            {
-                                var correctPosition = (prevIndex === 0) ?
-                                            inputNumber.to - inputNumber.from : 0
-                                this.positionViewAtIndex(correctPosition, Tumbler.Center)
-                            }
-                            prevIndex = currentIndex
-                        }
-                        property int prevIndex: -1
-
-                        visibleItemCount: popupItem.visibleCount
-
-                        onVisibleChanged: {
-                            if (!visible && inputNumber !== null)
-                            {
-                                inputNumber.value = inputNumber.from + currentIndex
-                            }
-                        }
-
-                        delegate: Text {
-                            width: inputNumber.width
-                            height: inputNumber.height
-                            text: inputNumber.textFromValue(inputNumber.from + modelData, Qt.locale())
-                            visible: modelData < (inputNumber.to - inputNumber.from + 1)
-                            font.bold: Math.abs(Tumbler.displacement) < 0.5
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                            opacity: 1.0 - Math.abs(Tumbler.displacement) / visibleItemCount
-                        }
-                    }
-                }
-            }
         }
     }
 }
