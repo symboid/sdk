@@ -73,9 +73,8 @@ ProcessPage {
         currentIndex: -1
 
         delegate: LoadListItem {
-            anchors.left: parent.left
-            anchors.right: parent.right
-            centeredWithSelector: false
+            anchors.left: parent !== null ? parent.left : undefined
+            anchors.right: parent !== null ? parent.right : undefined
             itemTitle: documentTitle
             itemWidth: Math.min(rowWidth, documentListView.width)
             editable: false

@@ -13,7 +13,6 @@ Column {
     property bool editable: true
     property bool selectable: false
     property bool revertedLayout: false
-    property bool centeredWithSelector: true
     signal itemClicked
     signal buttonClicked
     signal editAccepted
@@ -33,14 +32,12 @@ Column {
         Row {
             layoutDirection: revertedLayout ? Qt.RightToLeft : Qt.LeftToRight
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.horizontalCenterOffset: (revertedLayout ? 1 : -1) * selectedPane.width / 2 * !centeredWithSelector
             Pane {
                 id: selectedPane
                 anchors.verticalCenter: parent.verticalCenter
                 background: null
                 CheckBox {
                     id: selected
-                    visible: selectable || checked
                 }
             }
             StackLayout {
