@@ -20,6 +20,8 @@ CircularSpinBox {
         }
     }
 
+    property variant model: to - from + 1
+
     up.indicator: null
     down.indicator: null
 

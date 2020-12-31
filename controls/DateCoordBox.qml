@@ -89,6 +89,7 @@ MultiNumberBox {
                                                                  default: return 30
                 }
             }
+            model: 31
             displaySuffix: "."
             circularLink: monthBox
         }
