@@ -6,6 +6,7 @@ Pane {
     property alias item: textField
     property alias text: textField.text
     property alias readOnly: textField.readOnly
+    property alias placeholderText: textField.placeholderText
     property Component button: null
     readonly property int internalWidth: metrics.paramSectionWidth - 5*leftPadding - 2*rightPadding - 2
 
