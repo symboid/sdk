@@ -1,5 +1,6 @@
 
 import QtQuick.Controls 2.5
+import QtQuick 2.12
 
 SpinBox {
 
@@ -13,7 +14,6 @@ SpinBox {
         {
             value = from
             incrementedCircular()
-//            while (value > from) decrease()
         }
         else
         {
@@ -27,11 +27,23 @@ SpinBox {
         {
             value = to
             decrementedCircular()
-//            while (value < to) increase()
         }
         else
         {
             decrease()
         }
     }
+
+    onActiveFocusChanged: {
+        if (activeFocus)
+        {
+            // context property ApplicationWindow.activeFocusItem refers
+            // onto the TextField inside a SpinBox when focused
+            if (activeFocusItem instanceof TextInput)
+            {
+                activeFocusItem.selectAll()
+            }
+        }
+    }
+    activeFocusOnTab: true
 }

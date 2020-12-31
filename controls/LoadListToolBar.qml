@@ -47,7 +47,6 @@ ToolBar {
         }
         LoadListItem {
             id: textInputItem
-            centeredWithSelector: false
             visible: textInputIndex !== -1
             anchors.horizontalCenter: parent.horizontalCenter
             width: toolbar.width
