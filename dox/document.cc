@@ -40,7 +40,7 @@ bool QDocument::existsAnother()
 
 bool QDocument::save()
 {
-    if (mFilePath == "" && mTitle != "")
+    if (mTitle != "")
     {
         mFilePath = createFilePath(mTitle);
     }
