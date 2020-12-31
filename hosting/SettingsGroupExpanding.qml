@@ -5,7 +5,7 @@ import QtQuick.Controls 2.5
 SettingsGroup {
     property alias expanded: expandButton.checked
 
-    leftItem: RoundButton {
+    rightItem: RoundButton {
         id: expandButton
         checkable: true
         radius: height / 6
