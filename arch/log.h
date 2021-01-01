@@ -74,8 +74,9 @@ private:
 
 class SDK_ARCH_API file_log : public stream_log
 {
+    static std::ostream* log_file_stream();
 public:
-//    file_log();
+    file_log();
 };
 
 arh_ns_end

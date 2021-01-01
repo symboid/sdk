@@ -32,6 +32,7 @@ struct app_qt : public mod_qt<_AppMod>
         _M_qt_application->setApplicationName(_AppMod::name);
         _M_qt_application->setOrganizationName(_AppMod::company);
         _M_qt_application->setOrganizationDomain(_AppMod::domain);
+        _M_mod_main.init_file_log();
     }
     mod_main _M_mod_main;
     main_object_init<qt_application, int*, char***> _M_qt_application;

@@ -17,7 +17,8 @@ struct SDK_ARCH_API mod_main : basic_mod
 #else
     console_log _M_default_log;
 #endif
-    file_log _M_file_log;
+    file_log* _M_file_log;
+    void init_file_log();
 };
 
 arh_ns_end

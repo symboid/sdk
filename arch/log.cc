@@ -5,27 +5,30 @@
 #include <android/log.h>
 #endif // __ANDROID__
 #include <QDebug>
+#include <QDir>
+#include <QStandardPaths>
 
 arh_ns_begin
 
 static void defaultMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
     QByteArray localMsg = msg.toLocal8Bit();
-    const char *file = context.file ? context.file : "";
-    const char *function = context.function ? context.function : "";
+    Q_UNUSED(context)
+    Q_UNUSED(msg)
+//    const char *file = context.file ? context.file : "";
+//    const char *function = context.function ? context.function : "";
     switch (type)
     {
     case QtDebugMsg:
     case QtInfoMsg:
         log_info << localMsg.toStdString();
-//        fprintf(stderr, "Info: %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
         break;
     case QtWarningMsg:
         log_warning << localMsg.toStdString();
         break;
     case QtCriticalMsg:
     case QtFatalMsg:
-        log_warning << localMsg.toStdString();
+        log_error << localMsg.toStdString();
         break;
     }
 }
@@ -98,7 +101,33 @@ void android_log::write_entry(level _level, const std::string& _message)
     }
 
     __android_log_print(android_log_level, "-----", "%s", _message.c_str());
+#else
+    Q_UNUSED(_level)
+    Q_UNUSED(_message)
 #endif
+}
+
+std::ostream* file_log::log_file_stream()
+{
+    std::ofstream* logFileStream = nullptr;
+    const QString logDirPath(QStandardPaths::writableLocation(QStandardPaths::DataLocation)
+            + QDir::separator() + "log");
+    if (QDir::root().mkpath(logDirPath))
+    {
+        std::string logFilePath = (logDirPath + QDir::separator() + "current.log.txt").toUtf8().data();
+        logFileStream = new std::ofstream(logFilePath);
+        if (logFileStream->bad())
+        {
+            delete logFileStream;
+            logFileStream = nullptr;
+        }
+    }
+    return logFileStream;
+}
+
+file_log::file_log()
+    : stream_log(log_file_stream())
+{
 }
 
 arh_ns_end
