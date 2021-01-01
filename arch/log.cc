@@ -78,6 +78,7 @@ void stream_log::write_entry(level _level, const std::string& _message)
     {
         std::lock_guard<std::mutex> write_guard(_M_write_mutex);
         *_M_out_stream << " " << log::level_str(_level) << " " << _message << std::endl;
+        _M_out_stream->flush();
     }
 }
 
@@ -107,27 +108,37 @@ void android_log::write_entry(level _level, const std::string& _message)
 #endif
 }
 
-std::ostream* file_log::log_file_stream()
+QString file_log::logFilePath()
 {
-    std::ofstream* logFileStream = nullptr;
-    const QString logDirPath(QStandardPaths::writableLocation(QStandardPaths::DataLocation)
-            + QDir::separator() + "log");
+    QString path;
+    static const QString logDirPath(QStandardPaths::writableLocation(QStandardPaths::DataLocation)
+            + "/log");
     if (QDir::root().mkpath(logDirPath))
     {
-        std::string logFilePath = (logDirPath + QDir::separator() + "current.log.txt").toUtf8().data();
-        logFileStream = new std::ofstream(logFilePath);
-        if (logFileStream->bad())
-        {
-            delete logFileStream;
-            logFileStream = nullptr;
-        }
+        path = logDirPath + "/current.log.txt";
     }
-    return logFileStream;
+    return path;
 }
 
 file_log::file_log()
-    : stream_log(log_file_stream())
+    : _M_log_file(logFilePath())
 {
+    const QString logDirPath(QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/log");
+    if (QDir::root().mkpath(logDirPath))
+    {
+        _M_log_file.open(QFile::WriteOnly);
+    }
+}
+
+void file_log::write_entry(level _level, const std::string& _message)
+{
+    QMutexLocker writeLock(&_M_log_mutex);
+    _M_log_file.write(" ");
+    _M_log_file.write(log::level_str(_level).c_str());
+    _M_log_file.write(" ");
+    _M_log_file.write(_message.c_str());
+    _M_log_file.write("\n");
+    _M_log_file.flush();
 }
 
 arh_ns_end

@@ -7,6 +7,8 @@
 #include <list>
 #include <mutex>
 #include <fstream>
+#include <QFile>
+#include <QMutex>
 
 arh_ns_begin
 
@@ -72,11 +74,14 @@ private:
     std::mutex _M_log_mutex;
 };
 
-class SDK_ARCH_API file_log : public stream_log
+class SDK_ARCH_API file_log : public log
 {
-    static std::ostream* log_file_stream();
+    QFile _M_log_file;
+    QMutex _M_log_mutex;
+    static QString logFilePath();
 public:
     file_log();
+    void write_entry(level _level, const std::string& _message) override;
 };
 
 arh_ns_end
