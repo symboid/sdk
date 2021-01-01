@@ -30,7 +30,6 @@ MultiNumberBox {
             id: hourBox
             from: 0
             to: 23
-            value: (new Date).getHours()
             circularLink: dayLink
         }
         LabelBox {
@@ -42,7 +41,6 @@ MultiNumberBox {
             from: 0
             to: 59
             digitCount: 2
-            value: (new Date).getMinutes()
             circularLink: hourBox
         }
         LabelBox {
@@ -56,7 +54,6 @@ MultiNumberBox {
             from: 0
             to: 59
             digitCount: 2
-            value: (new Date).getSeconds()
             circularLink: minuteBox
         }
     }

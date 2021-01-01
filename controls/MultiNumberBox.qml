@@ -54,6 +54,7 @@ Pane {
                             height: parent.height
                             width: inputNumber.width * 2
                             enabled: inputNumber.enabled
+                            visible: inputNumber.visible
 
                             model: inputNumber.model
                             wrap: true

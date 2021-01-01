@@ -29,6 +29,7 @@ Column {
         anchors.right: parent.right
         height: loadButtonPane.height
         onClicked: itemClicked()
+        onDoubleClicked: buttonClicked()
 
         Row {
             layoutDirection: revertedLayout ? Qt.RightToLeft : Qt.LeftToRight
