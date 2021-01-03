@@ -8,13 +8,18 @@
 #include "sdk/arch/mainobject.h"
 #include <QGuiApplication>
 #include <QString>
+#include <QOperatingSystemVersion>
 
 arh_ns_begin
 
 template<>
 inline QGuiApplication* main_object_create(int* _argc, char*** _argv)
 {
-    QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
+    const QOperatingSystemVersion osVersion(QOperatingSystemVersion::current());
+    if (osVersion.type() == QOperatingSystemVersion::Windows && osVersion.majorVersion() < 10)
+    {
+        QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
+    }
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     return new QGuiApplication(*_argc, *_argv);
 }
