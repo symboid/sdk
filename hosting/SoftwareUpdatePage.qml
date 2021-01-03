@@ -8,6 +8,7 @@ import Symboid.Sdk.Hosting 1.0
 ProcessPage {
     id: softwareUpdatePage
 
+    visible: false
     signal updateCanceled
 
     state: "downloading"
@@ -136,6 +137,7 @@ ProcessPage {
 
     function startUpdate()
     {
+        visible = true
         state = "downloading"
         softwareUpdateDownloader.start()
     }
