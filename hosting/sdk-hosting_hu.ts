@@ -98,39 +98,39 @@
 <context>
     <name>SoftwareUpdatePage</name>
     <message>
-        <location filename="SoftwareUpdatePage.qml" line="20"/>
+        <location filename="SoftwareUpdatePage.qml" line="21"/>
         <source>Downloading software update...</source>
         <translation>Szoftverfrissítés letöltése...</translation>
     </message>
     <message>
-        <location filename="SoftwareUpdatePage.qml" line="35"/>
+        <location filename="SoftwareUpdatePage.qml" line="36"/>
         <source>Download has been failed!</source>
         <translation>A letöltés meghiúsult!</translation>
     </message>
     <message>
-        <location filename="SoftwareUpdatePage.qml" line="39"/>
-        <location filename="SoftwareUpdatePage.qml" line="76"/>
+        <location filename="SoftwareUpdatePage.qml" line="40"/>
+        <location filename="SoftwareUpdatePage.qml" line="77"/>
         <source>Continue</source>
         <translation>Folytatás</translation>
     </message>
     <message>
-        <location filename="SoftwareUpdatePage.qml" line="49"/>
+        <location filename="SoftwareUpdatePage.qml" line="50"/>
         <source>Software update is ready to install.</source>
         <translation>A szoftverfrissítés készen áll a telepítésre.</translation>
     </message>
     <message>
-        <location filename="SoftwareUpdatePage.qml" line="53"/>
+        <location filename="SoftwareUpdatePage.qml" line="54"/>
         <source>Install and restart</source>
         <oldsource>Restart and install</oldsource>
         <translation>Telepítés és újraindítás</translation>
     </message>
     <message>
-        <location filename="SoftwareUpdatePage.qml" line="72"/>
+        <location filename="SoftwareUpdatePage.qml" line="73"/>
         <source>Software update cannot be executed!</source>
         <translation>A szoftverfrissítés végrehajtása sikertelen!</translation>
     </message>
     <message>
-        <location filename="SoftwareUpdatePage.qml" line="24"/>
+        <location filename="SoftwareUpdatePage.qml" line="25"/>
         <source>Cancel</source>
         <translation>Megszakítás</translation>
     </message>
