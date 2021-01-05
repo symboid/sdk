@@ -12,7 +12,7 @@ IndirectContainer {
         readonly property int screenSize: isLandscape ? screenWidth : screenHeight
         readonly property int restSize: screenSize - mandalaSize
 
-        readonly property int minParamSectionWidth: 300
+        readonly property int minParamSectionWidth: 250
         readonly property int paramSectionWidth:
             isLandscape ? ((restSize / 2) < minParamSectionWidth ? minParamSectionWidth : restSize / 2)
                         : ((mandalaSize / 2) < minParamSectionWidth ? mandalaSize : mandalaSize / 2)
@@ -32,8 +32,8 @@ IndirectContainer {
         Flow {
             id: screenFlow
 
-            width: metrics.isLandscape ? childrenRect.width : metrics.mandalaSize
-            height: metrics.isLandscape ? metrics.mandalaSize : childrenRect.height
+            width: metrics.isLandscape ? childrenRect.width : metrics.screenWidth
+            height: metrics.isLandscape ? metrics.screenHeight : childrenRect.height
 
             flow: metrics.isLandscape ? Flow.TopToBottom : Flow.LeftToRight
         }

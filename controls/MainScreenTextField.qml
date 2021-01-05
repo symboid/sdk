@@ -8,7 +8,7 @@ Pane {
     property alias readOnly: textField.readOnly
     property alias placeholderText: textField.placeholderText
     property Component button: null
-    readonly property int internalWidth: metrics.paramSectionWidth - 5*leftPadding - 2*rightPadding - 2
+    readonly property int internalWidth: metrics.paramSectionWidth - 3*leftPadding - 2*rightPadding - 2
 
     Grid {
         verticalItemAlignment: Grid.AlignVCenter

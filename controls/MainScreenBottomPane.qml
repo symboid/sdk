@@ -10,10 +10,10 @@ Pane {
     width: metrics.paramSectionWidth
 
     readonly property int itemHeight: itemSlot.height + 2*padding
-    readonly property int landscapeSpace: metrics.mandalaSize - (referenceItem.y + referenceItem.height)
+    readonly property int landscapeSpace: metrics.screenHeight - (referenceItem.y + referenceItem.height)
 
     height:        !metrics.isLandscape ? itemHeight :
-            landscapeSpace < itemHeight ? metrics.mandalaSize :
+            landscapeSpace < itemHeight ? metrics.screenHeight :
                                           landscapeSpace
 
     ItemSlot {
