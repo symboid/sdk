@@ -20,7 +20,10 @@ inline QGuiApplication* main_object_create(int* _argc, char*** _argv)
     {
         QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
     }
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    if (osVersion.type() == QOperatingSystemVersion::Android)
+    {
+        QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    }
     return new QGuiApplication(*_argc, *_argv);
 }
 
