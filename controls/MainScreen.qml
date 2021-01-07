@@ -16,6 +16,9 @@ IndirectContainer {
         readonly property int paramSectionWidth:
             isLandscape ? ((restSize / 2) < minParamSectionWidth ? minParamSectionWidth : restSize / 2)
                         : ((mandalaSize / 2) < minParamSectionWidth ? mandalaSize : mandalaSize / 2)
+
+        readonly property int horzMandalaSpace: screenWidth - 2 * minParamSectionWidth
+        readonly property bool isTransLandscape: isLandscape && horzMandalaSpace < mandalaSize
     }
 
     container: screenFlow
