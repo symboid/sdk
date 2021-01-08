@@ -14,6 +14,46 @@ SettingsGroupFixed {
             settingsPane: SettingsPane {
                 title: qsTr("Build information")
                 SettingsGroupFixed {
+                    title: qsTr("Qt Framework")
+                    SettingsLabel {
+                        title: qsTr("Version")
+                        text: AppConfig.software.qt_version_string
+                    }
+                    SettingsLabel {
+                        title: qsTr("SSL support")
+                        text: AppConfig.software.ssl_supported ? qsTr("Available") : qsTr("Not available")
+                    }
+                    SettingsLabel {
+                        title: qsTr("Runtime version of SSL Library")
+                        text: AppConfig.software.ssl_lib_version_runtime
+                        visible: AppConfig.software.ssl_supported
+                    }
+                    SettingsLabel {
+                        title: qsTr("Compile-time version of SSL Library")
+                        text: AppConfig.software.ssl_lib_version_compiletime
+                        visible: AppConfig.software.ssl_supported
+                    }
+                }
+
+                SettingsGroupFixed {
+                    title: qsTr("Graphics information")
+                    SettingsLabel {
+                        title: qsTr("API in use")
+                        text: switch(GraphicsInfo.api) {
+                              case GraphicsInfo.OpenGL: return "OpenGL / OpenGL ES"
+                              case GraphicsInfo.Software: return qsTr("software")
+                              case GraphicsInfo.Direct3D12: return "Direct3D 12"
+                              case GraphicsInfo.Unknown: return qsTr("unknown")
+                              default: return qsTr("other")
+                              }
+                    }
+                    SettingsLabel {
+                        title: qsTr("API version")
+                        text: GraphicsInfo.majorVersion + "." + GraphicsInfo.minorVersion
+                    }
+                }
+
+                SettingsGroupFixed {
                     title: qsTr("Components")
                     Repeater {
                         model: SoftwareUpdate.componentVersions

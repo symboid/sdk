@@ -20,6 +20,7 @@
         <file>SoftwareUpdatePage.qml</file>
         <file>SoftwareUpdateObject.qml</file>
         <file>AppearanceSettingsGroup.qml</file>
+        <file>SettingsLabel.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/br_down_icon&amp;24.png</file>

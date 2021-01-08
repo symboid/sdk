@@ -8,6 +8,7 @@ SOURCES += \
     init.cc \
     qappconfig.cc \
     qconfig.cc \
+    qsoftwareconfig.cc \
     qsoftwareupdate.cc \
     quiconfig.cc
 

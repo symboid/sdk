@@ -187,4 +187,9 @@ public: \
 Q_PROPERTY(QAbstractConfig* name##_node READ name##Node CONSTANT) \
     QAbstractConfig* name##Node() const { return _M_##name; }
 
+#define Q_CONFIG_CONSTANT(type,name) \
+Q_PROPERTY(type name READ name CONSTANT) \
+public: \
+    type name() const;
+
 #endif // __SYMBOID_SDK_HOSTING_QCONFIGNODE_H__

@@ -59,10 +59,20 @@ void QRestCaller::setResultCompact(bool isResultCompact)
 
 QRestClient::QRestClient(QObject* parent)
     : QNetworkAccessManager(parent)
+    , mIsSecure(false)
 {
 }
 
-void QRestClient::setApiAddress(const QUrl& apiAddress)
+void QRestClient::setSecure(bool secure)
+{
+    if (mIsSecure != secure)
+    {
+        mIsSecure = secure;
+        emit secureChanged();
+    }
+}
+
+void QRestClient::setApiAddress(const QString& apiAddress)
 {
     if (mApiAddress != apiAddress)
     {
@@ -91,7 +101,7 @@ void QRestClient::setAuthPass(const QString& authPass)
 
 QNetworkRequest QRestClient::buildRequest(const QString& path) const
 {
-    QNetworkRequest request(mApiAddress.toString() + "/" + path);
+    QNetworkRequest request(QString(mIsSecure ? "https://" : "http://") + mApiAddress + "/" + path);
     if (mAuthUser != "")
     {
         QString credentials = mAuthUser + ":" + mAuthPass;
