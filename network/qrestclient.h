@@ -56,10 +56,18 @@ public:
     virtual ~QRestClient() = default;
 
 public:
-    Q_PROPERTY(QUrl apiAddress MEMBER mApiAddress WRITE setApiAddress NOTIFY apiAddressChanged)
-    void setApiAddress(const QUrl& apiAddress);
+    Q_PROPERTY(bool secure MEMBER mIsSecure WRITE setSecure NOTIFY secureChanged)
+    void setSecure(bool secure);
 private:
-    QUrl mApiAddress;
+    bool mIsSecure;
+signals:
+    void secureChanged();
+
+public:
+    Q_PROPERTY(QString apiAddress MEMBER mApiAddress WRITE setApiAddress NOTIFY apiAddressChanged)
+    void setApiAddress(const QString& apiAddress);
+private:
+    QString mApiAddress;
 signals:
     void apiAddressChanged();
 

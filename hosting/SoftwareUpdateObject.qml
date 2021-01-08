@@ -10,7 +10,8 @@ RestObjectModel {
 
     isResultCompact: true
     restClient: RestClient {
-        apiAddress: "http://api.symboid.com"
+        apiAddress: "api.symboid.com"
+        secure: AppConfig.software.ssl_supported
     }
     operation: "software/%1/%2".arg(SoftwareUpdate.appVersion.name).arg(SoftwareUpdate.platform)
     onSuccessfullyFinished: {

@@ -40,7 +40,7 @@ SettingsGroupFixed {
                     SettingsLabel {
                         title: qsTr("API in use")
                         text: switch(GraphicsInfo.api) {
-                              case GraphicsInfo.OpenGL: return "OpenGl / OpenGl ES"
+                              case GraphicsInfo.OpenGL: return "OpenGL / OpenGL ES"
                               case GraphicsInfo.Software: return qsTr("software")
                               case GraphicsInfo.Direct3D12: return "Direct3D 12"
                               case GraphicsInfo.Unknown: return qsTr("unknown")
