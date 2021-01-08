@@ -18,7 +18,7 @@ mod_main::mod_main(const char* company_name, const char* app_name)
     {
         QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
     }
-    QSettings settings(company_name, app_name);
+    QSettings settings(QSettings::UserScope, company_name, app_name);
     if (settings.value("ui/high_dpi_scaling", false).toBool())
     {
         QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
