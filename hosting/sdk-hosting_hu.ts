@@ -85,47 +85,79 @@
     </message>
     <message>
         <location filename="SoftwarePane.qml" line="39"/>
+        <source>Graphics information</source>
+        <translation>Grafikai információk</translation>
+    </message>
+    <message>
+        <location filename="SoftwarePane.qml" line="41"/>
+        <source>API in use</source>
+        <translation>Felhasznált API</translation>
+    </message>
+    <message>
+        <location filename="SoftwarePane.qml" line="44"/>
+        <source>software</source>
+        <translation>szoftveres</translation>
+    </message>
+    <message>
+        <location filename="SoftwarePane.qml" line="46"/>
+        <source>unknown</source>
+        <oldsource>Unknown</oldsource>
+        <translation>ismeretlen</translation>
+    </message>
+    <message>
+        <location filename="SoftwarePane.qml" line="47"/>
+        <source>other</source>
+        <oldsource>Other</oldsource>
+        <translation>egyéb</translation>
+    </message>
+    <message>
+        <location filename="SoftwarePane.qml" line="51"/>
+        <source>API version</source>
+        <translation>API verzió</translation>
+    </message>
+    <message>
+        <location filename="SoftwarePane.qml" line="57"/>
         <source>Components</source>
         <translation>Komponensek</translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="67"/>
+        <location filename="SoftwarePane.qml" line="85"/>
         <source>Geographic database</source>
         <translation>Földrajzi adatbázis</translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="70"/>
+        <location filename="SoftwarePane.qml" line="88"/>
         <source>Update method</source>
         <oldsource>Update</oldsource>
         <translation>Frissítési módszer</translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="76"/>
+        <location filename="SoftwarePane.qml" line="94"/>
         <source>Automated</source>
         <translation>Automatikus</translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="80"/>
+        <location filename="SoftwarePane.qml" line="98"/>
         <source>Download and integration of new software revision will be performed automatically. New features will be available after application relaunch.</source>
         <translation>Az új szoftverkiadásnak a letöltése és telepítése automatikusan megy végbe. Az új funkciók egy újraindítás után lesznek elérhetők.</translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="84"/>
+        <location filename="SoftwarePane.qml" line="102"/>
         <source>Manual</source>
         <translation>Kézi felügyelettel</translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="87"/>
+        <location filename="SoftwarePane.qml" line="105"/>
         <source>Software updates will be prompted and confirmed. New features and bugfixes are available after update process.</source>
         <translation>A szoftverfrissítést jóvá kell hagyni. Új funkciók és javítások a frissítési folyamat után jutnak érvényre.</translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="91"/>
+        <location filename="SoftwarePane.qml" line="109"/>
         <source>Switched off</source>
         <translation>Kikapcsolva</translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="94"/>
+        <location filename="SoftwarePane.qml" line="112"/>
         <source>No software updates will be executed at all. No new features and bugfixes are available.</source>
         <translation>Egyáltalán nem kerül telepítésre semmilyen szoftverfrissítés. Nincsenek új funkciók és hibajavítások.</translation>
     </message>
