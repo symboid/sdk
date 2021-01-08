@@ -94,21 +94,21 @@ SettingsGroupFixed {
             text: qsTr("Automated")
             enabled: false
             enumConfig: AppConfig.software.update_method_node
-            enumValue: 0//SoftwareConfig.UpdateAutomatic
+            enumValue: SoftwareConfig.UpdateAutomatic
             hint: qsTr("Download and integration of new software revision will be performed automatically. New features will be available after application relaunch.")
         }
         SettingsRadioButton {
             id: manualSwUpdate
             text: qsTr("Manual")
             enumConfig: AppConfig.software.update_method_node
-            enumValue: 1//SoftwareConfig.UpdateManual
+            enumValue: SoftwareConfig.UpdateManual
             hint: qsTr("Software updates will be prompted and confirmed. New features and bugfixes are available after update process.")
         }
         SettingsRadioButton {
             id: noSwUpdate
             text: qsTr("Switched off")
             enumConfig: AppConfig.software.update_method_node
-            enumValue: 2//SoftwareConfig.UpdateNone
+            enumValue: SoftwareConfig.UpdateNone
             hint: qsTr("No software updates will be executed at all. No new features and bugfixes are available.")
         }
     }

@@ -19,6 +19,9 @@ public:
 
     Q_CONFIG_NODE(QUiConfig, ui)
     Q_CONFIG_NODE(QSoftwareConfig, software)
+
+public:
+    Q_INVOKABLE void restartApp();
 };
 
 #endif // __SYMBOID_SDK_HOSTING_QGENERICCONFIG_H__

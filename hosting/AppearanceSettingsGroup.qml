@@ -12,12 +12,14 @@ SettingsGroupLink {
         SettingsItem {
             setting: Label {
                 text: qsTr("Every single change on this pane can only take effect after application restart.")
+                height: contentHeight
                 wrapMode: Label.WordWrap
                 font.italic: true
             }
             rightItem: Button {
                 text: qsTr("Restart")
                 highlighted: true
+                onClicked: AppConfig.restartApp()
             }
         }
 
@@ -42,33 +44,13 @@ SettingsGroupLink {
             }
             hint: qsTr("In order to apply the selected UI style the application must be restarted!")
         }
-        SettingsSwitch {
-            text: qsTr("Dark theme")
-        }
-
         SettingsGroupFixed {
-            title: qsTr("UI control sizes")
-        }
-        ButtonGroup {
-            buttons: [ devicePixelSetting.button, logicalPixelSetting.button ]
-        }
-        SettingsRadioButton {
-            id: devicePixelSetting
-            text: qsTr("Follows device pixel size (usually smaller)")
-        }
-        SettingsRadioButton {
-            id: logicalPixelSetting
-            text: qsTr("Follows desktop's logical pixel size (usually bigger)")
-        }
-
-        SettingsGroupFixed {
-            title: qsTr("Graphical acceleration")
+            title: qsTr("Graphical rendering")
         }
         SettingsCheckBox {
-            enabled: false
-            text: qsTr("Using Open GL software infrastructure")
-            hint: qsTr("Recommended on old systems (e.g. Windows 7)")
+            text: qsTr("High DPI scaling")
+            hint: qsTr("Control sizes calculated based on higher pixel density if available.")
+            configNode: AppConfig.ui.high_dpi_scaling_node
         }
-
     }
 }

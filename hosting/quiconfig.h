@@ -22,6 +22,9 @@ public:
     Q_PROPERTY(QStringList styleModel MEMBER mStyleModel CONSTANT)
 private:
     QStringList mStyleModel;
+
+public:
+    Q_CONFIG_PROPERTY(bool, high_dpi_scaling, false)
 };
 
 #endif // __SYMBOID_SDK_HOSTING_QUICONFIG_H__
