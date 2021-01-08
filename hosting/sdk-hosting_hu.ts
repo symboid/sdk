@@ -2,6 +2,78 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="hu_HU">
 <context>
+    <name>AppearanceSettingsGroup</name>
+    <message>
+        <location filename="AppearanceSettingsGroup.qml" line="9"/>
+        <location filename="AppearanceSettingsGroup.qml" line="11"/>
+        <source>Appearance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="AppearanceSettingsGroup.qml" line="14"/>
+        <source>Every single change on this pane can only take effect after application restart.</source>
+        <oldsource>Every single change on this pane can only take effect after application rest.</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="AppearanceSettingsGroup.qml" line="19"/>
+        <source>Restart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="AppearanceSettingsGroup.qml" line="25"/>
+        <source>Look and feel settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="AppearanceSettingsGroup.qml" line="33"/>
+        <source>Style:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="AppearanceSettingsGroup.qml" line="43"/>
+        <source>In order to apply the selected UI style the application must be restarted!</source>
+        <translation type="unfinished">Az új stílus használatához az alkalmazást újra kell indítani!</translation>
+    </message>
+    <message>
+        <location filename="AppearanceSettingsGroup.qml" line="46"/>
+        <source>Dark theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="AppearanceSettingsGroup.qml" line="50"/>
+        <source>UI control sizes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="AppearanceSettingsGroup.qml" line="57"/>
+        <source>Follows device pixel size (usually smaller)</source>
+        <oldsource>Follows device pixel size</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="AppearanceSettingsGroup.qml" line="61"/>
+        <source>Follows desktop&apos;s logical pixel size (usually bigger)</source>
+        <oldsource>Follows desktop&apos;s logical pixel size</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="AppearanceSettingsGroup.qml" line="65"/>
+        <source>Graphical acceleration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="AppearanceSettingsGroup.qml" line="69"/>
+        <source>Using Open GL software infrastructure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="AppearanceSettingsGroup.qml" line="70"/>
+        <source>Recommended on old systems (e.g. Windows 7)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LoadingPage</name>
     <message>
         <location filename="LoadingPage.qml" line="15"/>
@@ -133,19 +205,6 @@
         <location filename="SoftwareUpdatePage.qml" line="25"/>
         <source>Cancel</source>
         <translation>Megszakítás</translation>
-    </message>
-</context>
-<context>
-    <name>UiStyleSettingsGroup</name>
-    <message>
-        <location filename="UiStyleSettingsGroup.qml" line="13"/>
-        <source>UI style:</source>
-        <translation>UI stílus:</translation>
-    </message>
-    <message>
-        <location filename="UiStyleSettingsGroup.qml" line="23"/>
-        <source>In order to apply the selected UI style the application must be restarted!</source>
-        <translation>Az új stílus használatához az alkalmazást újra kell indítani!</translation>
     </message>
 </context>
 </TS>

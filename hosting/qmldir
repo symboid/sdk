@@ -11,7 +11,7 @@ SettingsCheckBox 1.0 SettingsCheckBox.qml
 SettingsSwitch 1.0 SettingsSwitch.qml
 SettingsRadioButton 1.0 SettingsRadioButton.qml
 SoftwarePane 1.0 SoftwarePane.qml
-UiStyleSettingsGroup 1.0 UiStyleSettingsGroup.qml
+AppearanceSettingsGroup 1.0 AppearanceSettingsGroup.qml
 MainAppWindow 1.0 MainAppWindow.qml
 LoadingPage 1.0 LoadingPage.qml
 SoftwareUpdatePage 1.0 SoftwareUpdatePage.qml
