@@ -7,11 +7,9 @@ SettingsItem {
     property alias text: valueLabel.text
 
     setting: Item {
-        height: width < titleLabel.width + valueLabel.width ?
+        height: width < titleLabel.width + valueLabel.width + 2*metricsPane.padding ?
                     titleLabel.height + valueLabel.height + metricsPane.padding : titleLabel.height
-        Pane {
-            id: metricsPane
-            visible: false
+        readonly property Item metricsPane: Pane {
         }
         Label {
             id: titleLabel
