@@ -10,7 +10,7 @@ arh_ns_begin
 
 struct SDK_ARCH_API mod_main : basic_mod
 {
-    mod_main();
+    mod_main(const char* company_name, const char* app_name);
     ~mod_main();
 #if SY_PLATFORM_IS_ANDROID
     android_log _M_default_log;

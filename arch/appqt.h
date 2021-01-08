@@ -7,23 +7,12 @@
 #include "sdk/arch/modqt.h"
 #include "sdk/arch/mainobject.h"
 #include <QGuiApplication>
-#include <QString>
-#include <QOperatingSystemVersion>
 
 arh_ns_begin
 
 template<>
 inline QGuiApplication* main_object_create(int* _argc, char*** _argv)
 {
-    const QOperatingSystemVersion osVersion(QOperatingSystemVersion::current());
-    if (osVersion.type() == QOperatingSystemVersion::Windows && osVersion.majorVersion() < 10)
-    {
-        QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
-    }
-    if (osVersion.type() == QOperatingSystemVersion::Android)
-    {
-        QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    }
     return new QGuiApplication(*_argc, *_argv);
 }
 
@@ -36,7 +25,8 @@ template <class _AppMod>
 struct app_qt : public mod_qt<_AppMod>
 {
     app_qt(int* _argc, char*** _argv)
-        : _M_qt_application(_argc, _argv)
+        : _M_mod_main(_AppMod::company, _AppMod::name)
+        , _M_qt_application(_argc, _argv)
     {
         _M_qt_application->setApplicationName(_AppMod::name);
         _M_qt_application->setOrganizationName(_AppMod::company);
