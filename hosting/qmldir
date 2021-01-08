@@ -10,6 +10,7 @@ SettingsItem 1.0 SettingsItem.qml
 SettingsCheckBox 1.0 SettingsCheckBox.qml
 SettingsSwitch 1.0 SettingsSwitch.qml
 SettingsRadioButton 1.0 SettingsRadioButton.qml
+SettingsLabel 1.0 SettingsLabel.qml
 SoftwarePane 1.0 SoftwarePane.qml
 UiStyleSettingsGroup 1.0 UiStyleSettingsGroup.qml
 MainAppWindow 1.0 MainAppWindow.qml
