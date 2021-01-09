@@ -32,7 +32,7 @@ SettingsGroupLink {
                 Label {
                     id: label
                     anchors.verticalCenter: parent.verticalCenter
-                    text: qsTr("Style:")
+                    text: qsTr("Style")
                 }
                 ComboBox {
                     currentIndex: AppConfig.ui.styleIndex
@@ -42,7 +42,6 @@ SettingsGroupLink {
                     }
                 }
             }
-            hint: qsTr("In order to apply the selected UI style the application must be restarted!")
         }
         SettingsGroupFixed {
             title: qsTr("Graphical rendering")

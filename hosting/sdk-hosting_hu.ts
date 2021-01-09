@@ -7,48 +7,44 @@
         <location filename="AppearanceSettingsGroup.qml" line="9"/>
         <location filename="AppearanceSettingsGroup.qml" line="11"/>
         <source>Appearance</source>
-        <translation type="unfinished"></translation>
+        <translation>Megjelenés</translation>
     </message>
     <message>
         <location filename="AppearanceSettingsGroup.qml" line="14"/>
         <source>Every single change on this pane can only take effect after application restart.</source>
         <oldsource>Every single change on this pane can only take effect after application restart. Blah-blah-blah blah-blah blah-blah blah-blah blah-blah</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Minden, ezen a panelen történő változtatás érvényesítéséhez az alkalmazást újra kell indítani.</translation>
     </message>
     <message>
         <location filename="AppearanceSettingsGroup.qml" line="20"/>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Újraindítás</translation>
     </message>
     <message>
         <location filename="AppearanceSettingsGroup.qml" line="27"/>
         <source>Look and feel settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Kinézet</translation>
     </message>
     <message>
         <location filename="AppearanceSettingsGroup.qml" line="35"/>
-        <source>Style:</source>
-        <translation type="unfinished"></translation>
+        <source>Style</source>
+        <oldsource>Style:</oldsource>
+        <translation>Stílus</translation>
     </message>
     <message>
-        <location filename="AppearanceSettingsGroup.qml" line="45"/>
-        <source>In order to apply the selected UI style the application must be restarted!</source>
-        <translation type="unfinished">Az új stílus használatához az alkalmazást újra kell indítani!</translation>
-    </message>
-    <message>
-        <location filename="AppearanceSettingsGroup.qml" line="48"/>
+        <location filename="AppearanceSettingsGroup.qml" line="47"/>
         <source>Graphical rendering</source>
-        <translation type="unfinished"></translation>
+        <translation>Grafikus képalkotás</translation>
+    </message>
+    <message>
+        <location filename="AppearanceSettingsGroup.qml" line="50"/>
+        <source>High DPI scaling</source>
+        <translation>Átméretezés magas pixelsűrűség esetén</translation>
     </message>
     <message>
         <location filename="AppearanceSettingsGroup.qml" line="51"/>
-        <source>High DPI scaling</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="AppearanceSettingsGroup.qml" line="52"/>
         <source>Control sizes calculated based on higher pixel density if available.</source>
-        <translation type="unfinished"></translation>
+        <translation>A felületi elemek méretezése a nagyobb pixelsűrűség figyelembe vételével történik, amennyiben az megoldható.</translation>
     </message>
 </context>
 <context>
