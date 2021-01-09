@@ -22,6 +22,10 @@ QAppConfig::~QAppConfig()
 void QAppConfig::restartApp()
 {
 #ifndef Q_OS_IOS
+    QSettings settings;
+    ui()->saveToSettings(&settings);
+    software()->saveToSettings(&settings);
+
     QProcess* newAppProcess = new QProcess(this);
     const QString appFilePath = QCoreApplication::applicationFilePath();
     newAppProcess->setProgram(appFilePath);
