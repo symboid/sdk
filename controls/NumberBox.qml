@@ -1,5 +1,5 @@
 
-import QtQuick 2.14
+import QtQuick 2.12
 
 NumericBox {
 
@@ -23,7 +23,7 @@ NumericBox {
         var valueString = (displaySuffix != "" && suffixPos !== -1) ? String(text).substring(0, suffixPos) : String(text)
         return Number(valueString)
     }
-    validator: RegularExpressionValidator {
-        regularExpression: new RegExp("[0-9]*" + displaySuffix)
+    validator: RegExpValidator {
+        regExp: new RegExp("[0-9]*" + displaySuffix)
     }
 }

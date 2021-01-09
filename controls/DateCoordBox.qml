@@ -1,5 +1,5 @@
 
-import QtQuick 2.14
+import QtQuick 2.12
 
 MultiNumberBox {
 
@@ -55,8 +55,8 @@ MultiNumberBox {
                 }
                 return monthDate.getMonth() + 1
             }
-            validator: RegularExpressionValidator {
-                regularExpression: new  RegExp(monthRegExp())
+            validator: RegExpValidator {
+                regExp: new  RegExp(monthRegExp())
                 function monthRegExp()
                 {
                     var regExpStr = "("

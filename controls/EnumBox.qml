@@ -1,5 +1,5 @@
 
-import QtQuick 2.14
+import QtQuick 2.12
 
 NumericBox {
 
@@ -24,8 +24,8 @@ NumericBox {
         }
         return Number(from)
     }
-    validator: RegularExpressionValidator {
-        regularExpression: {
+    validator: RegExpValidator {
+        regExp: {
             var regExpStr = "("
             if (valueTexts !== null)
             {
