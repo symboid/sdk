@@ -27,6 +27,7 @@
         <file>icons/br_next_icon&amp;24.png</file>
         <file>icons/br_prev_icon&amp;32.png</file>
         <file>icons/info_icon&amp;24.png</file>
+        <file>icons/clipboard_copy_icon&amp;24.png</file>
     </qresource>
     <qresource prefix="/tr">
         <file>sdk-hosting_hu.qm</file>

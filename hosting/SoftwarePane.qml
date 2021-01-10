@@ -65,14 +65,37 @@ SettingsGroupFixed {
                                     font.bold: true
                                 }
                                 Label {
-                                    text: '<a href="https://github.com/symboid/' + name + '">https://github.com/symboid/' + name + '</a>'
+                                    readonly property string componentRepo: "https://github.com/symboid/" + name
+                                    textFormat: Label.RichText
+                                    text: '<a href="' + componentRepo + '">'  + componentRepo + '</a>'
                                     anchors.right: parent.right
+                                    onLinkActivated: Qt.openUrlExternally(link)
                                 }
-                                TextInput {
+                                Row {
                                     anchors.right: parent.right
-                                    text: revid
-                                    readOnly: true
-                                    selectByMouse: true
+                                    Pane {
+                                        id: revidPane
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        TextInput {
+                                            id: revidText
+                                            text: revid
+                                            readOnly: true
+                                            selectByMouse: true
+                                            font.pointSize: 12
+                                        }
+                                    }
+                                    Button {
+                                        height: revidPane.height
+                                        width: revidPane.height
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        display: Button.IconOnly
+                                        icon.source: "/icons/clipboard_copy_icon&24.png"
+                                        onClicked: {
+                                            revidText.selectAll()
+                                            revidText.copy()
+                                            revidText.deselect()
+                                        }
+                                    }
                                 }
                             }
                         }
