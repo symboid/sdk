@@ -2,6 +2,7 @@
 #include "sdk/network/setup.h"
 #include "sdk/network/qrestclient.h"
 #include <QNetworkReply>
+#include <QAuthenticator>
 
 QRestCaller::QRestCaller(QObject* parent)
     : QObject(parent)
@@ -61,6 +62,8 @@ QRestClient::QRestClient(QObject* parent)
     : QNetworkAccessManager(parent)
     , mIsSecure(false)
 {
+    connect(this, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
+            this, SLOT(onAuthenticationRequired(QNetworkReply*,QAuthenticator*)));
 }
 
 void QRestClient::setSecure(bool secure)
@@ -99,6 +102,15 @@ void QRestClient::setAuthPass(const QString& authPass)
     }
 }
 
+void QRestClient::onAuthenticationRequired(QNetworkReply* reply, QAuthenticator* authenticator)
+{
+    if (reply && authenticator)
+    {
+        authenticator->setUser(mAuthUser);
+        authenticator->setPassword(mAuthPass);
+    }
+}
+
 QNetworkRequest QRestClient::buildRequest(const QString& path) const
 {
     QNetworkRequest request(QString(mIsSecure ? "https://" : "http://") + mApiAddress + "/" + path);
@@ -115,6 +127,7 @@ QNetworkRequest QRestClient::buildRequest(const QString& path) const
 void QRestClient::callGet(QRestCaller* caller, const QString& path)
 {
     emit caller->beginUpdate();
+    clearConnectionCache();
     QNetworkRequest request = buildRequest(path);
     caller->setReply(get(request));
 }

@@ -82,6 +82,8 @@ private:
 signals:
     void authUserChanged();
     void authPassChanged();
+private slots:
+    void onAuthenticationRequired(QNetworkReply* reply, QAuthenticator* authenticator);
 
 protected:
     QNetworkRequest buildRequest(const QString& path) const;
