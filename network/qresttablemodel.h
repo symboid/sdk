@@ -64,6 +64,14 @@ private:
 signals:
     void objectCountChanged();
     void firstObjectChanged();
+
+public:
+    Q_PROPERTY(QString extraValue MEMBER mExtraValue WRITE setExtraValue NOTIFY extraValueChanged)
+    void setExtraValue(const QString& extraValue);
+private:
+    QString mExtraValue;
+signals:
+    void extraValueChanged();
 };
 
 #endif // __SYMBOID_SDK_NETWORK_QRESTTABLEMODEL_H__
