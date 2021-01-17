@@ -25,6 +25,9 @@ public:
     int rowCount() const;
     QVariant value(int rowIndex, const QString& columnName) const;
     QJsonObject rowObject(int rowIndex) const;
+
+public:
+    QString mArrayPath;
 };
 
 class SDK_NETWORK_API QRestTableModel : public QRestModel
@@ -54,6 +57,7 @@ private:
 signals:
     void columnNamesChanged();
 
+
 public:
     Q_INVOKABLE QJsonObject object(int objectIndex) const;
     Q_PROPERTY(int objectCount READ objectCount NOTIFY objectCountChanged)
@@ -72,6 +76,13 @@ private:
     QString mExtraValue;
 signals:
     void extraValueChanged();
+
+public:
+    Q_PROPERTY(QString arrayPath READ arrayPath WRITE setArrayPath NOTIFY arrayPathChanged)
+    QString arrayPath() const;
+    void setArrayPath(const QString& arrayPath);
+signals:
+    void arrayPathChanged();
 };
 
 #endif // __SYMBOID_SDK_NETWORK_QRESTTABLEMODEL_H__

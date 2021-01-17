@@ -26,6 +26,15 @@ void QRestTableJSON::fetchResult(QNetworkReply* reply)
             {
                 mResultArray = replyDocument.array();
             }
+            else if (mArrayPath != "")
+            {
+                QJsonValue field(replyDocument.object());
+                for (QString fieldName : mArrayPath.split('.'))
+                {
+                    field = field.toObject()[fieldName];
+                }
+                mResultArray = field.toArray();
+            }
             else
             {
                 QJsonObject rootObject(replyDocument.object());
@@ -64,7 +73,7 @@ QRestTableModel::QRestTableModel(QObject* parent)
 
 int QRestTableModel::rowCount(const QModelIndex& parent) const
 {
-    Q_UNUSED(parent);
+    Q_UNUSED(parent)
     return mRestTable.rowCount() + (mExtraValue != "" ? 1 : 0);
 }
 
@@ -77,7 +86,7 @@ QVariant QRestTableModel::data(const QModelIndex& index, int role) const
     }
     if (rowIndex == -1)
     {
-        return mExtraValue;;
+        return mExtraValue;
     }
     else
     {
@@ -127,5 +136,19 @@ void QRestTableModel::setExtraValue(const QString& extraValue)
     {
         mExtraValue = extraValue;
         emit extraValueChanged();
+    }
+}
+
+QString QRestTableModel::arrayPath() const
+{
+    return mRestTable.mArrayPath;
+}
+
+void QRestTableModel::setArrayPath(const QString& arrayPath)
+{
+    if (mRestTable.mArrayPath != arrayPath)
+    {
+        mRestTable.mArrayPath = arrayPath;
+        emit arrayPathChanged();
     }
 }
