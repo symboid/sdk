@@ -4,20 +4,15 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
 
 Column {
-    property alias itemTitle: itemNameEdit.text
+    property alias mainItem: mainItemSlot.item
+    property alias rightItem: rightItemSlot.item
+    property string itemTitle: ""
     property int itemWidth: 200
     property alias loadIconSource: loadButton.icon.source
-    property alias selectIndicator: selected.indicator
-    property alias selected: selected.checked
-    property alias selectorVisible: selected.visible
     property alias lineColor: line.color
-    property bool editable: true
-    property bool selectable: false
     property bool revertedLayout: false
     signal itemClicked
     signal buttonClicked
-    signal editAccepted
-    signal editCanceled
 
     function setEditFocus()
     {
@@ -35,31 +30,25 @@ Column {
             layoutDirection: revertedLayout ? Qt.RightToLeft : Qt.LeftToRight
             anchors.horizontalCenter: parent.horizontalCenter
             Pane {
-                id: selectedPane
+                id: rightPane
                 anchors.verticalCenter: parent.verticalCenter
+                height: loadButtonPane.height
+                width: loadButtonPane.height
                 background: null
-                CheckBox {
-                    id: selected
+                ItemSlot {
+                    id: rightItemSlot
                 }
             }
-            StackLayout {
+            ItemSlot {
+                id: mainItemSlot
                 anchors.verticalCenter: parent.verticalCenter
-                currentIndex: editable
-                width: itemWidth - selectedPane.width - loadButtonPane.width
+                height: loadButtonPane.height
+                width: itemWidth - rightPane.width - loadButtonPane.width
 
-                Label {
+                item: Label {
                     elide: Text.ElideRight
                     text: itemTitle
                     verticalAlignment: Text.AlignVCenter
-                    leftPadding: itemNameEdit.leftPadding
-                    rightPadding: itemNameEdit.rightPadding
-                }
-
-                TextField {
-                    id: itemNameEdit
-                    verticalAlignment: Text.AlignVCenter
-                    onAccepted: editAccepted()
-                    Keys.onEscapePressed: editCanceled()
                 }
             }
             Pane {

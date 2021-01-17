@@ -7,7 +7,7 @@ ToolBar {
     property alias toolModel: toolButtons.model
     property LoadListView listView: null
     property int textInputIndex: -1
-    property alias textInput: textInputItem.itemTitle
+    property alias textInput: textInputItem.editText
     signal textInputClicked()
 
     function textInputShow(show)
@@ -45,14 +45,13 @@ ToolBar {
                 }
             }
         }
-        LoadListItem {
+        LoadListInputItem {
             id: textInputItem
             visible: textInputIndex !== -1
             anchors.horizontalCenter: parent.horizontalCenter
             width: toolbar.width
             itemWidth: rowWidth
             loadIconSource: textInputIndex !== -1 ? toolModel.get(textInputIndex).iconSource : ""
-            selectorVisible: false
             lineColor: toolbar.background.color
             onEditAccepted: textInputClicked()
             onEditCanceled: textInputShow(false)

@@ -22,6 +22,8 @@ MainScreenDateTimeBox 1.0 MainScreenDateTimeBox.qml
 MainScreenDetailsSwitch 1.0 MainScreenDetailsSwitch.qml
 ScreenToolBar 1.0 ScreenToolBar.qml
 LoadListItem 1.0 LoadListItem.qml
+LoadListCheckItem 1.0 LoadListCheckItem.qml
+LoadListInputItem 1.0 LoadListInputItem.qml
 LoadListView 1.0 LoadListView.qml
 LoadListToolBar 1.0 LoadListToolBar.qml
 MessagePopup 1.0 MessagePopup.qml
