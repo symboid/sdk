@@ -22,18 +22,17 @@ Column {
     MouseArea {
         anchors.left: parent.left
         anchors.right: parent.right
-        height: loadButtonPane.height
+        height: itemRow.height
         onClicked: itemClicked()
         onDoubleClicked: buttonClicked()
 
         Row {
+            id: itemRow
             layoutDirection: revertedLayout ? Qt.RightToLeft : Qt.LeftToRight
             anchors.horizontalCenter: parent.horizontalCenter
             Pane {
                 id: rightPane
                 anchors.verticalCenter: parent.verticalCenter
-                height: loadButtonPane.height
-                width: loadButtonPane.height
                 background: null
                 ItemSlot {
                     id: rightItemSlot
@@ -42,7 +41,7 @@ Column {
             ItemSlot {
                 id: mainItemSlot
                 anchors.verticalCenter: parent.verticalCenter
-                height: loadButtonPane.height
+                height: item !== null && item.height != 0 ? item.height : loadButtonPane.height
                 width: itemWidth - rightPane.width - loadButtonPane.width
 
                 item: Label {

@@ -7,14 +7,9 @@ LoadListItem {
     signal editAccepted
     signal editCanceled
 
-    mainItem: Item {
-        TextField {
-            id: itemNameEdit
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.right: parent.right
-            onAccepted: editAccepted()
-            Keys.onEscapePressed: editCanceled()
-        }
+    mainItem: TextField {
+        id: itemNameEdit
+        onAccepted: editAccepted()
+        Keys.onEscapePressed: editCanceled()
     }
 }
