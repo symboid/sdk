@@ -1,10 +1,9 @@
 
-import QtQuick 2.12
-import QtQuick.Layouts 1.12
+import QtQuick.Controls 2.5
 
-StackLayout {
-    property Item item: null
-    onItemChanged: children = item !== null ? [ item ] : []
-    width: item !== null ? item.width : 0
-    height: item !== null ? item.height : 0
+Pane {
+    id: slotPane
+    property alias item: slotPane.contentItem
+    background: null
+    padding: 0
 }

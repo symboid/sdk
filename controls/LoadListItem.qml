@@ -34,14 +34,13 @@ Column {
                 id: rightPane
                 anchors.verticalCenter: parent.verticalCenter
                 background: null
-                ItemSlot {
+                contentItem: ItemSlot {
                     id: rightItemSlot
                 }
             }
             ItemSlot {
                 id: mainItemSlot
                 anchors.verticalCenter: parent.verticalCenter
-                height: item !== null && item.height != 0 ? item.height : loadButtonPane.height
                 width: itemWidth - rightPane.width - loadButtonPane.width
 
                 item: Label {
@@ -54,7 +53,7 @@ Column {
                 id: loadButtonPane
                 anchors.verticalCenter: parent.verticalCenter
                 background: null
-                RoundButton {
+                contentItem: RoundButton {
                     id: loadButton
                     icon.source: revertedLayout ? "/icons/br_prev_icon&24.png" : "/icons/br_next_icon&24.png"
                     visible: icon.source !== ""
