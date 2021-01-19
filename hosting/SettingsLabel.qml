@@ -6,18 +6,24 @@ SettingsItem {
     property alias title: titleLabel.text
     property alias text: valueLabel.text
 
-    setting: Item {
-        height: width < titleLabel.width + valueLabel.width + 2*metricsPane.padding ?
-                    titleLabel.height + valueLabel.height + metricsPane.padding : titleLabel.height
+    setting: Flow {
+        id: labelFlow
+        readonly property bool wrapped: width < titleLabel.width + valueLabel.width + 2*metricsPane.padding
         readonly property Item metricsPane: Pane {
         }
         Label {
             id: titleLabel
         }
+        Item {
+            width: labelFlow.wrapped ? cellWidth - titleLabel.width : 0
+            height: 1
+        }
+        Item {
+            width: labelFlow.wrapped ? cellWidth - valueLabel.width : cellWidth - (titleLabel.width + valueLabel.width)
+            height: 1
+        }
         Label {
             id: valueLabel
-            anchors.right: parent.right
-            anchors.bottom: parent.bottom
             font.bold: true
         }
     }
