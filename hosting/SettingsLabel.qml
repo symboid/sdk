@@ -8,18 +8,19 @@ SettingsItem {
 
     setting: Flow {
         id: labelFlow
-        readonly property bool wrapped: width < titleLabel.width + valueLabel.width + 2*metricsPane.padding
+        readonly property bool wrapped: width < titleLabel.width + valueLabel.width + spacing
         readonly property Item metricsPane: Pane {
         }
+        spacing: metricsPane.padding
         Label {
             id: titleLabel
         }
         Item {
-            width: labelFlow.wrapped ? cellWidth - titleLabel.width : 0
+            width: labelFlow.wrapped ? cellWidth - titleLabel.width - labelFlow.spacing : 0
             height: 1
         }
         Item {
-            width: labelFlow.wrapped ? cellWidth - valueLabel.width : cellWidth - (titleLabel.width + valueLabel.width)
+            width: labelFlow.wrapped ? cellWidth - valueLabel.width - labelFlow.spacing : cellWidth - (titleLabel.width + valueLabel.width + 2*labelFlow.spacing)
             height: 1
         }
         Label {
