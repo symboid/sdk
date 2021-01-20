@@ -11,6 +11,8 @@ Column {
     property alias loadIconSource: loadButton.icon.source
     property alias lineColor: line.color
     property bool revertedLayout: false
+    readonly property alias defaultRowHeight: loadButtonPane.width
+    readonly property int mainItemSpace: itemWidth - rightPane.width - loadButtonPane.width
     signal itemClicked
     signal buttonClicked
 
@@ -41,7 +43,7 @@ Column {
             ItemSlot {
                 id: mainItemSlot
                 anchors.verticalCenter: parent.verticalCenter
-                width: itemWidth - rightPane.width - loadButtonPane.width
+                width: mainItemSpace
 
                 item: Label {
                     elide: Text.ElideRight

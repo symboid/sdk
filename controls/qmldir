@@ -29,3 +29,4 @@ LoadListToolBar 1.0 LoadListToolBar.qml
 MessagePopup 1.0 MessagePopup.qml
 MessageDialog 1.0 MessageDialog.qml
 HorizontalLine 1.0 HorizontalLine.qml
+VerticalLine 1.0 VerticalLine.qml
