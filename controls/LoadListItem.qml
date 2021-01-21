@@ -5,14 +5,15 @@ import QtQuick.Layouts 1.12
 
 Column {
     property alias mainItem: mainItemSlot.item
-    property alias rightItem: rightItemSlot.item
+    property alias leftItem: leftItemSlot.item
     property string itemTitle: ""
     property int itemWidth: 200
     property alias loadIconSource: loadButton.icon.source
     property alias lineColor: line.color
     property bool revertedLayout: false
-    readonly property alias defaultRowHeight: loadButtonPane.width
-    readonly property int mainItemSpace: itemWidth - rightPane.width - loadButtonPane.width
+    readonly property alias leftItemSpace: leftPane.width
+    readonly property alias loadButtonSpace: loadButtonPane.width
+    readonly property int mainItemSpace: itemWidth - leftItemSpace - loadButtonSpace
     signal itemClicked
     signal buttonClicked
 
@@ -33,11 +34,11 @@ Column {
             layoutDirection: revertedLayout ? Qt.RightToLeft : Qt.LeftToRight
             anchors.horizontalCenter: parent.horizontalCenter
             Pane {
-                id: rightPane
+                id: leftPane
                 anchors.verticalCenter: parent.verticalCenter
                 background: null
                 contentItem: ItemSlot {
-                    id: rightItemSlot
+                    id: leftItemSlot
                 }
             }
             ItemSlot {
@@ -65,11 +66,10 @@ Column {
         }
     }
 
-    Rectangle {
+    HorizontalLine {
         id: line
         anchors.left: parent.left
         anchors.right: parent.right
-        height: 1
         color: "lightgray"
     }
 }

@@ -7,7 +7,7 @@ LoadListItem {
     property alias selectorVisible: selected.visible
     property bool selectable: false
 
-    rightItem: CheckBox {
+    leftItem: CheckBox {
         id: selected
     }
 }
