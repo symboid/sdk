@@ -16,7 +16,7 @@ Pane {
             landscapeSpace < itemHeight ? metrics.screenHeight :
                                           landscapeSpace
 
-    ItemSlot {
+    ItemSlotExpanding {
         id: itemSlot
         anchors.left: parent.left
         anchors.right: parent.right

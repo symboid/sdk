@@ -8,6 +8,7 @@ LabelBox 1.0 LabelBox.qml
 DateCoordBox 1.0 DateCoordBox.qml
 TimeCoordBox 1.0 TimeCoordBox.qml
 ItemSlot 1.0 ItemSlot.qml
+ItemSlotExpanding 1.0 ItemSlotExpanding.qml
 IndirectContainer 1.0 IndirectContainer.qml
 ProcessView 1.0 ProcessView.qml
 ProcessPage 1.0 ProcessPage.qml

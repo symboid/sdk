@@ -32,6 +32,7 @@
         <file>LoadListCheckItem.qml</file>
         <file>LoadListInputItem.qml</file>
         <file>VerticalLine.qml</file>
+        <file>ItemSlotExpanding.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/arrow_left_icon&amp;24.png</file>
