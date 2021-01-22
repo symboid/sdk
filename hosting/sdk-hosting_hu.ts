@@ -71,7 +71,7 @@
 <context>
     <name>SettingsScreen</name>
     <message>
-        <location filename="SettingsScreen.qml" line="54"/>
+        <location filename="SettingsScreen.qml" line="53"/>
         <source>Settings</source>
         <translation>Beállítások</translation>
     </message>

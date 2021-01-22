@@ -71,7 +71,7 @@ SettingsTreeNode {
                     font.italic: true
                 }
             }
-            ItemSlotExpanding {
+            ItemSlot {
                 id: rightItemSlot
                 item: rightItem
             }
