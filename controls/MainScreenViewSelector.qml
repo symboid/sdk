@@ -2,42 +2,34 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
 
-Item {
+Row {
     property var viewNames: []
     property int currentIndex: 0
+    readonly property int minWidth: prevButton.width + viewName.width + nextButton.width
 
-    height: prevButton.height
     RoundButton {
         id: prevButton
-        anchors.left: parent.left
+        anchors.verticalCenter: parent.verticalCenter
         icon.source: "/icons/br_prev_icon&24.png"
         enabled: currentIndex > 0
         onClicked: currentIndex--
     }
-    Rectangle {
-        anchors.left: prevButton.right
-        anchors.right: viewName.left
+    HorizontalLine {
         anchors.verticalCenter: parent.verticalCenter
-        anchors.margins: 10
-        height: 1
-        color: "lightgrey"
+        width: (parent.width - minWidth) / 2
     }
     Label {
         id: viewName
-        anchors.centerIn: parent
+        anchors.verticalCenter: parent.verticalCenter
         text: viewNames[currentIndex]
     }
-    Rectangle {
-        anchors.left: viewName.right
-        anchors.right: nextButton.left
+    HorizontalLine {
         anchors.verticalCenter: parent.verticalCenter
-        anchors.margins: 10
-        height: 1
-        color: "lightgrey"
+        width: (parent.width - minWidth) / 2
     }
     RoundButton {
         id: nextButton
-        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
         icon.source: "/icons/br_next_icon&24.png"
         enabled: currentIndex < (viewNames.length - 1)
         onClicked: currentIndex++
