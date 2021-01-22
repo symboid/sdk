@@ -9,6 +9,9 @@ IndirectContainer {
     container: firstPane
     reparentFrom: 2
 
+    property bool withBackButton: false
+    signal backButtonClicked
+
     ToolBar {
         id: toolbar
         anchors {
@@ -18,8 +21,17 @@ IndirectContainer {
         }
         ToolButton {
             icon.source: "/icons/br_prev_icon&32.png"
-            enabled: settingsView.depth > 1
-            onClicked: settingsView.pop()
+            enabled: settingsView.depth > 1 || withBackButton
+            onClicked: {
+                if (settingsView.depth > 1)
+                {
+                    settingsView.pop()
+                }
+                else if (withBackButton)
+                {
+                    backButtonClicked()
+                }
+            }
         }
         Label {
             anchors.centerIn: parent

@@ -21,22 +21,15 @@ SettingsTreeNode {
     property Item infoItem: Item {
         width: defaultItemHeight
         height: defaultItemHeight
-        Image {
+        ToolButton {
             id: infoButton
             anchors.centerIn: parent
-            source: "/icons/info_icon&24.png"
-            height: 24
-            width: 24
-            property bool checked: false
-            MouseArea {
-                anchors.fill: parent
-                onClicked: parent.checked = !parent.checked
-            }
+            icon.source: "/icons/info_icon&24.png"
+            checkable: true
             opacity: 0.25
             smooth: true
         }
     }
-
     Pane {
         id: itemPane
         anchors.horizontalCenter: parent.horizontalCenter
@@ -78,7 +71,7 @@ SettingsTreeNode {
                     font.italic: true
                 }
             }
-            ItemSlot {
+            ItemSlotExpanding {
                 id: rightItemSlot
                 item: rightItem
             }

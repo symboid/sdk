@@ -71,7 +71,7 @@
 <context>
     <name>SettingsScreen</name>
     <message>
-        <location filename="SettingsScreen.qml" line="42"/>
+        <location filename="SettingsScreen.qml" line="54"/>
         <source>Settings</source>
         <translation>Beállítások</translation>
     </message>
@@ -168,42 +168,37 @@
     </message>
     <message>
         <location filename="SoftwarePane.qml" line="108"/>
-        <source>Geographic database</source>
-        <translation>Földrajzi adatbázis</translation>
-    </message>
-    <message>
-        <location filename="SoftwarePane.qml" line="111"/>
         <source>Update method</source>
         <oldsource>Update</oldsource>
         <translation>Frissítési módszer</translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="117"/>
+        <location filename="SoftwarePane.qml" line="114"/>
         <source>Automated</source>
         <translation>Automatikus</translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="121"/>
+        <location filename="SoftwarePane.qml" line="118"/>
         <source>Download and integration of new software revision will be performed automatically. New features will be available after application relaunch.</source>
         <translation>Az új szoftverkiadásnak a letöltése és telepítése automatikusan megy végbe. Az új funkciók egy újraindítás után lesznek elérhetők.</translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="125"/>
+        <location filename="SoftwarePane.qml" line="122"/>
         <source>Manual</source>
         <translation>Kézi felügyelettel</translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="128"/>
+        <location filename="SoftwarePane.qml" line="125"/>
         <source>Software updates will be prompted and confirmed. New features and bugfixes are available after update process.</source>
         <translation>A szoftverfrissítést jóvá kell hagyni. Új funkciók és javítások a frissítési folyamat után jutnak érvényre.</translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="132"/>
+        <location filename="SoftwarePane.qml" line="129"/>
         <source>Switched off</source>
         <translation>Kikapcsolva</translation>
     </message>
     <message>
-        <location filename="SoftwarePane.qml" line="135"/>
+        <location filename="SoftwarePane.qml" line="132"/>
         <source>No software updates will be executed at all. No new features and bugfixes are available.</source>
         <translation>Egyáltalán nem kerül telepítésre semmilyen szoftverfrissítés. Nincsenek új funkciók és hibajavítások.</translation>
     </message>
