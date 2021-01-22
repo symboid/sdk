@@ -42,7 +42,7 @@ SettingsTreeNode {
             ItemSlot {
                 id: leftItemSlot
                 anchors.verticalCenter: parent.verticalCenter
-                item: leftItem
+                contentItem: leftItem
             }
             Column {
                 id: itemColumn
@@ -50,7 +50,7 @@ SettingsTreeNode {
                 spacing: itemPane.padding
                 ItemSlot {
                     id: settingSlot
-                    item: setting
+                    contentItem: setting
                     width: cellWidth - (leftItemSlot.width > 0 ? leftItemSlot.width + parent.spacing : 0)
                     - (rightItemSlot.width > 0 ? rightItemSlot.width + parent.spacing : 0)
                 }
@@ -73,7 +73,7 @@ SettingsTreeNode {
             }
             ItemSlot {
                 id: rightItemSlot
-                item: rightItem
+                contentItem: rightItem
             }
         }
     }

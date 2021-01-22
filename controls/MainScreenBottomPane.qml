@@ -21,6 +21,6 @@ Pane {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        item: controlItem
+        contentItem: controlItem
     }
 }
