@@ -49,6 +49,8 @@ QString QSoftwareUpdate::platform() const
     return "win_x86";
 #elif defined Q_OS_ANDROID
     return "android";
+#elif defined Q_OS_WASM
+    return "wasm_32";
 #elif defined Q_OS_LINUX
     return "linux";
 #elif defined Q_OS_MACOS

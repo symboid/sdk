@@ -12,6 +12,7 @@ QRestTableJSON::QRestTableJSON(QObject* parent)
 
 void QRestTableJSON::fetchResult(QNetworkReply* reply)
 {
+    mRowCount = 0;
     if (reply)
     {
         QJsonDocument replyDocument = QJsonDocument::fromJson(reply->readAll());

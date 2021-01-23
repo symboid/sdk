@@ -15,15 +15,27 @@ QString QSoftwareConfig::qt_version_string() const
 
 bool QSoftwareConfig::ssl_supported() const
 {
+#ifdef QT_NO_SSL
+    return false;
+#else
     return QSslSocket::supportsSsl();
+#endif
 }
 
 QString QSoftwareConfig::ssl_lib_version_compiletime() const
 {
+#ifdef QT_NO_SSL
+    return "-";
+#else
     return QSslSocket::sslLibraryBuildVersionString();
+#endif
 }
 
 QString QSoftwareConfig::ssl_lib_version_runtime() const
 {
+#ifdef QT_NO_SSL
+    return "-";
+#else
     return QSslSocket::sslLibraryVersionString();
+#endif
 }

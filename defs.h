@@ -11,13 +11,22 @@
 #endif // _MSV_VER
 
 /// Platform macros.
-#if defined __APPLE__
+#if defined __EMSCRIPTEN__
+#   define SY_PLATFORM_IS_OSX 0
+#   define SY_PLATFORM_IS_POSIX 1
+#   define SY_PLATFORM_IS_WIN 0
+#   define SY_PLATFORM_IS_WIN32 0
+#   define SY_PLATFORM_IS_WIN64 0
+#   define SY_PLATFORM_IS_ANDROID 0
+#   define SY_PLATFORM_IS_WASM 1
+#elif defined __APPLE__
 #   define SY_PLATFORM_IS_OSX 1
 #   define SY_PLATFORM_IS_POSIX 1
 #   define SY_PLATFORM_IS_WIN 0
 #   define SY_PLATFORM_IS_WIN32 0
 #   define SY_PLATFORM_IS_WIN64 0
 #   define SY_PLATFORM_IS_ANDROID 0
+#   define SY_PLATFORM_IS_WASM 0
 #elif defined _WIN64
 #   define SY_PLATFORM_IS_OSX 0
 #   define SY_PLATFORM_IS_POSIX 0
@@ -25,6 +34,7 @@
 #   define SY_PLATFORM_IS_WIN32 0
 #   define SY_PLATFORM_IS_WIN64 1
 #   define SY_PLATFORM_IS_ANDROID 0
+#   define SY_PLATFORM_IS_WASM 0
 #elif defined _WIN32
 #   define SY_PLATFORM_IS_OSX 0
 #   define SY_PLATFORM_IS_POSIX 0
@@ -32,6 +42,7 @@
 #   define SY_PLATFORM_IS_WIN32 1
 #   define SY_PLATFORM_IS_WIN64 0
 #   define SY_PLATFORM_IS_ANDROID 0
+#   define SY_PLATFORM_IS_WASM 0
 #elif defined ANDROID || defined __ANDROID__
 #   define SY_PLATFORM_IS_OSX 0
 #   define SY_PLATFORM_IS_POSIX 1
@@ -39,6 +50,7 @@
 #   define SY_PLATFORM_IS_WIN32 0
 #   define SY_PLATFORM_IS_WIN64 0
 #   define SY_PLATFORM_IS_ANDROID 1
+#   define SY_PLATFORM_IS_WASM 0
 #elif defined __linux__
 #   define SY_PLATFORM_IS_OSX 0
 #   define SY_PLATFORM_IS_POSIX 1
@@ -46,6 +58,7 @@
 #   define SY_PLATFORM_IS_WIN32 0
 #   define SY_PLATFORM_IS_WIN64 0
 #   define SY_PLATFORM_IS_ANDROID 0
+#   define SY_PLATFORM_IS_WASM 0
 #else
 #   error "Unsupported Platform!"
 #endif
