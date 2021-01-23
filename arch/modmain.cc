@@ -18,11 +18,13 @@ mod_main::mod_main(const char* company_name, const char* app_name)
     {
         QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
     }
+#ifndef Q_OS_WASM
     QSettings settings(QSettings::UserScope, company_name, app_name);
     if (settings.value("ui/high_dpi_scaling", false).toBool())
     {
         QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     }
+#endif
 }
 
 mod_main::~mod_main()

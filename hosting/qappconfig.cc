@@ -7,21 +7,25 @@
 
 QAppConfig::QAppConfig(QObject* parent) : QConfigNode(parent)
 {
+#ifndef Q_OS_WASM
     QSettings settings;
     ui()->loadFromSettings(&settings);
     software()->loadFromSettings(&settings);
+#endif
 }
 
 QAppConfig::~QAppConfig()
 {
+#ifndef Q_OS_WASM
     QSettings settings;
     ui()->saveToSettings(&settings);
     software()->saveToSettings(&settings);
+#endif
 }
 
 void QAppConfig::restartApp()
 {
-#ifndef Q_OS_IOS
+#if !defined(Q_OS_IOS) && !defined(Q_OS_WASM)
     QSettings settings;
     ui()->saveToSettings(&settings);
     software()->saveToSettings(&settings);
