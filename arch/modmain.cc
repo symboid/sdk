@@ -33,8 +33,10 @@ mod_main::~mod_main()
 
 void mod_main::init_file_log()
 {
+#ifndef Q_OS_WASM
     _M_file_log = new file_log();
     g_logs.push_back(_M_file_log);
+#endif
 }
 
 arh_ns_end
