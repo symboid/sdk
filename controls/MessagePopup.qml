@@ -44,7 +44,7 @@ Drawer {
             ItemSlot {
                 id: messageIndicatorSlot
                 anchors.verticalCenter: parent.verticalCenter
-                item: messageIndicator
+                contentItem: messageIndicator
             }
             Label {
                 id: messageLabel

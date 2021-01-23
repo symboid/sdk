@@ -5,22 +5,26 @@ import Symboid.Sdk.Controls 1.0
 
 Pane {
     property Item referenceItem: Item {}
-    property Item controlItem: Item {}
+    property alias controlItem: itemSlot.contentItem
 
     width: metrics.paramSectionWidth
 
     readonly property int itemHeight: itemSlot.height + 2*padding
     readonly property int landscapeSpace: metrics.screenHeight - (referenceItem.y + referenceItem.height)
 
-    height:        !metrics.isLandscape ? itemHeight :
-            landscapeSpace < itemHeight ? metrics.screenHeight :
-                                          landscapeSpace
+    contentItem: Column {
+        Item {
+            width: 1
+            height:        !metrics.isLandscape ? 0 :
+                    landscapeSpace < itemHeight ? metrics.screenHeight - itemHeight :
+                                                  landscapeSpace - itemHeight
+        }
 
-    ItemSlotExpanding {
-        id: itemSlot
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        item: controlItem
+        ItemSlotExpanding {
+            id: itemSlot
+            anchors.left: parent.left
+            anchors.right: parent.right
+            contentItem: controlItem
+        }
     }
 }

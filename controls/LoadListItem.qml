@@ -3,8 +3,8 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 
 Column {
-    property alias mainItem: mainItemSlot.item
-    property alias leftItem: leftItemSlot.item
+    property alias mainItem: mainItemSlot.contentItem
+    property alias leftItem: leftItemSlot.contentItem
     property string itemTitle: ""
     property int itemWidth: 200
     property alias loadIconSource: loadButton.icon.source
@@ -45,7 +45,7 @@ Column {
                 anchors.verticalCenter: parent.verticalCenter
                 width: mainItemSpace
 
-                item: Label {
+                contentItem: Label {
                     elide: Text.ElideRight
                     text: itemTitle
                     verticalAlignment: Text.AlignVCenter
