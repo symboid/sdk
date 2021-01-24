@@ -8,6 +8,12 @@ QUiConfig::QUiConfig(const QString& id, QAbstractConfig* parentNode, const char*
 {
 }
 
+#if defined(Q_OS_WASM) || defined(Q_OS_ANDROID)
+const char* QUiConfig::DEFAULT_STYLE = "Material";
+#else
+const char* QUiConfig::DEFAULT_STYLE = "Universal";
+#endif
+
 int QUiConfig::styleIndex() const
 {
     const QString currentStyle = style();

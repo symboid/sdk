@@ -11,7 +11,8 @@ class SDK_HOSTING_API QUiConfig : public QConfigNode
 public:
     QUiConfig(const QString& id, QAbstractConfig* parentNode, const char* parentSignal);
 
-    Q_CONFIG_PROPERTY(QString, style, "Universal")
+    static const char* DEFAULT_STYLE;
+    Q_CONFIG_PROPERTY(QString, style, DEFAULT_STYLE)
 
     Q_PROPERTY(int styleIndex READ styleIndex NOTIFY styleIndexChanged)
     int styleIndex() const;

@@ -16,7 +16,7 @@ QString QSoftwareConfig::qt_version_string() const
 bool QSoftwareConfig::ssl_supported() const
 {
 #ifdef QT_NO_SSL
-    return false;
+    return true;
 #else
     return QSslSocket::supportsSsl();
 #endif
