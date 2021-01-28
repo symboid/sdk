@@ -33,6 +33,7 @@
         <file>LoadListInputItem.qml</file>
         <file>VerticalLine.qml</file>
         <file>ItemSlotExpanding.qml</file>
+        <file>MainScreenMetrics.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/arrow_left_icon&amp;24.png</file>

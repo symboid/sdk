@@ -3,22 +3,9 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 
 IndirectContainer {
-
-    readonly property QtObject metrics: QtObject {
-        readonly property int screenWidth: width
-        readonly property int screenHeight: height
-        readonly property bool isLandscape: screenWidth > screenHeight
-        readonly property int mandalaSize: isLandscape ? screenHeight : screenWidth
-        readonly property int screenSize: isLandscape ? screenWidth : screenHeight
-        readonly property int restSize: screenSize - mandalaSize
-
-        readonly property int minParamSectionWidth: 250
-        readonly property int paramSectionWidth:
-            isLandscape ? ((restSize / 2) < minParamSectionWidth ? minParamSectionWidth : restSize / 2)
-                        : ((mandalaSize / 2) < minParamSectionWidth ? mandalaSize : mandalaSize / 2)
-
-        readonly property int horzMandalaSpace: screenWidth - 2 * minParamSectionWidth
-        readonly property bool isTransLandscape: isLandscape && horzMandalaSpace < mandalaSize
+    property MainScreenMetrics metrics: MainScreenMetrics {
+        screenWidth: width
+        screenHeight: height
     }
 
     container: screenFlow
