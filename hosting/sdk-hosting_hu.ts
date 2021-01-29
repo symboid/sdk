@@ -50,12 +50,12 @@
 <context>
     <name>LoadingPage</name>
     <message>
-        <location filename="LoadingPage.qml" line="15"/>
+        <location filename="LoadingPage.qml" line="20"/>
         <source>Software update is available. Do you want to process?</source>
         <translation>Van elérhető szoftverfrissítés. Szeretné végrehajtani?</translation>
     </message>
     <message>
-        <location filename="LoadingPage.qml" line="47"/>
+        <location filename="LoadingPage.qml" line="52"/>
         <source>Loading...</source>
         <translation>Betöltés...</translation>
     </message>

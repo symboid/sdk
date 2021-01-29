@@ -18,6 +18,7 @@ ApplicationWindow {
         id: loadProcess
         anchors.fill: parent
         LoadingPage {
+            id: loadingPage
             onLoadMainPage: {
                 console.info("Loading main page...")
                 mainScreenLoader.source = mainPageUrl
@@ -39,6 +40,7 @@ ApplicationWindow {
             onLoaded: {
                 console.info("Main page loaded.")
                 loadProcess.currentIndex = 2
+                loadingPage.stopAnimation()
             }
         }
     }

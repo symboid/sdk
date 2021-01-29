@@ -2,8 +2,8 @@
 import QtQuick 2.12
 
 QtObject {
-    required property int screenWidth
-    required property int screenHeight
+    property int screenWidth: 0
+    property int screenHeight: 0
 
     readonly property bool isLandscape: screenWidth > screenHeight
     readonly property bool isPortrait: !isLandscape

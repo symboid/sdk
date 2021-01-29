@@ -10,6 +10,11 @@ ProcessPage {
     signal loadMainPage
     signal loadSoftwareUpdatePage
 
+    function stopAnimation()
+    {
+        loadingAnimation.running = false
+    }
+
     MessageDialog {
         id: softwareUpdateConfirm
         message: qsTr("Software update is available. Do you want to process?")
@@ -59,6 +64,7 @@ ProcessPage {
             Pane {
                 anchors.horizontalCenter: parent.horizontalCenter
                 BusyIndicator {
+                    id: loadingAnimation
                     running: true
                 }
             }
