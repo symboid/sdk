@@ -21,7 +21,6 @@ MultiNumberBox {
     }
 
     property bool showSeconds: true
-    onShowSecondsChanged: second = 0
 
     property CircularSpinBox dayLink: circularLink
 
