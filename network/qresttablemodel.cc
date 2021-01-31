@@ -107,6 +107,16 @@ QHash<int, QByteArray> QRestTableModel::roleNames() const
     return roles;
 }
 
+const QRestTableJSON& QRestTableModel::restTable() const
+{
+    return mRestTable;
+}
+
+const QStringList& QRestTableModel::columnNames() const
+{
+    return mColumnNames;
+}
+
 void QRestTableModel::setColumnNames(const QStringList &columnNames)
 {
     if (mColumnNames != columnNames)

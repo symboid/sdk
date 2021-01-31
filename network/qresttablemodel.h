@@ -48,9 +48,12 @@ public:
 private:
     QRestCaller* restCaller() override { return &mRestTable; }
     QRestTableJSON mRestTable;
+public:
+    const QRestTableJSON& restTable() const;
 
 public:
-    Q_PROPERTY(QStringList columnNames MEMBER mColumnNames WRITE setColumnNames NOTIFY columnNamesChanged)
+    Q_PROPERTY(QStringList columnNames READ columnNames WRITE setColumnNames NOTIFY columnNamesChanged)
+    const QStringList& columnNames() const;
     void setColumnNames(const QStringList& columnNames);
 private:
     QStringList mColumnNames;
