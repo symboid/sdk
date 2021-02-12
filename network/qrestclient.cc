@@ -127,7 +127,8 @@ QNetworkRequest QRestClient::buildRequest(const QString& path) const
 void QRestClient::callGet(QRestCaller* caller, const QString& path)
 {
     emit caller->beginUpdate();
-    clearConnectionCache();
+// destroys communication in case of subsequent/overlapping/paralel calls
+//    clearConnectionCache();
     QNetworkRequest request = buildRequest(path);
     caller->setReply(get(request));
 }

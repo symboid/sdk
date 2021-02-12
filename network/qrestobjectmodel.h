@@ -57,7 +57,7 @@ private:
 public:
     Q_PROPERTY(bool isValid READ isValid NOTIFY isValidChanged)
     Q_PROPERTY(QJsonObject restObject READ restObject NOTIFY restObjectChanged)
-private:
+protected:
     bool isValid() const;
     QJsonObject restObject() const;
 signals:
