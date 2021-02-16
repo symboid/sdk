@@ -1,5 +1,4 @@
 module Symboid.Sdk.Hosting
-SettingsPage 1.0 SettingsPage.qml
 SettingsScreen 1.0 SettingsScreen.qml
 SettingsPane 1.0 SettingsPane.qml
 SettingsGroup 1.0 SettingsGroup.qml

@@ -16,7 +16,6 @@
         <file>SettingsSwitch.qml</file>
         <file>SettingsRadioButton.qml</file>
         <file>MainAppWindow.qml</file>
-        <file>SettingsPage.qml</file>
         <file>SoftwareUpdatePage.qml</file>
         <file>SoftwareUpdateObject.qml</file>
         <file>AppearanceSettingsGroup.qml</file>

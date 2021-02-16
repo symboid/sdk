@@ -32,3 +32,13 @@ MessageDialog 1.0 MessageDialog.qml
 HorizontalLine 1.0 HorizontalLine.qml
 VerticalLine 1.0 VerticalLine.qml
 ExpandButton 1.0 ExpandButton.qml
+ControlListPane 1.0 ControlListPane.qml
+ControlListScreen 1.0 ControlListScreen.qml
+ControlListGroup 1.0 ControlListGroup.qml
+ControlListGroupFixed 1.0 ControlListGroupFixed.qml
+ControlListGroupExpanding 1.0 ControlListGroupExpanding.qml
+ControlListGroupLink 1.0 ControlListGroupLink.qml
+ControlListTreeNode 1.0 ControlListTreeNode.qml
+ControlListItem 1.0 ControlListItem.qml
+ControlListLabel 1.0 ControlListLabel.qml
+ControlListView 1.0 ControlListView.qml
