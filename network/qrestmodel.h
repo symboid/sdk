@@ -25,17 +25,16 @@ signals:
 
 public:
     Q_PROPERTY(bool interactive MEMBER mInteractive WRITE setInteractive NOTIFY interactiveChanged)
-protected:
     void setInteractive(bool interactive);
-private:
+protected:
     bool mInteractive;
 signals:
     void interactiveChanged();
 
 public:
     Q_PROPERTY(QString operation MEMBER mOperation WRITE setOperation NOTIFY operationChanged)
-protected:
     void setOperation(const QString& operation);
+protected:
     QString mOperation;
 signals:
     void operationChanged();
@@ -49,7 +48,6 @@ signals:
 
 public:
     Q_PROPERTY(bool isResultCompact WRITE setResultCompact)
-private:
     void setResultCompact(bool isResultCompact);
 };
 

@@ -6,13 +6,11 @@
 
 QRestTableJSON::QRestTableJSON(QObject* parent)
     : QRestCaller(parent)
-    , mRowCount(0)
 {
 }
 
 void QRestTableJSON::fetchResult(QNetworkReply* reply)
 {
-    mRowCount = 0;
     if (reply)
     {
         QJsonDocument replyDocument = QJsonDocument::fromJson(reply->readAll());
@@ -41,24 +39,13 @@ void QRestTableJSON::fetchResult(QNetworkReply* reply)
                 QJsonObject rootObject(replyDocument.object());
                 mResultArray = rootObject.begin()->toArray();
             }
-            mRowCount = mResultArray.count();
         }
     }
 }
 
-int QRestTableJSON::rowCount() const
+const QJsonArray& QRestTableJSON::resultArray() const
 {
-    return mRowCount;
-}
-
-QVariant QRestTableJSON::value(int rowIndex, const QString& columnName) const
-{
-    return mResultArray[rowIndex].toObject().value(columnName).toVariant();
-}
-
-QJsonObject QRestTableJSON::rowObject(int rowIndex) const
-{
-    return mResultArray[rowIndex].toObject();
+    return mResultArray;
 }
 
 QRestTableModel::QRestTableModel(QObject* parent)
@@ -75,7 +62,7 @@ QRestTableModel::QRestTableModel(QObject* parent)
 int QRestTableModel::rowCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent)
-    return mRestTable.rowCount() + (mExtraValue != "" ? 1 : 0);
+    return mRestTable.resultArray().size() + (mExtraValue != "" ? 1 : 0);
 }
 
 QVariant QRestTableModel::data(const QModelIndex& index, int role) const
@@ -92,7 +79,7 @@ QVariant QRestTableModel::data(const QModelIndex& index, int role) const
     else
     {
         QString columnName = mColumnNames.at(role - Qt::UserRole);
-        return mRestTable.value(rowIndex, columnName);
+        return mRestTable.resultArray()[rowIndex].toObject().value(columnName).toVariant();
     }
 }
 
@@ -128,17 +115,18 @@ void QRestTableModel::setColumnNames(const QStringList &columnNames)
 
 int QRestTableModel::objectCount() const
 {
-    return mRestTable.rowCount();
+    return mRestTable.resultArray().size();
 }
 
 QJsonObject QRestTableModel::object(int objectIndex) const
 {
-    return mRestTable.rowObject(objectIndex);
+    return mRestTable.resultArray()[objectIndex].toObject();
 }
 
 QJsonObject QRestTableModel::firstObject() const
 {
-    return mRestTable.rowCount() > 0 ? mRestTable.rowObject(0) : QJsonObject();
+    const QJsonArray& resultArray(mRestTable.resultArray());
+    return resultArray.size() > 0 ? resultArray[0].toObject() : QJsonObject();
 }
 
 void QRestTableModel::setExtraValue(const QString& extraValue)

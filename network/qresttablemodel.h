@@ -19,12 +19,8 @@ private:
 
 private:
     QJsonArray mResultArray;
-    int mRowCount;
-
 public:
-    int rowCount() const;
-    QVariant value(int rowIndex, const QString& columnName) const;
-    QJsonObject rowObject(int rowIndex) const;
+    const QJsonArray& resultArray() const;
 
 public:
     QString mArrayPath;
