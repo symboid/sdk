@@ -61,17 +61,9 @@
     </message>
 </context>
 <context>
-    <name>SettingsPage</name>
-    <message>
-        <location filename="SettingsPage.qml" line="28"/>
-        <source>Settings</source>
-        <translation>Beállítások</translation>
-    </message>
-</context>
-<context>
     <name>SettingsScreen</name>
     <message>
-        <location filename="SettingsScreen.qml" line="53"/>
+        <location filename="SettingsScreen.qml" line="6"/>
         <source>Settings</source>
         <translation>Beállítások</translation>
     </message>

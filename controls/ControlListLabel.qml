@@ -6,7 +6,7 @@ ControlListItem {
     property alias title: titleLabel.text
     property alias text: valueLabel.text
 
-    setting: Flow {
+    mainItem: Flow {
         id: labelFlow
         readonly property bool wrapped: width < titleLabel.width + valueLabel.width + spacing
         readonly property Item metricsPane: Pane {

@@ -4,12 +4,12 @@ import QtQuick.Controls 2.5
 import Symboid.Sdk.Controls 1.0
 
 ControlListTreeNode {
-    property Item setting: Item {}
+    property Item mainItem: Item {}
     property Item leftItem: Item { height: defaultItemHeight; width: indented ? defaultItemHeight : 0 }
     property Item rightItem: hint !== "" ? infoItem : emptyItem
     property alias background: itemPane.background
     readonly property int defaultItemHeight: metrics.height
-    readonly property int cellWidth: Math.min(400, parent.width - 2*settingRow.spacing)
+    readonly property int cellWidth: Math.min(400, parent.width - 2*mainRow.spacing)
     readonly property int rowWidth: parent.width
     readonly property int maxItemWidth: cellWidth - leftItem.width - rightItem.width - (leftItem.width > 0) * 10 - (rightItem.width > 0) * 10
     property alias hint: hintLabel.text
@@ -35,7 +35,7 @@ ControlListTreeNode {
         anchors.horizontalCenter: parent.horizontalCenter
         width: rowWidth
         Row {
-            id: settingRow
+            id: mainRow
             spacing: 10
             anchors.horizontalCenter: parent.horizontalCenter
 
@@ -50,7 +50,7 @@ ControlListTreeNode {
                 spacing: itemPane.padding
                 ItemSlot {
                     id: itemSlot
-                    contentItem: setting
+                    contentItem: mainItem
                     width: cellWidth - (leftItemSlot.width > 0 ? leftItemSlot.width + parent.spacing : 0)
                     - (rightItemSlot.width > 0 ? rightItemSlot.width + parent.spacing : 0)
                 }

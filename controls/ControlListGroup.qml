@@ -6,7 +6,7 @@ ControlListItem {
     property alias title: titleLabel.text
     property alias titleAlignment: titleLabel.horizontalAlignment
 
-    setting: Label {
+    mainItem: Label {
         id: titleLabel
     }
 }

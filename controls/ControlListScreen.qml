@@ -9,6 +9,7 @@ IndirectContainer {
     reparentFrom: 2
 
     property string initialTitle: ""
+    property alias initialPane: clv.initialItem
     property bool withBackButton: false
     signal backButtonClicked
 
@@ -40,9 +41,9 @@ IndirectContainer {
         }
     }
 
-    property ControlListView controlListView: sv
+    property ControlListView controlListView: clv
     ControlListView {
-        id: sv
+        id: clv
         anchors {
             top: toolbar.bottom
             left: parent.left
