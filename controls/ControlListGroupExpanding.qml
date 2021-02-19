@@ -5,12 +5,12 @@ import QtQuick.Controls 2.5
 ControlListGroup {
     property alias expanded: expandButton.checked
 
-    rightItem: RoundButton {
+    leftItem: RoundButton {
         id: expandButton
         checkable: true
         radius: height / 6
-        text: !expanded ? "+" : "-"
-        font.bold: true
+        icon.source: expanded ? "/icons/br_down_icon&24.png" : "/icons/br_next_icon&24.png"
+        background: null
     }
 
     onChildrenChanged: {

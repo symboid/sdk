@@ -36,7 +36,7 @@ IndirectContainer {
         }
         Label {
             anchors.centerIn: parent
-            text: controlListView.currentItem.title
+            text: controlListView.currentItem !== null ? controlListView.currentItem.title : ""
             font.italic: true
         }
     }
@@ -53,6 +53,16 @@ IndirectContainer {
         initialItem: ControlListPane {
             id: firstPane
             title: initialTitle
+        }
+        function loadPane(paneComponent)
+        {
+            var pane = null
+            if (paneComponent)
+            {
+                pane = paneComponent.createObject(controlListView,{})
+                controlListView.push(pane)
+            }
+            return pane
         }
     }
 }
