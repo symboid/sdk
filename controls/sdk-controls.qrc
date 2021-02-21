@@ -58,6 +58,7 @@
         <file>icons/info_icon&amp;32.png</file>
         <file>icons/attention_icon&amp;32.png</file>
         <file>icons/round_delete_icon&amp;32.png</file>
+        <file>icons/br_up_icon&amp;24.png</file>
     </qresource>
     <qresource prefix="/tr">
         <file>sdk-controls_hu.qm</file>

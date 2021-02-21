@@ -16,33 +16,33 @@
         <translation>Minden, ezen a panelen történő változtatás érvényesítéséhez az alkalmazást újra kell indítani.</translation>
     </message>
     <message>
-        <location filename="AppearanceSettingsGroup.qml" line="20"/>
+        <location filename="AppearanceSettingsGroup.qml" line="21"/>
         <source>Restart</source>
         <translation>Újraindítás</translation>
     </message>
     <message>
-        <location filename="AppearanceSettingsGroup.qml" line="27"/>
+        <location filename="AppearanceSettingsGroup.qml" line="28"/>
         <source>Look and feel settings</source>
         <translation>Kinézet</translation>
     </message>
     <message>
-        <location filename="AppearanceSettingsGroup.qml" line="35"/>
+        <location filename="AppearanceSettingsGroup.qml" line="36"/>
         <source>Style</source>
         <oldsource>Style:</oldsource>
         <translation>Stílus</translation>
     </message>
     <message>
-        <location filename="AppearanceSettingsGroup.qml" line="47"/>
+        <location filename="AppearanceSettingsGroup.qml" line="48"/>
         <source>Graphical rendering</source>
         <translation>Grafikus képalkotás</translation>
     </message>
     <message>
-        <location filename="AppearanceSettingsGroup.qml" line="50"/>
+        <location filename="AppearanceSettingsGroup.qml" line="51"/>
         <source>High DPI scaling</source>
         <translation>Átméretezés magas pixelsűrűség esetén</translation>
     </message>
     <message>
-        <location filename="AppearanceSettingsGroup.qml" line="51"/>
+        <location filename="AppearanceSettingsGroup.qml" line="52"/>
         <source>Control sizes calculated based on higher pixel density if available.</source>
         <translation>A felületi elemek méretezése a nagyobb pixelsűrűség figyelembe vételével történik, amennyiben az megoldható.</translation>
     </message>

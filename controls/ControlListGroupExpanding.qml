@@ -2,14 +2,17 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
 
-ControlListGroup {
+ControlListItem {
+    property alias title: titleLabel.text
     property alias expanded: expandButton.checked
 
-    leftItem: RoundButton {
+    mainItem: Label {
+        id: titleLabel
+    }
+    rightItem: RoundButton {
         id: expandButton
         checkable: true
-        radius: height / 6
-        icon.source: expanded ? "/icons/br_down_icon&24.png" : "/icons/br_next_icon&24.png"
+        icon.source: expanded ? "/icons/br_up_icon&24.png" : "/icons/br_down_icon&24.png"
         background: null
     }
 

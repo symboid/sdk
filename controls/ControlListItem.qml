@@ -5,32 +5,28 @@ import Symboid.Sdk.Controls 1.0
 
 ControlListTreeNode {
     property Item mainItem: Item {}
-    property Item leftItem: Item {}
     property Item rightItem: hint !== "" ? infoItem : emptyItem
     property alias background: itemPane.background
     readonly property int defaultItemHeight: metrics.height
     readonly property int cellWidth: Math.min(400, parent.width - 2*mainRow.spacing)
     readonly property int rowWidth: parent.width
-    readonly property int rowHeight: 60
-    readonly property int maxItemWidth: cellWidth - leftItem.width - rightItem.width - (leftItem.width > 0) * 10 - (rightItem.width > 0) * 10
+    readonly property int maxItemWidth: cellWidth - leftIndent.width - rightItem.width - (leftIndent.width > 0) * 10 - (rightItem.width > 0) * 10
     property alias hint: hintLabel.text
     property bool indented: false
     property bool withSeparator: false
 
     property Item metrics: RoundButton {}
     property Item emptyItem: Item {}
-    property Item infoItem: Item {
-        width: defaultItemHeight
-        height: defaultItemHeight
-        ToolButton {
-            id: infoButton
-            anchors.centerIn: parent
-            icon.source: "/icons/info_icon&24.png"
-            checkable: true
-            opacity: 0.25
-            smooth: true
-        }
+    property Item infoItem: RoundButton {
+        id: infoButton
+        anchors.centerIn: parent
+        icon.source: "/icons/info_icon&24.png"
+        checkable: true
+        opacity: 0.25
+        smooth: true
+        background: null
     }
+
     Pane {
         id: itemPane
         anchors.horizontalCenter: parent.horizontalCenter
@@ -40,46 +36,44 @@ ControlListTreeNode {
             spacing: 10
             anchors.horizontalCenter: parent.horizontalCenter
 
-            ItemSlot {
-                id: leftItemSlot
+            Item {
+                id: leftIndent
                 anchors.verticalCenter: parent.verticalCenter
-                contentItem: leftItem
+                height: 1
+                width: indented ? defaultItemHeight/2 : 0
             }
-            Column {
-                id: itemColumn
+            ItemSlot {
+                id: itemSlot
                 anchors.verticalCenter: parent.verticalCenter
-                spacing: itemPane.padding
-                ItemSlot {
-                    id: itemSlot
-                    contentItem: mainItem
-                    width: cellWidth - (leftItemSlot.width > 0 ? leftItemSlot.width + parent.spacing : 0)
-                    - (rightItemSlot.width > 0 ? rightItemSlot.width + parent.spacing : 0)
-                }
-                Rectangle {
-                    height: 1
-                    width: itemSlot.width
-                    color: "lightgray"
-                    visible: hintLabel.visible
-                }
-
-                Label {
-                    id: hintLabel
-                    visible: infoButton.checked
-                    horizontalAlignment: Label.AlignRight
-                    width: itemSlot.width
-                    wrapMode: Text.WordWrap
-                    text: hint
-                    font.italic: true
-                }
+                contentItem: mainItem
+                width: cellWidth - (leftIndent.width > 0 ? leftIndent.width + parent.spacing : 0)
+                - (rightItemSlot.width > 0 ? rightItemSlot.width + parent.spacing : 0)
             }
             ItemSlot {
                 id: rightItemSlot
+                anchors.verticalCenter: parent.verticalCenter
                 contentItem: rightItem
             }
         }
     }
-    Rectangle {
-        id: rowSeparator
+    HorizontalLine {
+        anchors.horizontalCenter: parent.horizontalCenter
+        width: itemSlot.width
+        visible: hintLabel.visible
+    }
+    Pane {
+        anchors.horizontalCenter: parent.horizontalCenter
+        visible: infoButton.checked
+        width: itemSlot.width
+        contentItem: Label {
+            id: hintLabel
+            horizontalAlignment: Label.AlignRight
+            wrapMode: Text.WordWrap
+            text: hint
+            font.italic: true
+        }
+    }
+    HorizontalLine {
         anchors.horizontalCenter: parent.horizontalCenter
         width: rowWidth
         height: withSeparator ? 2 : 1
