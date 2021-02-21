@@ -8,17 +8,18 @@ ControlListTreeNode {
     property Item rightItem: hint !== "" ? infoItem : emptyItem
     property alias background: itemPane.background
     readonly property int defaultItemHeight: metrics.height
-    readonly property int cellWidth: Math.min(400, parent.width - 2*mainRow.spacing)
-    readonly property int rowWidth: parent.width
+    property int cellWidth: Math.min(400, rowWidth - 2*mainRow.spacing)
+    readonly property int rowWidth: parent !== null ? parent.width : 0
     property alias hint: hintLabel.text
     property bool indented: false
     property bool withSeparator: false
+    property alias lineColor: line.color
+    property bool revertedLayout: false
 
     property Item metrics: RoundButton {}
     property Item emptyItem: Item {}
     property Item infoItem: RoundButton {
         id: infoButton
-        anchors.centerIn: parent
         icon.source: "/icons/info_icon&24.png"
         checkable: true
         opacity: 0.25
@@ -34,6 +35,7 @@ ControlListTreeNode {
             id: mainRow
             spacing: 10
             anchors.horizontalCenter: parent.horizontalCenter
+            layoutDirection: revertedLayout ? Qt.RightToLeft : Qt.LeftToRight
 
             Item {
                 id: leftIndent
@@ -73,6 +75,7 @@ ControlListTreeNode {
         }
     }
     HorizontalLine {
+        id: line
         anchors.horizontalCenter: parent.horizontalCenter
         width: rowWidth
         height: withSeparator ? 2 : 1

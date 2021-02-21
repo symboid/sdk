@@ -1,7 +1,62 @@
 
 import QtQuick 2.12
 import QtQuick.Controls 2.5
+/**/
+ControlListItem {
+    id: loadListItem
 
+    property alias leftItem: leftItemSlot.contentItem
+
+    property string itemTitle: ""
+    property alias itemWidth: loadListItem.cellWidth
+    property alias loadIconSource: loadButton.icon.source
+    readonly property alias leftItemSpace: leftPane.width
+    readonly property alias loadButtonSpace: loadButtonPane.width
+    readonly property int mainItemSpace: itemWidth - leftItemSpace - loadButtonSpace
+    signal itemClicked
+    signal buttonClicked
+
+    function setEditFocus()
+    {
+        itemNameEdit.focus = true
+    }
+
+    mainItem: Row {
+        Pane {
+            id: leftPane
+            anchors.verticalCenter: parent.verticalCenter
+            background: null
+            contentItem: ItemSlot {
+                id: leftItemSlot
+            }
+        }
+        ItemSlot {
+            id: mainItemSlot
+            anchors.verticalCenter: parent.verticalCenter
+            width: mainItemSpace
+
+            contentItem: Label {
+                elide: Text.ElideRight
+                text: itemTitle
+                verticalAlignment: Text.AlignVCenter
+            }
+        }
+    }
+
+    rightItem: Pane {
+        id: loadButtonPane
+        background: null
+        topPadding: 0
+        bottomPadding: 0
+        RoundButton {
+            id: loadButton
+            icon.source: revertedLayout ? "/icons/br_prev_icon&24.png" : "/icons/br_next_icon&24.png"
+            visible: icon.source !== ""
+            onClicked: buttonClicked()
+        }
+    }
+}
+/*/
 Column {
     property alias mainItem: mainItemSlot.contentItem
     property alias leftItem: leftItemSlot.contentItem
@@ -72,3 +127,4 @@ Column {
         color: "lightgray"
     }
 }
+/**/

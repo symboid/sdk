@@ -4,6 +4,5 @@ import QtQuick.Controls 2.5
 import Symboid.Sdk.Controls 1.0
 
 Column {
-    anchors.horizontalCenter: parent.horizontalCenter
-    width: controlListView.width
+    width: controlListView !== undefined ? controlListView.width : 0
 }
