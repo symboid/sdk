@@ -26,23 +26,23 @@
         <translation>Kinézet</translation>
     </message>
     <message>
-        <location filename="AppearanceSettingsGroup.qml" line="36"/>
+        <location filename="AppearanceSettingsGroup.qml" line="34"/>
         <source>Style</source>
         <oldsource>Style:</oldsource>
         <translation>Stílus</translation>
     </message>
     <message>
-        <location filename="AppearanceSettingsGroup.qml" line="48"/>
+        <location filename="AppearanceSettingsGroup.qml" line="45"/>
         <source>Graphical rendering</source>
         <translation>Grafikus képalkotás</translation>
     </message>
     <message>
-        <location filename="AppearanceSettingsGroup.qml" line="51"/>
+        <location filename="AppearanceSettingsGroup.qml" line="48"/>
         <source>High DPI scaling</source>
         <translation>Átméretezés magas pixelsűrűség esetén</translation>
     </message>
     <message>
-        <location filename="AppearanceSettingsGroup.qml" line="52"/>
+        <location filename="AppearanceSettingsGroup.qml" line="49"/>
         <source>Control sizes calculated based on higher pixel density if available.</source>
         <translation>A felületi elemek méretezése a nagyobb pixelsűrűség figyelembe vételével történik, amennyiben az megoldható.</translation>
     </message>

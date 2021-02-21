@@ -10,13 +10,14 @@ SettingsGroupLink {
     settingsPane: SettingsPane {
         title: qsTr("Appearance")
         SettingsItem {
-            setting: Label {
+            mainItem: Label {
                 text: qsTr("Every single change on this pane can only take effect after application restart.")
-                height: contentHeight
+                width: cellWidth - restartButton.width
                 wrapMode: Label.WordWrap
                 font.italic: true
             }
             rightItem: Button {
+                id: restartButton
                 text: qsTr("Restart")
                 highlighted: true
                 onClicked: AppConfig.restartApp()
@@ -27,19 +28,16 @@ SettingsGroupLink {
             title: qsTr("Look and feel settings")
         }
         SettingsItem {
-            setting: Row {
-                spacing: 20
-                Label {
-                    id: label
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: qsTr("Style")
-                }
-                ComboBox {
-                    currentIndex: AppConfig.ui.styleIndex
-                    model: AppConfig.ui.styleModel
-                    onCurrentIndexChanged: {
-                        AppConfig.ui.style = model[currentIndex]
-                    }
+            mainItem: Label {
+                id: label
+                anchors.verticalCenter: parent.verticalCenter
+                text: qsTr("Style")
+            }
+            rightItem: ComboBox {
+                currentIndex: AppConfig.ui.styleIndex
+                model: AppConfig.ui.styleModel
+                onCurrentIndexChanged: {
+                    AppConfig.ui.style = model[currentIndex]
                 }
             }
         }
