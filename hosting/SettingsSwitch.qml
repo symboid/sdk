@@ -14,7 +14,6 @@ SettingsItem {
     }
     rightItem: Switch {
         id: switchButton
-        anchors.verticalCenter: parent.verticalCenter
         checked: configNode.value
         onCheckedChanged: {
             configNode.value = checked

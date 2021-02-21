@@ -5,6 +5,7 @@ import Symboid.Sdk.Controls 1.0
 
 ControlListTreeNode {
     property Item mainItem: Item {}
+    property alias leftItem: leftItemSlot.contentItem
     property Item rightItem: hint !== "" ? infoItem : emptyItem
     property alias background: itemPane.background
     readonly property int defaultItemHeight: metrics.height
@@ -15,6 +16,7 @@ ControlListTreeNode {
     property bool withSeparator: false
     property alias lineColor: line.color
     property bool revertedLayout: false
+    readonly property alias leftItemSpace: leftItemSlot.width
 
     property Item metrics: RoundButton {}
     property Item emptyItem: Item {}
@@ -37,23 +39,27 @@ ControlListTreeNode {
             anchors.horizontalCenter: parent.horizontalCenter
             layoutDirection: revertedLayout ? Qt.RightToLeft : Qt.LeftToRight
 
-            Item {
-                id: leftIndent
+            ItemSlotExpanding {
+                id: leftItemSlot
                 anchors.verticalCenter: parent.verticalCenter
-                height: 1
-                width: indented ? defaultItemHeight/2 : 0
+                contentItem: Item {
+                    height: 1
+                    width: indented ? defaultItemHeight/2 : 0
+                }
             }
+
             ItemSlot {
                 id: itemSlot
                 anchors.verticalCenter: parent.verticalCenter
                 contentItem: mainItem
-                width: cellWidth - (leftIndent.width > 0 ? leftIndent.width + parent.spacing : 0)
+                width: cellWidth - (leftItemSlot.width > 0 ? leftItemSlot.width + parent.spacing : 0)
                 - (rightItemSlot.width > 0 ? rightItemSlot.width + parent.spacing : 0)
             }
             ItemSlot {
                 id: rightItemSlot
                 anchors.verticalCenter: parent.verticalCenter
                 contentItem: rightItem
+                showFrame: true
             }
         }
     }

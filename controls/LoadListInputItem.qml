@@ -12,4 +12,9 @@ LoadListItem {
         onAccepted: editAccepted()
         Keys.onEscapePressed: editCanceled()
     }
+
+    function setEditFocus()
+    {
+        itemNameEdit.focus = true
+    }
 }
