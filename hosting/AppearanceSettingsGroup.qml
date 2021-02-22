@@ -28,11 +28,8 @@ SettingsGroupLink {
             title: qsTr("Look and feel settings")
         }
         SettingsItem {
-            mainItem: Label {
-                id: label
                 anchors.verticalCenter: parent.verticalCenter
-                text: qsTr("Style")
-            }
+            title: qsTr("Style")
             rightItem: ComboBox {
                 currentIndex: AppConfig.ui.styleIndex
                 model: AppConfig.ui.styleModel

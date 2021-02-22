@@ -74,10 +74,9 @@ ProcessPage {
         delegate: LoadListCheckItem {
             anchors.left: parent !== null ? parent.left : undefined
             anchors.right: parent !== null ? parent.right : undefined
-            itemTitle: documentTitle
-            itemWidth: Math.min(400, documentListView.width)
+            title: documentTitle
+            cellWidth: Math.min(400, documentListView.width)
             selectable: index === documentListView.currentIndex
-            onItemClicked: documentListView.currentIndex = index
             onButtonClicked: {
                 // loading selected document
                 currentDocument.filePath = documentPath

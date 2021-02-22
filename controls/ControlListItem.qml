@@ -8,7 +8,8 @@ ControlListTreeNode {
     property alias leftItem: leftItemSlot.contentItem
     property Item rightItem: hint !== "" ? infoItem : emptyItem
 
-    property alias itemTitle: mainTitle.text
+    property alias title: mainTitle.text
+    property alias titleAlignment: mainTitle.horizontalAlignment
 
     property alias background: itemPane.background
     readonly property int defaultItemHeight: metrics.height
@@ -60,7 +61,6 @@ ControlListTreeNode {
                 contentItem: Label {
                     id: mainTitle
                     elide: Text.ElideRight
-                    text: itemTitle
                     verticalAlignment: Text.AlignVCenter
                 }
             }
@@ -68,7 +68,6 @@ ControlListTreeNode {
                 id: rightItemSlot
                 anchors.verticalCenter: parent.verticalCenter
                 contentItem: rightItem
-                showFrame: true
             }
         }
     }
