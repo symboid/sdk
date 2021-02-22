@@ -4,9 +4,12 @@ import QtQuick.Controls 2.5
 import Symboid.Sdk.Controls 1.0
 
 ControlListTreeNode {
-    property Item mainItem: Item {}
+    property alias mainItem: mainItemSlot.contentItem
     property alias leftItem: leftItemSlot.contentItem
     property Item rightItem: hint !== "" ? infoItem : emptyItem
+
+    property alias itemTitle: mainTitle.text
+
     property alias background: itemPane.background
     readonly property int defaultItemHeight: metrics.height
     property int cellWidth: Math.min(400, rowWidth - 2*mainRow.spacing)
@@ -33,6 +36,7 @@ ControlListTreeNode {
         id: itemPane
         anchors.horizontalCenter: parent.horizontalCenter
         width: rowWidth
+        background: null
         Row {
             id: mainRow
             spacing: 10
@@ -49,11 +53,16 @@ ControlListTreeNode {
             }
 
             ItemSlot {
-                id: itemSlot
+                id: mainItemSlot
                 anchors.verticalCenter: parent.verticalCenter
-                contentItem: mainItem
                 width: cellWidth - (leftItemSlot.width > 0 ? leftItemSlot.width + parent.spacing : 0)
                 - (rightItemSlot.width > 0 ? rightItemSlot.width + parent.spacing : 0)
+                contentItem: Label {
+                    id: mainTitle
+                    elide: Text.ElideRight
+                    text: itemTitle
+                    verticalAlignment: Text.AlignVCenter
+                }
             }
             ItemSlot {
                 id: rightItemSlot
@@ -65,13 +74,13 @@ ControlListTreeNode {
     }
     HorizontalLine {
         anchors.horizontalCenter: parent.horizontalCenter
-        width: itemSlot.width
+        width: mainItemSlot.width
         visible: hintLabel.visible
     }
     Pane {
         anchors.horizontalCenter: parent.horizontalCenter
         visible: infoButton.checked
-        width: itemSlot.width
+        width: mainItemSlot.width
         contentItem: Label {
             id: hintLabel
             horizontalAlignment: Label.AlignRight

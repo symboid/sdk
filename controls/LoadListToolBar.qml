@@ -50,7 +50,6 @@ ToolBar {
             visible: textInputIndex !== -1
             anchors.horizontalCenter: parent.horizontalCenter
             width: toolbar.width
-            itemWidth: rowWidth
             loadIconSource: textInputIndex !== -1 ? toolModel.get(textInputIndex).iconSource : ""
             lineColor: toolbar.background.color
             onEditAccepted: textInputClicked()

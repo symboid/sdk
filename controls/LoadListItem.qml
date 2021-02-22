@@ -5,19 +5,18 @@ import QtQuick.Controls 2.5
 ControlListItem {
     id: loadListItem
 
-    property string itemTitle: ""
     property alias itemWidth: loadListItem.cellWidth
     property alias loadIconSource: loadButton.icon.source
     readonly property alias loadButtonSpace: loadButtonPane.width
     signal itemClicked
     signal buttonClicked
-
+/*
     mainItem: Label {
         elide: Text.ElideRight
         text: itemTitle
         verticalAlignment: Text.AlignVCenter
     }
-
+*/
     rightItem: Pane {
         id: loadButtonPane
         background: null
