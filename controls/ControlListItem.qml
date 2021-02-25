@@ -11,8 +11,6 @@ ControlListTreeNode {
     property alias title: mainTitle.text
     property alias titleAlignment: mainTitle.horizontalAlignment
 
-    property alias background: itemPane.background
-    readonly property int defaultItemHeight: metrics.height
     property int cellWidth: Math.min(400, rowWidth - 2*mainRow.spacing)
     readonly property int rowWidth: parent !== null ? parent.width : 0
     property alias hint: hintLabel.text
@@ -49,7 +47,7 @@ ControlListTreeNode {
                 anchors.verticalCenter: parent.verticalCenter
                 contentItem: Item {
                     height: 1
-                    width: indented ? defaultItemHeight/2 : 0
+                    width: indented ? metrics.height/2 : 0
                 }
             }
 
