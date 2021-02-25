@@ -35,16 +35,16 @@
         <file>ItemSlotExpanding.qml</file>
         <file>MainScreenMetrics.qml</file>
         <file>ExpandButton.qml</file>
-        <file>ControlListGroup.qml</file>
-        <file>ControlListGroupExpanding.qml</file>
-        <file>ControlListGroupFixed.qml</file>
-        <file>ControlListGroupLink.qml</file>
-        <file>ControlListItem.qml</file>
-        <file>ControlListLabel.qml</file>
-        <file>ControlListPane.qml</file>
-        <file>ControlListScreen.qml</file>
-        <file>ControlListTreeNode.qml</file>
-        <file>ControlListView.qml</file>
+        <file>FolderGroup.qml</file>
+        <file>FolderGroupExpanding.qml</file>
+        <file>FolderGroupFixed.qml</file>
+        <file>FolderGroupLink.qml</file>
+        <file>FolderItem.qml</file>
+        <file>FolderLabel.qml</file>
+        <file>FolderPane.qml</file>
+        <file>FolderScreen.qml</file>
+        <file>FolderNode.qml</file>
+        <file>FolderView.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/arrow_left_icon&amp;24.png</file>

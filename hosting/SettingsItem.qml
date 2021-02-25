@@ -1,7 +1,7 @@
 
 import Symboid.Sdk.Controls 1.0
 
-ControlListItem {
+FolderItem {
     id: settingsItem
     property alias setting: settingsItem.mainItem
 }

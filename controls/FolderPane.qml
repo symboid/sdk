@@ -5,15 +5,15 @@ import Symboid.Sdk.Controls 1.0
 
 IndirectContainer {
     property string title: ""
-    container: rootTreeNode
+    container: rootFolderNode
     Flickable {
         anchors.fill: parent
         clip: true
         flickableDirection: Flickable.VerticalFlick
-        contentWidth: rootTreeNode.width
-        contentHeight: rootTreeNode.height
-        ControlListTreeNode {
-            id: rootTreeNode
+        contentWidth: rootFolderNode.width
+        contentHeight: rootFolderNode.height
+        FolderNode {
+            id: rootFolderNode
         }
     }
 }

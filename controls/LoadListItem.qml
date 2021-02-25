@@ -2,7 +2,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
 
-ControlListItem {
+FolderItem {
     property alias loadIconSource: loadButton.icon.source
     readonly property alias loadButtonSpace: loadButtonPane.width
     signal buttonClicked

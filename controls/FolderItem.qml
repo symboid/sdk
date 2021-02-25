@@ -3,7 +3,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 import Symboid.Sdk.Controls 1.0
 
-ControlListTreeNode {
+FolderNode {
     property alias mainItem: mainItemSlot.contentItem
     property alias leftItem: leftItemSlot.contentItem
     property Item rightItem: hint !== "" ? infoItem : emptyItem
@@ -11,6 +11,7 @@ ControlListTreeNode {
     property alias title: mainTitle.text
     property alias titleAlignment: mainTitle.horizontalAlignment
 
+    property alias background: itemPane.background
     property int cellWidth: Math.min(400, rowWidth - 2*mainRow.spacing)
     readonly property int rowWidth: parent !== null ? parent.width : 0
     property alias hint: hintLabel.text

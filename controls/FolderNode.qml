@@ -4,5 +4,5 @@ import QtQuick.Controls 2.5
 import Symboid.Sdk.Controls 1.0
 
 Column {
-    width: controlListView !== undefined ? controlListView.width : 0
+    width: folderView !== undefined ? folderView.width : 0
 }
