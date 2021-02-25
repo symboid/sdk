@@ -1,9 +1,10 @@
 
 import QtQuick 2.12
 import QtQuick.Controls 2.5
+import Symboid.Sdk.Controls 1.0
 import Symboid.Sdk.Hosting 1.0
 
-SettingsItem {
+FolderItem {
     property alias text: radioButton.text
     property alias checked: radioButton.checked
     property alias enabled: radioButton.enabled
@@ -11,7 +12,7 @@ SettingsItem {
     property ConfigNode enumConfig: null
     property int enumValue: 0
 
-    setting: RadioButton {
+    mainItem: RadioButton {
         id: radioButton
         checked: enumConfig.value === enumValue
         onCheckedChanged: {

@@ -4,12 +4,12 @@ import QtQuick.Controls 2.5
 import Symboid.Sdk.Controls 1.0
 import Symboid.Sdk.Hosting 1.0
 
-SettingsGroupLink {
+FolderGroupLink {
 
     title: qsTr("Appearance")
-    settingsPane: SettingsPane {
+    folderPane: FolderPane {
         title: qsTr("Appearance")
-        SettingsItem {
+        FolderItem {
             mainItem: Label {
                 text: qsTr("Every single change on this pane can only take effect after application restart.")
                 width: cellWidth - restartButton.width
@@ -24,10 +24,10 @@ SettingsGroupLink {
             }
         }
 
-        SettingsGroupFixed {
+        FolderGroupFixed {
             title: qsTr("Look and feel settings")
         }
-        SettingsItem {
+        FolderItem {
             title: qsTr("Style")
             rightItem: ComboBox {
                 currentIndex: AppConfig.ui.styleIndex
@@ -37,7 +37,7 @@ SettingsGroupLink {
                 }
             }
         }
-        SettingsGroupFixed {
+        FolderGroupFixed {
             title: qsTr("Graphical rendering")
         }
         SettingsCheckBox {

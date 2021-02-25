@@ -5,39 +5,39 @@ import Symboid.Sdk.Controls 1.0
 import Symboid.Sdk.Hosting 1.0
 import Symboid.Sdk.Network 1.0
 
-SettingsGroupFixed {
+FolderGroupFixed {
     title: qsTr("Software")
-    SettingsGroupExpanding {
+    FolderGroupExpanding {
         title: qsTr("About")
-        SettingsGroupLink {
+        FolderGroupLink {
             title: qsTr("Build information")
-            settingsPane: SettingsPane {
+            folderPane: FolderPane {
                 title: qsTr("Build information")
-                SettingsGroupFixed {
+                FolderGroupFixed {
                     title: qsTr("Qt Framework")
-                    SettingsLabel {
+                    FolderLabel {
                         title: qsTr("Version")
                         text: AppConfig.software.qt_version_string
                     }
-                    SettingsLabel {
+                    FolderLabel {
                         title: qsTr("SSL support")
                         text: AppConfig.software.ssl_supported ? qsTr("Available") : qsTr("Not available")
                     }
-                    SettingsLabel {
+                    FolderLabel {
                         title: qsTr("Runtime version of SSL Library")
                         text: AppConfig.software.ssl_lib_version_runtime
                         visible: AppConfig.software.ssl_supported
                     }
-                    SettingsLabel {
+                    FolderLabel {
                         title: qsTr("Compile-time version of SSL Library")
                         text: AppConfig.software.ssl_lib_version_compiletime
                         visible: AppConfig.software.ssl_supported
                     }
                 }
 
-                SettingsGroupFixed {
+                FolderGroupFixed {
                     title: qsTr("Graphics information")
-                    SettingsLabel {
+                    FolderLabel {
                         title: qsTr("API in use")
                         text: switch(GraphicsInfo.api) {
                               case GraphicsInfo.OpenGL: return "OpenGL / OpenGL ES"
@@ -47,18 +47,18 @@ SettingsGroupFixed {
                               default: return qsTr("other")
                               }
                     }
-                    SettingsLabel {
+                    FolderLabel {
                         title: qsTr("API version")
                         text: GraphicsInfo.majorVersion + "." + GraphicsInfo.minorVersion
                     }
                 }
 
-                SettingsGroupFixed {
+                FolderGroupFixed {
                     title: qsTr("Components")
                     Repeater {
                         model: SoftwareUpdate.componentVersions
-                        SettingsItem {
-                            setting: Column {
+                        FolderItem {
+                            mainItem: Column {
                                 spacing: 10
                                 Label {
                                     text: name
@@ -104,7 +104,7 @@ SettingsGroupFixed {
             }
         }
     }
-    SettingsGroupExpanding {
+    FolderGroupExpanding {
         title: qsTr("Update method")
         ButtonGroup {
             buttons: [ automatedSwUpdate.button, manualSwUpdate.button, noSwUpdate.button ]
