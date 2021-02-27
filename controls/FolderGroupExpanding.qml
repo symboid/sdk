@@ -2,13 +2,9 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
 
-ControlListItem {
-    property alias title: titleLabel.text
+FolderItem {
     property alias expanded: expandButton.checked
 
-    mainItem: Label {
-        id: titleLabel
-    }
     rightItem: RoundButton {
         id: expandButton
         checkable: true
@@ -21,7 +17,7 @@ ControlListItem {
         {
             var newChild = children[children.length - 1]
             newChild.visible = Qt.binding(function(){return expanded})
-            if (newChild instanceof ControlListItem)
+            if (newChild instanceof FolderItem)
             {
                 newChild.indented = true
             }

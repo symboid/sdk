@@ -2,7 +2,7 @@
 import QtQuick 2.5
 import QtQuick.Controls 2.12
 
-ControlListItem {
+FolderItem {
     property alias title: titleLabel.text
     property alias text: valueLabel.text
 

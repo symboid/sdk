@@ -1,15 +1,8 @@
 module Symboid.Sdk.Hosting
 SettingsScreen 1.0 SettingsScreen.qml
-SettingsPane 1.0 SettingsPane.qml
-SettingsGroup 1.0 SettingsGroup.qml
-SettingsGroupFixed 1.0 SettingsGroupFixed.qml
-SettingsGroupExpanding 1.0 SettingsGroupExpanding.qml
-SettingsGroupLink 1.0 SettingsGroupLink.qml
-SettingsItem 1.0 SettingsItem.qml
 SettingsCheckBox 1.0 SettingsCheckBox.qml
 SettingsSwitch 1.0 SettingsSwitch.qml
 SettingsRadioButton 1.0 SettingsRadioButton.qml
-SettingsLabel 1.0 SettingsLabel.qml
 SoftwarePane 1.0 SoftwarePane.qml
 AppearanceSettingsGroup 1.0 AppearanceSettingsGroup.qml
 MainAppWindow 1.0 MainAppWindow.qml

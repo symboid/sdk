@@ -3,15 +3,15 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 import Symboid.Sdk.Controls 1.0
 
-ControlListTreeNode {
+FolderNode {
     property alias mainItem: mainItemSlot.contentItem
     property alias leftItem: leftItemSlot.contentItem
     property Item rightItem: hint !== "" ? infoItem : emptyItem
 
-    property alias itemTitle: mainTitle.text
+    property alias title: mainTitle.text
+    property alias titleAlignment: mainTitle.horizontalAlignment
 
     property alias background: itemPane.background
-    readonly property int defaultItemHeight: metrics.height
     property int cellWidth: Math.min(400, rowWidth - 2*mainRow.spacing)
     readonly property int rowWidth: parent !== null ? parent.width : 0
     property alias hint: hintLabel.text
@@ -48,7 +48,7 @@ ControlListTreeNode {
                 anchors.verticalCenter: parent.verticalCenter
                 contentItem: Item {
                     height: 1
-                    width: indented ? defaultItemHeight/2 : 0
+                    width: indented ? metrics.height/2 : 0
                 }
             }
 
@@ -60,7 +60,6 @@ ControlListTreeNode {
                 contentItem: Label {
                     id: mainTitle
                     elide: Text.ElideRight
-                    text: itemTitle
                     verticalAlignment: Text.AlignVCenter
                 }
             }
@@ -68,7 +67,6 @@ ControlListTreeNode {
                 id: rightItemSlot
                 anchors.verticalCenter: parent.verticalCenter
                 contentItem: rightItem
-                showFrame: true
             }
         }
     }

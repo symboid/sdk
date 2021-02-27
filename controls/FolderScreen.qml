@@ -9,7 +9,7 @@ IndirectContainer {
     reparentFrom: 2
 
     property string initialTitle: ""
-    property alias initialPane: clv.initialItem
+    property alias initialPane: fv.initialItem
     property bool withBackButton: false
     signal backButtonClicked
 
@@ -22,11 +22,11 @@ IndirectContainer {
         }
         ToolButton {
             icon.source: "/icons/br_prev_icon&32.png"
-            enabled: controlListView.depth > 1 || withBackButton
+            enabled: folderView.depth > 1 || withBackButton
             onClicked: {
-                if (controlListView.depth > 1)
+                if (folderView.depth > 1)
                 {
-                    controlListView.pop()
+                    folderView.pop()
                 }
                 else if (withBackButton)
                 {
@@ -36,21 +36,21 @@ IndirectContainer {
         }
         Label {
             anchors.centerIn: parent
-            text: controlListView.currentItem !== null ? controlListView.currentItem.title : ""
+            text: folderView.currentItem !== null ? folderView.currentItem.title : ""
             font.italic: true
         }
     }
 
-    property ControlListView controlListView: clv
-    ControlListView {
-        id: clv
+    property FolderView folderView: fv
+    FolderView {
+        id: fv
         anchors {
             top: toolbar.bottom
             left: parent.left
             right: parent.right
             bottom: parent.bottom
         }
-        initialItem: ControlListPane {
+        initialItem: FolderPane {
             id: firstPane
             title: initialTitle
         }
@@ -59,8 +59,8 @@ IndirectContainer {
             var pane = null
             if (paneComponent)
             {
-                pane = paneComponent.createObject(controlListView,{})
-                controlListView.push(pane)
+                pane = paneComponent.createObject(folderView,{})
+                folderView.push(pane)
             }
             return pane
         }
