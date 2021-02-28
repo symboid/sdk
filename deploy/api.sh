@@ -1,20 +1,14 @@
 #!/bin/bash
 
-COMPONENT_NAME=sdk
-ARCHIVE_NAME=$COMPONENT_NAME-api.tar.gz
-	
-function FolderApi
-{
-    FOLDER_PATH=$1
-    tar --append --file=$ARCHIVE_NAME --include='*.h' $FOLDER_PATH
-}
+source $(dirname "$0")/../../build/deploy/unix/api.sh
 
-# !include ..\..\build\deploy\nsis\api.nsh
+OUTPUT_DIR=$1
+ARCHIVE_DIR=$2
 
-# !insertmacro ComponentApiBegin sdk
-# !insertmacro ModuleApi arch
-# !insertmacro ModuleApi network
-# !insertmacro ModuleApi controls
-# !insertmacro ModuleApi hosting
-# !insertmacro ModuleApi dox
-# !insertmacro FileApi defs.h
+ComponentApiBegin sdk $OUTPUT_DIR $ARCHIVE_DIR
+ModuleApi arch
+ModuleApi network
+ModuleApi controls
+ModuleApi hosting
+ModuleApi dox
+FileApi $COMPONENT_NAME/defs.h
