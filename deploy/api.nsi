@@ -7,4 +7,4 @@
 !insertmacro ModuleApi controls
 !insertmacro ModuleApi hosting
 !insertmacro ModuleApi dox
-!insertmacro FileApi defs.h
+!insertmacro FileApi . defs.h
