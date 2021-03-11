@@ -2,7 +2,7 @@
 #ifndef __SYMBOID_SDK_NETWORK_DEFS_H__
 #define __SYMBOID_SDK_NETWORK_DEFS_H__
 
-#include "sdk/defs.h"
+#include "sdk/arch/defs.h"
 
 #ifdef BUILD_SDK_NETWORK
     #define SDK_NETWORK_API SY_API_EXPORT

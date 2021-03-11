@@ -2,7 +2,7 @@
 #ifndef __SYMBOID_SDK_CONTROLS_DEFS_H__
 #define __SYMBOID_SDK_CONTROLS_DEFS_H__
 
-#include "sdk/defs.h"
+#include "sdk/arch/defs.h"
 
 #ifdef BUILD_SDK_CONTROLS
     #define SDK_CONTROLS_API SY_API_EXPORT
