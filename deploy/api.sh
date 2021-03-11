@@ -11,6 +11,6 @@ ModuleApi network
 ModuleApi controls
 ModuleApi hosting
 ModuleApi dox
-FileApi $COMPONENT_NAME/defs.h
+#FileApi $COMPONENT_NAME/defs.h
 ComponentApiEnd
 
