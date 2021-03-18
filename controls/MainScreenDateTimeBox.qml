@@ -1,5 +1,5 @@
 
-import QtQuick 2.0
+import QtQuick 2.12
 import Symboid.Sdk.Controls 1.0
 
 MainScreenParamBox {
@@ -19,6 +19,8 @@ MainScreenParamBox {
     readonly property alias unixTime: unixTimeConverter.unixTime
     property alias currentTimerOn: currentTimer.checked
     property alias showSeconds: timeBox.showSeconds
+
+    property alias datePopup: dateBox.popupItem
 
     DateCoordBox {
         id: dateBox
