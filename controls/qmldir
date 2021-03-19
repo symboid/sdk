@@ -42,3 +42,4 @@ FolderNode 1.0 FolderNode.qml
 FolderItem 1.0 FolderItem.qml
 FolderLabel 1.0 FolderLabel.qml
 FolderView 1.0 FolderView.qml
+DateTimePopup 1.0 DateTimePopup.qml
