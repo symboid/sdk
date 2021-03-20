@@ -11,11 +11,58 @@ Popup {
 
     property int selectedDay: 1
     readonly property string selectedDateStr: {
-        var date = new Date(daySelector.year, selectedMonth, selectedDay)
+        var date = new Date(selectedYear, selectedMonth, selectedDay)
         return date.toLocaleDateString(Qt.locale())
     }
     property int selectedMonth: 0
-    property int selectedYear: 1234
+
+    /*
+    property int selectedYear_3: 2
+    property int selectedYear_2: 0
+    property int selectedYear_1: 1
+    property int selectedYear_0: 4
+    property int selectedYear: 1000*selectedYear_3 + 100*selectedYear_2 + 10*selectedYear_1 + selectedYear_0
+    onSelectedYearChanged: {
+        var xx = selectedYear
+        selectedYear_3 = Math.floor(xx/1000)
+        xx = xx - selectedYear_3 * 1000
+        selectedYear_2 = Math.floor(xx/100)
+        xx = xx - selectedYear_2 * 100
+        selectedYear_1 = Math.floor(xx/10)
+        xx = xx - selectedYear_1 * 10
+        selectedYear_0 = xx
+        selectedYear = Qt.binding(function(){return 1000*selectedYear_3 + 100*selectedYear_2 + 10*selectedYear_1 + selectedYear_0})
+    }
+
+    property int selectedYear: 1000*digit_3.currentIndex + 100*digit_2.currentIndex +
+                               10*digit_1.currentIndex + digit_0.currentIndex
+                               */
+    property int selectedYear: 0
+    onSelectedYearChanged: {
+        var xx = selectedYear
+
+        var digit_3_value = Math.floor(xx/1000)
+        console.log(digit_3_value)
+        digit_3.currentIndex = digit_3_value
+
+        xx = xx - digit_3_value * 1000
+//        console.log(xx+","+digit_3.currentIndex)
+        var digit_2_value = Math.floor(xx/100)
+        console.log(digit_2_value)
+        digit_2.currentIndex = digit_2_value
+
+        xx = xx - digit_2_value * 100
+//        console.log(xx+","+digit_2.currentIndex)
+        var digit_1_value = Math.floor(xx/10)
+        console.log(digit_1_value)
+        digit_1.currentIndex = digit_1_value
+
+        xx = xx - digit_1_value * 10
+//        console.log(xx+","+digit_1.currentIndex)
+        digit_0.currentIndex = xx
+        selectedYear = Qt.binding(function(){return 1000*digit_3.currentIndex + 100*digit_2.currentIndex +
+                                             10*digit_1.currentIndex + digit_0.currentIndex})
+    }
 
     function yearDigit(index)
     {
@@ -63,22 +110,32 @@ Popup {
                 interactive: false
 
                 Item {
-//                    anchors.fill: parent
                     Row {
                         id: yearDigits
                         anchors.centerIn: parent
-                        Repeater {
-                            model: 4
-                            delegate: Tumbler {
-                                model: 10
-                                currentIndex: yearDigit(index)
-                                onCurrentIndexChanged: {
-                                    var upper = Math.floor(selectedYear / Math.pow(10, 4-index)) * Math.pow(10, 4-index)
-                                    var lower = selectedYear - Math.floor(selectedYear / Math.pow(10, 3-index)) * Math.pow(10, 3-index)
-//                                    selectedYear = upper + Math.pow(10, 4-index) * currentIndex + lower
-                                    console.log("upper="+upper+", lower="+lower+")
-                                }
-                            }
+                        Tumbler {
+                            id: digit_3
+                            model: 10
+//                            currentIndex: selectedYear_3
+//                            onCurrentIndexChanged: selectedYear_3 = currentIndex
+                        }
+                        Tumbler {
+                            id: digit_2
+                            model: 10
+//                            currentIndex: selectedYear_2
+//                            onCurrentIndexChanged: selectedYear_2 = currentIndex
+                        }
+                        Tumbler {
+                            id: digit_1
+                            model: 10
+//                            currentIndex: selectedYear_1
+//                            onCurrentIndexChanged: selectedYear_1 = currentIndex
+                        }
+                        Tumbler {
+                            id: digit_0
+                            model: 10
+//                            currentIndex: selectedYear_0
+//                            onCurrentIndexChanged: selectedYear_0 = currentIndex
                         }
                     }
                     Frame {
@@ -118,40 +175,44 @@ Popup {
                     }
                 }
 
-                Flickable {
-                    Column {
-                        anchors.horizontalCenter: parent.horizontalCenter
+                Item {
+                    Flickable {
+                        anchors.centerIn: parent
+                        Column {
+                            anchors.horizontalCenter: parent.horizontalCenter
 
-                        DayOfWeekRow {
-                            anchors {
-                                left: daySelector.left
-                                right: daySelector.right
+                            DayOfWeekRow {
+                                anchors {
+                                    left: daySelector.left
+                                    right: daySelector.right
+                                }
                             }
-                        }
-                        MonthGrid {
-                            id: daySelector
-                            month: selectedMonth
+                            MonthGrid {
+                                id: daySelector
+                                year: selectedYear
+                                month: selectedMonth
 
-                            delegate: Pane {
-                                id: dayPane
-                                readonly property bool isSelected: selectedMonth === model.month && selectedDay === model.day
-                                background: Rectangle {
-                                    radius: 5
-                                    color: dayPane.isSelected ? "lightgray" : "transparent"
-                                    MouseArea {
-                                        anchors.fill: parent
-                                        onClicked: {
-                                            selectedDay = model.day
-                                            daySelector.year = model.year
-                                            selectedMonth = model.month
+                                delegate: Pane {
+                                    id: dayPane
+                                    readonly property bool isSelected: selectedMonth === model.month && selectedDay === model.day
+                                    background: Rectangle {
+                                        radius: 5
+                                        color: dayPane.isSelected ? "lightgray" : "transparent"
+                                        MouseArea {
+                                            anchors.fill: parent
+                                            onClicked: {
+                                                selectedDay = model.day
+                                                selectedYear = model.year
+                                                selectedMonth = model.month
+                                            }
                                         }
                                     }
-                                }
-                                contentItem: Label {
-                                    text: model.day
-                                    horizontalAlignment: Label.AlignHCenter
-                                    opacity: model.month === selectedMonth ? 1.0 : 0.25
-                                    font.bold: dayPane.isSelected
+                                    contentItem: Label {
+                                        text: model.day
+                                        horizontalAlignment: Label.AlignHCenter
+                                        opacity: model.month === selectedMonth ? 1.0 : 0.25
+                                        font.bold: dayPane.isSelected
+                                    }
                                 }
                             }
                         }
