@@ -46,6 +46,7 @@
         <file>FolderNode.qml</file>
         <file>FolderView.qml</file>
         <file>DateTimePopup.qml</file>
+        <file>DigitTumbler.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/arrow_left_icon&amp;24.png</file>
