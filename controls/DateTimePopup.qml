@@ -10,195 +10,206 @@ Popup {
     height: Math.min(parent.height - 50, 500)
 
     property int selectedDay: 1
-    readonly property string selectedDateStr: {
-        var date = new Date(selectedYear, selectedMonth, selectedDay)
-        return date.toLocaleDateString(Qt.locale())
-    }
     property int selectedMonth: 0
-
-    property int selectedYear_3: 0
-    property int selectedYear_2: 0
-    property int selectedYear_1: 0
-    property int selectedYear_0: 0
-    property int selectedYear: 1000*selectedYear_3 + 100*selectedYear_2 + 10*selectedYear_1 + selectedYear_0
+    property int selectedYear: calcYear()
     onSelectedYearChanged: {
-        var xx = selectedYear
-        selectedYear_3 = Math.floor(xx/1000)
-        xx = xx - selectedYear_3 * 1000
-        selectedYear_2 = Math.floor(xx/100)
-        xx = xx - selectedYear_2 * 100
-        selectedYear_1 = Math.floor(xx/10)
-        xx = xx - selectedYear_1 * 10
-        selectedYear_0 = xx
-        selectedYear = Qt.binding(function(){return 1000*selectedYear_3 + 100*selectedYear_2 + 10*selectedYear_1 + selectedYear_0})
+        digit_0.currentIndex = yearDigit(selectedYear,0)
+        digit_1.currentIndex = yearDigit(selectedYear,1)
+        digit_2.currentIndex = yearDigit(selectedYear,2)
+        digit_3.currentIndex = yearDigit(selectedYear,3)
+        selectedYear = Qt.binding(function(){return calcYear()})
+        console.log("YEAR="+selectedYear+", ["+digit_3.currentIndex+","+digit_2.currentIndex+","
+                    +digit_1.currentIndex+","+digit_0.currentIndex+"]")
     }
-
-    function yearDigit(index)
+    function yearDigit(year,index)
     {
-        return Math.floor(selectedYear/Math.pow(10, 3-index)) -
-                Math.floor(selectedYear/Math.pow(10, 4-index))*10
+        return ~~(year/Math.pow(10, index)) - ~~(year/Math.pow(10, index+1))*10
     }
+    function calcYear()
+    {
+        return 1000*digit_3.currentValue + 100*digit_2.currentValue + 10*digit_1.currentValue + digit_0.currentValue
+    }
+    onOpened: selectedYear = 0
+
+    property alias selectedHour: hour_digit.currentIndex
+    property alias selectedMinute: minute_digit.currentIndex
+    property alias selectedSecond: second_digit.currentIndex
 
     signal dateTimeAccepted
 
     contentItem: Page {
         header: ToolBar {
-            Label {
+            TabBar {
+                id: tabBar
+                background: null
                 anchors.centerIn: parent
-                text: selectedDateStr
-                font.italic: true
-                font.bold: true
+                width: Math.min(implicitWidth, parent.width)
+                clip: true
+                TabButton {
+                    text: calcYear()+"."
+                    width: implicitWidth
+                }
+                TabButton {
+                    text: Qt.locale().monthName(selectedMonth, Locale.ShortFormat)
+                    width: implicitWidth
+                }
+                TabButton {
+                    text: selectedDay+"."
+                    width: implicitWidth
+                }
+                TabButton {
+                    text: ""+selectedHour+":"+~~(selectedMinute/10)+(selectedMinute%10)
+                    width: implicitWidth
+                }
             }
         }
 
-        contentItem: Item {
-            TabBar {
-                id: tabBar
-                anchors {
-                    top: parent.top
-                    left: parent.left
-                    right: parent.right
+        contentItem: SwipeView {
+            currentIndex: tabBar.currentIndex
+            interactive: false
+            clip: true
+
+            Page {
+                clip: true
+                Row {
+                    id: yearDigits
+                    anchors.centerIn: parent
+
+                    DigitTumbler {
+                        id: digit_3
+                        currentIndex: 2
+                    }
+                    DigitTumbler {
+                        id: digit_2
+                        circularLink: digit_3
+                    }
+                    DigitTumbler {
+                        id: digit_1
+                        circularLink: digit_2
+                    }
+                    DigitTumbler {
+                        id: digit_0
+                        circularLink: digit_1
+                    }
                 }
-                TabButton {
-                    text: qsTr("Year")
-                }
-                TabButton {
-                    text: qsTr("Month")
-                }
-                TabButton {
-                    text: qsTr("Day")
+                Frame {
+                    width: yearDigits.width
+                    height: 30
+                    anchors.centerIn: parent
                 }
             }
-            SwipeView {
-                anchors {
-                    top: tabBar.bottom
-                    left: parent.left
-                    right: parent.right
-                    bottom: parent.bottom
-                }
-                currentIndex: tabBar.currentIndex
-                interactive: false
+
+            Page {
+                id: monthPage
                 clip: true
-
-                Page {
-                    clip: true
-                    Row {
-                        id: yearDigits
-                        anchors.centerIn: parent
-
-                        DigitTumbler {
-                            id: digit_3
-                            model: 10
-                            currentIndex: selectedYear_3
-                            onCurrentIndexChanged: selectedYear_3 = currentIndex
-                        }
-                        DigitTumbler {
-                            id: digit_2
-                            circularLink: digit_3
-                            currentIndex: selectedYear_2
-                            onCurrentIndexChanged: selectedYear_2 = currentIndex
-                        }
-                        DigitTumbler {
-                            id: digit_1
-                            circularLink: digit_2
-                            currentIndex: selectedYear_1
-                            onCurrentIndexChanged: selectedYear_1 = currentIndex
-                        }
-                        DigitTumbler {
-                            id: digit_0
-                            circularLink: digit_1
-                            currentIndex: selectedYear_0
-                            onCurrentIndexChanged: selectedYear_0 = currentIndex
-                        }
-                    }
-                    Frame {
-                        width: yearDigits.width
-                        height: 30
-                        anchors.centerIn: parent
-                    }
-                }
-
-                Page {
-                    id: monthPage
-                    clip: true
-                    GridView {
-                        id: monthGrid
-                        anchors.centerIn: parent
-                        model: 12
-                        readonly property int columnCount: monthPage.width / cellWidth
-                        readonly property int rowCount: Math.min(monthPage.height / cellHeight, count / columnCount)
-                        width: Math.min(cellWidth * columnCount, monthPage.width)
-                        height: Math.min(cellHeight * rowCount, monthPage.height)
-                        cellWidth: 150
-                        cellHeight: 80
-                        delegate: Item {
-                            width: monthGrid.cellWidth
-                            height: monthGrid.cellHeight
-                            RoundButton {
-                                radius: 5
-                                checkable: true
-                                checked: selectedMonth === index
-//                                background.opacity: checked ? 1.0 : 0.25
-                                width: monthGrid.cellWidth * 3 / 4
-                                anchors.centerIn: parent
-                                text: Qt.locale().monthName(index, Locale.LongFormat)
-                                onClicked: selectedMonth = index
-                            }
-                        }
-                    }
-                }
-
-                Page {
-                    id: dayPage
-                    clip: true
-                    Flickable {
-                        anchors.centerIn: parent
-                        width: Math.min(daySelectorColumn.width, dayPage.width)
-                        height: Math.min(daySelectorColumn.height, dayPage.height)
-                        flickableDirection: Flickable.VerticalFlick | Flickable.HorizontalFlick
-                        contentWidth: daySelectorColumn.width
-                        contentHeight: daySelectorColumn.height
-
-                        Column {
-                            id: daySelectorColumn
+                GridView {
+                    id: monthGrid
+                    anchors.centerIn: parent
+                    model: 12
+                    readonly property int columnCount: monthPage.width / cellWidth
+                    readonly property int rowCount: Math.min(monthPage.height / cellHeight, count / columnCount)
+                    width: Math.min(cellWidth * columnCount, monthPage.width)
+                    height: Math.min(cellHeight * rowCount, monthPage.height)
+                    cellWidth: 150
+                    cellHeight: 80
+                    delegate: Item {
+                        width: monthGrid.cellWidth
+                        height: monthGrid.cellHeight
+                        RoundButton {
+                            radius: 5
+                            checkable: true
+                            checked: selectedMonth === index
+                            width: monthGrid.cellWidth * 3 / 4
                             anchors.centerIn: parent
-                            anchors.horizontalCenter: parent.horizontalCenter
+                            text: Qt.locale().monthName(index, Locale.LongFormat)
+                            onClicked: selectedMonth = index
+                        }
+                    }
+                }
+            }
 
-                            DayOfWeekRow {
-                                anchors {
-                                    left: daySelector.left
-                                    right: daySelector.right
-                                }
+            Page {
+                id: dayPage
+                clip: true
+                Flickable {
+                    anchors.centerIn: parent
+                    width: Math.min(daySelectorColumn.width, dayPage.width)
+                    height: Math.min(daySelectorColumn.height, dayPage.height)
+                    flickableDirection: Flickable.HorizontalAndVerticalFlick
+                    contentWidth: daySelectorColumn.width
+                    contentHeight: daySelectorColumn.height
+
+                    Column {
+                        id: daySelectorColumn
+                        anchors.centerIn: parent
+                        anchors.horizontalCenter: parent.horizontalCenter
+
+                        DayOfWeekRow {
+                            anchors {
+                                left: daySelector.left
+                                right: daySelector.right
                             }
-                            MonthGrid {
-                                id: daySelector
-                                year: selectedYear
-                                month: selectedMonth
+                        }
+                        MonthGrid {
+                            id: daySelector
+                            year: selectedYear
+                            month: selectedMonth
 
-                                delegate: RoundButton {
-                                    id: dayButton
-                                    checkable: true
-                                    checked: selectedMonth === model.month && selectedDay === model.day
-//                                    background.opacity: checked ? 1.0 : 0.0
-//                                    background.opacity: checked ? 1.0 : 0.25
-                                    opacity: model.month === selectedMonth ? 1.0 : 0.25
-                                    TextMetrics {
-                                        id: textMetrics
-                                        text: "30"
-                                        font: dayButton.font
-                                    }
-                                    width: textMetrics.advanceWidth + leftPadding + rightPadding
-                                    radius: 5
-                                    text: model.day
-                                    onClicked: {
-                                        selectedDay = model.day
-                                        selectedYear = model.year
-                                        selectedMonth = model.month
-                                    }
+                            delegate: RoundButton {
+                                id: dayButton
+                                checkable: true
+                                checked: selectedMonth === model.month && selectedDay === model.day
+                                opacity: model.month === selectedMonth ? 1.0 : 0.25
+                                TextMetrics {
+                                    id: textMetrics
+                                    text: "30"
+                                    font: dayButton.font
+                                }
+                                width: textMetrics.advanceWidth + leftPadding + rightPadding
+                                radius: 5
+                                text: model.day
+                                onClicked: {
+                                    selectedDay = model.day
+                                    selectedYear = model.year
+                                    selectedMonth = model.month
                                 }
                             }
                         }
                     }
+                }
+            }
+
+            Page {
+                Row {
+                    id: timeDigits
+                    anchors.centerIn: parent
+                    DigitTumbler {
+                        id: hour_digit
+                        base: 24
+                    }
+                    Label {
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: ":"
+                    }
+                    DigitTumbler {
+                        id: minute_digit
+                        base: 60
+                        circularLink: hour_digit
+                    }
+                    Label {
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: ":"
+                    }
+                    DigitTumbler {
+                        id: second_digit
+                        base: 60
+                        circularLink: minute_digit
+                    }
+                }
+                Frame {
+                    width: timeDigits.width
+                    height: 30
+                    anchors.centerIn: parent
                 }
             }
         }

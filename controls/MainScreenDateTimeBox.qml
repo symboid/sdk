@@ -1,5 +1,6 @@
 
 import QtQuick 2.12
+import QtQuick.Controls 2.5
 import Symboid.Sdk.Controls 1.0
 
 MainScreenParamBox {
@@ -20,7 +21,7 @@ MainScreenParamBox {
     property alias currentTimerOn: currentTimer.checked
     property alias showSeconds: timeBox.showSeconds
 
-    property alias datePopup: dateBox.popupItem
+    property alias popupParent: dateTimePopup.parent
 
     DateCoordBox {
         id: dateBox
@@ -33,15 +34,53 @@ MainScreenParamBox {
         editable: true
         circularLink: dateBox.dayLink
     }
-    MainScreenTimer {
-        id: currentTimer
-        text: qsTr("Current")
-        visible: false
-        onTriggered: {
-            dateBox.setCurrent()
-            timeBox.setCurrent()
+    Pane {
+        id: toolsPane
+        contentItem: Row {
+            spacing: parent.padding
+            CheckBox {
+                anchors.verticalCenter: parent.verticalCenter
+                id: currentTimer
+                text: qsTr("Current")
+                visible: false
+                checkable: true
+                onCheckedChanged: {
+                    if (checked)
+                    {
+                        dateBox.setCurrent()
+                        timeBox.setCurrent()
+                    }
+                }
+            }
+            RoundButton {
+                anchors.verticalCenter: parent.verticalCenter
+                enabled: !currentTimerOn
+                radius: 5
+                icon.source: "/icons/calendar_2_icon&32.png"
+                onClicked: dateTimePopup.open()
+                DateTimePopup {
+                    id: dateTimePopup
+                    onOpened: {
+                        selectedYear = year
+                        selectedMonth = month - 1
+                        selectedDay = day
+                        selectedHour = hour
+                        selectedMinute = minute
+                        selectedSecond = second
+                    }
+                    onDateTimeAccepted: {
+                        year = selectedYear
+                        month = selectedMonth + 1
+                        day = selectedDay
+                        hour = selectedHour
+                        minute = selectedMinute
+                        second = selectedSecond
+                    }
+                }
+            }
         }
     }
+
     UnixTimeConverter {
         id: unixTimeConverter
         year: dateBox.year
