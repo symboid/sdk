@@ -77,19 +77,15 @@ Popup {
 
                     DigitTumbler {
                         id: digit_3
-                        currentIndex: 2
                     }
                     DigitTumbler {
                         id: digit_2
-                        circularLink: digit_3
                     }
                     DigitTumbler {
                         id: digit_1
-                        circularLink: digit_2
                     }
                     DigitTumbler {
                         id: digit_0
-                        circularLink: digit_1
                     }
                 }
                 Frame {
@@ -191,7 +187,7 @@ Popup {
                         anchors.verticalCenter: parent.verticalCenter
                         text: ":"
                     }
-                    DigitTumbler {
+                    DigitTumblerLinked {
                         id: minute_digit
                         base: 60
                         circularLink: hour_digit
@@ -200,7 +196,7 @@ Popup {
                         anchors.verticalCenter: parent.verticalCenter
                         text: ":"
                     }
-                    DigitTumbler {
+                    DigitTumblerLinked {
                         id: second_digit
                         base: 60
                         circularLink: minute_digit
