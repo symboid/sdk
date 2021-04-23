@@ -30,7 +30,6 @@ signals:
 
 public:
     Q_PROPERTY(QString id MEMBER mId CONSTANT)
-private:
     const QString mId;
 
 private:
