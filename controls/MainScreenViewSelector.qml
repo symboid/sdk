@@ -1,37 +1,47 @@
 
 import QtQuick 2.12
 import QtQuick.Controls 2.5
+import Symboid.Sdk.Controls 1.0
+import QtQuick.Layouts 1.12
 
-Row {
-    property var viewNames: []
-    property int currentIndex: 0
-    readonly property int minWidth: prevButton.width + viewName.width + nextButton.width
+Column {
+    property alias mainIndex: mainViewSelector.currentIndex
+    property int subIndex: 0
+    readonly property alias minWidth: mainViewSelector.minWidth
 
-    RoundButton {
-        id: prevButton
-        anchors.verticalCenter: parent.verticalCenter
-        icon.source: "/icons/br_prev_icon&24.png"
-        enabled: currentIndex > 0
-        onClicked: currentIndex--
+    property var viewTitles: []
+
+    SingleViewSelector {
+        id: mainViewSelector
+        anchors.left: parent.left
+        anchors.right: parent.right
+        labelFont.bold: true
+        viewNames: {
+            var names = []
+            for (var v = 0; v < viewTitles.length; ++v)
+            {
+                names.push(viewTitles[v].main)
+            }
+
+            return names
+        }
     }
-    HorizontalLine {
-        anchors.verticalCenter: parent.verticalCenter
-        width: (parent.width - minWidth) / 2
-    }
-    Label {
-        id: viewName
-        anchors.verticalCenter: parent.verticalCenter
-        text: viewNames[currentIndex]
-    }
-    HorizontalLine {
-        anchors.verticalCenter: parent.verticalCenter
-        width: (parent.width - minWidth) / 2
-    }
-    RoundButton {
-        id: nextButton
-        anchors.verticalCenter: parent.verticalCenter
-        icon.source: "/icons/br_next_icon&24.png"
-        enabled: currentIndex < (viewNames.length - 1)
-        onClicked: currentIndex++
+    StackLayout {
+        width: mainViewSelector.width
+        height: mainViewSelector.height
+        scale: 0.9
+        currentIndex: mainIndex
+        Repeater {
+            model: viewTitles.length
+            delegate: Item {
+                SingleViewSelector {
+                    labelFont.italic: true
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    viewNames: viewTitles[index].sub
+                    onCurrentIndexChanged: subIndex = currentIndex
+                }
+            }
+        }
     }
 }
