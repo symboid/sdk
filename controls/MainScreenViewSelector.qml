@@ -6,7 +6,8 @@ import QtQuick.Layouts 1.12
 
 Column {
     property alias mainIndex: mainViewSelector.currentIndex
-    readonly property int subIndex: subViewSelectors.itemAt(mainIndex).currentIndex
+    readonly property var subViewSelector: subViewSelectors.itemAt(mainIndex)
+    readonly property int subIndex: subViewSelector !== null ? subViewSelector.currentIndex : 0
     readonly property alias minWidth: mainViewSelector.minWidth
 
     property var viewTitles: []
@@ -34,11 +35,15 @@ Column {
         Repeater {
             id: subViewSelectors
             model: viewTitles.length
-            delegate: SingleViewSelector {
-                labelFont.italic: true
-                anchors.left: parent.left
-                anchors.right: parent.right
-                viewNames: viewTitles[index].sub
+            delegate: Item {
+                property alias currentIndex: subViewSelector.currentIndex
+                SingleViewSelector {
+                    id: subViewSelector
+                    labelFont.italic: true
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    viewNames: viewTitles[index].sub
+                }
             }
         }
     }
