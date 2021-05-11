@@ -2,6 +2,17 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="hu_HU">
 <context>
+    <name>CalcPane</name>
+    <message>
+        <source>Data might be invalid!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recalculating...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainScreenDateTimeBox</name>
     <message>
         <source>Date and time</source>
