@@ -49,6 +49,7 @@
         <file>DigitTumbler.qml</file>
         <file>DigitTumblerLinked.qml</file>
         <file>SingleViewSelector.qml</file>
+        <file>CalcPane.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/arrow_left_icon&amp;24.png</file>
@@ -64,6 +65,8 @@
         <file>icons/round_delete_icon&amp;32.png</file>
         <file>icons/br_up_icon&amp;24.png</file>
         <file>icons/calendar_2_icon&amp;32.png</file>
+        <file>icons/delete_icon&amp;24.png</file>
+        <file>icons/refresh_icon&amp;24.png</file>
     </qresource>
     <qresource prefix="/tr">
         <file>sdk-controls_hu.qm</file>
