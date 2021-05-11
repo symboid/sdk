@@ -33,18 +33,20 @@ IndirectContainer {
         opacity: contentValid ? 1.0 : 0.5
     }
 
-    Label {
+    BusyIndicator {
+        id: busyIndicator
         anchors.centerIn: parent
+        running: calculating && indeterminateCalc
+    }
+
+    Label {
+        anchors.horizontalCenter: busyIndicator.horizontalCenter
+        anchors.top: busyIndicator.bottom
         visible: !contentValid
         text: calculating ? qsTr("Recalculating...") : qsTr("Data might be invalid!")
         horizontalAlignment: Label.AlignHCenter
         font.italic: true
         color: calculating ? "black" : "red"
-    }
-
-    BusyIndicator {
-        anchors.centerIn: parent
-        running: calculating && indeterminateCalc
     }
 
     ProgressBar {
