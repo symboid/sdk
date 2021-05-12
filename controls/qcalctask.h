@@ -6,23 +6,49 @@
 #include <QObject>
 #include <QMutex>
 
+class QCalcThread;
+
 class SDK_CONTROLS_API QCalcTask : public QObject
 {
     Q_OBJECT
 
 public:
     QCalcTask(QObject* parent);
+    ~QCalcTask();
 
 public:
     virtual void calc() = 0;
+    void invoke();
+    void start();
     void run();
+    void abort();
+
+private:
+    QCalcThread* mExecutionThread;
 
 public:
-    void setExecutionThread(QThread* executionthread);
-    QThread* executionThread() const;
+    Q_PROPERTY(qreal progress READ progress NOTIFY progressChanged)
+public:
+    qreal progress() const;
+    void setProgressPos(qint64 progressPos);
+    void setProgressTotal(qint64 progressTotal);
 private:
-    QThread* mExecutionThread;
+    qint64 mProgressPos;
+    qint64 mProgressTotal;
+signals:
+    void progressChanged();
 
+public:
+    Q_PROPERTY(bool valid READ valid WRITE setValid NOTIFY validChanged)
+public:
+    bool valid() const;
+private:
+    bool mIsValid;
+    void setValid(bool isValid);
+signals:
+    void validChanged();
+
+public:
     Q_PROPERTY(bool running READ running WRITE setRunning NOTIFY runningChanged)
 private:
     bool mRunning;
@@ -33,16 +59,14 @@ signals:
     void runningChanged();
 
 public:
-    Q_PROPERTY(qreal progress READ progress NOTIFY progressChanged)
-    qreal progress() const;
-protected:
-    void setProgressPos(qint64 progressPos);
-    void setProgressTotal(qint64 progressTotal);
+    Q_PROPERTY(bool autorun READ autorun WRITE setAutorun NOTIFY autorunChanged)
 private:
-    qint64 mProgressPos;
-    qint64 mProgressTotal;
+    bool mAutorun;
+public:
+    bool autorun() const;
+    void setAutorun(bool running);
 signals:
-    void progressChanged();
+    void autorunChanged();
 
 public:
     bool isAborted() const;

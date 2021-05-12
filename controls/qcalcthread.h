@@ -4,7 +4,8 @@
 
 #include "sdk/controls/defs.h"
 #include <QThread>
-#include "sdk/controls/qcalctask.h"
+
+class QCalcTask;
 
 class SDK_CONTROLS_API QCalcThread : public QThread
 {

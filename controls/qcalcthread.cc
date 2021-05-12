@@ -1,12 +1,12 @@
 
 #include "sdk/controls/setup.h"
 #include "sdk/controls/qcalcthread.h"
+#include "sdk/controls/qcalctask.h"
 
 QCalcThread::QCalcThread(QObject* parent, QCalcTask* calcTask)
     : QThread(parent)
     , mCalcTask(calcTask)
 {
-    mCalcTask->setExecutionThread(this);
 }
 
 void QCalcThread::run()

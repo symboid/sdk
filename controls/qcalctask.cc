@@ -1,15 +1,40 @@
 
 #include "sdk/controls/setup.h"
 #include "sdk/controls/qcalctask.h"
-#include <QThread>
+#include "sdk/controls/qcalcthread.h"
 
 QCalcTask::QCalcTask(QObject* parent)
     : QObject(parent)
-    , mExecutionThread(nullptr)
-    , mRunning(false)
+    , mExecutionThread(new QCalcThread(this, this))
     , mProgressPos(00L)
     , mProgressTotal(00L)
+    , mIsValid(false)
+    , mRunning(false)
+    , mAutorun(false)
 {
+}
+
+QCalcTask::~QCalcTask()
+{
+    mExecutionThread->deleteLater();
+}
+
+void QCalcTask::invoke()
+{
+    if (mAutorun)
+    {
+        start();
+    }
+    else
+    {
+        setValid(false);
+    }
+}
+
+void QCalcTask::start()
+{
+    setValid(false);
+    mExecutionThread->startCalc();
 }
 
 void QCalcTask::run()
@@ -22,21 +47,25 @@ void QCalcTask::run()
 
     setProgressPos(0LL);
     setProgressTotal(0LL);
-    if (!restarted())
+    if (restarted())
     {
-        emit isAborted() ? aborted() : finished();
+    }
+    else if (isAborted())
+    {
+        setValid(false);
+        emit aborted();
+    }
+    else
+    {
+        setValid(true);
+        emit finished();
     }
     setRunning(false);
 }
 
-void QCalcTask::setExecutionThread(QThread* executionThread)
+void QCalcTask::abort()
 {
-    mExecutionThread = executionThread;
-}
-
-QThread* QCalcTask::executionThread() const
-{
-    return mExecutionThread;
+    mExecutionThread->requestInterruption();
 }
 
 bool QCalcTask::running() const
@@ -50,6 +79,24 @@ void QCalcTask::setRunning(bool running)
     {
         mRunning = running;
         emit runningChanged();
+    }
+}
+
+bool QCalcTask::autorun() const
+{
+    return mAutorun;
+}
+
+void QCalcTask::setAutorun(bool autorun)
+{
+    if (mAutorun != autorun)
+    {
+        mAutorun = autorun;
+        emit autorunChanged();
+        if (mAutorun && !mIsValid)
+        {
+            start();
+        }
     }
 }
 
@@ -73,6 +120,20 @@ void QCalcTask::setProgressTotal(qint64 progressTotal)
     {
         mProgressTotal = progressTotal;
         emit progressChanged();
+    }
+}
+
+bool QCalcTask::valid() const
+{
+    return mIsValid;
+}
+
+void QCalcTask::setValid(bool isValid)
+{
+    if (mIsValid != isValid)
+    {
+        mIsValid = isValid;
+        emit validChanged();
     }
 }
 
