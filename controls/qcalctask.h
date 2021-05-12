@@ -11,6 +11,8 @@ class QCalcThread;
 class SDK_CONTROLS_API QCalcTask : public QObject
 {
     Q_OBJECT
+public:
+    static constexpr const char* qml_name = "CalcTask";
 
 public:
     QCalcTask(QObject* parent);
@@ -18,10 +20,10 @@ public:
 
 public:
     virtual void calc() = 0;
-    void invoke();
-    void start();
     void run();
-    void abort();
+    void invoke();
+    Q_INVOKABLE void start();
+    Q_INVOKABLE void abort();
 
 private:
     QCalcThread* mExecutionThread;
@@ -71,6 +73,7 @@ signals:
 public:
     bool isAborted() const;
 signals:
+    void started();
     void finished();
     void aborted();
 
@@ -81,5 +84,7 @@ public:
     QMutex mRestartMutex;
     int mRestartCount;
 };
+
+Q_DECLARE_METATYPE(QCalcTask*)
 
 #endif // __SYMBOID_SDK_CONTROLS_QCALCTASK_H__

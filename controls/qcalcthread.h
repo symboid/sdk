@@ -4,6 +4,7 @@
 
 #include "sdk/controls/defs.h"
 #include <QThread>
+#include <QMutex>
 
 class QCalcTask;
 

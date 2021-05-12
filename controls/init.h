@@ -5,6 +5,7 @@
 #include "sdk/controls/defs.h"
 #include "sdk/arch/modqt.h"
 #include "sdk/controls/qunixtimeconverter.h"
+#include "sdk/controls/qcalctask.h"
 
 struct SDK_CONTROLS_API mod_sdk_controls : arh::mod_qt<mod_sdk_controls>
 {
@@ -18,6 +19,7 @@ struct SDK_CONTROLS_API mod_sdk_controls : arh::mod_qt<mod_sdk_controls>
     ~mod_sdk_controls();
 
     qml_type_register<QUnixTimeConverter> _reg_unix_time_converter;
+    qml_domain_register<QCalcTask> _reg_calc_task;
 };
 
 

@@ -40,6 +40,7 @@ void QCalcTask::start()
 void QCalcTask::run()
 {
     setRunning(true);
+    emit started();
     setProgressPos(0LL);
     setProgressTotal(0LL);
 
