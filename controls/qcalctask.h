@@ -21,9 +21,10 @@ public:
 public:
     virtual void calc() = 0;
     void run();
-    void invoke();
     Q_INVOKABLE void start();
     Q_INVOKABLE void abort();
+public slots:
+    void invoke();
 
 private:
     QCalcThread* mExecutionThread;
