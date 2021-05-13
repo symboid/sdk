@@ -5,7 +5,7 @@
 
 QCalcTask::QCalcTask(QObject* parent)
     : QObject(parent)
-    , mExecutionThread(new QCalcThread(this, this))
+    , mExecThread(new QCalcThread(this))
     , mProgressPos(00L)
     , mProgressTotal(00L)
     , mIsValid(false)
@@ -16,7 +16,7 @@ QCalcTask::QCalcTask(QObject* parent)
 
 QCalcTask::~QCalcTask()
 {
-    mExecutionThread->deleteLater();
+    mExecThread->deleteLater();
 }
 
 void QCalcTask::invoke()
@@ -34,10 +34,17 @@ void QCalcTask::invoke()
 void QCalcTask::start()
 {
     setValid(false);
-    mExecutionThread->startCalc();
+    if (mExecThread->isRunning())
+    {
+        setRestarted();
+    }
+    else
+    {
+        mExecThread->start();
+    }
 }
 
-void QCalcTask::run()
+void QCalcTask::exec()
 {
     setRunning(true);
     emit started();
@@ -64,9 +71,19 @@ void QCalcTask::run()
     setRunning(false);
 }
 
+void QCalcTask::run()
+{
+    QMutexLocker calcLocker(&mExecMutex);
+    exec();
+    while (restarting())
+    {
+        exec();
+    }
+}
+
 void QCalcTask::abort()
 {
-    mExecutionThread->requestInterruption();
+    mExecThread->requestInterruption();
 }
 
 bool QCalcTask::running() const
@@ -140,7 +157,7 @@ void QCalcTask::setValid(bool isValid)
 
 bool QCalcTask::isAborted() const
 {
-    return mExecutionThread->isInterruptionRequested();
+    return mExecThread->isInterruptionRequested();
 }
 
 bool QCalcTask::restarting()

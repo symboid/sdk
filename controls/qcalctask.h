@@ -18,16 +18,19 @@ public:
     QCalcTask(QObject* parent);
     ~QCalcTask();
 
+private:
+    void exec();
 public:
     virtual void calc() = 0;
-    void run();
     Q_INVOKABLE void start();
     Q_INVOKABLE void abort();
 public slots:
+    void run();
     void invoke();
 
 private:
-    QCalcThread* mExecutionThread;
+    QThread* mExecThread;
+    QMutex mExecMutex;
 
 public:
     Q_PROPERTY(qreal progress READ progress NOTIFY progressChanged)
