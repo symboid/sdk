@@ -3,9 +3,27 @@
 #include "sdk/controls/qcalctask.h"
 #include "sdk/controls/qcalcthread.h"
 
+QCalcable::QCalcable(QObject* parent)
+    : QObject(parent)
+    , mCalcTask(nullptr)
+{
+}
+
+void QCalcable::setCalcTask(QCalcTask* calcTask)
+{
+    mCalcTask = calcTask;
+    emit calcTaskChanged();
+}
+
+QCalcTask* QCalcable::calcTask() const
+{
+    return mCalcTask;
+}
+
 QCalcTask::QCalcTask(QObject* parent)
     : QObject(parent)
     , mExecThread(new QCalcThread(this))
+    , mCalcable(nullptr)
     , mProgressPos(00L)
     , mProgressTotal(00L)
     , mIsValid(false)
@@ -38,7 +56,7 @@ void QCalcTask::start()
     {
         setRestarted();
     }
-    else
+    else if (mCalcable)
     {
         mExecThread->start();
     }
@@ -51,7 +69,7 @@ void QCalcTask::exec()
     setProgressPos(0LL);
     setProgressTotal(0LL);
 
-    calc();
+    mCalcable->calc();
 
     setProgressPos(0LL);
     setProgressTotal(0LL);
@@ -69,6 +87,24 @@ void QCalcTask::exec()
         emit finished();
     }
     setRunning(false);
+}
+
+QCalcable* QCalcTask::calcable() const
+{
+    return mCalcable;
+}
+
+void QCalcTask::setCalcable(QCalcable* calcable)
+{
+    if (mCalcable != calcable)
+    {
+        mCalcable = calcable;
+        if (mCalcable)
+        {
+            mCalcable->setCalcTask(this);
+        }
+        emit calcableChanged();
+    }
 }
 
 void QCalcTask::run()

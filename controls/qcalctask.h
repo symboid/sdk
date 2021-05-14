@@ -6,7 +6,29 @@
 #include <QObject>
 #include <QMutex>
 
-class QCalcThread;
+class QCalcTask;
+
+class SDK_CONTROLS_API QCalcable : public QObject
+{
+    Q_OBJECT
+public:
+    static constexpr const char* qml_name = "Calcable";
+public:
+    QCalcable(QObject* parent = Q_NULLPTR);
+
+public:
+    virtual void calc() = 0;
+
+public:
+    void setCalcTask(QCalcTask* calcTask);
+    QCalcTask* calcTask() const;
+protected:
+    QCalcTask* mCalcTask;
+signals:
+    void calcTaskChanged();
+};
+
+Q_DECLARE_METATYPE(QCalcable*)
 
 class SDK_CONTROLS_API QCalcTask : public QObject
 {
@@ -15,13 +37,12 @@ public:
     static constexpr const char* qml_name = "CalcTask";
 
 public:
-    QCalcTask(QObject* parent);
+    QCalcTask(QObject* parent = Q_NULLPTR);
     ~QCalcTask();
 
 private:
     void exec();
 public:
-    virtual void calc() = 0;
     Q_INVOKABLE void start();
     Q_INVOKABLE void abort();
 public slots:
@@ -31,6 +52,15 @@ public slots:
 private:
     QThread* mExecThread;
     QMutex mExecMutex;
+
+public:
+    Q_PROPERTY(QCalcable* calcable READ calcable WRITE setCalcable NOTIFY calcableChanged)
+    QCalcable* calcable() const;
+    void setCalcable(QCalcable* calcable);
+private:
+    QCalcable* mCalcable;
+signals:
+    void calcableChanged();
 
 public:
     Q_PROPERTY(qreal progress READ progress NOTIFY progressChanged)

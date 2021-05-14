@@ -19,7 +19,8 @@ struct SDK_CONTROLS_API mod_sdk_controls : arh::mod_qt<mod_sdk_controls>
     ~mod_sdk_controls();
 
     qml_type_register<QUnixTimeConverter> _reg_unix_time_converter;
-    qml_domain_register<QCalcTask> _reg_calc_task;
+    qml_type_register<QCalcTask> _reg_calc_task;
+    qml_domain_register<QCalcable> _reg_calcable;
 };
 
 

@@ -5,7 +5,7 @@ import Symboid.Sdk.Controls 1.0
 
 IndirectContainer {
 
-    property CalcTask task: null
+    property alias calcable: task.calcable
     readonly property bool calculating: task.running
     property bool indeterminateCalc: true
     property alias parameters: parametersSlot.contentItem
@@ -14,6 +14,10 @@ IndirectContainer {
 
     container: resultItem
     reparentFrom: 6
+
+    CalcTask {
+        id: task
+    }
 
     ItemSlot {
         id: parametersSlot
