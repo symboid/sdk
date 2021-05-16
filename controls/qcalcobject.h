@@ -5,17 +5,24 @@
 #include "sdk/controls/defs.h"
 #include <QObject>
 
-class QCalcable;
-
-class QCalcObject : public QObject
+class SDK_CONTROLS_API QCalcObject : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit QCalcObject(QObject *parent = nullptr);
+    QCalcObject(QObject *parent);
 
 signals:
     void changed();
+};
+
+class QCalcable;
+
+class SDK_CONTROLS_API QCalcParam : public QCalcObject
+{
+    Q_OBJECT
+public:
+    QCalcParam(QObject* parent);
 
 public:
     QCalcable* calcable() const;

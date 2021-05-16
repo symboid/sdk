@@ -5,16 +5,21 @@
 
 QCalcObject::QCalcObject(QObject *parent)
     : QObject(parent)
+{
+}
+
+QCalcParam::QCalcParam(QObject *parent)
+    : QCalcObject(parent)
     , mCalcable(nullptr)
 {
 }
 
-QCalcable* QCalcObject::calcable() const
+QCalcable* QCalcParam::calcable() const
 {
     return mCalcable;
 }
 
-void QCalcObject::setCalcable(QCalcable* calcable)
+void QCalcParam::setCalcable(QCalcable* calcable)
 {
     if (mCalcable)
     {
@@ -35,7 +40,15 @@ QCalcable::QCalcable(QObject* parent)
 
 void QCalcable::setCalcTask(QCalcTask* calcTask)
 {
+    if (mCalcTask)
+    {
+        disconnect(this, SIGNAL(changed()), mCalcTask, SLOT(invoke()));
+    }
     mCalcTask = calcTask;
+    if (mCalcTask)
+    {
+        connect(this, SIGNAL(changed()), mCalcTask, SLOT(invoke()));
+    }
     emit calcTaskChanged();
 }
 
@@ -43,4 +56,3 @@ QCalcTask* QCalcable::calcTask() const
 {
     return mCalcTask;
 }
-
