@@ -3,32 +3,9 @@
 #define __SYMBOID_SDK_CONTROLS_QCALCTASK_H__
 
 #include "sdk/controls/defs.h"
+#include "sdk/controls/qcalcobject.h"
 #include <QObject>
 #include <QMutex>
-
-class QCalcTask;
-
-class SDK_CONTROLS_API QCalcable : public QObject
-{
-    Q_OBJECT
-public:
-    static constexpr const char* qml_name = "Calcable";
-public:
-    QCalcable(QObject* parent = Q_NULLPTR);
-
-public:
-    virtual void calc() = 0;
-
-public:
-    void setCalcTask(QCalcTask* calcTask);
-    QCalcTask* calcTask() const;
-protected:
-    QCalcTask* mCalcTask;
-signals:
-    void calcTaskChanged();
-};
-
-Q_DECLARE_METATYPE(QCalcable*)
 
 class SDK_CONTROLS_API QCalcTask : public QObject
 {

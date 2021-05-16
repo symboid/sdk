@@ -3,23 +3,6 @@
 #include "sdk/controls/qcalctask.h"
 #include "sdk/controls/qcalcthread.h"
 
-QCalcable::QCalcable(QObject* parent)
-    : QObject(parent)
-    , mCalcTask(nullptr)
-{
-}
-
-void QCalcable::setCalcTask(QCalcTask* calcTask)
-{
-    mCalcTask = calcTask;
-    emit calcTaskChanged();
-}
-
-QCalcTask* QCalcable::calcTask() const
-{
-    return mCalcTask;
-}
-
 QCalcTask::QCalcTask(QObject* parent)
     : QObject(parent)
     , mExecThread(new QCalcThread(this))

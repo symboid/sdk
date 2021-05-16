@@ -6,6 +6,7 @@ include($${BUILD_ROOT}/build/qmake/qt-module.pri)
 
 SOURCES += \
     init.cc \
+    qcalcobject.cc \
     qcalctask.cc \
     qcalcthread.cc \
     qjsonsyncmodel.cc \
@@ -16,6 +17,7 @@ HEADERS += \
     defs.h \
     init.h \
     listpropertyadapter.h \
+    qcalcobject.h \
     qcalctask.h \
     qcalcthread.h \
     qjsonsyncmodel.h \
