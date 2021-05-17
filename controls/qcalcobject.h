@@ -16,21 +16,6 @@ signals:
     void changed();
 };
 
-class QCalcable;
-
-class SDK_CONTROLS_API QCalcParam : public QCalcObject
-{
-    Q_OBJECT
-public:
-    QCalcParam(QObject* parent);
-
-public:
-    QCalcable* calcable() const;
-    void setCalcable(QCalcable* calcable);
-private:
-    QCalcable* mCalcable;
-};
-
 class QCalcTask;
 
 class SDK_CONTROLS_API QCalcable : public QCalcObject
@@ -51,6 +36,12 @@ protected:
     QCalcTask* mCalcTask;
 signals:
     void calcTaskChanged();
+
+public:
+    void addParam(QCalcObject* param);
+    void deleteParam(QCalcObject* param);
+private:
+    QList<QCalcObject*> mParams;
 };
 
 Q_DECLARE_METATYPE(QCalcable*)
