@@ -98,6 +98,7 @@ void QCalcTask::run()
     {
         exec();
     }
+    emit mCalcable->changed();
 }
 
 void QCalcTask::abort()

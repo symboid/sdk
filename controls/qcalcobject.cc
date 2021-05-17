@@ -43,7 +43,10 @@ void QCalcable::addParam(QCalcObject* param)
 {
     if (param)
     {
-        connect(param, SIGNAL(changed()), mCalcTask, SLOT(invoke()));
+        if (mCalcTask)
+        {
+            connect(param, SIGNAL(changed()), mCalcTask, SLOT(invoke()));
+        }
         mParams.push_back(param);
     }
 }
@@ -59,7 +62,10 @@ void QCalcable::deleteParam(QCalcObject* param)
         }
         if (d != mParams.end())
         {
-            disconnect(param, SIGNAL(changed()), mCalcTask, SLOT(invoke()));
+            if (mCalcTask)
+            {
+                disconnect(param, SIGNAL(changed()), mCalcTask, SLOT(invoke()));
+            }
             mParams.erase(d);
         }
     }
