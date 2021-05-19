@@ -45,3 +45,4 @@ FolderLabel 1.0 FolderLabel.qml
 FolderView 1.0 FolderView.qml
 DateTimePopup 1.0 DateTimePopup.qml
 CalcPane 1.0 CalcPane.qml
+MultiDataView 1.0 MultiDataView.qml
