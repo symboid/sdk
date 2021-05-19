@@ -18,19 +18,16 @@ MainScreenParamBox {
     property alias showTimeBox: timeBox.visible
     property alias showCurrentTimer: currentTimer.visible
     readonly property alias unixTime: unixTimeConverter.unixTime
-    property alias currentTimerOn: currentTimer.checked
     property alias showSeconds: timeBox.showSeconds
 
     property alias popupParent: dateTimePopup.parent
 
     DateCoordBox {
         id: dateBox
-        enabled: !currentTimerOn
         editable: true
     }
     TimeCoordBox {
         id: timeBox
-        enabled: !currentTimerOn
         editable: true
         circularLink: dateBox.dayLink
     }
@@ -38,23 +35,19 @@ MainScreenParamBox {
         id: toolsPane
         contentItem: Row {
             spacing: parent.padding
-            CheckBox {
-                anchors.verticalCenter: parent.verticalCenter
+            RoundButton {
                 id: currentTimer
+                anchors.verticalCenter: parent.verticalCenter
+                radius: 5
                 text: qsTr("Current")
                 visible: false
-                checkable: true
-                onCheckedChanged: {
-                    if (checked)
-                    {
-                        dateBox.setCurrent()
-                        timeBox.setCurrent()
-                    }
+                onClicked: {
+                    dateBox.setCurrent()
+                    timeBox.setCurrent()
                 }
             }
             RoundButton {
                 anchors.verticalCenter: parent.verticalCenter
-                enabled: !currentTimerOn
                 radius: 5
                 icon.source: "/icons/calendar_2_icon&32.png"
                 onClicked: dateTimePopup.open()
