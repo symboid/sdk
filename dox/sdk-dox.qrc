@@ -12,6 +12,7 @@
         <file>icons/doc_new_icon&amp;32.png</file>
         <file>icons/trash_icon&amp;32.png</file>
         <file>icons/zoom_icon&amp;32.png</file>
+        <file>icons/br_prev_icon&amp;24.png</file>
     </qresource>
     <qresource prefix="/tr">
         <file>sdk-dox_hu.qm</file>
