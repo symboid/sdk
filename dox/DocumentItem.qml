@@ -5,8 +5,8 @@ import Symboid.Sdk.Controls 1.0
 
 FolderItem {
 
-    rightItem: RoundButton {
-        icon.source: "/icons/br_next_icon&24.png"
+    leftItem: RoundButton {
+        icon.source: "/icons/br_prev_icon&24.png"
     }
 
 }

@@ -6,35 +6,10 @@ import Symboid.Sdk.Controls 1.0
 
 FolderScreen {
     id: documentScreen
-    initialTitle: qsTr("Horoscopes and calculations")
+    initialTitle: qsTr("Horoscopes and tabulars")
     property alias settingsView: documentScreen.folderView
 
-    FolderGroupFixed {
-        title: qsTr("Methods")
-
-        FolderGroupExpanding {
-            title: qsTr("Forecasts")
-            DocumentItem {
-                title: qsTr("Primary direction")
-            }
-            DocumentItem {
-                title: qsTr("Transit")
-            }
-        }
-
-        FolderGroupExpanding {
-            title: qsTr("Revolutions")
-            DocumentItem {
-                title: qsTr("Solar horoscope")
-            }
-            DocumentItem {
-                title: qsTr("Lunar horoscope")
-            }
-        }
+    DocumentItem {
+        title: qsTr("Natal horoscope")
     }
-
-    FolderGroupFixed {
-        title: qsTr("Saved results")
-    }
-
 }

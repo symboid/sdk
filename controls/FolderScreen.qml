@@ -22,7 +22,7 @@ IndirectContainer {
         }
         ToolButton {
             icon.source: "/icons/br_prev_icon&32.png"
-            enabled: folderView.depth > 1 || withBackButton
+            visible: folderView.depth > 1 || withBackButton
             onClicked: {
                 if (folderView.depth > 1)
                 {
