@@ -4,6 +4,7 @@ import QtQuick.Controls 2.5
 import Symboid.Sdk.Controls 1.0
 
 MainScreenParamBox {
+    id: paramBox
 
     title: qsTr("Date and time")
 
@@ -21,14 +22,15 @@ MainScreenParamBox {
     property alias showSeconds: timeBox.showSeconds
 
     property alias popupParent: dateTimePopup.parent
+    property bool editable: true
 
     DateCoordBox {
         id: dateBox
-        editable: true
+        editable: paramBox.editable
     }
     TimeCoordBox {
         id: timeBox
-        editable: true
+        editable: paramBox.editable
         circularLink: dateBox.dayLink
     }
     Pane {
@@ -50,6 +52,7 @@ MainScreenParamBox {
                 anchors.verticalCenter: parent.verticalCenter
                 radius: 5
                 icon.source: "/icons/calendar_2_icon&32.png"
+                visible: paramBox.editable
                 onClicked: dateTimePopup.open()
                 DateTimePopup {
                     id: dateTimePopup
