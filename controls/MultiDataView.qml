@@ -5,7 +5,7 @@ import QtQuick.Controls 2.5
 IndirectContainer {
     property bool vertical: true
     container: swipeView
-    reparentFrom: 3
+    reparentFrom: 4
     attachChild: function(newChild) { swipeView.addItem(newChild) }
 
     SwipeView {
@@ -29,13 +29,24 @@ IndirectContainer {
     }
 
     Pane {
-        anchors.bottom: vertical ? parent.bottom : undefined
-        anchors.left: vertical ? parent.left : undefined
-        anchors.top: vertical ? undefined : parent.top
-        anchors.right: vertical ? undefined : parent.right
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
         background: null
+        visible: vertical
         contentItem: RoundButton {
-            icon.source: vertical ? "/icons/br_down_icon&24.png" : "/icons/br_next_icon&24.png"
+            icon.source: "/icons/br_down_icon&24.png"
+            visible: swipeView.currentIndex < swipeView.count - 1
+            onClicked: swipeView.currentIndex++
+        }
+    }
+
+    Pane {
+        anchors.top: parent.top
+        anchors.right: parent.right
+        background: null
+        visible: !vertical
+        contentItem: RoundButton {
+            icon.source: "/icons/br_next_icon&24.png"
             visible: swipeView.currentIndex < swipeView.count - 1
             onClicked: swipeView.currentIndex++
         }
