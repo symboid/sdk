@@ -1,14 +1,17 @@
 
 import QtQuick 2.12
 import QtQuick.Controls 2.5
+import QtQml.Models 2.12
 
-IndirectContainer {
+Item {
     property MainScreenMetrics metrics: MainScreenMetrics {
         screenWidth: width
         screenHeight: height
     }
 
-    container: screenFlow
+    property ObjectModel screenModel: ObjectModel {
+
+    }
 
     Flickable {
         anchors.fill: parent
@@ -26,6 +29,11 @@ IndirectContainer {
             height: metrics.isLandscape ? metrics.screenHeight : childrenRect.height
 
             flow: metrics.isLandscape ? Flow.TopToBottom : Flow.LeftToRight
+
+            Repeater {
+                id: itemRepeater
+                model: screenModel
+            }
         }
     }
 }
