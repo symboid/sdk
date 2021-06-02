@@ -1,12 +1,13 @@
 
 import QtQuick 2.12
 import QtQuick.Controls 2.5
+import QtQml.Models 2.12
 
-IndirectContainer {
+Item {
     property bool vertical: true
-    container: swipeView
-    reparentFrom: 4
-    attachChild: function(newChild) { swipeView.addItem(newChild) }
+
+    property ObjectModel dataViewModel: ObjectModel {
+    }
 
     SwipeView {
         id: swipeView
@@ -14,6 +15,9 @@ IndirectContainer {
         orientation: vertical ? Qt.Vertical : Qt.Horizontal
         interactive: false
         clip: true
+        Repeater {
+            model: dataViewModel
+        }
     }
 
     Pane {
