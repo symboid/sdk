@@ -8,8 +8,6 @@ CalcPane {
     height: pane.height
     width: pane.width
 
-    autocalc: true
-
     default property alias items: column.children
 
     Pane {

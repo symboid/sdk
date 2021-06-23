@@ -13,7 +13,7 @@ IndirectContainer {
     onAutocalcChanged: task.autorun = autocalc
 
     container: resultItem
-    reparentFrom: 6
+    reparentFrom: 5
 
     CalcTask {
         id: task
@@ -34,20 +34,20 @@ IndirectContainer {
         opacity: task.valid ? 1.0 : 0.5
     }
 
-    BusyIndicator {
-        id: busyIndicator
+    Column {
         anchors.centerIn: parent
-        running: calculating && indeterminateCalc
-    }
-
-    Label {
-        anchors.horizontalCenter: busyIndicator.horizontalCenter
-        anchors.top: busyIndicator.bottom
-        visible: !task.valid
-        text: calculating ? qsTr("Recalculating...") : qsTr("Data might be invalid!")
-        horizontalAlignment: Label.AlignHCenter
-        font.italic: true
-        color: calculating ? "black" : "red"
+        BusyIndicator {
+            anchors.horizontalCenter: parent.horizontalCenter
+            running: calculating && indeterminateCalc
+        }
+        Label {
+            anchors.horizontalCenter: parent.horizontalCenter
+            visible: !task.valid
+            text: calculating ? qsTr("Recalculating...") : qsTr("Data might be invalid!")
+            horizontalAlignment: Label.AlignHCenter
+            font.italic: true
+            color: calculating ? "black" : "red"
+        }
     }
 
     ProgressBar {
