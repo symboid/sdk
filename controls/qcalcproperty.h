@@ -27,6 +27,7 @@ public:
             emit changed();
         }
     }
+    inline operator ParamType() const { return mValue; }
 
 private:
     ParamType mValue;
