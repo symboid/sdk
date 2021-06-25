@@ -6,6 +6,7 @@ include($${BUILD_ROOT}/build/qmake/qt-module.pri)
 
 SOURCES += \
     init.cc \
+    qcalclistmodel.cc \
     qcalcobject.cc \
     qcalctask.cc \
     qcalcthread.cc \
@@ -17,6 +18,7 @@ HEADERS += \
     defs.h \
     init.h \
     listpropertyadapter.h \
+    qcalclistmodel.h \
     qcalcobject.h \
     qcalcproperty.h \
     qcalctask.h \
