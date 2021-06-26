@@ -15,8 +15,15 @@ IndirectContainer {
     container: resultItem
     reparentFrom: 5
 
+    signal calcTaskStarted
+    signal calcTaskFinished
+    signal calcTaskAborted
+
     CalcTask {
         id: task
+        onStarted: calcTaskStarted()
+        onFinished: calcTaskFinished()
+        onAborted: calcTaskAborted()
     }
 
     ItemSlot {
