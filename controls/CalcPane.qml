@@ -11,6 +11,7 @@ IndirectContainer {
     property alias parameters: parametersSlot.contentItem
     property bool autocalc: task.autorun
     onAutocalcChanged: task.autorun = autocalc
+    property alias buttonVisible: buttonPane.visible
 
     container: resultItem
     reparentFrom: 5
