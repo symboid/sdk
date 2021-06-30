@@ -11,7 +11,7 @@ IndirectContainer {
     property alias parameters: parametersSlot.contentItem
     property bool autocalc: task.autorun
     onAutocalcChanged: task.autorun = autocalc
-    property alias buttonVisible: buttonPane.visible
+    property bool buttonVisible: true
 
     container: resultItem
     reparentFrom: 5
@@ -72,6 +72,7 @@ IndirectContainer {
         anchors.bottom: parent.bottom
         anchors.right: parent.right
         background: null
+        visible: buttonVisible || calculating
         contentItem: RoundButton {
             radius: 5
             background.opacity: calculating ? 1 : 0.75
