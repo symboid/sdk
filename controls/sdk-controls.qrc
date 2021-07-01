@@ -69,6 +69,7 @@
         <file>icons/calendar_2_icon&amp;32.png</file>
         <file>icons/delete_icon&amp;24.png</file>
         <file>icons/refresh_icon&amp;24.png</file>
+        <file>icons/attention_icon&amp;48.png</file>
     </qresource>
     <qresource prefix="/tr">
         <file>sdk-controls_hu.qm</file>
