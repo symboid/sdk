@@ -1,4 +1,3 @@
 module Symboid.Sdk.Dox
 DocumentFolderScreen 1.0 DocumentFolderScreen.qml
-DocumentScreen 1.0 DocumentScreen.qml
 DocumentItem 1.0 DocumentItem.qml

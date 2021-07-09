@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/Symboid/Sdk/Dox">
         <file>qmldir</file>
-        <file>DocumentScreen.qml</file>
         <file>DocumentFolderScreen.qml</file>
         <file>DocumentItem.qml</file>
     </qresource>
