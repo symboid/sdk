@@ -2,30 +2,30 @@
 import QtQuick 2.12
 
 QtObject {
-    property int length: 0
+    property int depth: 0
     property var stack: []
     function push(screen)
     {
         stack.push(screen)
-        length++
+        depth++
     }
     function pop()
     {
         var screen = null
-        if (length > 0) {
+        if (depth > 0) {
             screen = stack.pop()
-            length--
+            depth--
         }
         return screen
     }
     function cleanup()
     {
-        for (var s = 0; s < stack.length; ++s)
+        for (var s = 0; s < stack.depth; ++s)
         {
             var screen = stack[s]
             screen.destroy()
         }
         stack = []
-        length = 0
+        depth = 0
     }
 }

@@ -53,6 +53,7 @@
         <file>MultiDataView.qml</file>
         <file>MainScreenParamCalcPane.qml</file>
         <file>StackObject.qml</file>
+        <file>SwitchView.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/arrow_left_icon&amp;24.png</file>
