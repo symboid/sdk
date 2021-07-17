@@ -1,0 +1,21 @@
+
+import QtQuick 2.12
+import Symboid.Sdk.Controls 1.0
+
+FolderView {
+
+    property alias docMethodModel: docMethodRepeater.model
+
+    signal loadDocView(string viewName)
+
+    property FolderView folderView: this
+    initialItem: FolderPane {
+        Repeater {
+            id: docMethodRepeater
+            DocMethodItem {
+                title: methodTitle
+                onLoadClicked: loadDocView(methodPageUrl)
+            }
+        }
+    }
+}
