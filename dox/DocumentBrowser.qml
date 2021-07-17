@@ -30,13 +30,18 @@ StackView {
         push(forwardStack.pop())
         ++docPageIndex
     }
-    function newDocPage(viewName)
+    property var createDocPage: function(viewName)
     {
         var screenComponent = Qt.createComponent(viewName)
-        var screen = screenComponent.createObject(this)
+        return screenComponent.createObject(this)
+    }
+    function newDocPage(viewName)
+    {
+        var screen = createDocPage(viewName)
         forwardStack.cleanup()
         push(screen)
         docPageIndex++
+        return screen
     }
     function switchDocPage(pageIndex)
     {
@@ -51,10 +56,14 @@ StackView {
         docPageIndex = pageIndex
     }
 
+    property var closeDocPage: function(docPage)
+    {
+    }
     Connections {
         target: currentItem
         function onCloseView()
         {
+            closeDocPage(currentItem)
             if (depth > 1)
             {
                 pop()

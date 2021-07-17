@@ -8,7 +8,16 @@ ProcessPage {
 
     readonly property int rowWidth: 400
 
-    property Document currentDocument: null
+    Component {
+        id: docComponent
+        Document {
+        }
+    }
+    property var loadDocument: function(documentPath, documentTitle)
+    {
+        return docComponent.createObject(this, { filePath: documentPath, title: documentTitle })
+    }
+
     signal documentLoaded
 
     header: LoadListToolBar {
@@ -35,8 +44,7 @@ ProcessPage {
             if (textInputIndex === 0) {
                 if (textInput !== 0) {
                     // loading the current document content as new content
-                    currentDocument.loadCurrent()
-                    currentDocument.title = textInput
+                    loadDocument("",textInput)
                     documentLoaded()
 
                     textInputShow(false)
@@ -79,8 +87,7 @@ ProcessPage {
             selectable: index === documentListView.currentIndex
             onButtonClicked: {
                 // loading selected document
-                currentDocument.filePath = documentPath
-                currentDocument.load()
+                loadDocument(documentPath,"")
                 documentLoaded()
 
                 documentListView.currentIndex = -1
