@@ -18,7 +18,6 @@ FolderView {
                     methodLoadClicked()
                     docViewLoaded()
                 }
-                withSeparator: methodSeparated !== undefined && methodSeparated
             }
         }
     }

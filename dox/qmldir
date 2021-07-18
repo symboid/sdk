@@ -7,3 +7,4 @@ DocPageView 1.0 DocPageView.qml
 DocMethodItem 1.0 DocMethodItem.qml
 DocMethodView 1.0 DocMethodView.qml
 DocPage 1.0 DocPage.qml
+DocFileMenu 1.0 DocFileMenu.qml

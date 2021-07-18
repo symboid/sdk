@@ -10,6 +10,7 @@ StackView {
     property int docPageIndex: 0
 
     property alias initialPage: documentBrowser.initialItem
+    property alias currentPage: documentBrowser.currentItem
 
     pushEnter: null
     pushExit: null
@@ -56,6 +57,21 @@ StackView {
         docPageIndex = pageIndex
     }
 
+    function closeCurrentPage()
+    {
+        if (depth > 1)
+        {
+            closeDocPage(currentPage)
+            pop()
+            docPageIndex--
+        }
+        else if (forwardStack.depth > 0)
+        {
+            closeDocPage(currentPage)
+            replace(currentPage, forwardStack.pop())
+        }
+    }
+
     property var closeDocPage: function(docPage)
     {
     }
@@ -63,19 +79,11 @@ StackView {
         target: currentItem
         function onCloseView()
         {
-            closeDocPage(currentItem)
-            if (depth > 1)
-            {
-                pop()
-                docPageIndex--
-            }
-            else if (forwardStack.depth > 0)
-            {
-                replace(currentItem, forwardStack.pop())
-            }
+            closeCurrentPage()
         }
     }
 
+    property alias fileMenuModel: docPageDialog.fileMenuModel
     property alias docMethodModel: docPageDialog.docMethodModel
     function docPageDialogOpen()
     {

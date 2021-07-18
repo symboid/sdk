@@ -9,6 +9,7 @@
         <file>DocMethodView.qml</file>
         <file>DocPageView.qml</file>
         <file>DocPage.qml</file>
+        <file>DocFileMenu.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/zoom_icon&amp;16.png</file>
@@ -18,6 +19,9 @@
         <file>icons/trash_icon&amp;32.png</file>
         <file>icons/zoom_icon&amp;32.png</file>
         <file>icons/br_prev_icon&amp;24.png</file>
+        <file>icons/align_just_icon&amp;32.png</file>
+        <file>icons/bookmark_1_icon&amp;32.png</file>
+        <file>icons/doc_lines_stright_icon&amp;32.png</file>
     </qresource>
     <qresource prefix="/tr">
         <file>sdk-dox_hu.qm</file>
