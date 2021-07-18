@@ -6,7 +6,7 @@ FolderView {
 
     property alias docMethodModel: docMethodRepeater.model
 
-    signal loadDocView(string viewName)
+    signal docViewLoaded
 
     property FolderView folderView: this
     initialItem: FolderPane {
@@ -14,7 +14,11 @@ FolderView {
             id: docMethodRepeater
             DocMethodItem {
                 title: methodTitle
-                onLoadClicked: loadDocView(methodPageUrl)
+                onLoadClicked: {
+                    methodLoadClicked()
+                    docViewLoaded()
+                }
+                withSeparator: methodSeparated !== undefined && methodSeparated
             }
         }
     }

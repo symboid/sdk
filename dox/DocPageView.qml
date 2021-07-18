@@ -6,6 +6,7 @@ FolderView {
 
     property int docPageCount: 0
     signal switchDocPage(int pageIndex)
+    signal docPageLoaded
 
     property FolderView folderView: this
     initialItem: FolderPane {
@@ -13,7 +14,10 @@ FolderView {
             model: docPageCount
             DocMethodItem {
                 title: qsTr("Page %1").arg(index)
-                onLoadClicked: switchDocPage(index)
+                onLoadClicked: {
+                    switchDocPage(index)
+                    docPageLoaded()
+                }
             }
         }
     }

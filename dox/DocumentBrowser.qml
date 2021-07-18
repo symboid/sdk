@@ -89,7 +89,6 @@ StackView {
 
         docPageCount: parent.docPageCount
 
-        onLoadDocView: newDocPage(viewName)
         onSwitchDocPage: parent.switchDocPage(viewIndex)
     }
 }

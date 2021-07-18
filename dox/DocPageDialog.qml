@@ -9,9 +9,6 @@ Popup {
     signal loadDocView(string viewName)
     signal switchDocPage(int viewIndex)
 
-    onLoadDocView: close()
-    onSwitchDocPage: close()
-
     property alias docPageCount: docPageView.docPageCount
     property alias docMethodModel: docMethodView.docMethodModel
 
@@ -38,11 +35,12 @@ Popup {
         }
         DocMethodView {
             id: docMethodView
-            onLoadDocView: docPageDialog.loadDocView(viewName)
+            onDocViewLoaded: close()
         }
         DocPageView {
             id: docPageView
             onSwitchDocPage: docPageDialog.switchDocPage(pageIndex)
+            onDocPageLoaded: close()
         }
     }
 }
