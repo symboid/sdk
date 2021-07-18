@@ -41,7 +41,7 @@ StackView {
         var screen = createDocPage(viewName)
         forwardStack.cleanup()
         push(screen)
-        docPageIndex++
+        ++docPageIndex
         return screen
     }
     function switchDocPage(pageIndex)
@@ -85,6 +85,10 @@ StackView {
 
     property alias fileMenuModel: docPageDialog.fileMenuModel
     property alias docMethodModel: docPageDialog.docMethodModel
+
+    property alias docListModel: docPageDialog.docListModel
+    property int currentDocIndex: 0
+
     function docPageDialogOpen()
     {
         docPageDialog.open()
@@ -98,5 +102,6 @@ StackView {
         docPageCount: parent.docPageCount
 
         onSwitchDocPage: parent.switchDocPage(viewIndex)
+        onOpened: selectedDocIndex = currentDocIndex
     }
 }

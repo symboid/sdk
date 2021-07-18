@@ -6,7 +6,7 @@ FolderView {
 
     property int docPageCount: 0
     signal switchDocPage(int pageIndex)
-    signal docPageLoaded
+    signal docPageLoaded()
 
     property FolderView folderView: this
     initialItem: FolderPane {

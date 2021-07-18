@@ -2,6 +2,13 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="hu_HU">
 <context>
+    <name>DocPageDialog</name>
+    <message>
+        <source>Document</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>DocPageView</name>
     <message>
         <source>Page %1</source>

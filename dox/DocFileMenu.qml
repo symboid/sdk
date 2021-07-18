@@ -11,11 +11,6 @@ FolderView {
 
     property FolderView folderView: this
     initialItem: FolderPane {
-        FolderItem {
-            mainItem: TextField {
-            }
-        }
-
         Repeater {
             id: fileMenuRepeater
             FolderItem {

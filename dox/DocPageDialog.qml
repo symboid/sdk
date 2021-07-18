@@ -13,6 +13,9 @@ Popup {
     property alias fileMenuModel: docFileMenu.fileMenuModel
     property alias docMethodModel: docMethodView.docMethodModel
 
+    property alias docListModel: documentSelector.model
+    property alias selectedDocIndex: documentSelector.currentIndex
+
     TabBar {
         id: tabBar
         anchors.top: parent.top
@@ -32,9 +35,44 @@ Popup {
         }
     }
     HorizontalLine {
-        id: horizontalLine
+        id: horizontalLine1
         anchors {
             top: tabBar.bottom
+            left: parent.left
+            right: parent.right
+        }
+    }
+    Pane {
+        id: documentPane
+        anchors {
+            top: horizontalLine1.bottom
+            left: parent.left
+            right: parent.right
+        }
+        height: documentSelector.height + topPadding + bottomPadding
+        Row {
+            spacing: documentPane.padding
+            Label {
+                id: documentLabel
+                anchors.verticalCenter: parent.verticalCenter
+                text: qsTr("Document") + ":"
+                font.italic: true
+            }
+            ComboBox {
+                id: documentSelector
+                textRole: "radixTitle"
+                width: documentPane.width - documentLabel.width - 3 * documentPane.padding
+                editable: tabBar.currentIndex === 0
+                enabled: tabBar.currentIndex !== 3
+                font.italic: true
+            }
+        }
+    }
+
+    HorizontalLine {
+        id: horizontalLine2
+        anchors {
+            top: documentPane.bottom
             left: parent.left
             right: parent.right
         }
@@ -43,7 +81,7 @@ Popup {
     SwitchView {
         currentIndex: tabBar.currentIndex
         anchors {
-            top: horizontalLine.bottom
+            top: horizontalLine2.bottom
             left: parent.left
             right: parent.right
             bottom: parent.bottom

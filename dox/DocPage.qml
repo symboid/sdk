@@ -15,9 +15,9 @@ MainScreen {
         metrics.isLandscape ? ((restSize / 2) < metrics.minParamSectionWidth ? metrics.minParamSectionWidth : restSize / 2)
                     : ((mandalaSize / 2) < metrics.minParamSectionWidth ? mandalaSize : mandalaSize / 2)
 
-    property string docTitle: ""
+    property string pageTitle: ""
 
-    StackView.onActivating: loadingPopup.show(docTitle)
+    StackView.onActivating: loadingPopup.show(pageTitle)
 
     signal closeView
     RoundButton {
