@@ -88,6 +88,7 @@ StackView {
 
     property alias docListModel: docPageDialog.docListModel
     property int currentDocIndex: 0
+    property alias currentDocTitle: docPageDialog.selectedDocTitle
 
     function docPageDialogOpen()
     {

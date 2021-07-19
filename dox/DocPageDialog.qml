@@ -15,6 +15,7 @@ Popup {
 
     property alias docListModel: documentSelector.model
     property alias selectedDocIndex: documentSelector.currentIndex
+    property alias selectedDocTitle: documentSelector.editText
 
     TabBar {
         id: tabBar
