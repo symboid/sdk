@@ -7,6 +7,7 @@ MainScreenParamBox {
     property alias textRole: comboBox.textRole
     property alias valueRole: comboBox.valueRole
     property alias currentIndex: comboBox.currentIndex
+    property alias currentText: comboBox.currentText
     property alias currentValue: comboBox.currentValue
 
     Pane {
