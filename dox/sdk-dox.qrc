@@ -4,12 +4,8 @@
         <file>DocumentFolderScreen.qml</file>
         <file>DocumentItem.qml</file>
         <file>DocumentBrowser.qml</file>
-        <file>DocPageDialog.qml</file>
-        <file>DocMethodItem.qml</file>
-        <file>DocMethodView.qml</file>
         <file>DocPageView.qml</file>
         <file>DocPage.qml</file>
-        <file>DocFileMenu.qml</file>
     </qresource>
     <qresource prefix="/">
         <file>icons/zoom_icon&amp;16.png</file>

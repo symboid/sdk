@@ -82,27 +82,4 @@ StackView {
             closeCurrentPage()
         }
     }
-
-    property alias fileMenuModel: docPageDialog.fileMenuModel
-    property alias docMethodModel: docPageDialog.docMethodModel
-
-    property alias docListModel: docPageDialog.docListModel
-    property int currentDocIndex: 0
-    property alias currentDocTitle: docPageDialog.selectedDocTitle
-
-    function docPageDialogOpen()
-    {
-        docPageDialog.open()
-    }
-    DocPageDialog {
-        id: docPageDialog
-        anchors.centerIn: parent
-        width: Math.min(400, parent.width - 50)
-        height: parent.height - 2 * 50
-
-        docPageCount: parent.docPageCount
-
-        onSwitchDocPage: parent.switchDocPage(viewIndex)
-        onOpened: selectedDocIndex = currentDocIndex
-    }
 }

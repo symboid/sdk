@@ -2,9 +2,5 @@ module Symboid.Sdk.Dox
 DocumentFolderScreen 1.0 DocumentFolderScreen.qml
 DocumentItem 1.0 DocumentItem.qml
 DocumentBrowser 1.0 DocumentBrowser.qml
-DocPageDialog 1.0 DocPageDialog.qml
 DocPageView 1.0 DocPageView.qml
-DocMethodItem 1.0 DocMethodItem.qml
-DocMethodView 1.0 DocMethodView.qml
 DocPage 1.0 DocPage.qml
-DocFileMenu 1.0 DocFileMenu.qml

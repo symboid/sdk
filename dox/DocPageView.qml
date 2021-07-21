@@ -1,5 +1,6 @@
 
 import QtQuick 2.12
+import QtQuick.Controls 2.5
 import Symboid.Sdk.Controls 1.0
 
 FolderView {
@@ -12,11 +13,16 @@ FolderView {
     initialItem: FolderPane {
         Repeater {
             model: docPageCount
-            DocMethodItem {
+            FolderItem {
                 title: qsTr("Page %1").arg(index)
-                onLoadClicked: {
-                    switchDocPage(index)
-                    docPageLoaded()
+
+                rightItem: RoundButton {
+                    radius: height / 9
+                    icon.source: "/icons/br_next_icon&24.png"
+                    onClicked: {
+                        switchDocPage(index)
+                        docPageLoaded()
+                    }
                 }
             }
         }
